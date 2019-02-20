@@ -1,0 +1,322 @@
+/* 
+    Created on : Nov 8, 2018, 8:47:23 PM
+    Author     : Azryah Networks
+*/
+
+
+@media only screen and (min-width:1400px){
+}
+
+@media only screen and (min-width:1200px){
+    .service-sec .service-info .main-title:after{
+        display: inline-block;
+        left: auto;
+        right: 0px;
+        height: 75px;
+        width: 1px;
+        top: 20px;
+    }
+    .service-sec .service-info p{
+        padding-top: 15px;
+        border-left: 0px solid #cdd1d3;
+    }
+    .footer .foot-about{
+        padding-right: 35px;
+    }
+}
+
+@media (max-width:1200px) and (min-width:992px){
+    .navbar-custom.top-nav-collapse .head-middle-section::after {
+        right: -929px;
+    }
+    .banner .slide-box{
+        min-height:500px;
+    }
+    .banner .slide-box .banne-cont {
+        padding: 150px 0px 30px 0px;
+    }
+    .banner .slide-box .banne-cont .sub-head {
+        font-size: 45px;
+        line-height: 55px;
+    }
+    .clients .slick-slide{
+        padding: 0px 5px;
+    }
+    .banner .banner-content{
+        padding: 115px 0;
+    }
+}
+
+@media only screen and  (min-width: 992px) {
+    .welcome-sec .welcome-content p {
+        padding-right: 55px;
+    }
+    .clients .clients-header .info, .clients .clients-header p{
+        margin: 0 18%;
+    }
+}
+
+@media only screen and (max-width: 992px) {
+    .why-choose .y-choose-cntnt{
+        border-right: 0px;
+    }
+    .why-choose .testimonial {
+        margin-top: 30px;
+        box-shadow: 0px 0px 23.28px -2.28px rgba(0, 0, 0, 0.13);
+        padding: 35px 30px;
+    }
+    .clients .slick-slide{
+        padding: 0px 15px;
+    }
+    .banner .banner-content{
+        padding: 115px 0;
+    }
+    .banner .page-title{
+        font-size: 47px;
+        line-height: 48px;
+    }
+    #services .service-list ul li{
+        font-size: 14px;
+    }
+    .head-style1 h6{
+        font-size: 12px;
+    }
+    .main-title{
+        font-size: 24px;
+        line-height: 36px;
+    }
+    #why-cda .our-team .head-style1 .main-title{
+        font-size: 22px;
+    }
+    #why-cda .our-team p{
+        padding-right: 0px;
+    }
+    #blog .recent-posts{
+        margin-top: 50px;
+    }
+}
+
+@media (max-width:992px) and (min-width:768px){
+    .container {
+        max-width: 850px;
+    }
+    .header .head-middle-section {
+        margin-bottom: -36px;
+    }
+    .header .head-middle-section .logo {
+        width: 145px;
+        padding: 10px 25px;
+    }
+    .main-nav-section .navbar-nav li a {
+        padding: 0px 16px;
+        line-height: 70px;
+        font-size: 13px;
+    }
+    .navbar-custom.top-nav-collapse .head-middle-section::after {
+        right: -741px;
+    }
+    .top-section .top-right-section .top-contact {
+        padding-right: 30px;
+    }
+    .banner .slide-box{
+        min-height:400px;
+    }
+    .banner .slide-box .banne-cont {
+        padding: 100px 0px 30px 0px;
+    }
+    .banner .slide-box .banne-cont .sub-head {
+        font-size:40px;
+        line-height:45px;
+    }
+    .welcome-sec .welcome-content{
+        padding-right: 0px;
+    }
+    .ceo-message{
+        margin-left: 35px;
+    }
+    .ceo-message .img-box{
+        position: unset;
+        margin-top: 0px;
+        margin-right: 25px;
+    }
+    .ceo-message .content{
+        padding-left: 0;
+        padding-right: 15px;
+    }
+    .speciality .special-box .content{
+        padding: 0 15px;
+    }
+    #why-cda .our-team .head-style1{
+        margin-top: 0px;
+    }
+    #blog .blog-box .blog-content .blog-title{
+        font-size: 15px;
+    }
+}
+
+@media (min-width:768px){
+    .main-nav-section ul li:hover > ul.dropdown-menu {
+        display: block;
+    }
+    .service-sec .service-box{
+        padding-right: 0px;
+    } 
+}
+@media (max-width:768px) and (min-width:576px){
+}
+@media (max-width:768px){
+    .top-section {
+        padding: 10px 0px;
+        background: #f3f3f3;
+    }
+
+    .top-section .top-right-section .follows-top li a {
+        color: #b1b1b1;
+    }
+    .top-section .top-cont-left {
+        display: none;
+    }
+    .header .head-middle-section .menu-button{
+        display:block;
+        float:right;
+        border:1px solid #e2e2e2;
+        outline:none;
+        margin-top:15px;
+        padding:8px 10px;
+    }
+    .header .head-middle-section .menu-button i{
+        font-size:20px;
+        color:#1569a8;
+    }
+    .navbar-custom.top-nav-collapse .head-middle-section::after {
+        right: -619px;
+    }
+    .header .head-middle-section {
+        margin-bottom:0px;
+        box-shadow:none;
+        background:#FFF;
+    }
+    .header .head-middle-section .logo {
+        width: 112px;
+        padding: 10px 0px;
+        float:left;
+    }
+    .main-nav-section{
+        float:none;
+        background:#f1f1f1;
+    }
+    .main-nav-section .navbar-nav li a{
+        color:#666666;
+        line-height:35px;
+        display:block;
+        border-bottom:1px solid #e4e5e6;
+    }
+    .navbar-custom.top-nav-collapse .navbar-nav li a {
+        line-height: 35px;
+    }
+    .navbar-custom.top-nav-collapse .head-middle-section .menu-button {
+        margin-top: 8px;
+    }
+    .banner .slide-box{
+        min-height:350px;
+    }
+    .banner .slide-box .banne-cont {
+        padding: 55px 0px 30px 0px;
+    }
+    .banner .slide-box .banne-cont .sub-head {
+        font-size:35px;
+        line-height:45px;
+    }
+    .banner .slide-box .banne-cont .link-box .link-More{
+        margin:0px;
+    }
+    .ceo-message {
+        margin-left: 0;
+        margin-top: 40px;
+    }
+    .speciality .special-box .content {
+        border-right: 0px;
+        border-bottom: 1px solid #354551;
+        padding: 0 25px;
+        padding-bottom: 45px;
+        margin-bottom: 45px;
+    }
+    .speciality .col-md-4:last-child .content{
+        border-bottom: 0px;
+        margin-bottom: 0px;
+    }
+    .why-choose .y-choose-cntnt ul li{
+        width: 100%;
+    }
+    #services .service-list ul li{
+        width: 100%;
+    }
+    #why-cda .cprit{
+        padding-right: 0px;
+    }
+    #why-cda .our-team img{
+        margin: 0 auto;
+        display: block;
+    }
+    .banner .carousel-indicators{
+        display: none;
+    }
+    .main-contact-icon-right-sd{
+        display: none;
+    }
+    .banner .page-title {
+        font-size: 38px;
+        line-height: 35px;
+    }
+    .footer .title{
+        margin-bottom: 10px;
+    }
+    .footer .quick-links li a{
+        line-height: 26px;
+    }
+
+}
+
+@media only screen and (max-width:576px){
+    .top-section .top-right-section .top-contact {
+        float: right;
+        padding-right: 15px;
+    }
+    .banner .slide-box{
+        min-height:300px;
+    }
+    .banner .slide-box .banne-cont {
+        padding: 50px 0px 30px 0px;
+    }
+    .banner .slide-box .banne-cont .sub-head {
+        font-size:30px;
+        line-height:35px;
+    }
+    .banner .slide-box .banne-cont .link-box .link-More{
+        margin:0px;
+    }
+    .ceo-message{
+        margin-left: 0px;
+    }
+    .ceo-message .img-box{
+        position: unset;
+        margin-top: 0px;
+        margin-right: 25px;
+    }
+    .ceo-message .content{
+        padding-left: 0;
+        padding-right: 15px;
+    }
+}
+
+@media only screen and (max-width:468px){
+    .top-section .top-right-section .follows-top {
+        border-left: 1px solid #cecccc;
+    }	
+    .top-section .top-right-section .top-contact .span {
+        display:none;
+    }
+    .top-section .top-right-section .top-contact {
+        padding-right:8px;
+    }
+}

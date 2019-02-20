@@ -1,0 +1,397 @@
+[22-Jan-2019 04:52:30 UTC] An Error occurred while handling another error:
+yii\base\InvalidArgumentException: The HTTP status code is invalid: 2000 in /home/zgh9edwwtmar/public_html/app/vendor/yiisoft/yii2/web/Response.php:285
+Stack trace:
+#0 /home/zgh9edwwtmar/public_html/app/vendor/yiisoft/yii2/web/Response.php(306): yii\web\Response->setStatusCode(2000)
+#1 /home/zgh9edwwtmar/public_html/app/vendor/yiisoft/yii2/web/ErrorHandler.php(103): yii\web\Response->setStatusCodeByException(Object(yii\web\HttpException))
+#2 /home/zgh9edwwtmar/public_html/app/vendor/yiisoft/yii2/base/ErrorHandler.php(111): yii\web\ErrorHandler->renderException(Object(yii\web\HttpException))
+#3 [internal function]: yii\base\ErrorHandler->handleException(Object(yii\web\HttpException))
+#4 {main}
+Previous exception:
+yii\web\HttpException: Session Expired. in /home/zgh9edwwtmar/public_html/app/backend/controllers/SiteController.php:110
+Stack trace:
+#0 [internal function]: backend\controllers\SiteController->actionHome()
+#1 /home/zgh9edwwtmar/public_html/app/vendor/yiisoft/yii2/base/InlineAction.php(57): call_user_func_array(Array, Array)
+#2 /home/zgh9edwwtmar/public_html/app/vendor/yiisoft/yii2/base/Controller.php(157): yii\base\InlineAction->runWithParams(Array)
+#3 /home/zgh9edwwtmar/public_html/app/vendor/yiisoft/yii2/base/Module.php(528): yii\base\Controller->runAction('home', Array)
+#4 /home/zgh9edwwtmar/public_html/app/vendor/yiisoft/yii2/web/Application.php(103): yii\base\Module->runAction('site/home', Array)
+#5 /home/zgh9edwwtmar/public_html/app/vendor/yiisoft/yii2/base/Application.php(386): yii\web\Application->handleRequest(Object(yii\web\Request))
+#6 /home/zgh9edwwtmar/public_html/app/index.php(15): yii\base\Application->run()
+#7 {main}
+$_SERVER = [
+    'LSPHP_ENABLE_USER_INI' => 'on',
+    'PATH' => '/usr/local/bin:/usr/bin:/bin',
+    'TEMP' => '/tmp',
+    'TMP' => '/tmp',
+    'TMPDIR' => '/tmp',
+    'PWD' => '/',
+    'HTTP_ACCEPT' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate',
+    'HTTP_ACCEPT_LANGUAGE' => 'en-US,en;q=0.9',
+    'HTTP_CONNECTION' => 'keep-alive',
+    'CONTENT_LENGTH' => '0',
+    'HTTP_COOKIE' => '_ga=GA1.2.1982872296.1547490388; _gid=GA1.2.1173721024.1548103038; advanced-backend=70pnuiirs6aqhdek1g4cv80lf7; _csrf-backend=305f0fe0758897126e102dcc6843fc27c4ad43ce182fb5d45f7ec3fb05bc84ada%3A2%3A%7Bi%3A0%3Bs%3A13%3A%22_csrf-backend%22%3Bi%3A1%3Bs%3A32%3A%224ZFRVUa3hJsOWfKPnZvWyNsjiLFbuRZY%22%3B%7D; _csrf-frontend=7d0f1b5fb0c2dbe07f41b93bd9c4e91a9d16925a20309fa3f0b03e6fff92db0ca%3A2%3A%7Bi%3A0%3Bs%3A14%3A%22_csrf-frontend%22%3Bi%3A1%3Bs%3A32%3A%22EyYfnmc256x5FMhVaf9V2qjGkACvSfUm%22%3B%7D',
+    'HTTP_HOST' => 'adirfire.com',
+    'HTTP_USER_AGENT' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36',
+    'HTTP_CACHE_CONTROL' => 'max-age=0',
+    'HTTP_UPGRADE_INSECURE_REQUESTS' => '1',
+    'REDIRECT_UNIQUE_ID' => 'XEahjlnxQyARd4FYcmf4BgAAAZY',
+    'REDIRECT_STATUS' => '200',
+    'UNIQUE_ID' => 'XEahjlnxQyARd4FYcmf4BgAAAZY',
+    'SERVER_SIGNATURE' => '',
+    'SERVER_SOFTWARE' => 'Apache',
+    'SERVER_NAME' => 'adirfire.com',
+    'SERVER_ADDR' => '160.153.129.239',
+    'SERVER_PORT' => '80',
+    'REMOTE_ADDR' => '122.164.34.107',
+    'DOCUMENT_ROOT' => '/home/zgh9edwwtmar/public_html',
+    'REQUEST_SCHEME' => 'http',
+    'CONTEXT_PREFIX' => '',
+    'CONTEXT_DOCUMENT_ROOT' => '/home/zgh9edwwtmar/public_html',
+    'SERVER_ADMIN' => 'webmaster@adirfire.com',
+    'SCRIPT_FILENAME' => '/home/zgh9edwwtmar/public_html/app/index.php',
+    'REMOTE_PORT' => '59725',
+    'REDIRECT_URL' => '/app/site/home',
+    'REDIRECT_QUERY_STRING' => 'site/home',
+    'SERVER_PROTOCOL' => 'HTTP/1.1',
+    'REQUEST_METHOD' => 'GET',
+    'QUERY_STRING' => 'site/home',
+    'REQUEST_URI' => '/app/site/home',
+    'SCRIPT_NAME' => '/app/index.php',
+    'PHP_SELF' => '/app/index.php',
+    'REQUEST_TIME_FLOAT' => 1548132750.5449619293212890625,
+    'REQUEST_TIME' => 1548132750,
+]
+[22-Jan-2019 04:52:33 UTC] An Error occurred while handling another error:
+yii\base\InvalidArgumentException: The HTTP status code is invalid: 2000 in /home/zgh9edwwtmar/public_html/app/vendor/yiisoft/yii2/web/Response.php:285
+Stack trace:
+#0 /home/zgh9edwwtmar/public_html/app/vendor/yiisoft/yii2/web/Response.php(306): yii\web\Response->setStatusCode(2000)
+#1 /home/zgh9edwwtmar/public_html/app/vendor/yiisoft/yii2/web/ErrorHandler.php(103): yii\web\Response->setStatusCodeByException(Object(yii\web\HttpException))
+#2 /home/zgh9edwwtmar/public_html/app/vendor/yiisoft/yii2/base/ErrorHandler.php(111): yii\web\ErrorHandler->renderException(Object(yii\web\HttpException))
+#3 [internal function]: yii\base\ErrorHandler->handleException(Object(yii\web\HttpException))
+#4 {main}
+Previous exception:
+yii\web\HttpException: Session Expired. in /home/zgh9edwwtmar/public_html/app/backend/controllers/SiteController.php:110
+Stack trace:
+#0 [internal function]: backend\controllers\SiteController->actionHome()
+#1 /home/zgh9edwwtmar/public_html/app/vendor/yiisoft/yii2/base/InlineAction.php(57): call_user_func_array(Array, Array)
+#2 /home/zgh9edwwtmar/public_html/app/vendor/yiisoft/yii2/base/Controller.php(157): yii\base\InlineAction->runWithParams(Array)
+#3 /home/zgh9edwwtmar/public_html/app/vendor/yiisoft/yii2/base/Module.php(528): yii\base\Controller->runAction('home', Array)
+#4 /home/zgh9edwwtmar/public_html/app/vendor/yiisoft/yii2/web/Application.php(103): yii\base\Module->runAction('site/home', Array)
+#5 /home/zgh9edwwtmar/public_html/app/vendor/yiisoft/yii2/base/Application.php(386): yii\web\Application->handleRequest(Object(yii\web\Request))
+#6 /home/zgh9edwwtmar/public_html/app/index.php(15): yii\base\Application->run()
+#7 {main}
+$_SERVER = [
+    'LSPHP_ENABLE_USER_INI' => 'on',
+    'PATH' => '/usr/local/bin:/usr/bin:/bin',
+    'TEMP' => '/tmp',
+    'TMP' => '/tmp',
+    'TMPDIR' => '/tmp',
+    'PWD' => '/',
+    'HTTP_ACCEPT' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate',
+    'HTTP_ACCEPT_LANGUAGE' => 'en-US,en;q=0.9',
+    'HTTP_CONNECTION' => 'keep-alive',
+    'CONTENT_LENGTH' => '0',
+    'HTTP_COOKIE' => '_ga=GA1.2.1982872296.1547490388; _gid=GA1.2.1173721024.1548103038; advanced-backend=70pnuiirs6aqhdek1g4cv80lf7; _csrf-backend=305f0fe0758897126e102dcc6843fc27c4ad43ce182fb5d45f7ec3fb05bc84ada%3A2%3A%7Bi%3A0%3Bs%3A13%3A%22_csrf-backend%22%3Bi%3A1%3Bs%3A32%3A%224ZFRVUa3hJsOWfKPnZvWyNsjiLFbuRZY%22%3B%7D; _csrf-frontend=7d0f1b5fb0c2dbe07f41b93bd9c4e91a9d16925a20309fa3f0b03e6fff92db0ca%3A2%3A%7Bi%3A0%3Bs%3A14%3A%22_csrf-frontend%22%3Bi%3A1%3Bs%3A32%3A%22EyYfnmc256x5FMhVaf9V2qjGkACvSfUm%22%3B%7D',
+    'HTTP_HOST' => 'adirfire.com',
+    'HTTP_USER_AGENT' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36',
+    'HTTP_CACHE_CONTROL' => 'max-age=0',
+    'HTTP_UPGRADE_INSECURE_REQUESTS' => '1',
+    'REDIRECT_UNIQUE_ID' => 'XEahkfKWyrzhC7U5g6rAIwAABcI',
+    'REDIRECT_STATUS' => '200',
+    'UNIQUE_ID' => 'XEahkfKWyrzhC7U5g6rAIwAABcI',
+    'SERVER_SIGNATURE' => '',
+    'SERVER_SOFTWARE' => 'Apache',
+    'SERVER_NAME' => 'adirfire.com',
+    'SERVER_ADDR' => '160.153.129.239',
+    'SERVER_PORT' => '80',
+    'REMOTE_ADDR' => '122.164.34.107',
+    'DOCUMENT_ROOT' => '/home/zgh9edwwtmar/public_html',
+    'REQUEST_SCHEME' => 'http',
+    'CONTEXT_PREFIX' => '',
+    'CONTEXT_DOCUMENT_ROOT' => '/home/zgh9edwwtmar/public_html',
+    'SERVER_ADMIN' => 'webmaster@adirfire.com',
+    'SCRIPT_FILENAME' => '/home/zgh9edwwtmar/public_html/app/index.php',
+    'REMOTE_PORT' => '59726',
+    'REDIRECT_URL' => '/app/site/home',
+    'REDIRECT_QUERY_STRING' => 'site/home',
+    'SERVER_PROTOCOL' => 'HTTP/1.1',
+    'REQUEST_METHOD' => 'GET',
+    'QUERY_STRING' => 'site/home',
+    'REQUEST_URI' => '/app/site/home',
+    'SCRIPT_NAME' => '/app/index.php',
+    'PHP_SELF' => '/app/index.php',
+    'REQUEST_TIME_FLOAT' => 1548132753.6045129299163818359375,
+    'REQUEST_TIME' => 1548132753,
+]
+[24-Jan-2019 09:54:33 UTC] An Error occurred while handling another error:
+yii\base\InvalidArgumentException: The HTTP status code is invalid: 2000 in /home/zgh9edwwtmar/public_html/app/vendor/yiisoft/yii2/web/Response.php:285
+Stack trace:
+#0 /home/zgh9edwwtmar/public_html/app/vendor/yiisoft/yii2/web/Response.php(306): yii\web\Response->setStatusCode(2000)
+#1 /home/zgh9edwwtmar/public_html/app/vendor/yiisoft/yii2/web/ErrorHandler.php(103): yii\web\Response->setStatusCodeByException(Object(yii\web\HttpException))
+#2 /home/zgh9edwwtmar/public_html/app/vendor/yiisoft/yii2/base/ErrorHandler.php(111): yii\web\ErrorHandler->renderException(Object(yii\web\HttpException))
+#3 [internal function]: yii\base\ErrorHandler->handleException(Object(yii\web\HttpException))
+#4 {main}
+Previous exception:
+yii\web\HttpException: Session Expired. in /home/zgh9edwwtmar/public_html/app/backend/controllers/SiteController.php:111
+Stack trace:
+#0 [internal function]: backend\controllers\SiteController->actionHome()
+#1 /home/zgh9edwwtmar/public_html/app/vendor/yiisoft/yii2/base/InlineAction.php(57): call_user_func_array(Array, Array)
+#2 /home/zgh9edwwtmar/public_html/app/vendor/yiisoft/yii2/base/Controller.php(157): yii\base\InlineAction->runWithParams(Array)
+#3 /home/zgh9edwwtmar/public_html/app/vendor/yiisoft/yii2/base/Module.php(528): yii\base\Controller->runAction('home', Array)
+#4 /home/zgh9edwwtmar/public_html/app/vendor/yiisoft/yii2/web/Application.php(103): yii\base\Module->runAction('site/home', Array)
+#5 /home/zgh9edwwtmar/public_html/app/vendor/yiisoft/yii2/base/Application.php(386): yii\web\Application->handleRequest(Object(yii\web\Request))
+#6 /home/zgh9edwwtmar/public_html/app/index.php(15): yii\base\Application->run()
+#7 {main}
+$_SERVER = [
+    'LSPHP_ENABLE_USER_INI' => 'on',
+    'PATH' => '/usr/local/bin:/usr/bin:/bin',
+    'TEMP' => '/tmp',
+    'TMP' => '/tmp',
+    'TMPDIR' => '/tmp',
+    'PWD' => '/',
+    'HTTP_ACCEPT' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate',
+    'HTTP_ACCEPT_LANGUAGE' => 'en-US,en;q=0.9',
+    'HTTP_CONNECTION' => 'keep-alive',
+    'CONTENT_LENGTH' => '0',
+    'HTTP_COOKIE' => '_ga=GA1.2.743707163.1545815549; _csrf-frontend=6fc63fec9baf3ae6e898f19831333eb29dfa740e27e35eae55bbf7e6e7fcbfc6a%3A2%3A%7Bi%3A0%3Bs%3A14%3A%22_csrf-frontend%22%3Bi%3A1%3Bs%3A32%3A%228q259amwm11ZbE6ciDOuV3zHvchm8hzJ%22%3B%7D; _gid=GA1.2.1278035918.1548311736; advanced-backend=a8cko74v7ouimo82j32ohvgft5; _csrf-backend=d0066f2e3105adb384885cfe6a71c05e81b7c8c8932ce3384c35d48e9ac85595a%3A2%3A%7Bi%3A0%3Bs%3A13%3A%22_csrf-backend%22%3Bi%3A1%3Bs%3A32%3A%22KFLwP4-5sej2stR1cn0nVH1OaJlbJxDO%22%3B%7D',
+    'HTTP_HOST' => 'adirfire.com',
+    'HTTP_PRAGMA' => 'no-cache',
+    'HTTP_REFERER' => 'http://adirfire.com/app/',
+    'HTTP_USER_AGENT' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36',
+    'HTTP_CACHE_CONTROL' => 'no-cache',
+    'HTTP_UPGRADE_INSECURE_REQUESTS' => '1',
+    'REDIRECT_UNIQUE_ID' => 'XEmLWFLDD6ywEzBT3tRZWQAAAAg',
+    'REDIRECT_SCRIPT_URL' => '/app/site/home',
+    'REDIRECT_SCRIPT_URI' => 'http://adirfire.com/app/site/home',
+    'REDIRECT_STATUS' => '200',
+    'UNIQUE_ID' => 'XEmLWFLDD6ywEzBT3tRZWQAAAAg',
+    'SCRIPT_URL' => '/app/site/home',
+    'SCRIPT_URI' => 'http://adirfire.com/app/site/home',
+    'SERVER_SIGNATURE' => '',
+    'SERVER_SOFTWARE' => 'Apache',
+    'SERVER_NAME' => 'adirfire.com',
+    'SERVER_ADDR' => '160.153.129.239',
+    'SERVER_PORT' => '80',
+    'REMOTE_ADDR' => '217.165.127.205',
+    'DOCUMENT_ROOT' => '/home/zgh9edwwtmar/public_html',
+    'REQUEST_SCHEME' => 'http',
+    'CONTEXT_PREFIX' => '',
+    'CONTEXT_DOCUMENT_ROOT' => '/home/zgh9edwwtmar/public_html',
+    'SERVER_ADMIN' => 'webmaster@adirfire.com',
+    'SCRIPT_FILENAME' => '/home/zgh9edwwtmar/public_html/app/index.php',
+    'REMOTE_PORT' => '32834',
+    'REDIRECT_URL' => '/app/site/home',
+    'REDIRECT_QUERY_STRING' => 'site/home',
+    'SERVER_PROTOCOL' => 'HTTP/1.1',
+    'REQUEST_METHOD' => 'GET',
+    'QUERY_STRING' => 'site/home',
+    'REQUEST_URI' => '/app/site/home',
+    'SCRIPT_NAME' => '/app/index.php',
+    'PHP_SELF' => '/app/index.php',
+    'REQUEST_TIME_FLOAT' => 1548323672.243175029754638671875,
+    'REQUEST_TIME' => 1548323672,
+]
+[25-Jan-2019 09:12:30 UTC] An Error occurred while handling another error:
+yii\base\InvalidArgumentException: The HTTP status code is invalid: 2000 in /home/zgh9edwwtmar/public_html/app/vendor/yiisoft/yii2/web/Response.php:285
+Stack trace:
+#0 /home/zgh9edwwtmar/public_html/app/vendor/yiisoft/yii2/web/Response.php(306): yii\web\Response->setStatusCode(2000)
+#1 /home/zgh9edwwtmar/public_html/app/vendor/yiisoft/yii2/web/ErrorHandler.php(103): yii\web\Response->setStatusCodeByException(Object(yii\web\HttpException))
+#2 /home/zgh9edwwtmar/public_html/app/vendor/yiisoft/yii2/base/ErrorHandler.php(111): yii\web\ErrorHandler->renderException(Object(yii\web\HttpException))
+#3 [internal function]: yii\base\ErrorHandler->handleException(Object(yii\web\HttpException))
+#4 {main}
+Previous exception:
+yii\web\HttpException: Session Expired. in /home/zgh9edwwtmar/public_html/app/backend/controllers/SiteController.php:111
+Stack trace:
+#0 [internal function]: backend\controllers\SiteController->actionHome()
+#1 /home/zgh9edwwtmar/public_html/app/vendor/yiisoft/yii2/base/InlineAction.php(57): call_user_func_array(Array, Array)
+#2 /home/zgh9edwwtmar/public_html/app/vendor/yiisoft/yii2/base/Controller.php(157): yii\base\InlineAction->runWithParams(Array)
+#3 /home/zgh9edwwtmar/public_html/app/vendor/yiisoft/yii2/base/Module.php(528): yii\base\Controller->runAction('home', Array)
+#4 /home/zgh9edwwtmar/public_html/app/vendor/yiisoft/yii2/web/Application.php(103): yii\base\Module->runAction('site/home', Array)
+#5 /home/zgh9edwwtmar/public_html/app/vendor/yiisoft/yii2/base/Application.php(386): yii\web\Application->handleRequest(Object(yii\web\Request))
+#6 /home/zgh9edwwtmar/public_html/app/index.php(15): yii\base\Application->run()
+#7 {main}
+$_SERVER = [
+    'LSPHP_ENABLE_USER_INI' => 'on',
+    'PATH' => '/usr/local/bin:/usr/bin:/bin',
+    'TEMP' => '/tmp',
+    'TMP' => '/tmp',
+    'TMPDIR' => '/tmp',
+    'PWD' => '/',
+    'HTTP_ACCEPT' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate',
+    'HTTP_ACCEPT_LANGUAGE' => 'en-US,en;q=0.9',
+    'HTTP_CONNECTION' => 'keep-alive',
+    'CONTENT_LENGTH' => '0',
+    'HTTP_COOKIE' => '_ga=GA1.2.743707163.1545815549; _csrf-frontend=6fc63fec9baf3ae6e898f19831333eb29dfa740e27e35eae55bbf7e6e7fcbfc6a%3A2%3A%7Bi%3A0%3Bs%3A14%3A%22_csrf-frontend%22%3Bi%3A1%3Bs%3A32%3A%228q259amwm11ZbE6ciDOuV3zHvchm8hzJ%22%3B%7D; advanced-backend=5v970rv23ogl5c0ui9b3gtucj7; _csrf-backend=fb92f487b718641c43d47b3313422ecd2f695a65bf99247f7594b65fb0f61178a%3A2%3A%7Bi%3A0%3Bs%3A13%3A%22_csrf-backend%22%3Bi%3A1%3Bs%3A32%3A%22FowR_Dy6Udf8nQT9arAVNIkeCCcyKncg%22%3B%7D',
+    'HTTP_HOST' => 'adirfire.com',
+    'HTTP_USER_AGENT' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36',
+    'HTTP_CACHE_CONTROL' => 'max-age=0',
+    'HTTP_UPGRADE_INSECURE_REQUESTS' => '1',
+    'REDIRECT_UNIQUE_ID' => 'XErS-WSx@Q4UnvRh7xguAgAAAEI',
+    'REDIRECT_SCRIPT_URL' => '/app/site/home',
+    'REDIRECT_SCRIPT_URI' => 'http://adirfire.com/app/site/home',
+    'REDIRECT_STATUS' => '200',
+    'UNIQUE_ID' => 'XErS-WSx@Q4UnvRh7xguAgAAAEI',
+    'SCRIPT_URL' => '/app/site/home',
+    'SCRIPT_URI' => 'http://adirfire.com/app/site/home',
+    'SERVER_SIGNATURE' => '',
+    'SERVER_SOFTWARE' => 'Apache',
+    'SERVER_NAME' => 'adirfire.com',
+    'SERVER_ADDR' => '160.153.129.239',
+    'SERVER_PORT' => '80',
+    'REMOTE_ADDR' => '109.177.6.161',
+    'DOCUMENT_ROOT' => '/home/zgh9edwwtmar/public_html',
+    'REQUEST_SCHEME' => 'http',
+    'CONTEXT_PREFIX' => '',
+    'CONTEXT_DOCUMENT_ROOT' => '/home/zgh9edwwtmar/public_html',
+    'SERVER_ADMIN' => 'webmaster@adirfire.com',
+    'SCRIPT_FILENAME' => '/home/zgh9edwwtmar/public_html/app/index.php',
+    'REMOTE_PORT' => '51224',
+    'REDIRECT_URL' => '/app/site/home',
+    'REDIRECT_QUERY_STRING' => 'site/home',
+    'SERVER_PROTOCOL' => 'HTTP/1.1',
+    'REQUEST_METHOD' => 'GET',
+    'QUERY_STRING' => 'site/home',
+    'REQUEST_URI' => '/app/site/home',
+    'SCRIPT_NAME' => '/app/index.php',
+    'PHP_SELF' => '/app/index.php',
+    'REQUEST_TIME_FLOAT' => 1548407549.4759619235992431640625,
+    'REQUEST_TIME' => 1548407549,
+]
+[30-Jan-2019 08:06:09 UTC] An Error occurred while handling another error:
+yii\base\InvalidArgumentException: The HTTP status code is invalid: 2000 in /home/zgh9edwwtmar/public_html/app/vendor/yiisoft/yii2/web/Response.php:285
+Stack trace:
+#0 /home/zgh9edwwtmar/public_html/app/vendor/yiisoft/yii2/web/Response.php(306): yii\web\Response->setStatusCode(2000)
+#1 /home/zgh9edwwtmar/public_html/app/vendor/yiisoft/yii2/web/ErrorHandler.php(103): yii\web\Response->setStatusCodeByException(Object(yii\web\HttpException))
+#2 /home/zgh9edwwtmar/public_html/app/vendor/yiisoft/yii2/base/ErrorHandler.php(111): yii\web\ErrorHandler->renderException(Object(yii\web\HttpException))
+#3 [internal function]: yii\base\ErrorHandler->handleException(Object(yii\web\HttpException))
+#4 {main}
+Previous exception:
+yii\web\HttpException: Session Expired. in /home/zgh9edwwtmar/public_html/app/backend/controllers/SiteController.php:119
+Stack trace:
+#0 [internal function]: backend\controllers\SiteController->actionHome()
+#1 /home/zgh9edwwtmar/public_html/app/vendor/yiisoft/yii2/base/InlineAction.php(57): call_user_func_array(Array, Array)
+#2 /home/zgh9edwwtmar/public_html/app/vendor/yiisoft/yii2/base/Controller.php(157): yii\base\InlineAction->runWithParams(Array)
+#3 /home/zgh9edwwtmar/public_html/app/vendor/yiisoft/yii2/base/Module.php(528): yii\base\Controller->runAction('home', Array)
+#4 /home/zgh9edwwtmar/public_html/app/vendor/yiisoft/yii2/web/Application.php(103): yii\base\Module->runAction('site/home', Array)
+#5 /home/zgh9edwwtmar/public_html/app/vendor/yiisoft/yii2/base/Application.php(386): yii\web\Application->handleRequest(Object(yii\web\Request))
+#6 /home/zgh9edwwtmar/public_html/app/index.php(15): yii\base\Application->run()
+#7 {main}
+$_SERVER = [
+    'LSPHP_ENABLE_USER_INI' => 'on',
+    'PATH' => '/usr/local/bin:/usr/bin:/bin',
+    'TEMP' => '/tmp',
+    'TMP' => '/tmp',
+    'TMPDIR' => '/tmp',
+    'PWD' => '/',
+    'HTTP_ACCEPT' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate',
+    'HTTP_ACCEPT_LANGUAGE' => 'en-US,en;q=0.9',
+    'HTTP_CONNECTION' => 'keep-alive',
+    'CONTENT_LENGTH' => '0',
+    'HTTP_COOKIE' => '_ga=GA1.2.1982872296.1547490388; advanced-backend=lrktbku19726rrtpufegbafm40; _csrf-backend=d0fa8c8b5368d931a871e21cb26b0d55c5f4e0d57508085fef007d66c4ad5826a%3A2%3A%7Bi%3A0%3Bs%3A13%3A%22_csrf-backend%22%3Bi%3A1%3Bs%3A32%3A%22Vm5bWhd-dQyia5n2OGCzMPmf3aKVm9qF%22%3B%7D',
+    'HTTP_HOST' => 'adirfire.com',
+    'HTTP_REFERER' => 'http://adirfire.com/app/drivers/drivers/create',
+    'HTTP_USER_AGENT' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36',
+    'HTTP_CACHE_CONTROL' => 'max-age=0',
+    'HTTP_UPGRADE_INSECURE_REQUESTS' => '1',
+    'REDIRECT_UNIQUE_ID' => 'XFFa8EmkvshWzBkDgA137AAAARQ',
+    'REDIRECT_SCRIPT_URL' => '/app/site/home',
+    'REDIRECT_SCRIPT_URI' => 'http://adirfire.com/app/site/home',
+    'REDIRECT_STATUS' => '200',
+    'UNIQUE_ID' => 'XFFa8EmkvshWzBkDgA137AAAARQ',
+    'SCRIPT_URL' => '/app/site/home',
+    'SCRIPT_URI' => 'http://adirfire.com/app/site/home',
+    'SERVER_SIGNATURE' => '',
+    'SERVER_SOFTWARE' => 'Apache',
+    'SERVER_NAME' => 'adirfire.com',
+    'SERVER_ADDR' => '160.153.129.239',
+    'SERVER_PORT' => '80',
+    'REMOTE_ADDR' => '171.49.199.131',
+    'DOCUMENT_ROOT' => '/home/zgh9edwwtmar/public_html',
+    'REQUEST_SCHEME' => 'http',
+    'CONTEXT_PREFIX' => '',
+    'CONTEXT_DOCUMENT_ROOT' => '/home/zgh9edwwtmar/public_html',
+    'SERVER_ADMIN' => 'webmaster@adirfire.com',
+    'SCRIPT_FILENAME' => '/home/zgh9edwwtmar/public_html/app/index.php',
+    'REMOTE_PORT' => '56527',
+    'REDIRECT_URL' => '/app/site/home',
+    'REDIRECT_QUERY_STRING' => 'site/home',
+    'SERVER_PROTOCOL' => 'HTTP/1.1',
+    'REQUEST_METHOD' => 'GET',
+    'QUERY_STRING' => 'site/home',
+    'REQUEST_URI' => '/app/site/home',
+    'SCRIPT_NAME' => '/app/index.php',
+    'PHP_SELF' => '/app/index.php',
+    'REQUEST_TIME_FLOAT' => 1548835568.9495050907135009765625,
+    'REQUEST_TIME' => 1548835568,
+]
+[30-Jan-2019 08:06:12 UTC] An Error occurred while handling another error:
+yii\base\InvalidArgumentException: The HTTP status code is invalid: 2000 in /home/zgh9edwwtmar/public_html/app/vendor/yiisoft/yii2/web/Response.php:285
+Stack trace:
+#0 /home/zgh9edwwtmar/public_html/app/vendor/yiisoft/yii2/web/Response.php(306): yii\web\Response->setStatusCode(2000)
+#1 /home/zgh9edwwtmar/public_html/app/vendor/yiisoft/yii2/web/ErrorHandler.php(103): yii\web\Response->setStatusCodeByException(Object(yii\web\HttpException))
+#2 /home/zgh9edwwtmar/public_html/app/vendor/yiisoft/yii2/base/ErrorHandler.php(111): yii\web\ErrorHandler->renderException(Object(yii\web\HttpException))
+#3 [internal function]: yii\base\ErrorHandler->handleException(Object(yii\web\HttpException))
+#4 {main}
+Previous exception:
+yii\web\HttpException: Session Expired. in /home/zgh9edwwtmar/public_html/app/backend/controllers/SiteController.php:119
+Stack trace:
+#0 [internal function]: backend\controllers\SiteController->actionHome()
+#1 /home/zgh9edwwtmar/public_html/app/vendor/yiisoft/yii2/base/InlineAction.php(57): call_user_func_array(Array, Array)
+#2 /home/zgh9edwwtmar/public_html/app/vendor/yiisoft/yii2/base/Controller.php(157): yii\base\InlineAction->runWithParams(Array)
+#3 /home/zgh9edwwtmar/public_html/app/vendor/yiisoft/yii2/base/Module.php(528): yii\base\Controller->runAction('home', Array)
+#4 /home/zgh9edwwtmar/public_html/app/vendor/yiisoft/yii2/web/Application.php(103): yii\base\Module->runAction('site/home', Array)
+#5 /home/zgh9edwwtmar/public_html/app/vendor/yiisoft/yii2/base/Application.php(386): yii\web\Application->handleRequest(Object(yii\web\Request))
+#6 /home/zgh9edwwtmar/public_html/app/index.php(15): yii\base\Application->run()
+#7 {main}
+$_SERVER = [
+    'LSPHP_ENABLE_USER_INI' => 'on',
+    'PATH' => '/usr/local/bin:/usr/bin:/bin',
+    'TEMP' => '/tmp',
+    'TMP' => '/tmp',
+    'TMPDIR' => '/tmp',
+    'PWD' => '/',
+    'HTTP_ACCEPT' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate',
+    'HTTP_ACCEPT_LANGUAGE' => 'en-US,en;q=0.9',
+    'HTTP_CONNECTION' => 'keep-alive',
+    'CONTENT_LENGTH' => '0',
+    'HTTP_COOKIE' => '_ga=GA1.2.1982872296.1547490388; advanced-backend=lrktbku19726rrtpufegbafm40; _csrf-backend=d0fa8c8b5368d931a871e21cb26b0d55c5f4e0d57508085fef007d66c4ad5826a%3A2%3A%7Bi%3A0%3Bs%3A13%3A%22_csrf-backend%22%3Bi%3A1%3Bs%3A32%3A%22Vm5bWhd-dQyia5n2OGCzMPmf3aKVm9qF%22%3B%7D; _csrf-frontend=c11d69b8e1e4b0f4f94e91b157b1cd27ac9ff23c08fc477841eccbbc234a5360a%3A2%3A%7Bi%3A0%3Bs%3A14%3A%22_csrf-frontend%22%3Bi%3A1%3Bs%3A32%3A%22xzgJm87K0SZ6lzdU3rb3K2MfQ27ljiG4%22%3B%7D',
+    'HTTP_HOST' => 'adirfire.com',
+    'HTTP_USER_AGENT' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36',
+    'HTTP_CACHE_CONTROL' => 'max-age=0',
+    'HTTP_UPGRADE_INSECURE_REQUESTS' => '1',
+    'REDIRECT_UNIQUE_ID' => 'XFFa9J0HtePc5FOHsQXZzwAAAYc',
+    'REDIRECT_SCRIPT_URL' => '/app/site/home',
+    'REDIRECT_SCRIPT_URI' => 'http://adirfire.com/app/site/home',
+    'REDIRECT_STATUS' => '200',
+    'UNIQUE_ID' => 'XFFa9J0HtePc5FOHsQXZzwAAAYc',
+    'SCRIPT_URL' => '/app/site/home',
+    'SCRIPT_URI' => 'http://adirfire.com/app/site/home',
+    'SERVER_SIGNATURE' => '',
+    'SERVER_SOFTWARE' => 'Apache',
+    'SERVER_NAME' => 'adirfire.com',
+    'SERVER_ADDR' => '160.153.129.239',
+    'SERVER_PORT' => '80',
+    'REMOTE_ADDR' => '171.49.199.131',
+    'DOCUMENT_ROOT' => '/home/zgh9edwwtmar/public_html',
+    'REQUEST_SCHEME' => 'http',
+    'CONTEXT_PREFIX' => '',
+    'CONTEXT_DOCUMENT_ROOT' => '/home/zgh9edwwtmar/public_html',
+    'SERVER_ADMIN' => 'webmaster@adirfire.com',
+    'SCRIPT_FILENAME' => '/home/zgh9edwwtmar/public_html/app/index.php',
+    'REMOTE_PORT' => '56528',
+    'REDIRECT_URL' => '/app/site/home',
+    'REDIRECT_QUERY_STRING' => 'site/home',
+    'SERVER_PROTOCOL' => 'HTTP/1.1',
+    'REQUEST_METHOD' => 'GET',
+    'QUERY_STRING' => 'site/home',
+    'REQUEST_URI' => '/app/site/home',
+    'SCRIPT_NAME' => '/app/index.php',
+    'PHP_SELF' => '/app/index.php',
+    'REQUEST_TIME_FLOAT' => 1548835572.394197940826416015625,
+    'REQUEST_TIME' => 1548835572,
+]
