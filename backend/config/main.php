@@ -31,6 +31,12 @@ return [
         'masters' => [
             'class' => 'backend\modules\masters\Module',
         ],
+        'user' => [
+            'class' => 'backend\modules\user\Module',
+        ],
+         'order' => [
+            'class' => 'backend\modules\order\Module',
+        ],
     ],
     'components' => [
         'request' => [

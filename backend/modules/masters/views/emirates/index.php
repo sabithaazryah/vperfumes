@@ -3,20 +3,21 @@
 use yii\helpers\Html;
 use yii\grid\GridView;
 use yii\helpers\Url;
+
 /* @var $this yii\web\View */
-/* @var $searchModel common\models\CurrencySearch */
+/* @var $searchModel common\models\EmiratesSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Currencies';
+$this->title = 'Emirates';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="currency-index">
-
+<div class="emirates-index">
+    
     <div class="row">
         <div class="col-md-4">
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    <h3 class="panel-title">Add / Update Currency</h3>
+                    <h3 class="panel-title">Add / Update Emirate</h3>
                 </div>
                 <div class="panel-body"><div class="demo-create">
 
@@ -43,23 +44,15 @@ $this->params['breadcrumbs'][] = $this->title;
 
                     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
-                    <?=
+                     <?=
                     GridView::widget([
                         'dataProvider' => $dataProvider,
                         'filterModel' => $searchModel,
                         'columns' => [
                             ['class' => 'yii\grid\SerialColumn'],
-                            'currency_name',
-                            'currency_symbol',
-                            'currency_value',
-                            [
-                                'attribute' => 'status',
-                                'filter' => ['1' => 'Enable', '0' => 'Disable'],
-                                'value' => function($data) {
-                                    return $data->status == 1 ? 'Enable' : 'Disable';
-                                }
-                            ],
-                            [
+                            'name',
+                           
+                          [
                                 'class' => 'yii\grid\ActionColumn',
                                 'header' => 'Actions',
                                 'template' => '{update}{delete}',
@@ -98,6 +91,8 @@ $this->params['breadcrumbs'][] = $this->title;
             </div>
         </div>
     </div>
+
+   
 </div>
 
 

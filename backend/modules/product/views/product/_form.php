@@ -296,7 +296,7 @@ use kartik\select2\Select2;
     <div class="row">
         <div class='col-md-4 col-sm-6 col-xs-12 left_padd'>
 
-            <?= $form->field($model, 'profile')->fileInput()->label('profile Picture<i> (1080*1080)</i>') ?>
+            <?= $form->field($model, 'profile')->fileInput()->label('Profile Picture<i> (1080*1080)</i>') ?>
         </div>
         <div class='col-md-4 col-sm-6 col-xs-12 left_padd'>
             <?= $form->field($model, 'profile_alt')->textInput(['maxlength' => true]) ?>

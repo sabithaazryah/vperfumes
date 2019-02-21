@@ -132,7 +132,7 @@ $controler = Yii::$app->controller->id;
 
                             </ul>
                         </li>
-                        
+
                         <li class="treeview">
                             <a href="">
                                 <i class="fa fa-database"></i>
@@ -143,10 +143,29 @@ $controler = Yii::$app->controller->id;
                                 <li>
                                     <?= Html::a('<i class="fa fa-angle-double-right"></i> Currency  ', ['/masters/currency/index'], ['class' => 'title']) ?>
                                 </li>
+
+                                <li>
+                                    <?= Html::a('<i class="fa fa-angle-double-right"></i> Emirates  ', ['/masters/emirates/index'], ['class' => 'title']) ?>
+                                </li>
                             </ul>
                         </li>
-                        
 
+                        <li class="treeview">
+                            <a href="">
+                                <i class="fa fa-user"></i>
+                                <span>Users</span>
+                                <span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span>
+                            </a>
+                            <ul class="treeview-menu">
+                                <li>
+                                    <?= Html::a('<i class="fa fa-angle-double-right"></i> Users  ', ['/user/user/index'], ['class' => 'title']) ?>
+                                </li>
+                            </ul>
+                        </li>
+
+                        <li>
+                            <?= Html::a('<i class="fa fa-shopping-cart"></i> <span>Order Management</span>', ['/order/order-master/index'], ['class' => 'title']) ?>
+                        </li>
 
                         <li>
                             <?= Html::a('<i class="fa fa-gears"></i> <span>Settings</span>', ['/settings/index'], ['class' => 'title']) ?>

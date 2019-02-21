@@ -128,6 +128,14 @@ $(document).ready(function () {
     });
 
 
+$('#product-main_category').change(function () {
+    var $ids = $(this).attr('id');
+    var ids = $ids.split('-');
+    var main_category = $(this).val();
+    Maincategory(main_category, ids);
+
+});
+
 });
 var slug = function (str) {
     var $slug = '';
@@ -138,6 +146,24 @@ var slug = function (str) {
     return $slug.toLowerCase();
 }
 
+function Maincategory(main_category, ids) {
+    $.ajax({
+        url: homeUrl + 'product/product/category',
+        type: "post",
+        data: {main_cat: main_category},
+        success: function (data) {
+            if (ids[0] === 'subcategory') {
+                var idr = '-category_id';
+            } else {
+                var idr = '-category';
+            }
+            $('#' + ids[0] + idr).html("").html(data);
+            $('#product-prcat ').html("").html(data);
+        }, error: function () {
 
+        }
+    }
+    );
+}
 
 
