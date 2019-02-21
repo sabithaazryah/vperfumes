@@ -171,12 +171,21 @@ $controler = Yii::$app->controller->id;
                             <?= Html::a('<i class="fa fa-gears"></i> <span>Settings</span>', ['/settings/index'], ['class' => 'title']) ?>
                         </li>
 
-
-
-
-
-
-
+                        <li class="treeview">
+                            <a href="">
+                                <i class="fa fa-bars"></i>
+                                <span>Reports</span>
+                                <span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span>
+                            </a>
+                            <ul class="treeview-menu">
+                                <li>
+                                    <?= Html::a('<i class="fa fa-angle-double-right"></i> Product Wise Report  ', ['/order/order-master/product-wise-report'], ['class' => 'title']) ?>
+                                </li>
+                                <li>
+                                    <?= Html::a('<i class="fa fa-angle-double-right"></i> Order Wise Report  ', ['/order/order-master/order-report'], ['class' => 'title']) ?>
+                                </li>
+                            </ul>
+                        </li>
 
 
                     </ul>

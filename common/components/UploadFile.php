@@ -25,8 +25,6 @@ class UploadFile extends Component {
 	public function UploadFiles($model, $main_image, $path, $sizes) {
 
 		if (file_exists($path)) {
-
-
 			if (file_exists($path . '/' . $model->id)) {
 				$file = $path . '/' . $model->id . '/' . $model->id . '.' . $main_image->extension;
 				if (file_exists($file)) {
@@ -51,9 +49,7 @@ class UploadFile extends Component {
 			}
 		} else {
 
-
 			FileHelper::createDirectory($path, $mode = 0775, $recursive = true);
-
 			if ($main_image->saveAs($path . '/' . $model->id . '.' . $main_image->extension)) {
 				$newpath = $path . '/';
 				$this->ImageResize($sizes, $newpath, $model, $main_image);
@@ -69,7 +65,6 @@ class UploadFile extends Component {
 				$this->recursiveRemoveDirectory($path);
 			}
 			if ($main_image->saveAs($path . '/' . $model->id . '.' . $main_image->extension)) {
-				//$newpath = $path . '/';
 				$this->ImageResize($sizes, $path, $model, $main_image);
 			} else {
 				return FALSE;
@@ -95,7 +90,6 @@ class UploadFile extends Component {
 			if (file_exists($resized_image))
 				unlink($resized_image);
 			Image::getImagine()->open($fileName)->thumbnail(new Box($size['width'], $size['height']))->save($savePath, ['quality' => 90]);
-			//unlink($fileName);
 		}
 	}
 
@@ -111,7 +105,6 @@ class UploadFile extends Component {
 	}
 
 	public function UploadSingle($files, $model, $paths) {
-
                 if ($files != '' && $model != '') {
                         $path = $this->CheckPath($paths);
                         foreach ($files as $file) {
@@ -154,12 +147,10 @@ class UploadFile extends Component {
 				$attach .= '<a target="_blank" href="' . Yii::$app->homeUrl . '/' . Yii::$app->params['mainPath'] . '/' . Yii::$app->params['appointmentPath'] . '/' . $folder . '/' . $id . '/' . $type . '/' . end($arry) . '">' . end($arry) . '</a>&nbsp;&nbsp;<a href="' . Yii::$app->homeUrl . Yii::$app->params['appointmentPath'] . '/' . $type . '/' . 'remove?path=' . $path . '"><i class="fa fa-remove"></i></a>&nbsp;&nbsp;|&nbsp;&nbsp;';
 			}
 		}
-		// echo $attach;exit;
 		return $attach;
 	}
 
 	public function CheckPath($paths) {
-
                 $root = Yii::getAlias(Yii::$app->params['uploadPath']).'/uploads'; /* Yii::$app->basePath; */
                 foreach ($paths as $path) {
                         $root .= '/' . $path;

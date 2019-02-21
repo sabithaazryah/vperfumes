@@ -36,7 +36,7 @@ class OrderDetails extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['master_id', 'order_id', 'product_id', 'quantity', 'amount', 'rate'], 'required'],
+            [['master_id', 'order_id', 'product_id', 'quantity', 'amount', 'rate', 'status'], 'required'],
             [['master_id', 'product_id', 'quantity', 'item_type', 'status'], 'integer'],
             [['amount', 'tax', 'rate'], 'number'],
             [['delivered_date', 'doc'], 'safe'],

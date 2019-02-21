@@ -6,8 +6,7 @@ use yii\grid\GridView;
 use yii\helpers\Url;
 use yii\helpers\ArrayHelper;
 use common\models\User;
-use kartik\daterange\DateRangePicker;
-use yii\jui\DatePicker;
+use kartik\date\DatePicker;
 
 /* @var $this yii\web\View */
 /* @var $searchModel common\models\OrderMasterSearch */
@@ -58,11 +57,14 @@ $this->params['breadcrumbs'][] = $this->title;
                                     <label class="control-label" for="from_date">From Date</label>
                                     <?php
                                     echo DatePicker::widget([
+                                        'type' => DatePicker::TYPE_INPUT,
                                         'name' => 'from_date',
-                                        'value' => $from_date,
-                                        //'language' => 'ru',
-                                        'dateFormat' => 'yyyy-MM-dd',
-                                        'options' => ['class' => 'form-control']
+                                        'value' => date('d-m-Y', strtotime($from_date)),
+                                        'pluginOptions' => [
+                                            'autoclose' => true,
+                                            'format' => 'dd-mm-yyyy',
+                                            'todayHighlight' => true,
+    ]
                                     ]);
                                     ?>
                                 </div>
@@ -72,11 +74,14 @@ $this->params['breadcrumbs'][] = $this->title;
                                     <label class="control-label" for="to_date">To Date</label>
                                     <?php
                                     echo DatePicker::widget([
+                                        'type' => DatePicker::TYPE_INPUT,
                                         'name' => 'to_date',
-                                        'value' => $to_date,
-                                        //'language' => 'ru',
-                                        'dateFormat' => 'yyyy-MM-dd',
-                                        'options' => ['class' => 'form-control']
+                                        'value' => date('d-m-Y', strtotime($to_date)),
+                                        'pluginOptions' => [
+                                            'autoclose' => true,
+                                            'format' => 'dd-mm-yyyy',
+                                            'todayHighlight' => true,
+                                        ]
                                     ]);
                                     ?>
                                 </div>
@@ -85,14 +90,14 @@ $this->params['breadcrumbs'][] = $this->title;
                         <div class="row">
                             <div class="col-md-4">
                                 <div class="form-group">
-                                    <?= Html::submitButton('Search', ['class' => 'btn btn-secondary']) ?>
+                                    <?= Html::submitButton('Search', ['class' => 'btn btn-success']) ?>
                                 </div>
                             </div>
                         </div>
                         <?php ActiveForm::end(); ?>
                     </div>
 
-                     <div class="table-responsive">
+                    <div class="table-responsive">
                         <table>
                             <tr style="font-size: 17px;color: #3b3737;">
                                 <th>Total Product</th>

@@ -57,8 +57,7 @@ class OrderMasterController extends Controller {
         } elseif ($order_status == '5') {
             $dataProvider->query->andWhere(['admin_status' => 5]);
         }
-         $dataProvider->query->andWhere(['<>', 'return_approve', 1]);
-//        $dataProvider->query->andWhere(['status' => '4'])->orWhere(['status' => '5']);
+        $dataProvider->query->andWhere(['<>', 'return_approve', 1]);
         $dataProvider->pagination->pageSize = 30;
         return $this->render('index', [
                     'searchModel' => $searchModel,
@@ -70,8 +69,6 @@ class OrderMasterController extends Controller {
     public function actionUserCancel() {
         $searchModel = new OrderMasterSearch();
         $dataProvider = $searchModel->searchcancel(Yii::$app->request->queryParams);
-//            $dataProvider->query->andWhere(['status' => 5]);
-//        $dataProvider->query->andWhere(['status' => '4'])->orWhere(['status' => '5']);
         $dataProvider->pagination->pageSize = 30;
         return $this->render('cancelindex', [
                     'searchModel' => $searchModel,
@@ -86,18 +83,18 @@ class OrderMasterController extends Controller {
      */
     public function actionView($id) {
         $searchModel = new OrderDetailsSearch();
-                $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
-                $dataProvider->query->andWhere(['order_id' => $id]);
-                $order_master = OrderMaster::find()->where(['order_id' => $id])->one();
-                $promotion_amount = \common\models\OrderPromotions::find()->where(['order_master_id' => $order_master->id])->sum('promotion_discount');
-                return $this->render('view', [
-                            'searchModel' => $searchModel,
-                            'dataProvider' => $dataProvider,
-                            'orderid' => $id,
-                            'promotion_amount' => $promotion_amount,
-                ]);
+        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+        $dataProvider->query->andWhere(['order_id' => $id]);
+        $order_master = OrderMaster::find()->where(['order_id' => $id])->one();
+        $promotion_amount = \common\models\OrderPromotions::find()->where(['order_master_id' => $order_master->id])->sum('promotion_discount');
+        return $this->render('view', [
+                    'searchModel' => $searchModel,
+                    'dataProvider' => $dataProvider,
+                    'orderid' => $id,
+                    'promotion_amount' => $promotion_amount,
+        ]);
     }
-    
+
     public function actionCancelview($id) {
         $searchModel = new OrderDetailsSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
@@ -183,44 +180,35 @@ class OrderMasterController extends Controller {
             }
             if ($model->save()) {
                 if ($admin_status != 0 || $admin_status != 4) {
-//                if ($admin_status == 1 || $admin_status == 5) {
                     if ($admin_status == 1) {
                         $subject = 'Order Confirmed';
                         $subject_ = 'Confirmed';
-$this->InvoiceNo($model);
+                        $this->InvoiceNo($model);
                     }
                     if ($admin_status == 2) {
                         $subject = 'Order Packed';
                         $subject_ = 'Packed';
-$this->InvoiceNo($model);
+                        $this->InvoiceNo($model);
                     }
                     if ($admin_status == 3) {
                         $subject = 'Order Dispatched';
                         $subject_ = 'Dispatched';
-$this->InvoiceNo($model);
+                        $this->InvoiceNo($model);
                     }
                     if ($admin_status == 4) {
                         $subject = 'Order Completed';
                         $subject_ = 'Delivry';
-//$this->InvoiceNo($model);
                     }
                     if ($admin_status == 5) {
                         $subject = 'Order Cancelled';
                         $subject_ = 'Cancelled';
                     }
-//                    if ($admin_status == 1) {
-//                        $subject = 'Order Confirmation';
-//                    } else if ($admin_status == 5) {
-//                        $subject = 'Order Cancelled';
-//                    }
                     $mail = \common\models\User::findOne($model->user_id)->email;
                     $to = $mail;
                     $message = $this->renderPartial('mail', ['orderid' => $model->order_id, 'status' => $admin_status, 'subject' => $subject_]);
-                   // echo $message;
-                   // exit;
                     $headers = 'MIME-Version: 1.0' . "\r\n";
                     $headers .= "Content-type: text/html; charset=iso-8859-1" . "\r\n" .
-                            "From: no-replay@carnation.com";
+                            "From: no-replay@vperfumes.com";
                     mail($to, $subject, $message, $headers);
                 }
                 echo 1;
@@ -231,27 +219,29 @@ $this->InvoiceNo($model);
     }
 
     public function InvoiceNo($model) {
-                if (!isset($model->invoice_no)) {
-                        $invoice = \common\models\Settings::findOne(6);
-                        $model->invoice_no = $invoice->value;
-                        $model->save();
-                        $invoice->value = $invoice->value + 1;
-                        $invoice->save();
-                }
+        if (!isset($model->invoice_no)) {
+            $invoice = \common\models\Settings::findOne(6);
+            $model->invoice_no = $invoice->value;
+            $model->save();
+            $invoice->value = $invoice->value + 1;
+            $invoice->save();
         }
+    }
 
     public function actionOrderdate() {
         if (yii::$app->request->isAjax) {
             $order_id = Yii::$app->request->post()['id'];
             $date = Yii::$app->request->post()['date'];
-            $order= explode('-', $order_id);
-            $id= $order[1];
-            $model= OrderDetails::findOne($id);
-            $model->delivered_date=$date;
-            if($model->save()){
-                echo json_encode(['msg'=>'success']);exit;
-            }else{
-                echo json_encode(['msg'=>'failed']);exit;
+            $order = explode('-', $order_id);
+            $id = $order[1];
+            $model = OrderDetails::findOne($id);
+            $model->delivered_date = $date;
+            if ($model->save()) {
+                echo json_encode(['msg' => 'success']);
+                exit;
+            } else {
+                echo json_encode(['msg' => 'failed']);
+                exit;
             }
         }
     }
@@ -265,7 +255,7 @@ $this->InvoiceNo($model);
         if (Yii::$app->request->post()) {
             $from = $_POST['from_date'] . ' 00:00:00';
             $to = $_POST['to_date'] . ' 60:60:60';
-            $item_id = isset($_POST['item_id'])? $_POST['item_id']: "";
+            $item_id = isset($_POST['item_id']) ? $_POST['item_id'] : "";
             $master = OrderMaster::find()->select('id')->where(['status' => 4])->andWhere(['<>', 'status', 5])->andWhere(['<>', 'admin_status', 5])->asArray()->all();
             $arr = [];
             foreach ($master as $value) {
@@ -322,86 +312,84 @@ $this->InvoiceNo($model);
      * Data taken from order master table
      * @return mixed
      */
-     public function actionOrderReport() {
-                $model = new OrderMaster();
-                $searchModel = new OrderMasterSearch();
-                $dataProvider = $searchModel->search1(Yii::$app->request->queryParams);
-                $order_date_from = '';
-                $order_date_to = '';
-                $order_search = '';
-                $user_search = '';
-                $amount_from = '';
-                $amount_to = '';
-                $order_status = '';
+    public function actionOrderReport() {
+        $model = new OrderMaster();
+        $searchModel = new OrderMasterSearch();
+        $dataProvider = $searchModel->search1(Yii::$app->request->queryParams);
+        $order_date_from = '';
+        $order_date_to = '';
+        $order_search = '';
+        $user_search = '';
+        $amount_from = '';
+        $amount_to = '';
+        $order_status = '';
 
-                if (Yii::$app->request->post()) {
+        if (Yii::$app->request->post()) {
 
-                        $query = new yii\db\Query();
-                        $query->select(['id'])
-                                ->from('order_master');
+            $query = new yii\db\Query();
+            $query->select(['id'])
+                    ->from('order_master');
 
-                        if (isset($_POST['OrderMasterSearch']['order_date_from']) && $_POST['OrderMasterSearch']['order_date_from'] != '') {
-                                $query->andWhere(['>=', 'order_date', $_POST['OrderMasterSearch']['order_date_from'] . ' 00:00:00']);
-                                $order_date_from = $_POST['OrderMasterSearch']['order_date_from'];
+            if (isset($_POST['OrderMasterSearch']['order_date_from']) && $_POST['OrderMasterSearch']['order_date_from'] != '') {
+                $query->andWhere(['>=', 'order_date', $_POST['OrderMasterSearch']['order_date_from'] . ' 00:00:00']);
+                $order_date_from = $_POST['OrderMasterSearch']['order_date_from'];
+            }
 
-                        }
+            if (isset($_POST['OrderMasterSearch']['order_date_to']) && $_POST['OrderMasterSearch']['order_date_to'] != '') {
+                $query->andWhere(['<=', 'order_date', $_POST['OrderMasterSearch']['order_date_to'] . ' 60:60:60']);
+                $order_date_to = $_POST['OrderMasterSearch']['order_date_to'];
+            }
 
-                        if (isset($_POST['OrderMasterSearch']['order_date_to']) && $_POST['OrderMasterSearch']['order_date_to'] != '') {
-                                $query->andWhere(['<=', 'order_date', $_POST['OrderMasterSearch']['order_date_to'] . ' 60:60:60']);
-                                $order_date_to = $_POST['OrderMasterSearch']['order_date_to'];
-                        }
+            if (isset($_POST['OrderMasterSearch']['order_search']) && $_POST['OrderMasterSearch']['order_search'] != '') {
 
-                        if (isset($_POST['OrderMasterSearch']['order_search']) && $_POST['OrderMasterSearch']['order_search'] != '') {
+                $query->andWhere(['order_id' => $_POST['OrderMasterSearch']['order_search']]);
+                $order_search = $_POST['OrderMasterSearch']['order_search'];
+            }
 
-                                $query->andWhere(['order_id' => $_POST['OrderMasterSearch']['order_search']]);
-                                $order_search = $_POST['OrderMasterSearch']['order_search'];
-                        }
+            if (isset($_POST['OrderMasterSearch']['user_search']) && $_POST['OrderMasterSearch']['user_search'] != '') {
+                $query->andWhere(['user_id' => $_POST['OrderMasterSearch']['user_search']]);
+                $user_search = $_POST['OrderMasterSearch']['user_search'];
+            }
 
-                        if (isset($_POST['OrderMasterSearch']['user_search']) && $_POST['OrderMasterSearch']['user_search'] != '') {
-                                $query->andWhere(['user_id' => $_POST['OrderMasterSearch']['user_search']]);
-                                $user_search = $_POST['OrderMasterSearch']['user_search'];
-                        }
+            if (isset($_POST['OrderMasterSearch']['amount_from']) && $_POST['OrderMasterSearch']['amount_from'] != '') {
+                $query->andWhere(['>=', 'net_amount', $_POST['OrderMasterSearch']['amount_from']]);
+                $amount_from = $_POST['OrderMasterSearch']['amount_from'];
+            }
 
-                        if (isset($_POST['OrderMasterSearch']['amount_from']) && $_POST['OrderMasterSearch']['amount_from'] != '') {
-                                $query->andWhere(['>=', 'net_amount', $_POST['OrderMasterSearch']['amount_from']]);
-                                $amount_from = $_POST['OrderMasterSearch']['amount_from'];
-                        }
+            if (isset($_POST['OrderMasterSearch']['amount_to']) && $_POST['OrderMasterSearch']['amount_to'] != '') {
+                $query->andWhere(['<=', 'net_amount', $_POST['OrderMasterSearch']['amount_to']]);
+                $amount_to = $_POST['OrderMasterSearch']['amount_to'];
+            }
 
-                        if (isset($_POST['OrderMasterSearch']['amount_to']) && $_POST['OrderMasterSearch']['amount_to'] != '') {
-                                $query->andWhere(['<=', 'net_amount', $_POST['OrderMasterSearch']['amount_to']]);
-                                $amount_to = $_POST['OrderMasterSearch']['amount_to'];
-                        }
-                        
-                        if (isset($_POST['OrderMasterSearch']['order_status']) && $_POST['OrderMasterSearch']['order_status'] != '') {
-                                $query->andWhere(['admin_status' => $_POST['OrderMasterSearch']['order_status']]);
-                                $order_status = $_POST['OrderMasterSearch']['order_status'];
-                        }
+            if (isset($_POST['OrderMasterSearch']['order_status']) && $_POST['OrderMasterSearch']['order_status'] != '') {
+                $query->andWhere(['admin_status' => $_POST['OrderMasterSearch']['order_status']]);
+                $order_status = $_POST['OrderMasterSearch']['order_status'];
+            }
 
-                        $command = $query->createCommand();
-                        $result = $command->queryAll();
-                        $orders = array();
-                        foreach ($result as $value) {
-                                $orders[] = $value['id'];
-                        }
-                        $dataProvider->query->andWhere(['IN', 'id', $orders]);
-
-                }
-
-                return $this->render('order_report', [
-                            'searchModel' => $searchModel,
-                            'dataProvider' => $dataProvider,
-                            'model' => $model,
-                            'order_date_from' => $order_date_from,
-                            'order_date_to' => $order_date_to,
-                            'order_search' => $order_search,
-                            'user_search' => $user_search,
-                            'amount_from' => $amount_from,
-                            'amount_to' => $amount_to,
-                            'order_status' => $order_status,
-                ]);
+            $command = $query->createCommand();
+            $result = $command->queryAll();
+            $orders = array();
+            foreach ($result as $value) {
+                $orders[] = $value['id'];
+            }
+            $dataProvider->query->andWhere(['IN', 'id', $orders]);
         }
-        
-         /*     * **********************Return Order*********************************** */
+
+        return $this->render('order_report', [
+                    'searchModel' => $searchModel,
+                    'dataProvider' => $dataProvider,
+                    'model' => $model,
+                    'order_date_from' => $order_date_from,
+                    'order_date_to' => $order_date_to,
+                    'order_search' => $order_search,
+                    'user_search' => $user_search,
+                    'amount_from' => $amount_from,
+                    'amount_to' => $amount_to,
+                    'order_status' => $order_status,
+        ]);
+    }
+
+    /*     * **********************Return Order*********************************** */
 
     /**
      * Lists all OrderMaster models.
@@ -417,6 +405,7 @@ $this->InvoiceNo($model);
                     'dataProvider' => $dataProvider,
         ]);
     }
+
     public function actionChangeReturnApprove() {
         if (yii::$app->request->isAjax) {
             $id = Yii::$app->request->post()['id'];
@@ -424,25 +413,22 @@ $this->InvoiceNo($model);
             $model = OrderMaster::find()->where(['order_id' => $id])->one();
             $model->return_approve = $status;
             if ($model->save()) {
-                if ($status == 1 && $model->return_status ==='1') {
+                if ($status == 1 && $model->return_status === '1') {
                     $subject = 'Return Approved';
                     OrderMaster::returnstock($id);
                 } else if ($status == 2) {
                     $subject = 'Return Disapproved';
                 }
-                if ($status !== '0' && $model->return_status ==='1') {
+                if ($status !== '0' && $model->return_status === '1') {
                     $mail = \common\models\User::findOne($model->user_id)->email;
                     $to = $mail;
-                  //    $to = 'siyad@azryah.com';
                     $message = $this->renderPartial('return_approve', ['orderid' => $model->order_id, 'status' => $status, 'subject' => $subject]);
-//                     echo $message;
-//                     exit;
                     $headers = 'MIME-Version: 1.0' . "\r\n";
                     $headers .= "Content-type: text/html; charset=iso-8859-1" . "\r\n" .
                             "From: no-replay@perfumedunia.com";
                     mail($to, $subject, $message, $headers);
                     echo 1;
-                }else{
+                } else {
                     echo 1;
                 }
             } else {

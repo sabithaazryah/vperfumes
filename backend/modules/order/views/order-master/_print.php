@@ -94,7 +94,6 @@
                     </div>
                 </th>
             </tr>
-
         </thead>
         <tbody>
             <tr>
@@ -144,7 +143,6 @@
                     <br/>
                 </td>
             </tr>
-
 
             <tr>
                 <td>
@@ -202,8 +200,6 @@
                 </td>
             </tr>
 
-
-
             <tr>
                 <td>
                     <div class="invoice-details"style="margin-top: 10px;min-height: 375px;">
@@ -232,6 +228,7 @@
                                 }
                                 ?>
 
+                            
                                 <tr>
                                     <td style="width: 8%;font-size: 11px;padding: 10px 5px;"><?= $i ?></td>
                                     <td style="width: 25%;font-size: 11px;padding: 10px 2px;"><?= $value->item_type == 1 ? 'Custom Perfume' : $product->product_name; ?></td>
@@ -245,11 +242,6 @@
                             }
                             ?>
 
-
-
-
-
-
                         </table>
                     </div>
                     <br/>
@@ -262,8 +254,6 @@
                                 <th style="width: 15%;font-size: 12px;padding: 10px 13px;"><?= sprintf('%0.2f', $order_master->tax_amount); ?>  (Tax)</th>
                                 <th style="width: 15%;font-size: 12px;padding: 10px 18px;text-align: right;"><?= sprintf('%0.2f', $order_master->total_amount); ?></th>
                             </tr>
-
-
                             <?php
                             $promotion_disvount = 0;
                             if (isset($promotions) && $promotions > 0) {
@@ -311,16 +301,12 @@
                                 <th style="width:50%;font-size: 10px;padding: 10px 0px;text-align: justify;font-weight: normal">
                                     If there is a problem with the delivery of the item , kindly do let us know so that
                                     it can be fixed as soon as possible. Upon the receipt of the products, we kindly insist you to leave a feedback to
-                                    info@alhajis.com.
+                                    info@vperfumes.com.
                                 </th>
                                 <th style="width:50%;font-size: 10px;padding: 10px 0px;text-align: right">
 
-
                                 </th>
-
                             </tr>
-
-
 
                         </table>
                     </div>

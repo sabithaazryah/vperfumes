@@ -43,23 +43,29 @@ use Yii;
  * @property int $gift_wrap
  * @property string $gift_wrap_value
  */
-class OrderMaster extends \yii\db\ActiveRecord
-{
+class OrderMaster extends \yii\db\ActiveRecord {
+
+    public $order_date_from;
+    public $order_date_to;
+    public $amount_from;
+    public $amount_to;
+    public $order_search;
+    public $user_search;
+    public $order_status;
+
     /**
      * {@inheritdoc}
      */
-    public static function tableName()
-    {
+    public static function tableName() {
         return 'order_master';
     }
 
     /**
      * {@inheritdoc}
      */
-    public function rules()
-    {
+    public function rules() {
         return [
-            [['order_id', 'user_id', 'total_amount', 'order_date', 'gift_wrap', 'gift_wrap_value'], 'required'],
+            [['order_id', 'user_id', 'total_amount', 'order_date'], 'required'],
             [['user_id', 'ship_address_id', 'bill_address_id', 'currency_id', 'payment_mode', 'admin_comment', 'payment_status', 'admin_status', 'shipping_status', 'status', 'promotion_id', 'return_status', 'return_approve', 'gift_wrap'], 'integer'],
             [['total_amount', 'tax', 'discount_amount', 'tax_amount', 'shipping_charge', 'net_amount', 'promotion_discount'], 'number'],
             [['order_date', 'expected_delivery_date', 'delivered_date', 'doc', 'dou'], 'safe'],
@@ -73,8 +79,7 @@ class OrderMaster extends \yii\db\ActiveRecord
     /**
      * {@inheritdoc}
      */
-    public function attributeLabels()
-    {
+    public function attributeLabels() {
         return [
             'id' => 'ID',
             'order_id' => 'Order ID',
@@ -113,4 +118,72 @@ class OrderMaster extends \yii\db\ActiveRecord
             'gift_wrap_value' => 'Gift Wrap Value',
         ];
     }
+
+    public static function getOrderTotal() {
+        $order = OrderMaster::find()->where(['status' => 4])->orWhere(['status' => 5])->all();
+        return count($order);
+    }
+
+    public static function getDeliveredTotal() {
+        $order = OrderMaster::find()->where(['admin_status' => 4])->andWhere(['!=', 'admin_status', 5])->andWhere(['!=', 'status', 5])->andWhere(['status' => 4])->all();
+        return count($order);
+    }
+
+    public static function getCanceledTotal() {
+        $order = OrderMaster::find()->where(['status' => 5])->andWhere(['admin_status' => 5])->all();
+        return count($order);
+    }
+
+    public static function getPendingOrderTotal() {
+        $order = OrderMaster::find()->where(['admin_status' => 0])->andWhere(['status' => 4])->orWhere(['status' => 5])->all();
+        return count($order);
+    }
+
+    public static function getAmountTotal($from_date, $to, $field_name) {
+        if ($from_date != '' && $to != '') {
+            $from_date = $from_date . ' 00:00:00';
+            $to = $to . ' 60:60:60';
+            return OrderMaster::find()->where(['>=', 'order_date', $from_date])->andWhere(['<=', 'order_date', $to])->sum($field_name);
+        } elseif ($from_date != '' || $to != '') {
+            return 0;
+        } else {
+            return OrderMaster::find()->sum($field_name);
+        }
+    }
+
+    public static function getAmountTotals($model, $field_name) {
+        $total_amount = 0;
+        foreach ($model as $value) {
+            $total_amount += $value->$field_name;
+        }
+        return $total_amount;
+    }
+
+    public static function returnstock($order_id) {
+        $ordered_products = OrderDetails::find()->where(['order_id' => $order_id])->all();
+        foreach ($ordered_products as $prdct) {
+            $product = Product::findOne($prdct->product_id);
+            $product->stock = $product->stock + $prdct->quantity;
+            $product->save();
+        }
+        return TRUE;
+    }
+
+    public static function returnmail($order_id, $user_id) {
+        $message = Yii::$app->mailer->compose('return-order', ['order_id' => $order_id, 'user_id' => $user_id])
+                ->setFrom('no-replay@vperfumes.com')
+                ->setTo(Yii::$app->params['adminEmail'])
+                ->setSubject('Return Order');
+        $message->send();
+    }
+
+    public static function adminreturnmail($order, $user_id) {
+        $mail = User::findOne($user_id)->email;
+        $message = Yii::$app->mailer->compose('admin-return-order', ['order' => $order, 'user_id' => $user_id])
+                ->setFrom('no-replay@vperfumes.com')
+                ->setTo($mail)
+                ->setSubject('Return Order');
+        $message->send();
+    }
+
 }

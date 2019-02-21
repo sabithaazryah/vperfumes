@@ -118,21 +118,14 @@ $this->params['breadcrumbs'][] = $this->title;
                                         'format' => 'raw',
                                         'value' => function ($data) {
                                             $order_masters = OrderMaster::find()->where(['order_id' => $data->order_id])->one();
-//                                            return DatePicker::widget([
-//                                                        'name' => 'expected_delivery_date',
-//                                                        'id' => $data->order_id,
-//                                                        'options' => ['id_' => $data->order_id, 'class' => 'admin_status delivered_date_' . $data->order_id],
-//                                                        'value' => $data->expected_delivery_date,
-//                                            ]);
-
                                             return DatePicker::widget([
                                                         'type' => DatePicker::TYPE_INPUT,
                                                         'name' => 'expected_delivery_date',
                                                         'value' => date('d-m-Y', strtotime($data->expected_delivery_date)),
                                                         'id' => $data->order_id,
-                                                'options' => ['id_' => $data->order_id, 'class' => 'admin_status delivered_date_' . $data->order_id],
+                                                        'options' => ['id_' => $data->order_id, 'class' => 'admin_status delivered_date_' . $data->order_id],
                                                         'pluginOptions' => [
-                                                            'autoclose' => true,
+                                                            'autoclose' => tsrue,
                                                             'format' => 'dd-mm-yyyy',
                                                             'todayHighlight' => true,
                                                             'placeholder' => 'Date'

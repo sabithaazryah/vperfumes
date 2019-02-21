@@ -12,6 +12,9 @@ use common\models\OrderMaster;
  */
 class OrderMasterSearch extends OrderMaster
 {
+     public $createdFrom;
+    public $createdTo;
+    public $created_at_range;
     /**
      * @inheritdoc
      */
