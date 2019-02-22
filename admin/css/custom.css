@@ -397,10 +397,9 @@ a{
     border-color: #f39c12!important;
 }
 #notification-list .btn-info:hover, .btn-info:active, .btn-info.hover{
-    background-color: #00a65a !important;
-    border-color: #00a65a !important;
+    background-color: #010101;
+    border-color: #010101;
 }
-
 
 .grid-search-button{
     float: right;
@@ -457,7 +456,6 @@ a{
 .modal-header{
     font-size: 15px;
 }
-
 .select2-container--krajee .select2-selection--single,.select2-container--krajee .select2-selection--multiple,.select2-container--krajee .select2-selection--single .select2-selection__arrow{
     height: 42px !important;
 }
@@ -479,12 +477,10 @@ a{
     width:30%;
     padding: 10px;
 }
-
 .order-div{
     border: 1px solid #b1b1b138;
     margin-top: 15px;
     background: #fff;
-    
 }
 .div-pdng{
     padding: 7px;
@@ -492,9 +488,11 @@ a{
 .bill-address{
     color: #f39c12 !important;
 }
-
 .div-pdng p{
     padding: 7px 0px;
     font-size: 13px;
-
 }
+.btn-info:hover, .btn-info:active, .btn-info.hover{
+    background-color: #010101;
+    border-color: #010101;
+}                                                      

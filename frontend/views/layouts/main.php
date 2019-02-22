@@ -6,18 +6,9 @@ use yii\helpers\Html;
 use frontend\assets\AppAsset;
 
 AppAsset::register($this);
-$action = Yii::$app->controller->id . '/' . Yii::$app->controller->action->id;
-$params = $parameters = \yii::$app->getRequest()->getQueryParams();
-$language = 'en';
-$language = common\components\SetLanguage::Language();
-Yii::$app->session['language'] = $language;
-$words = \common\components\SetLanguage::Words($language);
-$words = json_decode($words);
-Yii::$app->session['words'] = $words;
+$language=Yii::$app->session['language'];
 
-$apth= Yii::getAlias('@words').'/components/words.json';
-$str = file_get_contents($apth);
-$json = json_decode($str, true);
+
 
 ?>
 <?php $this->beginPage() ?>
@@ -48,13 +39,13 @@ $json = json_decode($str, true);
                                                     <ul>
                                                         <li><?= Yii::$app->session['words']->free_shipping ?>: <span><?= Yii::$app->session['words']->on_all_orders ?></span></li>
                                                         <li><?= Yii::$app->session['words']->free_return ?>: <span><?= Yii::$app->session['words']->free_return_policy ?></span></li>
-                                                        <li><a href="tel:+971 873738637"><img src="images/cont.png" alt="contact" class="img-fluid"/></a></li>
+                                                        <li><a href="tel:+971 873738637"><img src="<?= Yii::$app->homeUrl?>images/cont.png" alt="contact" class="img-fluid"/></a></li>
                                                     </ul>
                                                 </div>
                                                 <div class="top-right">
                                                     <ul class="os">
-                                                        <li><a href="#!"><img src="images/icons/playstore.png"/></a></li>
-                                                        <li><a href="#!"><img src="images/icons/ios.png"/></a></li>
+                                                        <li><a href="#!"><img src="<?= Yii::$app->homeUrl?>images/icons/playstore.png"/></a></li>
+                                                        <li><a href="#!"><img src="<?= Yii::$app->homeUrl?>images/icons/ios.png"/></a></li>
                                                     </ul>
                                                     <ul class="social-icon">
                                                         <li><a class="fab fa-facebook-f" target="_blank" href="#!"></a></li>
@@ -67,9 +58,9 @@ $json = json_decode($str, true);
                                                         <?php
                                                         if (isset($language) && $language == 'ar') {
                                                             ?>
-                                                            <a class="language" href="" lang="en" hreflang="en" val="en"><img src="images/icons/english.png" class="img-fluid"/></a>
+                                                            <a class="language" href="" lang="en" hreflang="en" val="en"><img src="<?= Yii::$app->homeUrl?>images/icons/english.png" class="img-fluid"/></a>
                                                         <?php } else { ?>
-                                                            <a class="language" href="" lang="ar" hreflang="ar" val="ar"><img src="images/icons/arabic.png" class="img-fluid"/></a>
+                                                            <a class="language" href="" lang="ar" hreflang="ar" val="ar"><img src="<?= Yii::$app->homeUrl?>images/icons/arabic.png" class="img-fluid"/></a>
                                                         <?php } ?>
                                                     </div>
                                                 </div>
@@ -88,7 +79,7 @@ $json = json_decode($str, true);
                                                         </button>
                                                     </div>
                                                     <div class="logo-section">
-                                                        <h1 class="logo"><a href="index.php"><img src="images/logo-<?=$language?>.png" alt="Vperfumes" title="Vperfumes" class="img-fluid"></a></h1>
+                                                        <h1 class="logo"><a href="index.php"><img src="<?= Yii::$app->homeUrl?>images/logo-<?=$language?>.png" alt="Vperfumes" title="Vperfumes" class="img-fluid"></a></h1>
                                                     </div>
                                                     <div class="main-action">
 
@@ -117,7 +108,7 @@ $json = json_decode($str, true);
                                                                         <div class="row">
                                                                             <div class="col-4">
                                                                                 <div class="img-box">
-                                                                                    <a href="#!" title="MARVELS (SILVER)"><img class="product-image img-responsive" src="images/product1.jpg" alt="" title="" width="100" height="100"></a>
+                                                                                    <a href="#!" title="MARVELS (SILVER)"><img class="product-image img-responsive" src="<?= Yii::$app->homeUrl?>images/product1.jpg" alt="" title="" width="100" height="100"></a>
                                                                                 </div>
                                                                             </div>
                                                                             <div class="col-8">
@@ -140,7 +131,7 @@ $json = json_decode($str, true);
                                                                         <div class="row">
                                                                             <div class="col-4">
                                                                                 <div class="img-box">
-                                                                                    <a href="#!" title="MARVELS (SILVER)"><img class="product-image img-responsive" src="images/product1.jpg" alt="" title="" width="100" height="100"></a>
+                                                                                    <a href="#!" title="MARVELS (SILVER)"><img class="product-image img-responsive" src="<?= Yii::$app->homeUrl?>images/product1.jpg" alt="" title="" width="100" height="100"></a>
                                                                                 </div>
                                                                             </div>
                                                                             <div class="col-8">
@@ -218,20 +209,21 @@ $json = json_decode($str, true);
                         <!--header-->
 
                         <?= $content ?>
+                        
                         <footer>
                             <div class="sec1">
                                 <div class="container">
                                     <div class="row">
                                         <div class="col-md-4">
-                                            <div class="foot-logo"><img src="images/logo-<?=$language?>.png" alt="Vperfumes logo" class="img-fluid"/></div>
+                                            <div class="foot-logo"><img src="<?= Yii::$app->homeUrl?>images/logo-<?=$language?>.png" alt="Vperfumes logo" class="img-fluid"/></div>
                                         </div>
                                         <div class="col-md-8">
                                             <div class="row">
                                                 <div class="col-sm-6">
-                                                    <div class="hide-mob phone"><a href="tel:+971 565092957" class="social"><img src="images/foot-cont.png" class="img-fluid"/></a></div>
+                                                    <div class="hide-mob phone"><a href="tel:+971 565092957" class="social"><img src="<?= Yii::$app->homeUrl?>images/foot-cont.png" class="img-fluid"/></a></div>
                                                 </div>
                                                 <div class="col-sm-6">
-                                                    <div class="hide-mob"><a href="#!" class="social"><img src="images/quality.png" width="260" class="img-fluid"/></a></div>
+                                                    <div class="hide-mob"><a href="#!" class="social"><img src="<?= Yii::$app->homeUrl?>images/quality.png" width="260" class="img-fluid"/></a></div>
                                                 </div>
                                             </div>
                                         </div>
@@ -265,7 +257,7 @@ $json = json_decode($str, true);
                                                                     <div class="col-lg-3 col-md-3 col-sm-6 col-6 mob-full">
                                                                         <h5 class="head">INFORMATION</h5>
                                                                         <ul class="foot-link">
-                                                                            <li><a href="#!"><img src="images/icons/foot-link.png" width="70" class="img-fluid"/></a></li>
+                                                                            <li><a href="#!"><img src="<?= Yii::$app->homeUrl?>images/icons/foot-link.png" width="70" class="img-fluid"/></a></li>
                                                                             <li><a href="#!">About Us</a></li>
                                                                             <li><a href="#!">Store Locator</a></li>
                                                                             <li><a href="#!">Customer Service</a></li>
@@ -306,7 +298,7 @@ $json = json_decode($str, true);
                                                                             <div class="payment-optns">
                                                                                 <p>Ways you can pay:</p>
                                                                                 <ul>
-                                                                                    <li><img src="images/icons/payment-optns.png" width="250" class="img-fluid"></li>
+                                                                                    <li><img src="<?= Yii::$app->homeUrl?>images/icons/payment-optns.png" width="250" class="img-fluid"></li>
                                                                                 </ul>
                                                                             </div>
                                                                         </div>
@@ -314,8 +306,8 @@ $json = json_decode($str, true);
                                                                             <div class="download-app">
                                                                                 <p>Download our apps</p>
                                                                                 <ul>
-                                                                                    <li><a href="#!"><img src="images/icons/android-app-icon.png" class="img-fluid"></a></li>
-                                                                                    <li><a href="#!"><img src="images/icons/app-store-logo.png" class="img-fluid"></a></li>
+                                                                                    <li><a href="#!"><img src="<?= Yii::$app->homeUrl?>images/icons/android-app-icon.png" class="img-fluid"></a></li>
+                                                                                    <li><a href="#!"><img src="<?= Yii::$app->homeUrl?>images/icons/app-store-logo.png" class="img-fluid"></a></li>
                                                                                 </ul>
                                                                             </div>
                                                                         </div>

@@ -1,32 +1,39 @@
 <?php
-$this->title='Vperfumes';
+$this->title = 'Vperfumes';
+//echo Yii::$app->session['language'];exit;
+
 ?>
+
+
 <section id="main-slider">
     <div id="carouselExampleIndicators" class="carousel slide carousel-fade" data-ride="carousel" data-interval="5000">
         <ol class="carousel-indicators">
-            <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-            <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-            <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+            <?php
+            $s = 0;
+            foreach ($sliders as $slider) {
+                $s++;
+                ?>
+                <li data-target="#carouselExampleIndicators" data-slide-to="<?= $s ?>" class="<?= $s == 1 ? 'active' : '' ?>"></li>
+            <?php } ?> 
         </ol>
-        <div class="carousel-inner">
-            <div class="carousel-item active">
-                <img class="d-block w-100" src="images/slider/slide1.jpg" alt="First slide">
+
+        <?php if (!empty($sliders)) { ?>
+            <div class="carousel-inner">
+                <?php
+                $s = 0;
+                foreach ($sliders as $slider) {
+                    $s++;
+                    $field = 'img';
+                    if (Yii::$app->session['language'] == 'ar')
+                        $field = 'img_ar';
+                    ?>
+                    <div class="carousel-item <?= $s == 1 ? 'active' : '' ?>">
+                        <img class="d-block w-100" src="<?= Yii::$app->homeUrl ?>uploads/cms/sliders/<?= $slider->id ?>/<?= Yii::$app->session['language'] ?>/image.<?= $slider->$field ?>?rand();" alt="First slide">
+                    </div>
+                <?php } ?> 
             </div>
-            <div class="carousel-item">
-                <img class="d-block w-100" src="images/slider/slide1.jpg" alt="Second slide">
-            </div>
-            <div class="carousel-item">
-                <img class="d-block w-100" src="images/slider/slide1.jpg" alt="Third slide">
-            </div>
-        </div>
-        <!--        <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
-                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                    <span class="sr-only">Previous</span>
-                </a>
-                <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
-                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                    <span class="sr-only">Next</span>
-                </a>-->
+        <?php } ?>
+
     </div>
 </section>
 
@@ -420,313 +427,313 @@ $this->title='Vperfumes';
                 </div>
             </div>
             <div class="col-lg-7 right-sec">
-              <div class="row">
-                <div class="col-sm-6 pad0">
-                  <div class="product-box box1">
-                      <div class="off-tag">20% OFF</div>
-                      <a href="#!" class="img-box">
-                          <img src="images/products/pro5.jpg" alt="pro1" class="img-fluid pic-1"/>
-                          <img src="images/products/pro2.jpg" alt="pro1" class="img-fluid pic-2"/>
-                      </a>
-                      <ul class="social">
-                          <li><a href="" data-tip="Quick View"><img src="images/icons/eye-icon.png"/></a></li>
-                          <li><a href="" data-tip="Add to Wishlist"><img src="images/icons/heart-icon.png"/></a></li>
-                          <li><a href="" data-tip="Similar Products"><img src="images/icons/similar.png"/></a></li>
-                      </ul>
-                      <div class="content">
-                          <div class="points"><span>40</span> points</div>
-                          <a href="#!" class="title">Coral 2pcs+Mark Alfred Free</a>
-                          <div class="off-price">AED 89.00</div>
-                          <div class="og-price">AED 305.00</div>
-                      </div>
-                      <div class="box-foot">
-                          <a class="check-out cart-button" href="#!"><i class="bag-icon"></i> Add to cart</a>
-                      </div>
-                  </div>
-              </div>
-                <div class="col-sm-6 pad0">
-                  <div class="product-box box2">
-                      <!-- <div class="off-tag">20% OFF</div> -->
-                      <a href="#!" class="img-box">
-                          <img src="images/products/pro5.jpg" alt="pro1" class="img-fluid pic-1"/>
-                          <img src="images/products/pro2.jpg" alt="pro1" class="img-fluid pic-2"/>
-                      </a>
-                      <ul class="social">
-                          <li><a href="" data-tip="Quick View"><img src="images/icons/eye-icon.png"/></a></li>
-                          <li><a href="" data-tip="Add to Wishlist"><img src="images/icons/heart-icon.png"/></a></li>
-                          <li><a href="" data-tip="Similar Products"><img src="images/icons/similar.png"/></a></li>
-                      </ul>
-                      <div class="content">
-                          <div class="points"><span>40</span> points</div>
-                          <a href="#!" class="title">Coral 2pcs+Mark Alfred Free</a>
-                          <div class="off-price">AED 89.00</div>
-                          <div class="og-price">AED 305.00</div>
-                      </div>
-                      <div class="box-foot">
-                          <a class="check-out cart-button" href="#!"><i class="bag-icon"></i> Add to cart</a>
-                      </div>
-                  </div>
-              </div>
-                <div class="col-sm-6 pad0">
-                  <div class="product-box box3">
-                      <div class="off-tag">20% OFF</div>
-                      <a href="#!" class="img-box">
-                          <img src="images/products/pro5.jpg" alt="pro1" class="img-fluid pic-1"/>
-                          <img src="images/products/pro2.jpg" alt="pro1" class="img-fluid pic-2"/>
-                      </a>
-                      <ul class="social">
-                          <li><a href="" data-tip="Quick View"><img src="images/icons/eye-icon.png"/></a></li>
-                          <li><a href="" data-tip="Add to Wishlist"><img src="images/icons/heart-icon.png"/></a></li>
-                          <li><a href="" data-tip="Similar Products"><img src="images/icons/similar.png"/></a></li>
-                      </ul>
-                      <div class="content">
-                          <div class="points"><span>40</span> points</div>
-                          <a href="#!" class="title">Coral 2pcs+Mark Alfred Free</a>
-                          <div class="off-price">AED 89.00</div>
-                          <div class="og-price">AED 305.00</div>
-                      </div>
-                      <div class="box-foot">
-                          <a class="check-out cart-button" href="#!"><i class="bag-icon"></i> Add to cart</a>
-                      </div>
-                  </div>
-              </div>
-                <div class="col-sm-6 pad0">
-                  <div class="product-box box4">
-                      <div class="off-tag">20% OFF</div>
-                      <a href="#!" class="img-box">
-                          <img src="images/products/pro5.jpg" alt="pro1" class="img-fluid pic-1"/>
-                          <img src="images/products/pro2.jpg" alt="pro1" class="img-fluid pic-2"/>
-                      </a>
-                      <ul class="social">
-                          <li><a href="" data-tip="Quick View"><img src="images/icons/eye-icon.png"/></a></li>
-                          <li><a href="" data-tip="Add to Wishlist"><img src="images/icons/heart-icon.png"/></a></li>
-                          <li><a href="" data-tip="Similar Products"><img src="images/icons/similar.png"/></a></li>
-                      </ul>
-                      <div class="content">
-                          <div class="points"><span>40</span> points</div>
-                          <a href="#!" class="title">Coral 2pcs+Mark Alfred Free</a>
-                          <div class="off-price">AED 89.00</div>
-                          <div class="og-price">AED 305.00</div>
-                      </div>
-                      <div class="box-foot">
-                          <a class="check-out cart-button" href="#!"><i class="bag-icon"></i> Add to cart</a>
-                      </div>
-                  </div>
-              </div>
-              </div>
+                <div class="row">
+                    <div class="col-sm-6 pad0">
+                        <div class="product-box box1">
+                            <div class="off-tag">20% OFF</div>
+                            <a href="#!" class="img-box">
+                                <img src="images/products/pro5.jpg" alt="pro1" class="img-fluid pic-1"/>
+                                <img src="images/products/pro2.jpg" alt="pro1" class="img-fluid pic-2"/>
+                            </a>
+                            <ul class="social">
+                                <li><a href="" data-tip="Quick View"><img src="images/icons/eye-icon.png"/></a></li>
+                                <li><a href="" data-tip="Add to Wishlist"><img src="images/icons/heart-icon.png"/></a></li>
+                                <li><a href="" data-tip="Similar Products"><img src="images/icons/similar.png"/></a></li>
+                            </ul>
+                            <div class="content">
+                                <div class="points"><span>40</span> points</div>
+                                <a href="#!" class="title">Coral 2pcs+Mark Alfred Free</a>
+                                <div class="off-price">AED 89.00</div>
+                                <div class="og-price">AED 305.00</div>
+                            </div>
+                            <div class="box-foot">
+                                <a class="check-out cart-button" href="#!"><i class="bag-icon"></i> Add to cart</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 pad0">
+                        <div class="product-box box2">
+                            <!-- <div class="off-tag">20% OFF</div> -->
+                            <a href="#!" class="img-box">
+                                <img src="images/products/pro5.jpg" alt="pro1" class="img-fluid pic-1"/>
+                                <img src="images/products/pro2.jpg" alt="pro1" class="img-fluid pic-2"/>
+                            </a>
+                            <ul class="social">
+                                <li><a href="" data-tip="Quick View"><img src="images/icons/eye-icon.png"/></a></li>
+                                <li><a href="" data-tip="Add to Wishlist"><img src="images/icons/heart-icon.png"/></a></li>
+                                <li><a href="" data-tip="Similar Products"><img src="images/icons/similar.png"/></a></li>
+                            </ul>
+                            <div class="content">
+                                <div class="points"><span>40</span> points</div>
+                                <a href="#!" class="title">Coral 2pcs+Mark Alfred Free</a>
+                                <div class="off-price">AED 89.00</div>
+                                <div class="og-price">AED 305.00</div>
+                            </div>
+                            <div class="box-foot">
+                                <a class="check-out cart-button" href="#!"><i class="bag-icon"></i> Add to cart</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 pad0">
+                        <div class="product-box box3">
+                            <div class="off-tag">20% OFF</div>
+                            <a href="#!" class="img-box">
+                                <img src="images/products/pro5.jpg" alt="pro1" class="img-fluid pic-1"/>
+                                <img src="images/products/pro2.jpg" alt="pro1" class="img-fluid pic-2"/>
+                            </a>
+                            <ul class="social">
+                                <li><a href="" data-tip="Quick View"><img src="images/icons/eye-icon.png"/></a></li>
+                                <li><a href="" data-tip="Add to Wishlist"><img src="images/icons/heart-icon.png"/></a></li>
+                                <li><a href="" data-tip="Similar Products"><img src="images/icons/similar.png"/></a></li>
+                            </ul>
+                            <div class="content">
+                                <div class="points"><span>40</span> points</div>
+                                <a href="#!" class="title">Coral 2pcs+Mark Alfred Free</a>
+                                <div class="off-price">AED 89.00</div>
+                                <div class="og-price">AED 305.00</div>
+                            </div>
+                            <div class="box-foot">
+                                <a class="check-out cart-button" href="#!"><i class="bag-icon"></i> Add to cart</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 pad0">
+                        <div class="product-box box4">
+                            <div class="off-tag">20% OFF</div>
+                            <a href="#!" class="img-box">
+                                <img src="images/products/pro5.jpg" alt="pro1" class="img-fluid pic-1"/>
+                                <img src="images/products/pro2.jpg" alt="pro1" class="img-fluid pic-2"/>
+                            </a>
+                            <ul class="social">
+                                <li><a href="" data-tip="Quick View"><img src="images/icons/eye-icon.png"/></a></li>
+                                <li><a href="" data-tip="Add to Wishlist"><img src="images/icons/heart-icon.png"/></a></li>
+                                <li><a href="" data-tip="Similar Products"><img src="images/icons/similar.png"/></a></li>
+                            </ul>
+                            <div class="content">
+                                <div class="points"><span>40</span> points</div>
+                                <a href="#!" class="title">Coral 2pcs+Mark Alfred Free</a>
+                                <div class="off-price">AED 89.00</div>
+                                <div class="og-price">AED 305.00</div>
+                            </div>
+                            <div class="box-foot">
+                                <a class="check-out cart-button" href="#!"><i class="bag-icon"></i> Add to cart</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
 </section>
 
 <section id="gifts">
-  <div class="self_container container">
-      <div class="main_head">
-          <div class="head">Gift Sets</div>
-          <div class="sub-head">Vperfumes</div>
-      </div>
-      <div class="carousel-controls gift-carousel-controls">
-          <div class="direction">
-              <div class="control d-flex align-items-center justify-content-center prev mt-3 slick-arrow" style=""></div>
-              <div class="control d-flex align-items-center justify-content-center next mt-3 slick-arrow" style=""></div>
-          </div>
-          <div class="gift-carousel">
-              <div class="one-slide mx-auto">
-                  <div class="m010 d-flex flex-direction-column justify-content-center flex-wrap align-items-center">
-                      <div class="product-box">
-                          <div class="off-tag">71% OFF</div>
-                          <a href="#!" class="img-box">
-                              <img src="images/products/pro1.jpg" alt="pro1" class="img-fluid pic-1"/>
-                              <img src="images/products/pro2.jpg" alt="pro1" class="img-fluid pic-2"/>
-                          </a>
-                          <ul class="social">
-                              <li><a href="" data-tip="Quick View"><img src="images/icons/eye-icon.png"/></a></li>
-                              <li><a href="" data-tip="Add to Wishlist"><img src="images/icons/heart-icon.png"/></a></li>
-                              <li><a href="" data-tip="Similar Products"><img src="images/icons/similar.png"/></a></li>
-                          </ul>
-                          <div class="content">
-                              <div class="points"><span>40</span> points</div>
-                              <a href="#!" class="title">Coral 2pcs+Mark Alfred Free</a>
-                              <div class="off-price">AED 89.00</div>
-                              <div class="og-price">AED 305.00</div>
-                          </div>
-                          <div class="box-foot">
-                              <a class="check-out cart-button" href="#!"><i class="bag-icon"></i> Add to cart</a>
-                          </div>
-                      </div>
-                  </div>
-              </div>
-              <div class="one-slide mx-auto">
-                  <div class="m010 d-flex flex-direction-column justify-content-center flex-wrap align-items-center">
-                      <div class="product-box">
-                          <div class="off-tag">71% OFF</div>
-                          <a href="#!" class="img-box">
-                              <img src="images/products/pro2.jpg" alt="pro1" class="img-fluid pic-1"/>
-                              <img src="images/products/pro2.jpg" alt="pro1" class="img-fluid pic-2"/>
-                          </a>
-                          <ul class="social">
-                              <li><a href="" data-tip="Quick View"><img src="images/icons/eye-icon.png"/></a></li>
-                              <li><a href="" data-tip="Add to Wishlist"><img src="images/icons/heart-icon.png"/></a></li>
-                              <li><a href="" data-tip="Similar Products"><img src="images/icons/similar.png"/></a></li>
-                          </ul>
-                          <div class="content">
-                              <div class="points"><span>40</span> points</div>
-                              <a href="#!" class="title">Coral 2pcs+Mark Alfred Free</a>
-                              <div class="off-price">AED 89.00</div>
-                              <div class="og-price">AED 305.00</div>
-                          </div>
-                          <div class="box-foot">
-                              <a class="check-out cart-button" href="#!"><i class="bag-icon"></i> Add to cart</a>
-                          </div>
-                      </div>
-                  </div>
-              </div>
-              <div class="one-slide mx-auto">
-                  <div class="m010 d-flex flex-direction-column justify-content-center flex-wrap align-items-center">
-                      <div class="product-box">
-                          <div class="off-tag stockout">Out of stock</div>
-                          <a href="#!" class="img-box">
-                              <img src="images/products/pro3.jpg" alt="pro1" class="img-fluid pic-1"/>
-                              <img src="images/products/pro2.jpg" alt="pro1" class="img-fluid pic-2"/>
-                          </a>
-                          <ul class="social">
-                              <li><a href="" data-tip="Quick View"><img src="images/icons/eye-icon.png"/></a></li>
-                              <li><a href="" data-tip="Add to Wishlist"><img src="images/icons/heart-icon.png"/></a></li>
-                              <li><a href="" data-tip="Similar Products"><img src="images/icons/similar.png"/></a></li>
-                          </ul>
-                          <div class="content">
-                              <div class="points"><span>40</span> points</div>
-                              <a href="#!" class="title">Coral 2pcs+Mark Alfred Free</a>
-                              <div class="off-price">AED 89.00</div>
-                              <div class="og-price">AED 305.00</div>
-                          </div>
-                          <div class="box-foot">
-                              <a class="check-out cart-button" href="#!"><i class="bag-icon"></i> Add to cart</a>
-                          </div>
-                      </div>
-                  </div>
-              </div>
-              <div class="one-slide mx-auto">
-                  <div class="m010 d-flex flex-direction-column justify-content-center flex-wrap align-items-center">
-                      <div class="product-box">
-                          <div class="off-tag">71% OFF</div>
-                          <a href="#!" class="img-box">
-                              <img src="images/products/pro4.jpg" alt="pro1" class="img-fluid pic-1"/>
-                              <img src="images/products/pro2.jpg" alt="pro1" class="img-fluid pic-2"/>
-                          </a>
-                          <ul class="social">
-                              <li><a href="" data-tip="Quick View"><img src="images/icons/eye-icon.png"/></a></li>
-                              <li><a href="" data-tip="Add to Wishlist"><img src="images/icons/heart-icon.png"/></a></li>
-                              <li><a href="" data-tip="Similar Products"><img src="images/icons/similar.png"/></a></li>
-                          </ul>
-                          <div class="content">
-                              <div class="points"><span>40</span> points</div>
-                              <a href="#!" class="title">Coral 2pcs+Mark Alfred Free</a>
-                              <div class="off-price">AED 89.00</div>
-                              <div class="og-price">AED 305.00</div>
-                          </div>
-                          <div class="box-foot">
-                              <a class="check-out cart-button" href="#!"><i class="bag-icon"></i> Add to cart</a>
-                          </div>
-                      </div>
-                  </div>
-              </div>
-              <div class="one-slide mx-auto">
-                  <div class="m010 d-flex flex-direction-column justify-content-center flex-wrap align-items-center">
-                      <div class="product-box">
-                          <div class="off-tag">71% OFF</div>
-                          <a href="#!" class="img-box">
-                              <img src="images/products/pro5.jpg" alt="pro1" class="img-fluid pic-1"/>
-                              <img src="images/products/pro2.jpg" alt="pro1" class="img-fluid pic-2"/>
-                          </a>
-                          <ul class="social">
-                              <li><a href="" data-tip="Quick View"><img src="images/icons/eye-icon.png"/></a></li>
-                              <li><a href="" data-tip="Add to Wishlist"><img src="images/icons/heart-icon.png"/></a></li>
-                              <li><a href="" data-tip="Similar Products"><img src="images/icons/similar.png"/></a></li>
-                          </ul>
-                          <div class="content">
-                              <div class="points"><span>40</span> points</div>
-                              <a href="#!" class="title">Coral 2pcs+Mark Alfred Free</a>
-                              <div class="off-price">AED 89.00</div>
-                              <div class="og-price">AED 305.00</div>
-                          </div>
-                          <div class="box-foot">
-                              <a class="check-out cart-button" href="#!"><i class="bag-icon"></i> Add to cart</a>
-                          </div>
-                      </div>
-                  </div>
-              </div>
-              <div class="one-slide mx-auto">
-                  <div class="m010 d-flex flex-direction-column justify-content-center flex-wrap align-items-center">
-                      <div class="product-box">
-                          <div class="off-tag">71% OFF</div>
-                          <a href="#!" class="img-box">
-                              <img src="images/products/pro3.jpg" alt="pro1" class="img-fluid pic-1"/>
-                              <img src="images/products/pro2.jpg" alt="pro1" class="img-fluid pic-2"/>
-                          </a>
-                          <ul class="social">
-                              <li><a href="" data-tip="Quick View"><img src="images/icons/eye-icon.png"/></a></li>
-                              <li><a href="" data-tip="Add to Wishlist"><img src="images/icons/heart-icon.png"/></a></li>
-                              <li><a href="" data-tip="Similar Products"><img src="images/icons/similar.png"/></a></li>
-                          </ul>
-                          <div class="content">
-                              <div class="points"><span>40</span> points</div>
-                              <a href="#!" class="title">Coral 2pcs+Mark Alfred Free</a>
-                              <div class="off-price">AED 89.00</div>
-                              <div class="og-price">AED 305.00</div>
-                          </div>
-                          <div class="box-foot">
-                              <a class="check-out cart-button" href="#!"><i class="bag-icon"></i> Add to cart</a>
-                          </div>
-                      </div>
-                  </div>
-              </div>
-          </div>
-      </div>
-  </div>
+    <div class="self_container container">
+        <div class="main_head">
+            <div class="head">Gift Sets</div>
+            <div class="sub-head">Vperfumes</div>
+        </div>
+        <div class="carousel-controls gift-carousel-controls">
+            <div class="direction">
+                <div class="control d-flex align-items-center justify-content-center prev mt-3 slick-arrow" style=""></div>
+                <div class="control d-flex align-items-center justify-content-center next mt-3 slick-arrow" style=""></div>
+            </div>
+            <div class="gift-carousel">
+                <div class="one-slide mx-auto">
+                    <div class="m010 d-flex flex-direction-column justify-content-center flex-wrap align-items-center">
+                        <div class="product-box">
+                            <div class="off-tag">71% OFF</div>
+                            <a href="#!" class="img-box">
+                                <img src="images/products/pro1.jpg" alt="pro1" class="img-fluid pic-1"/>
+                                <img src="images/products/pro2.jpg" alt="pro1" class="img-fluid pic-2"/>
+                            </a>
+                            <ul class="social">
+                                <li><a href="" data-tip="Quick View"><img src="images/icons/eye-icon.png"/></a></li>
+                                <li><a href="" data-tip="Add to Wishlist"><img src="images/icons/heart-icon.png"/></a></li>
+                                <li><a href="" data-tip="Similar Products"><img src="images/icons/similar.png"/></a></li>
+                            </ul>
+                            <div class="content">
+                                <div class="points"><span>40</span> points</div>
+                                <a href="#!" class="title">Coral 2pcs+Mark Alfred Free</a>
+                                <div class="off-price">AED 89.00</div>
+                                <div class="og-price">AED 305.00</div>
+                            </div>
+                            <div class="box-foot">
+                                <a class="check-out cart-button" href="#!"><i class="bag-icon"></i> Add to cart</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="one-slide mx-auto">
+                    <div class="m010 d-flex flex-direction-column justify-content-center flex-wrap align-items-center">
+                        <div class="product-box">
+                            <div class="off-tag">71% OFF</div>
+                            <a href="#!" class="img-box">
+                                <img src="images/products/pro2.jpg" alt="pro1" class="img-fluid pic-1"/>
+                                <img src="images/products/pro2.jpg" alt="pro1" class="img-fluid pic-2"/>
+                            </a>
+                            <ul class="social">
+                                <li><a href="" data-tip="Quick View"><img src="images/icons/eye-icon.png"/></a></li>
+                                <li><a href="" data-tip="Add to Wishlist"><img src="images/icons/heart-icon.png"/></a></li>
+                                <li><a href="" data-tip="Similar Products"><img src="images/icons/similar.png"/></a></li>
+                            </ul>
+                            <div class="content">
+                                <div class="points"><span>40</span> points</div>
+                                <a href="#!" class="title">Coral 2pcs+Mark Alfred Free</a>
+                                <div class="off-price">AED 89.00</div>
+                                <div class="og-price">AED 305.00</div>
+                            </div>
+                            <div class="box-foot">
+                                <a class="check-out cart-button" href="#!"><i class="bag-icon"></i> Add to cart</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="one-slide mx-auto">
+                    <div class="m010 d-flex flex-direction-column justify-content-center flex-wrap align-items-center">
+                        <div class="product-box">
+                            <div class="off-tag stockout">Out of stock</div>
+                            <a href="#!" class="img-box">
+                                <img src="images/products/pro3.jpg" alt="pro1" class="img-fluid pic-1"/>
+                                <img src="images/products/pro2.jpg" alt="pro1" class="img-fluid pic-2"/>
+                            </a>
+                            <ul class="social">
+                                <li><a href="" data-tip="Quick View"><img src="images/icons/eye-icon.png"/></a></li>
+                                <li><a href="" data-tip="Add to Wishlist"><img src="images/icons/heart-icon.png"/></a></li>
+                                <li><a href="" data-tip="Similar Products"><img src="images/icons/similar.png"/></a></li>
+                            </ul>
+                            <div class="content">
+                                <div class="points"><span>40</span> points</div>
+                                <a href="#!" class="title">Coral 2pcs+Mark Alfred Free</a>
+                                <div class="off-price">AED 89.00</div>
+                                <div class="og-price">AED 305.00</div>
+                            </div>
+                            <div class="box-foot">
+                                <a class="check-out cart-button" href="#!"><i class="bag-icon"></i> Add to cart</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="one-slide mx-auto">
+                    <div class="m010 d-flex flex-direction-column justify-content-center flex-wrap align-items-center">
+                        <div class="product-box">
+                            <div class="off-tag">71% OFF</div>
+                            <a href="#!" class="img-box">
+                                <img src="images/products/pro4.jpg" alt="pro1" class="img-fluid pic-1"/>
+                                <img src="images/products/pro2.jpg" alt="pro1" class="img-fluid pic-2"/>
+                            </a>
+                            <ul class="social">
+                                <li><a href="" data-tip="Quick View"><img src="images/icons/eye-icon.png"/></a></li>
+                                <li><a href="" data-tip="Add to Wishlist"><img src="images/icons/heart-icon.png"/></a></li>
+                                <li><a href="" data-tip="Similar Products"><img src="images/icons/similar.png"/></a></li>
+                            </ul>
+                            <div class="content">
+                                <div class="points"><span>40</span> points</div>
+                                <a href="#!" class="title">Coral 2pcs+Mark Alfred Free</a>
+                                <div class="off-price">AED 89.00</div>
+                                <div class="og-price">AED 305.00</div>
+                            </div>
+                            <div class="box-foot">
+                                <a class="check-out cart-button" href="#!"><i class="bag-icon"></i> Add to cart</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="one-slide mx-auto">
+                    <div class="m010 d-flex flex-direction-column justify-content-center flex-wrap align-items-center">
+                        <div class="product-box">
+                            <div class="off-tag">71% OFF</div>
+                            <a href="#!" class="img-box">
+                                <img src="images/products/pro5.jpg" alt="pro1" class="img-fluid pic-1"/>
+                                <img src="images/products/pro2.jpg" alt="pro1" class="img-fluid pic-2"/>
+                            </a>
+                            <ul class="social">
+                                <li><a href="" data-tip="Quick View"><img src="images/icons/eye-icon.png"/></a></li>
+                                <li><a href="" data-tip="Add to Wishlist"><img src="images/icons/heart-icon.png"/></a></li>
+                                <li><a href="" data-tip="Similar Products"><img src="images/icons/similar.png"/></a></li>
+                            </ul>
+                            <div class="content">
+                                <div class="points"><span>40</span> points</div>
+                                <a href="#!" class="title">Coral 2pcs+Mark Alfred Free</a>
+                                <div class="off-price">AED 89.00</div>
+                                <div class="og-price">AED 305.00</div>
+                            </div>
+                            <div class="box-foot">
+                                <a class="check-out cart-button" href="#!"><i class="bag-icon"></i> Add to cart</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="one-slide mx-auto">
+                    <div class="m010 d-flex flex-direction-column justify-content-center flex-wrap align-items-center">
+                        <div class="product-box">
+                            <div class="off-tag">71% OFF</div>
+                            <a href="#!" class="img-box">
+                                <img src="images/products/pro3.jpg" alt="pro1" class="img-fluid pic-1"/>
+                                <img src="images/products/pro2.jpg" alt="pro1" class="img-fluid pic-2"/>
+                            </a>
+                            <ul class="social">
+                                <li><a href="" data-tip="Quick View"><img src="images/icons/eye-icon.png"/></a></li>
+                                <li><a href="" data-tip="Add to Wishlist"><img src="images/icons/heart-icon.png"/></a></li>
+                                <li><a href="" data-tip="Similar Products"><img src="images/icons/similar.png"/></a></li>
+                            </ul>
+                            <div class="content">
+                                <div class="points"><span>40</span> points</div>
+                                <a href="#!" class="title">Coral 2pcs+Mark Alfred Free</a>
+                                <div class="off-price">AED 89.00</div>
+                                <div class="og-price">AED 305.00</div>
+                            </div>
+                            <div class="box-foot">
+                                <a class="check-out cart-button" href="#!"><i class="bag-icon"></i> Add to cart</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </section>
 
 <section id="brands">
-  <div class="container">
-      <div class="main_head">
-          <div class="head">Our Brand</div>
-          <div class="sub-head">Vperfumes</div>
-      </div>
-      <div class="carousel-controls brands-carousel-controls">
-          <div class="brands-carousel">
-              <div class="one-slide mx-auto">
-                  <div class="m010 d-flex flex-direction-column justify-content-center flex-wrap align-items-center">
-<img src="images/clients/1.png" class="img-fluid"/>
-                  </div>
-              </div>
-              <div class="one-slide mx-auto">
-                  <div class="m010 d-flex flex-direction-column justify-content-center flex-wrap align-items-center">
-<img src="images/clients/2.png" class="img-fluid"/>
-                  </div>
-              </div>
-              <div class="one-slide mx-auto">
-                  <div class="m010 d-flex flex-direction-column justify-content-center flex-wrap align-items-center">
-<img src="images/clients/3.png" class="img-fluid"/>
-                  </div>
-              </div>
-              <div class="one-slide mx-auto">
-                  <div class="m010 d-flex flex-direction-column justify-content-center flex-wrap align-items-center">
-<img src="images/clients/4.png" class="img-fluid"/>
-                  </div>
-              </div>
-              <div class="one-slide mx-auto">
-                  <div class="m010 d-flex flex-direction-column justify-content-center flex-wrap align-items-center">
-<img src="images/clients/5.png" class="img-fluid"/>
-                  </div>
-              </div>
-              <div class="one-slide mx-auto">
-                  <div class="m010 d-flex flex-direction-column justify-content-center flex-wrap align-items-center">
-<img src="images/clients/6.png" class="img-fluid"/>
-                  </div>
-              </div>
-          </div>
-      </div>
-    </section>
+    <div class="container">
+        <div class="main_head">
+            <div class="head">Our Brand</div>
+            <div class="sub-head">Vperfumes</div>
+        </div>
+        <div class="carousel-controls brands-carousel-controls">
+            <div class="brands-carousel">
+                <div class="one-slide mx-auto">
+                    <div class="m010 d-flex flex-direction-column justify-content-center flex-wrap align-items-center">
+                        <img src="images/clients/1.png" class="img-fluid"/>
+                    </div>
+                </div>
+                <div class="one-slide mx-auto">
+                    <div class="m010 d-flex flex-direction-column justify-content-center flex-wrap align-items-center">
+                        <img src="images/clients/2.png" class="img-fluid"/>
+                    </div>
+                </div>
+                <div class="one-slide mx-auto">
+                    <div class="m010 d-flex flex-direction-column justify-content-center flex-wrap align-items-center">
+                        <img src="images/clients/3.png" class="img-fluid"/>
+                    </div>
+                </div>
+                <div class="one-slide mx-auto">
+                    <div class="m010 d-flex flex-direction-column justify-content-center flex-wrap align-items-center">
+                        <img src="images/clients/4.png" class="img-fluid"/>
+                    </div>
+                </div>
+                <div class="one-slide mx-auto">
+                    <div class="m010 d-flex flex-direction-column justify-content-center flex-wrap align-items-center">
+                        <img src="images/clients/5.png" class="img-fluid"/>
+                    </div>
+                </div>
+                <div class="one-slide mx-auto">
+                    <div class="m010 d-flex flex-direction-column justify-content-center flex-wrap align-items-center">
+                        <img src="images/clients/6.png" class="img-fluid"/>
+                    </div>
+                </div>
+            </div>
+        </div>
+</section>
 
 <section id="site-speciality">
     <div class="container">

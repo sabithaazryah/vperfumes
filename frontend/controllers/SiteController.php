@@ -71,7 +71,13 @@ class SiteController extends Controller {
      * @return mixed
      */
     public function actionIndex() {
-        return $this->render('index');
+        $sliders = \common\models\Slider::find()->where(['status' => 1])->all();
+        
+        
+        
+        return $this->render('index', [
+                    'sliders' => $sliders,
+        ]);
     }
 
     /**

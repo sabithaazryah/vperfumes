@@ -210,22 +210,20 @@ class ProductController extends Controller {
         $file->saveAs(Yii::$app->basePath . '/../uploads/product/' . $model->id . '/profile/' . $model->canonical_name . '_big.' . $file->extension);
         return TRUE;
     }
+    
+    /*
+     * This function copy product detail
+     */
 
     public function actionCopy($id) {
         $model = new Product();
-
         $model1 = $this->findModel($id);
         $model->setAttributes($model1->attributes);
-        $model->search_tag = $model1->search_tag;
-        $model->meta_description = $model1->meta_description;
-        $model->meta_keywords = $model1->meta_keywords;
-        $model->product_type = $model1->product_type;
-        $model->meta_title = $model1->meta_title;
-        $model->ean_type = $model1->ean_type;
-        $model->ean_value = $model1->ean_value;
         $ean = Product::find()->max('id');
         $model->product_name = '';
+        $model->product_name_ar = '';
         $model->canonical_name = '';
+        $model->canonical_name_ar = '';
         $model->price = '';
         $model->offer_price = '';
         $model->stock = '';
@@ -236,12 +234,6 @@ class ProductController extends Controller {
         if ($model->load(Yii::$app->request->post())) {
             if ($model->validate()) {
                 $ean = Product::find()->max('id');
-//                if (empty($ean)) {
-//                    $model->item_ean = date(Ymd);
-//                } else {
-//                    $ean = $ean + 1;
-//                    $model->item_ean = date(Ymd) . $ean;
-//                }
                 $file11 = UploadedFile::getInstances($model, 'profile');
                 $file12 = UploadedFile::getInstances($model, 'other_image');
                 if ($file11) {
@@ -249,22 +241,13 @@ class ProductController extends Controller {
                 } else {
                     $model->profile = $profile;
                 }
-//            $model->item_ean = date(Ymdhis);
 
                 $tag = Yii::$app->request->post()['Product']['search_tag'];
                 if ($tag) {
                     $model->search_tag = implode(',', $tag);
                 }
-
-                $model->meta_description = Yii::$app->request->post()['Product']['meta_description'];
-                $model->meta_keywords = Yii::$app->request->post()['Product']['meta_keywords'];
-                $model->meta_title = Yii::$app->request->post()['Product']['meta_title'];
-                $model->profile_alt = Yii::$app->request->post()['Product']['profile_alt'];
-                $model->gallery_alt = Yii::$app->request->post()['Product']['gallery_alt'];
-                $model->sort = Yii::$app->request->post()['Product']['sort'];
+                
                 $model->other_image = '';
-                $model->ean_type = Yii::$app->request->post()['Product']['ean_type'];
-                $model->ean_value = Yii::$app->request->post()['Product']['ean_value'];
                 if ($model->save()) {
                     $this->UpdateProductEan($model->item_ean);
                     if ($file11) {
@@ -276,14 +259,11 @@ class ProductController extends Controller {
                         if (is_dir(Yii::$app->basePath . '/../uploads/product/' . $id . '/profile')) {
                             $this->makedir($model->id);
                             $files = scandir(Yii::$app->basePath . '/../uploads/product/' . $id . '/profile');
-// Identify directories
                             $source = Yii::$app->basePath . '/../uploads/product/' . $id . "/profile/";
                             $destination = Yii::$app->basePath . '/../uploads/product/' . $model->id . '/profile/';
-// Cycle through all source files
                             foreach ($files as $file) {
                                 if (in_array($file, array(".", "..")))
                                     continue;
-// If we copied this successfully, mark it for deletion
                                 if (copy($source . $file, $destination . $file)) {
                                     $delete[] = $source . $file;
                                 }
@@ -294,7 +274,6 @@ class ProductController extends Controller {
                     if ($file12) {
                         for ($i = 0; $i < sizeof($file12); $i++) {
                             if ($model->uploadMultiple($file12[$i], $model->id, $model->canonical_name, $i)) {
-// file is uploaded successfully
                             } else {
                                 echo 'Image Upload Failed:';
                             }
@@ -308,19 +287,12 @@ class ProductController extends Controller {
                     }
                     return $this->redirect(['index']);
                 }
-//                else {
-//
-////                    throw new UserException('Error Code 1001');
-//                    var_dump($model->getErrors());
-//                    exit;
-//                }
+
             } else {
                 return $this->render('copy', [
                             'model' => $model,
                 ]);
-//                var_dump($model->getErrors());
-//                exit;
-//                echo validation_errors();
+
             }
         } else {
             return $this->render('copy', [

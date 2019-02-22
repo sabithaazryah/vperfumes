@@ -20,11 +20,14 @@ $this->params['breadcrumbs'][] = 'Update';
 
             </div>
             <div class="panel-body">
-                <?=  Html::a('<i class="fa fa-list"></i><span> Manage Product</span>', ['index'], ['class' => 'btn btn-block btn-info btn-sm']) ?>
+                <?= Html::a('<i class="fa fa-list"></i><span> Manage Product</span>', ['index'], ['class' => 'btn btn-block btn-info btn-sm']) ?>
+                <?= Html::a('<i class="fa fa-clipboard"></i><span> Copy</span>', ['product/copy?id=' . $model->id], ['class' => 'btn btn-block btn-info btn-sm']) ?>
                 <div class="product-create">
-                    <?= $this->render('_form', [
-                    'model' => $model,
-                    ]) ?>
+                    <?=
+                    $this->render('_form', [
+                        'model' => $model,
+                    ])
+                    ?>
                 </div>
             </div>
         </div>
