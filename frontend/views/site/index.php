@@ -28,7 +28,7 @@ $this->title = 'Vperfumes';
                         $field = 'img_ar';
                     ?>
                     <div class="carousel-item <?= $s == 1 ? 'active' : '' ?>">
-                        <img class="d-block w-100" src="<?= Yii::$app->homeUrl ?>uploads/cms/sliders/<?= $slider->id ?>/<?= Yii::$app->session['language'] ?>/image.<?= $slider->$field ?>?rand();" alt="First slide">
+                        <img class="d-block w-100" src="<?= Yii::$app->homeUrl ?>uploads/cms/sliders/<?= $slider->id ?>/<?= Yii::$app->session['language'] ?>/image.<?= $slider->$field ?>?rand();" alt="<?= $slider->alt_tag_content ?>">
                     </div>
                 <?php } ?> 
             </div>

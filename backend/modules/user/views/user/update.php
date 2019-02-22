@@ -22,7 +22,7 @@ $this->params['breadcrumbs'][] = 'Update';
             <div class="panel-body">
                 <?= Html::a('<i class="fa fa-list"></i><span> Manage User</span>', ['index'], ['class' => 'btn btn-block btn-info btn-sm']) ?>
 
-                <div class="col-md-12 user-profile-tabs">
+                <div class="user-profile-tabs">
                     <!-- Custom Tabs -->
                     <div class="nav-tabs-custom">
                         <ul class="nav nav-tabs">

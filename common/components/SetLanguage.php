@@ -30,7 +30,6 @@ class SetLanguage extends Component {
 
     public static function Language() {
         $cookies1 = Yii::$app->request->cookies;
-
         if ($cookies1->has('language')) {
             $language = $cookies1->getValue('language');
         } else {
@@ -38,7 +37,6 @@ class SetLanguage extends Component {
         }
 
         Yii::$app->session['language'] = $language;
-
         return $language;
     }
 

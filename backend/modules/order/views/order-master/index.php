@@ -48,7 +48,6 @@ $this->params['breadcrumbs'][] = $this->title;
                             </ul>
 
 
-
                             <?=
                             GridView::widget([
                                 'dataProvider' => $dataProvider,
@@ -125,7 +124,7 @@ $this->params['breadcrumbs'][] = $this->title;
                                                         'id' => $data->order_id,
                                                         'options' => ['id_' => $data->order_id, 'class' => 'admin_status delivered_date_' . $data->order_id],
                                                         'pluginOptions' => [
-                                                            'autoclose' => tsrue,
+                                                            'autoclose' => true,
                                                             'format' => 'dd-mm-yyyy',
                                                             'todayHighlight' => true,
                                                             'placeholder' => 'Date'
@@ -168,8 +167,6 @@ $this->params['breadcrumbs'][] = $this->title;
                                 ],
                             ]);
                             ?>
-
-
 
                             <!-- /.tab-content -->
                         </div>
@@ -214,5 +211,8 @@ $this->params['breadcrumbs'][] = $this->title;
 <style>
     table td a{
         padding: 4px;
+    }
+    .summary{
+        padding: 10px 0px;
     }
 </style>

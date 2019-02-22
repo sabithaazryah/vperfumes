@@ -197,6 +197,9 @@ $controler = Yii::$app->controller->id;
                                 <li>
                                     <?= Html::a('<i class="fa fa-angle-double-right"></i> Slider  ', ['/cms/slider/index'], ['class' => 'title']) ?>
                                 </li>
+                                <li>
+                                    <?= Html::a('<i class="fa fa-angle-double-right"></i> Banner  ', ['/cms/banner/index'], ['class' => 'title']) ?>
+                                </li>
                             </ul>
                         </li>
 

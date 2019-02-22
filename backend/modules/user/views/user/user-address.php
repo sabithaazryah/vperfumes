@@ -9,6 +9,7 @@ $this->title = 'User';
 $this->params['breadcrumbs'][] = ['label' => 'Users', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
+<div class="row">
 <?php
 if (count($user_address) > 0) {
     foreach ($user_address as $address) {
@@ -19,6 +20,8 @@ if (count($user_address) > 0) {
         ?>
 
         <div class="col-md-4">
+        <div class="user-addresses-box">
+            
             <p><?= $address->name ?> </p>
             <p><?= $address->address ?> </p>
             <p><?= $address->landmark ?> </p>
@@ -26,5 +29,7 @@ if (count($user_address) > 0) {
             <p><?= $emirate_name ?> </p>
             <p>Tel:  <?= $address->country_code ?>  <?= $address->mobile_number ?> </p>
         </div>
+        </div>
     <?php } ?>
+</div>
 <?php } ?>

@@ -3,10 +3,10 @@
 use yii\helpers\Html;
 
 /* @var $this yii\web\View */
-/* @var $model common\models\Product */
+/* @var $model common\models\Banner */
 
-$this->title = 'Update Product: ' . $model->product_name;
-$this->params['breadcrumbs'][] = ['label' => 'Products', 'url' => ['index']];
+$this->title = 'Update Banner ';
+$this->params['breadcrumbs'][] = ['label' => 'Banners', 'url' => ['index']];
 $this->params['breadcrumbs'][] = ['label' => $model->id, 'url' => ['view', 'id' => $model->id]];
 $this->params['breadcrumbs'][] = 'Update';
 ?>
@@ -20,13 +20,13 @@ $this->params['breadcrumbs'][] = 'Update';
 
             </div>
             <div class="panel-body">
-                <?= Html::a('<i class="fa fa-list"></i><span> Manage Product</span>', ['index'], ['class' => 'btn  btn-info btn-sm product-update-btn']) ?>
-                <?= Html::a('<i class="fa fa-clipboard"></i><span> Copy</span>', ['product/copy?id=' . $model->id], ['class' => 'btn  btn-info btn-sm product-update-btn']) ?>
-                <div class="clearfix"></div>
-                <div class="product-create">
+                <?= Html::a('<i class="fa fa-list"></i><span> Manage Banner</span>', ['index'], ['class' => 'btn btn-block btn-info btn-sm']) ?>
+                <div class="banner-create">
                     <?=
                     $this->render('_form', [
                         'model' => $model,
+                        'width' => $width,
+                        'height' => $height
                     ])
                     ?>
                 </div>
