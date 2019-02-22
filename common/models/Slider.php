@@ -40,6 +40,9 @@ class Slider extends \yii\db\ActiveRecord
             [['img_ar'], 'string', 'max' => 255],
             [['slider_link'], 'string', 'max' => 500],
             [['alt_tag_content'], 'string', 'max' => 200],
+            [['img','img_ar'], 'file', 'extensions' => 'png, jpg, jpeg'],
+            [['img','img_ar'],'required','on' => 'create']
+            
         ];
     }
 
@@ -50,10 +53,10 @@ class Slider extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'img' => 'Img',
-            'img_ar' => 'Img Ar',
+            'img' => 'Image',
+            'img_ar' => 'Image (Arabic)',
             'slider_link' => 'Slider Link',
-            'alt_tag_content' => 'Alt Tag Content',
+            'alt_tag_content' => 'Alt Tag',
             'status' => 'Status',
             'CB' => 'C B',
             'UB' => 'U B',

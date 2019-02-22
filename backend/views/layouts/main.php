@@ -67,7 +67,7 @@ $controler = Yii::$app->controller->id;
                 </nav>
             </header>
 
-            <!-- =============================================== -->
+            <!-- ================================================== -->
 
             <!-- Left side column. contains the sidebar -->
             <aside class="main-sidebar">
@@ -189,20 +189,16 @@ $controler = Yii::$app->controller->id;
                         
                         <li class="treeview">
                             <a href="">
-                                <i class="fa-pie-chart"></i>
+                                <i class="fa fa-pie-chart"></i>
                                 <span>CMS</span>
                                 <span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span>
                             </a>
                             <ul class="treeview-menu">
                                 <li>
-                                    <?= Html::a('<i class="fa fa-angle-double-right"></i> Slider  ', ['/order/order-master/product-wise-report'], ['class' => 'title']) ?>
-                                </li>
-                                <li>
-                                    <?= Html::a('<i class="fa fa-angle-double-right"></i> Order Wise Report  ', ['/order/order-master/order-report'], ['class' => 'title']) ?>
+                                    <?= Html::a('<i class="fa fa-angle-double-right"></i> Slider  ', ['/cms/slider/index'], ['class' => 'title']) ?>
                                 </li>
                             </ul>
                         </li>
-
 
                     </ul>
                 </section>
