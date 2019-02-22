@@ -1,0 +1,138 @@
+/********************************HEADER***********************************/
+:lang(ar) {
+    direction: rtl;
+}
+:lang(ar) >  body {
+    font-family: 'Cairo', sans-serif;
+}
+:lang(ar) > #myHeader .topbar .top-left{
+    float: right;
+}
+:lang(ar) > #myHeader .topbar .top-right{
+    float: left;
+}
+:lang(ar) > #myHeader .topbar .top-right .social-icon {
+    border-right: 0px solid #343434;
+    padding-right: 0px;
+    margin-right: 0px;
+    border-left: 1px solid #343434;
+    display: inline-block;
+    padding-left: 40px;
+    margin-left: 22px;
+}
+:lang(ar) > #myHeader .topbar .top-right .os {
+    border-right: 0px solid #343434;
+    padding-right: 0px;
+    margin-right: 0px;
+    border-left: 1px solid #343434;
+    padding-left: 15px;
+    margin-left: 30px;
+}
+:lang(ar) > #myHeader .topbar .top-left ul li{
+    margin-right: 0px;
+    margin-left: 25px;
+}
+:lang(ar) > #myHeader .topbar .top-left ul li:last-child{
+    margin-left: 0px;
+}
+:lang(ar) > #myHeader .main-nav-section {
+    text-align: right;
+}
+:lang(ar) > #myHeader .top-navigation .logo-section {
+    float: right;
+}
+:lang(ar) > #myHeader .top-navigation .main-action {
+    float: left;
+}
+:lang(ar) > #myHeader .top-navigation .cart-dropdown {
+    float: left;
+    margin-left: 0px;
+    margin-right: 0px;
+}
+:lang(ar) > #myHeader .top-navigation .login-top{
+    margin-right: 195px;
+    margin-left: 25px;
+}
+:lang(ar) > #myHeader .top-navigation .login-top ul {
+    direction: ltr;
+}
+:lang(ar) > #myHeader .top-navigation .cart-dropdown ul .cart-link{
+    left: -20px;
+}
+:lang(ar) > #myHeader .top-navigation .cart-dropdown .dropdown-menu{
+    left: -45px !important;
+    right: auto !important;
+}
+:lang(ar) > #myHeader .top-navigation .cart-dropdown .cont-box{
+    text-align: right;
+}
+:lang(ar) > #myHeader .top-navigation .cart-dropdown .cont-box .close{
+    right: auto;
+    left: 8px;
+}
+
+/********************************FOOTER***********************************/
+:lang(ar) > footer .sec2 form.newsleter input[type="submit"]{
+    margin-left: auto;
+    margin-right: -4px;
+}
+:lang(ar) > footer .sec2 form.newsleter input[type="email"]{
+    padding-left: 30px;
+    padding-right: 70px;
+    background-position: 96% center;
+}
+:lang(ar) > footer .sec2 .newsleter-msg{
+    text-align: right;
+}
+:lang(ar) > footer .sec3{
+    text-align: right;
+}
+:lang(ar) > footer .sec4 .download-app ul{
+    direction: ltr;
+}
+:lang(ar) > .copyright .social-icon{
+    float: none;
+}
+:lang(ar) > .copyright p{
+    text-align: right;
+    direction: ltr;
+    float: right;
+}
+
+/******************************** HOME ***********************************/
+:lang(ar) > .main_head, :lang(ar) > .main_head .head, :lang(ar) > .main_head .sub-head{
+    text-align: center;
+}
+:lang(ar) > .direction{
+    text-align: left;;
+    direction: ltr;
+}
+:lang(ar) > .slick-slider .slick-track, :lang(ar) > .slick-slider .slick-list{
+    direction: ltr;
+}
+:lang(ar) > .product-box .check-out{
+    direction: ltr;
+}
+:lang(ar) > .product-box .off-tag{
+    left: auto;
+    right: 10px;
+}
+:lang(ar) > #free-delivery-info .info::after{
+    left: auto;;
+    right: 18%;
+    transform: rotateY(180deg);
+}
+:lang(ar) > #nichie-perfumes .product-box .off-tag{
+    left: auto;
+}
+:lang(ar) > #nichie-perfumes .right-sec .box2, :lang(ar) > #nichie-perfumes .right-sec .box4{
+    border-right: 1px solid #f2f2f2;
+}
+:lang(ar) > #nichie-perfumes .right-sec .box1, :lang(ar) > #nichie-perfumes .right-sec .box3{
+    border-right: 0px;
+}
+:lang(ar) > #nichie-perfumes .left-sec .img-box{
+    border-right: 0px;
+    border-left: 1px solid #fecb00;
+    margin-right: 0px;
+}

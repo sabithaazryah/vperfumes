@@ -1,0 +1,25 @@
+<?php
+
+$array = [
+    'lang'=>'',
+    'AED' => 'AED',
+    'Off' => 'OFF',
+    'add_to_cart' => 'ADD TO CART',
+    'buy_now' => 'BUY NOW',
+    'free_shipping' => 'FREE Shipping',
+    'on_all_orders'=>'on all orders above AED 100',
+    'free_return'=>'FREE RETURN',
+    'free_return_policy'=>'free 7 days return policy',
+    'fragrances' => 'Fragrances',
+    'special_offers'=>'Special Offers',
+    'brands'=>'Brands',
+    'exclusive_brands'=>'Exclusive Brands',
+    'arabic_perfumes'=>'Arabic Perfumes',
+    'new_arrivals'=>'New Arrivals',
+    'one_day_sale' => 'one day sale',
+    'gift_set' => 'gift set',
+    'others' => 'Others',
+    'register' => 'Register',
+    'login' => 'Sign in',
+    'product_name' => 'Product Name',
+];

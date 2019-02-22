@@ -1,322 +1,573 @@
-/* 
-    Created on : Nov 8, 2018, 8:47:23 PM
+/*
+    Created on : Feb 19, 2019, 10:23:00 AM
     Author     : Azryah Networks
 */
 
-
-@media only screen and (min-width:1400px){
-}
-
-@media only screen and (min-width:1200px){
-    .service-sec .service-info .main-title:after{
-        display: inline-block;
-        left: auto;
-        right: 0px;
-        height: 75px;
-        width: 1px;
-        top: 20px;
-    }
-    .service-sec .service-info p{
-        padding-top: 15px;
-        border-left: 0px solid #cdd1d3;
-    }
-    .footer .foot-about{
-        padding-right: 35px;
+@media only screen and (min-width:1400px) {
+    #myHeader .top-navigation .cart-dropdown:hover .dropdown-menu {
+        left: 0px;
+        right: auto;
     }
 }
 
-@media (max-width:1200px) and (min-width:992px){
-    .navbar-custom.top-nav-collapse .head-middle-section::after {
-        right: -929px;
+@media only screen and (min-width:1200px) {
+    .hidden-xl{
+        display: none;
     }
-    .banner .slide-box{
-        min-height:500px;
-    }
-    .banner .slide-box .banne-cont {
-        padding: 150px 0px 30px 0px;
-    }
-    .banner .slide-box .banne-cont .sub-head {
-        font-size: 45px;
-        line-height: 55px;
-    }
-    .clients .slick-slide{
-        padding: 0px 5px;
-    }
-    .banner .banner-content{
-        padding: 115px 0;
+    .zoomContainer{
+        width: 460px !important;
     }
 }
 
-@media only screen and  (min-width: 992px) {
-    .welcome-sec .welcome-content p {
-        padding-right: 55px;
+@media (max-width:1200px) and (min-width:992px) {
+    .hidden-lg{
+        display: none;
     }
-    .clients .clients-header .info, .clients .clients-header p{
-        margin: 0 18%;
+    #myHeader .topbar .top-left{
+      display: none;
+    }
+    #myHeader .top-navigation .search input[type="search"] {
+        width: 285px;
+    }
+    #myHeader .topbar .top-left ul li{
+        margin-right: 25px;
+    }
+    #myHeader .main-nav-section .nav-list .link{
+        font-size: 13px;
+        padding: 16px 10px;
+    }
+    #our-category .off-sale {
+        padding: 30px;
+        padding-top: 40px;
+        padding-bottom: 40px;
+    }
+    #free-delivery-info .info {
+        padding: 31px 55px;
+    }
+    #nichie-perfumes .left-sec .content-box .content{
+      width: 70%;
+    }
+    #site-speciality .speciality .icon {
+        width: 55px;
+        height: 55px;
+    }
+    #site-speciality .speciality .content .title {
+        font-size: 16px;
+        margin-bottom: 9px;
+    }
+    #site-speciality .speciality .content .info {
+        font-size: 10px;
+    }
+    .product-details .action-details .button-box a{
+        width: 50%;
+        font-size: 10px;
+        margin-left: 0px !important;
+    }
+    .product-details .action-details .spcl-delivery{
+        padding: 5px 10px;
+    }
+}
+
+@media only screen and (min-width: 992px) {
+    .header .menu-icon {
+        display: none;
+    }
+    .navbar-expand-lg .navbar-collapse {
+        display: -ms-flexbox!important;
+        display: flex!important;
+        -ms-flex-preferred-size: auto;
+        flex-basis: auto;
+    }
+    .navbar-expand-lg .navbar-nav {
+        -ms-flex-direction: row;
+        flex-direction: row;
+    }
+    #product-gallery .pro-gallery-grid{
+        padding-right: 0px;
+    }
+    #product-gallery .prodtl{
+        padding-left: 0px;
+    }
+    .mobile-cart-view {
+        display: none;
     }
 }
 
 @media only screen and (max-width: 992px) {
-    .why-choose .y-choose-cntnt{
-        border-right: 0px;
+    .scrollup {
+        bottom: 20px;
     }
-    .why-choose .testimonial {
-        margin-top: 30px;
-        box-shadow: 0px 0px 23.28px -2.28px rgba(0, 0, 0, 0.13);
-        padding: 35px 30px;
+    .order0 {
+        order: 0;
+        -webkit-order: 0;
     }
-    .clients .slick-slide{
-        padding: 0px 15px;
+    .order1 {
+        order: 1;
+        -webkit-order: 1;
     }
-    .banner .banner-content{
-        padding: 115px 0;
-    }
-    .banner .page-title{
-        font-size: 47px;
-        line-height: 48px;
-    }
-    #services .service-list ul li{
-        font-size: 14px;
-    }
-    .head-style1 h6{
-        font-size: 12px;
-    }
-    .main-title{
-        font-size: 24px;
-        line-height: 36px;
-    }
-    #why-cda .our-team .head-style1 .main-title{
-        font-size: 22px;
-    }
-    #why-cda .our-team p{
-        padding-right: 0px;
-    }
-    #blog .recent-posts{
-        margin-top: 50px;
-    }
-}
-
-@media (max-width:992px) and (min-width:768px){
-    .container {
-        max-width: 850px;
-    }
-    .header .head-middle-section {
-        margin-bottom: -36px;
-    }
-    .header .head-middle-section .logo {
-        width: 145px;
-        padding: 10px 25px;
-    }
-    .main-nav-section .navbar-nav li a {
-        padding: 0px 16px;
-        line-height: 70px;
-        font-size: 13px;
-    }
-    .navbar-custom.top-nav-collapse .head-middle-section::after {
-        right: -741px;
-    }
-    .top-section .top-right-section .top-contact {
-        padding-right: 30px;
-    }
-    .banner .slide-box{
-        min-height:400px;
-    }
-    .banner .slide-box .banne-cont {
-        padding: 100px 0px 30px 0px;
-    }
-    .banner .slide-box .banne-cont .sub-head {
-        font-size:40px;
-        line-height:45px;
-    }
-    .welcome-sec .welcome-content{
-        padding-right: 0px;
-    }
-    .ceo-message{
-        margin-left: 35px;
-    }
-    .ceo-message .img-box{
-        position: unset;
-        margin-top: 0px;
-        margin-right: 25px;
-    }
-    .ceo-message .content{
-        padding-left: 0;
-        padding-right: 15px;
-    }
-    .speciality .special-box .content{
-        padding: 0 15px;
-    }
-    #why-cda .our-team .head-style1{
-        margin-top: 0px;
-    }
-    #blog .blog-box .blog-content .blog-title{
-        font-size: 15px;
-    }
-}
-
-@media (min-width:768px){
-    .main-nav-section ul li:hover > ul.dropdown-menu {
-        display: block;
-    }
-    .service-sec .service-box{
-        padding-right: 0px;
-    } 
-}
-@media (max-width:768px) and (min-width:576px){
-}
-@media (max-width:768px){
-    .top-section {
-        padding: 10px 0px;
-        background: #f3f3f3;
-    }
-
-    .top-section .top-right-section .follows-top li a {
-        color: #b1b1b1;
-    }
-    .top-section .top-cont-left {
+    .md-hidden {
         display: none;
     }
-    .header .head-middle-section .menu-button{
-        display:block;
-        float:right;
-        border:1px solid #e2e2e2;
-        outline:none;
-        margin-top:15px;
-        padding:8px 10px;
+    #myHeader .topbar .top-left{
+      display: none;
     }
-    .header .head-middle-section .menu-button i{
-        font-size:20px;
-        color:#1569a8;
+    #myHeader .top-navigation .center-sec {
+    padding: 10px 0;
+}
+    #myHeader .top-navigation form.search {
+        display: none;
     }
-    .navbar-custom.top-nav-collapse .head-middle-section::after {
-        right: -619px;
+    #myHeader .container {
+        max-width: none;
     }
-    .header .head-middle-section {
-        margin-bottom:0px;
-        box-shadow:none;
-        background:#FFF;
+    #myHeader .menu-icon {
+        float: left;
+        margin-right: 0px;
     }
-    .header .head-middle-section .logo {
-        width: 112px;
-        padding: 10px 0px;
-        float:left;
+    #myHeader .menu-icon .navbar-toggler {
+        border: none;
+        color: #fff;
+        outline: none;
+        width: 50px;
+        background: transparent;
+        height: 100%;
+        float: left;
+        display: block;
+        padding: 20px 0;
+        margin: 0;
+        border-radius: 0px;
     }
-    .main-nav-section{
-        float:none;
-        background:#f1f1f1;
+    #myHeader .menu-icon .fa::before {
+        content: "";
+        background: url(../images/icons/handburger-menu.png) no-repeat;
+        background-size: 25px 19px;
+        background-position: center;
+        width: 20px;
+        height: 20px;
+        display: inline-block;
+        filter: invert(1);
     }
-    .main-nav-section .navbar-nav li a{
-        color:#666666;
-        line-height:35px;
-        display:block;
-        border-bottom:1px solid #e4e5e6;
+    #myHeader .main-nav-section {
+        background: #101010;
+        padding: 0px;
+        position: absolute;
+        width: 100%;
+        z-index: 2;
+        border-top: 0px;
     }
-    .navbar-custom.top-nav-collapse .navbar-nav li a {
-        line-height: 35px;
+    #myHeader .main-nav-section .container {
+        padding: 0px;
     }
-    .navbar-custom.top-nav-collapse .head-middle-section .menu-button {
-        margin-top: 8px;
+    #myHeader .main-nav-section .nav-list .link {
+        width: 100%;
+        display: block;
+        line-height: 5px;
+        border-bottom: 1px solid #292929;
+        color: #fff;
     }
-    .banner .slide-box{
-        min-height:350px;
+    #myHeader .main-nav-section .nav-list.active .link{
+        color: #ee9f03;
     }
-    .banner .slide-box .banne-cont {
-        padding: 55px 0px 30px 0px;
-    }
-    .banner .slide-box .banne-cont .sub-head {
-        font-size:35px;
-        line-height:45px;
-    }
-    .banner .slide-box .banne-cont .link-box .link-More{
-        margin:0px;
-    }
-    .ceo-message {
-        margin-left: 0;
-        margin-top: 40px;
-    }
-    .speciality .special-box .content {
-        border-right: 0px;
-        border-bottom: 1px solid #354551;
-        padding: 0 25px;
-        padding-bottom: 45px;
-        margin-bottom: 45px;
-    }
-    .speciality .col-md-4:last-child .content{
+    #myHeader .main-nav-section .nav-list:last-child .link {
         border-bottom: 0px;
-        margin-bottom: 0px;
     }
-    .why-choose .y-choose-cntnt ul li{
-        width: 100%;
-    }
-    #services .service-list ul li{
-        width: 100%;
-    }
-    #why-cda .cprit{
-        padding-right: 0px;
-    }
-    #why-cda .our-team img{
-        margin: 0 auto;
-        display: block;
-    }
-    .banner .carousel-indicators{
-        display: none;
-    }
-    .main-contact-icon-right-sd{
-        display: none;
-    }
-    .banner .page-title {
-        font-size: 38px;
-        line-height: 35px;
-    }
-    .footer .title{
-        margin-bottom: 10px;
-    }
-    .footer .quick-links li a{
-        line-height: 26px;
-    }
-
-}
-
-@media only screen and (max-width:576px){
-    .top-section .top-right-section .top-contact {
+    .mobile-header-Search-section {
         float: right;
-        padding-right: 15px;
+        padding: 5px 0 0 30px;
     }
-    .banner .slide-box{
-        min-height:300px;
+    .mobile-header-Search-box {
+        margin-top: 7px;
     }
-    .banner .slide-box .banne-cont {
-        padding: 50px 0px 30px 0px;
+    .mobile-header-Search-section .Search-box {
+        border: none;
+        text-indent: -9999px;
+        background: url(../images/icons/search.png) center center no-repeat;
+        border-radius: 0;
+        cursor: pointer;
+        display: block;
+        width: 30px;
+        height: 30px;
+        border: 1px solid #404040;
     }
-    .banner .slide-box .banne-cont .sub-head {
-        font-size:30px;
-        line-height:35px;
+    .mobile-header-Search-box .top-Search {
+        border-top: 1px solid #f5a026;
+        margin: 0 0 0 0;
     }
-    .banner .slide-box .banne-cont .link-box .link-More{
-        margin:0px;
+    .mobile-header-Search-box .top-Search .form-control {
+        background: #efefef;
+        border: none;
+        box-shadow: none;
+        outline: none;
+        border-radius: 0px;
     }
-    .ceo-message{
-        margin-left: 0px;
-    }
-    .ceo-message .img-box{
-        position: unset;
-        margin-top: 0px;
-        margin-right: 25px;
-    }
-    .ceo-message .content{
-        padding-left: 0;
-        padding-right: 15px;
-    }
+#special-offer{
+      padding-top: 55px;
+      padding-bottom: 55px;
+}
+#our-category .off-sale{
+  padding: 30px;
+}
+#free-delivery-info .info {
+    padding: 31px 35px;
+    line-height: 28px;
 }
 
-@media only screen and (max-width:468px){
-    .top-section .top-right-section .follows-top {
-        border-left: 1px solid #cecccc;
-    }	
-    .top-section .top-right-section .top-contact .span {
+    footer .sec2 form.newsleter {
+        margin-top: 25px;
+    }
+    .product-left-categories-destop-view{
         display:none;
     }
-    .top-section .top-right-section .top-contact {
-        padding-right:8px;
+    .product-left-categories-mobile-view{
+        display:block;
+        padding: 0px;
+    }
+    .in-product-left-categories {
+        padding: 0px 10px 0px 10px;
+    }
+    .in-product-left-categories .head-text {
+        font-size: 13px;
+        padding: 10px 0px 10px 0px;
+    }
+    .checkmark {
+        height: 15px;
+        width: 15px;
+    }
+    .input-style-box .checkmark:after {
+        left: 4px;
+        width: 5px;
+        height: 7px;
+    }
+    .input-style-box {
+        padding-left: 23px;
+        font-size: 11px;
+        color: #535353;
+        line-height: 16px;
+    }
+    .content .demo > div {
+        max-height: 150px;
+        overflow: auto;
+    }
+    #product-gallery .pro-image-zoom{
+        overflow: hidden;
+        position: relative;
+    }
+    .product-details {
+        border-left: 0px solid #ededed;
+        padding-left: 0px;
+        border-top: 1px solid #ededed;
+        padding: 0 15px;
+        padding-top: 35px;
+        margin-top: 35px;
+    }
+    .product-details .action-details {
+        padding-right: 15px;
+    }
+    .desktop-cart-view {
+        display: none;
+    }
+    #nichie-perfumes .left-sec {
+    padding-right: 15px;
+}
+}
+
+@media only screen and (min-width:768px) {
+  .self_container {
+      max-width: 100%;
+  }
+    #myHeader .top-navigation .cart-dropdown:hover .dropdown-menu {
+        display: block;
+    }
+}
+
+@media (max-width:992px) and (min-width:768px) {
+    .hidden-md {
+        display: none;
+    }
+    #myHeader .main-nav-section .navbar .navbar-nav {
+        margin: 0 auto;
+    }
+    #myHeader .main-nav-section .nav-list .link {
+        padding: 0px 10px;
+    }
+    #nichie-perfumes .left-sec .content-box, #nichie-perfumes .left-sec .img-box{
+      width: 50%;
+      float: left;
+      margin: 0px;
+      padding-top: 0px;
+    }
+    #nichie-perfumes .left-sec .img-box{
+      border-right: none;
+      border-left: none;
+    }
+    #nichie-perfumes .left-sec .content-box .title{
+          font-size: 32px;
+    }
+    #nichie-perfumes .left-sec .content-box .sub-title{
+      width: 75%;
+    }
+    #nichie-perfumes .left-sec .content-box .content{
+      width: 85%;
+    }
+    #nichie-perfumes .left-sec .img-box{
+      border-right: 0px;
+      padding-left: 85px;
+    }
+    #site-speciality .speciality {
+    text-align: center;
+}
+#site-speciality .speciality .icon {
+    margin: 0 auto;
+    float: none;
+}
+#site-speciality .speciality .content {
+    padding: 10px;
+    padding-left: 10px;
+    float: none;;
+}
+#site-speciality .speciality .content .title {
+    font-size: 16px;
+}
+#site-speciality .speciality .content .info {
+    font-size: 10px;
+}
+footer .sec1 .foot-logo {
+    width: auto;
+}
+}
+
+@media only screen and (max-width:768px) {
+    .container {
+        max-width: none;
+    }
+    #myHeader .top-navigation .sm-pad0 {
+        padding: 0px;
+    }
+    #myHeader .top-navigation .center-sec {
+        padding: 0px 0;
+    }
+    .mobile-header-Search-box {
+        margin-top: 0px;
+    }
+    #myHeader .top-navigation .main-action {
+        padding-right: 15px;
+    }
+    #myHeader .top-navigation .logo-section {
+        padding: 8px 0;
+    }
+    #myHeader .top-navigation .logo-section .logo {
+        width: 150px;
+    }
+    #myHeader .topbar .top-left .welcome-note, #myHeader .topbar .top-right li {
+        font-size: 11px;
+    }
+    #myHeader .topbar .top-right li {
+        margin-right: 10px;
+    }
+    #myHeader .topbar .top-right li.icon:before {
+        width: 25px;
+        height: 20px;
+        background: url(../images/icons/topbar.png) 0px -1px no-repeat;
+    }
+    #myHeader .topbar .top-right li.icon {
+        padding-left: 30px;
+    }
+    #myHeader .topbar .top-right .social-icon li a{
+      width: 25px;
+height: 25px;
+    padding: 8px 3px;
+        margin-right: 0;
+        position: relative;
+top: -3px;
+    }
+    #myHeader .topbar .top-right .choose_language .language{
+      top: 0px;
+    }
+    #myHeader .topbar .top-right .social-icon{
+          padding-right: 22px;
+    }
+    #myHeader .topbar .top-right .os{
+      margin-right: 15px;
+    }
+    #myHeader .top-navigation .cart-dropdown .dropdown-menu {
+        top: 11px !important;
+    }
+    .carousel-indicators{
+      bottom: 20px;
+    }
+    .carousel-indicators li {
+        width: 23px;
+        height: 2px;
+    }
+    .product-details .rit-box{
+        margin-top: 0px;
+    }
+    footer .sec1 .foot-logo {
+        margin: 0 auto;
+        margin-bottom: 25px;
+    }
+    footer .sec3 .foot-link {
+    margin-bottom: 30px;
+}
+
+footer .sec4 .left-sec{
+  margin: 0 auto;
+text-align: center;
+display: block;
+margin-bottom: 30px;
+}
+footer .sec4 .right-sec{
+  margin: 0 auto;
+  text-align: center;
+  display: block;
+  float: none;
+}
+footer .sec4 .download-app li{
+  margin-left: auto !important;
+  margin-right: auto !important;
+  margin-bottom: 15px;
+}
+#site-speciality .speciality {
+display: inline-block;
+margin-bottom: 20px;
+}
+#nichie-perfumes .left-sec .img-box{
+  display: none;
+}
+}
+
+@media (max-width:768px) and (min-width:576px) {
+    .hidden-sm {
+        display: none;
+    }
+}
+
+@media only screen and (min-width:576px) {
+    #myHeader .top-navigation .login-top{
+        background: transparent;
+        padding-left: 0px;
+        margin-top: 10px;
+    }
+}
+@media only screen and (max-width:576px) {
+    .hidden-xs {
+        display: none;
+    }
+    footer .sec1 .hide-mob {
+        display: none;
+    }
+    #myHeader .top-navigation .login-top {
+        margin-left: 5px;
+    }
+    #myHeader .top-navigation .cart-dropdown .dropdown-toggle {
+        margin-left: 25px;
+        padding: 13px;
+            background-size: contain;
+                background-position: center;
+                    margin-top: 7px;
+    }
+    #myHeader .top-navigation .login-top small, #myHeader .top-navigation .hide-mob {
+        display: none;
+    }
+    #myHeader .top-navigation .login-top .mob-log {
+        display: block;
+        font-size: 12px;
+        color: rgb(114, 117, 120);
+        line-height: 1.667;
+        display: block;
+        padding: 10px 0px;
+    }
+    #myHeader .top-navigation .cart-dropdown small {
+        padding: 10px 0px;
+    }
+    #myHeader .top-navigation .cart-dropdown{
+        margin-left: 0px;
+    }
+    .mobile-cart-view .cart-table .product-name, .mobile-cart-view .cart-table .product-info{
+        padding-left: 15px;
+    }
+    #nichie-perfumes .left-sec .content-box .title{
+      font-size: 25px;
+    }
+    #nichie-perfumes .left-sec .content-box .sub-title{
+          font-size: 13px;
+              line-height: 25px;
+                  width: 75%;
+                      margin-bottom: 25px;
+    }
+    #nichie-perfumes .left-sec .content-box .content{
+      width: 100%;
+      font-size: 13px;
+          line-height: 25px;
+    }
+    .copyright{
+      text-align: center;;
+    }
+    .copyright p{
+      float: none;
+      margin-bottom: 10px;
+    }
+    footer .sec1 .foot-logo {
+    margin-left: 0;
+}
+}
+
+@media only screen and (max-width:468px) {
+    #myHeader .top-navigation .login-top {
+        margin-left: 5px;
+        padding: 11px;
+        margin-top: 10px;
+        background-size: 15px 21px;
+        position: relative;
+    }
+    #myHeader .top-navigation .cart-dropdown small {
+        display: none;
+    }
+    #myHeader .top-navigation .login-top .mob-log{
+        width: 18px;
+        height: 18px;
+        position: absolute;
+        left: 0px;
+        top: 0px;
+        padding: 12px 0px;
+    }
+    #myHeader .top-navigation .login-top .mob-log span{
+        display: none;
+    }
+    #myHeader .top-navigation .cart-dropdown .dropdown-toggle {
+        margin-left: 10px;
+        padding: 11px;
+        margin-top: 10px;
+        background-size: 15px 21px;
+    }
+    #myHeader .topbar .top-right .os{
+      margin-right: 10px;
+padding-right: 10px;
+    }
+    #myHeader .topbar .top-right .os li{
+          margin: 0 5px;
+    }
+    #myHeader .topbar .top-right .social-icon{
+      padding-right: 5px;
+margin-right: 10px;
+    }
+    .mobile-header-Search-section {
+        padding: 5px 0 0 2px;
+    }
+    .mobile-header-Search-section .Search-box{
+        background: url(../images/icons/search-orange.png) center center no-repeat;
+        background-size: 17px;
+        border: none;
+    }
+    .mob-full {
+        -ms-flex: 0 0 100%;
+        flex: 0 0 100%;
+        max-width: 100%;
+    }
+    footer .sec2 form.newsleter input[type="email"] {
+        padding: 15px;
+    }
+    #product-gallery .owl-carousel .owl-item.active .owl-item{
+        margin: 0 5px;
     }
 }

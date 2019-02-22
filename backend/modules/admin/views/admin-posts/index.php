@@ -40,9 +40,23 @@ $this->params['breadcrumbs'][] = $this->title;
                                 'filter' => [1 => 'Yes', 0 => 'No'],
                             ],
                             [
-                                'attribute' => 'cms_contents',
+                                'attribute' => 'masters',
                                 'value' => function($model, $key, $index, $column) {
-                                    return $model->cms_contents == 0 ? 'No' : 'Yes';
+                                    return $model->masters == 0 ? 'No' : 'Yes';
+                                },
+                                'filter' => [1 => 'Yes', 0 => 'No'],
+                            ],
+                                        [
+                                'attribute' => 'product',
+                                'value' => function($model, $key, $index, $column) {
+                                    return $model->product == 0 ? 'No' : 'Yes';
+                                },
+                                'filter' => [1 => 'Yes', 0 => 'No'],
+                            ],
+                                        [
+                                'attribute' => 'users',
+                                'value' => function($model, $key, $index, $column) {
+                                    return $model->users == 0 ? 'No' : 'Yes';
                                 },
                                 'filter' => [1 => 'Yes', 0 => 'No'],
                             ],

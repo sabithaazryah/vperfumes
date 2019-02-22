@@ -1,0 +1,94 @@
+@media only screen and (min-width:1400px) {
+}
+
+@media only screen and (min-width:1200px) {
+}
+
+@media (max-width:1200px) and (min-width:992px) {
+    :lang(ar) > #myHeader .top-navigation .login-top{
+        margin-right: 95px;
+    }
+}
+
+@media only screen and (min-width: 992px) {
+  :lang(ar) > #nichie-perfumes .left-sec{
+        padding-right: 15px;
+        padding-left: 55px;
+  }
+  :lang(ar) > #nichie-perfumes .right-sec{
+        padding-left: 15px;
+        padding-right: 30px;
+  }
+  :lang(ar) > #nichie-perfumes .left-sec .img-box{
+    margin-left: 3px;
+  }
+}
+
+@media only screen and (max-width: 992px) {
+    :lang(ar) > #myHeader .menu-icon {
+        float: right;
+        margin-left: 0px;
+    }
+    :lang(ar) > .mobile-header-Search-section{
+        float: left;
+        padding: 5px 30px 0 0px;
+    }
+}
+
+@media only screen and (min-width:768px) {
+  :lang(ar) > footer .sec4 .left-sec{
+      float: right;
+  }
+  :lang(ar) > footer .sec4 .right-sec{
+      float: left;
+  }
+}
+
+@media (max-width:992px) and (min-width:768px) {
+    :lang(ar) > #nichie-perfumes .left-sec .img-box{
+    border-right: none;
+    border-left: none;
+  }
+}
+
+@media only screen and (max-width:768px) {
+  :lang(ar) > #myHeader .top-navigation .login-top{
+    margin-right: 0px;
+  }
+  :lang(ar) > #myHeader .top-navigation .main-action {
+    padding-right: 0px;
+    padding-left: 15px;
+}
+:lang(ar) > #myHeader .topbar .top-right .social-icon{
+      padding-left: 22px;
+}
+:lang(ar) > #myHeader .topbar .top-right .os{
+  margin-left: 15px;
+}
+}
+
+@media (max-width:768px) and (min-width:576px) {
+}
+
+@media only screen and (max-width:576px) {
+  :lang(ar) > .copyright p{
+    float: none;
+  }
+    :lang(ar) > #myHeader .top-navigation .cart-dropdown .dropdown-toggle{
+      margin-left: 0px;
+    }
+}
+
+@media only screen and (max-width:468px) {
+  :lang(ar) > #myHeader .topbar .top-right .os{
+    margin-left: 0px;
+padding-left: 10px;
+  }
+  :lang(ar) > #myHeader .topbar .top-right .social-icon{
+    padding-left: 10px;
+margin-left: 10px;
+  }
+  #myHeader .topbar .top-right li{
+        margin-right: 5px;
+  }
+}

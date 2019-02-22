@@ -18,7 +18,7 @@ class AdminPostsSearch extends AdminPosts {
 	public function rules() {
 		return [
 			[['id', 'admin', 'cms_contents', 'status', 'CB', 'UB'], 'integer'],
-			[['post_name', 'DOC', 'DOU'], 'safe'],
+			[['post_name', 'DOC', 'DOU','masters','product','users','orders','reports'], 'safe'],
 		];
 	}
 

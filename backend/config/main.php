@@ -37,6 +37,9 @@ return [
          'order' => [
             'class' => 'backend\modules\order\Module',
         ],
+         'cms' => [
+            'class' => 'backend\modules\cms\Module',
+        ],
     ],
     'components' => [
         'request' => [

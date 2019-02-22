@@ -18,7 +18,19 @@ use yii\widgets\ActiveForm;
         </div><div class='col-md-3 col-sm-6 col-xs-12 left_padd'>    <?= $form->field($model, 'admin')->dropDownList(['' => '--Select--', '1' => 'Yes', '0' => 'No']) ?>
 
         </div>
-        <div class='col-md-3 col-sm-6 col-xs-12 left_padd'>    <?= $form->field($model, 'cms_contents')->dropDownList(['' => '--Select--', '1' => 'Yes', '0' => 'No']) ?>
+        <div class='col-md-3 col-sm-6 col-xs-12 left_padd'>    <?= $form->field($model, 'masters')->dropDownList(['' => '--Select--', '1' => 'Yes', '0' => 'No']) ?>
+
+        </div>
+         <div class='col-md-3 col-sm-6 col-xs-12 left_padd'>    <?= $form->field($model, 'product')->dropDownList(['' => '--Select--', '1' => 'Yes', '0' => 'No']) ?>
+
+        </div>
+        <div class='col-md-3 col-sm-6 col-xs-12 left_padd'>    <?= $form->field($model, 'users')->dropDownList(['' => '--Select--', '1' => 'Yes', '0' => 'No']) ?>
+
+        </div>
+        <div class='col-md-3 col-sm-6 col-xs-12 left_padd'>    <?= $form->field($model, 'orders')->dropDownList(['' => '--Select--', '1' => 'Yes', '0' => 'No']) ?>
+
+        </div>
+         <div class='col-md-3 col-sm-6 col-xs-12 left_padd'>    <?= $form->field($model, 'reports')->dropDownList(['' => '--Select--', '1' => 'Yes', '0' => 'No']) ?>
 
         </div>
         <div class='col-md-3 col-sm-6 col-xs-12 left_padd'>    <?= $form->field($model, 'status')->dropDownList(['' => '--Select--', '1' => 'Enabled', '0' => 'Disabled']) ?>
