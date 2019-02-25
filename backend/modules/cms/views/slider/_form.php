@@ -12,6 +12,19 @@ use yii\widgets\ActiveForm;
 
     <?php $form = ActiveForm::begin(); ?>
     <div class="row">
+        
+        <div class='col-md-4 col-sm-6 col-xs-12 left_padd'>
+            <?= $form->field($model, 'slider_link')->textInput(['maxlength' => true]) ?>
+        </div>
+        
+        <div class='col-md-4 col-sm-6 col-xs-12 left_padd'>
+            <?= $form->field($model, 'alt_tag_content')->textInput(['maxlength' => true]) ?>
+        </div>
+        <div class='col-md-4 col-sm-6 col-xs-12 left_padd'>
+            <?= $form->field($model, 'status')->dropDownList(['1' => 'Enable', '0' => 'Disable']) ?>
+        </div>
+    </div>
+    <div class="row">
         <div class='col-md-4 col-sm-6 col-xs-12 left_padd'>
             <?php if (!$model->isNewRecord && $model->img != '') { ?>
             <img src="<?= Yii::$app->homeUrl ?>../uploads/cms/sliders/<?=$model->id?>/en/small.<?=$model->img?>" width="100">
@@ -23,17 +36,6 @@ use yii\widgets\ActiveForm;
                 <img src="<?= Yii::$app->homeUrl ?>../uploads/cms/sliders/<?=$model->id?>/ar/small.<?=$model->img_ar?>" width="100">
             <?php } ?>
             <?= $form->field($model, 'img_ar')->fileInput() ?>
-        </div>
-        <div class='col-md-4 col-sm-6 col-xs-12 left_padd'>
-            <?= $form->field($model, 'slider_link')->textInput(['maxlength' => true]) ?>
-        </div>
-    </div>
-    <div class="row">
-        <div class='col-md-4 col-sm-6 col-xs-12 left_padd'>
-            <?= $form->field($model, 'alt_tag_content')->textInput(['maxlength' => true]) ?>
-        </div>
-        <div class='col-md-4 col-sm-6 col-xs-12 left_padd'>
-            <?= $form->field($model, 'status')->dropDownList(['1' => 'Enable', '0' => 'Disable']) ?>
         </div>
 
     </div>

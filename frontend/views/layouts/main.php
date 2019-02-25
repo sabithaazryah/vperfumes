@@ -8,8 +8,6 @@ use frontend\assets\AppAsset;
 AppAsset::register($this);
 $language=Yii::$app->session['language'];
 
-
-
 ?>
 <?php $this->beginPage() ?>
 <!DOCTYPE html>
@@ -37,8 +35,8 @@ $language=Yii::$app->session['language'];
                                             <div class="col-md-12">
                                                 <div class="top-left">
                                                     <ul>
-                                                        <li><?= Yii::$app->session['words']->free_shipping ?>: <span><?= Yii::$app->session['words']->on_all_orders ?></span></li>
-                                                        <li><?= Yii::$app->session['words']->free_return ?>: <span><?= Yii::$app->session['words']->free_return_policy ?></span></li>
+                                                        <li><?= Yii::$app->session['words']['free_shipping'] ?>: <span><?= Yii::$app->session['words']['on_all_orders'] ?></span></li>
+                                                        <li><?= Yii::$app->session['words']['free_return'] ?>: <span><?= Yii::$app->session['words']['free_return_policy'] ?></span></li>
                                                         <li><a href="tel:+971 873738637"><img src="<?= Yii::$app->homeUrl?>images/cont.png" alt="contact" class="img-fluid"/></a></li>
                                                     </ul>
                                                 </div>
@@ -89,7 +87,7 @@ $language=Yii::$app->session['language'];
 
                                                         <form class="search" method="post">
                                                             <div class="input-group">
-                                                                <input type="search" id="search" name="email" class="form-control" placeholder="Search Products..." aria-label="Search Products..." aria-describedby="basic-addon2" required="">
+                                                                <input type="search" id="search" name="email" class="form-control" placeholder="<?= Yii::$app->session['words']['search_products'] ?>..." aria-label="Search Products..." aria-describedby="basic-addon2" required="">
                                                                     <div class="input-group-append">
                                                                         <button class="btn btn-outline-secondary" type="submit"></button>
                                                                     </div>
@@ -156,10 +154,10 @@ $language=Yii::$app->session['language'];
                                                             </ul>
                                                         </div>
                                                         <div class="login-top ">
-                                                            <a class="mob-log" href="#!"><span>login</span></a>
+                                                            <a class="mob-log" href="#!"><span><?= Yii::$app->session['words']['login'] ?></span></a>
                                                             <ul class="hide-mob">
-                                                                <li><a href="#!"><?= Yii::$app->session['words']->register ?></a></li>
-                                                                <li><a href="#!"><?= Yii::$app->session['words']->login ?></a></li>
+                                                                <li><a href="#!"><?= Yii::$app->session['words']['register'] ?></a></li>
+                                                                <li><a href="#!"><?= Yii::$app->session['words']['login'] ?></a></li>
                                                             </ul>
                                                         </div>
                                                     </div>
@@ -188,15 +186,15 @@ $language=Yii::$app->session['language'];
                                             <nav class="navbar navbar-toggleable-lg navbar-light bg-faded navbar-expand-lg">
                                                 <div class="collapse navbar-collapse" id="navbarNavDropdown2">
                                                     <ul class="navbar-nav">
-                                                        <li class="nav-list <?= basename($_SERVER["SCRIPT_FILENAME"], '.php') == 'index' ? 'active' : '' ?>"> <a class="link" href="index.php"><?= Yii::$app->session['words']->fragrances ?></a></li>
-                                                        <li class="nav-list <?= basename($_SERVER["SCRIPT_FILENAME"], '.php') == '#' ? 'active' : '' ?>"> <a class="link" href="#!"><?= Yii::$app->session['words']->special_offers ?></a></li>
-                                                        <li class="nav-list <?= basename($_SERVER["SCRIPT_FILENAME"], '.php') == '#' ? 'active' : '' ?>"> <a class="link" href="#!"><?= Yii::$app->session['words']->brands ?></a></li>
-                                                        <li class="nav-list <?= basename($_SERVER["SCRIPT_FILENAME"], '.php') == '#' ? 'active' : '' ?>"> <a class="link" href="#!"><?= Yii::$app->session['words']->exclusive_brands ?></a></li>
-                                                        <li class="nav-list <?= basename($_SERVER["SCRIPT_FILENAME"], '.php') == '#' ? 'active' : '' ?>"> <a class="link" href="#!"><?= Yii::$app->session['words']->arabic_perfumes ?></a></li>
-                                                        <li class="nav-list <?= basename($_SERVER["SCRIPT_FILENAME"], '.php') == '#' ? 'active' : '' ?>"> <a class="link" href="#!"><?= Yii::$app->session['words']->new_arrivals ?></a></li>
-                                                        <li class="nav-list <?= basename($_SERVER["SCRIPT_FILENAME"], '.php') == '#' ? 'active' : '' ?>"> <a class="link" href="#!"><?= Yii::$app->session['words']->gift_set ?></a></li>
-                                                        <li class="nav-list <?= basename($_SERVER["SCRIPT_FILENAME"], '.php') == '#' ? 'active' : '' ?>"> <a class="link" href="#!"><?= Yii::$app->session['words']->one_day_sale ?></a></li>
-                                                        <li class="nav-list <?= basename($_SERVER["SCRIPT_FILENAME"], '.php') == '#' ? 'active' : '' ?>"> <a class="link" href="#!"><?= Yii::$app->session['words']->others ?></a></li>
+                                                        <li class="nav-list <?= basename($_SERVER["SCRIPT_FILENAME"], '.php') == 'index' ? 'active' : '' ?>"> <a class="link" href="index.php"><?= Yii::$app->session['words']['fragrances'] ?></a></li>
+                                                        <li class="nav-list <?= basename($_SERVER["SCRIPT_FILENAME"], '.php') == '#' ? 'active' : '' ?>"> <a class="link" href="#!"><?= Yii::$app->session['words']['special_offers'] ?></a></li>
+                                                        <li class="nav-list <?= basename($_SERVER["SCRIPT_FILENAME"], '.php') == '#' ? 'active' : '' ?>"> <a class="link" href="#!"><?= Yii::$app->session['words']['brands'] ?></a></li>
+                                                        <li class="nav-list <?= basename($_SERVER["SCRIPT_FILENAME"], '.php') == '#' ? 'active' : '' ?>"> <a class="link" href="#!"><?= Yii::$app->session['words']['exclusive_brands'] ?></a></li>
+                                                        <li class="nav-list <?= basename($_SERVER["SCRIPT_FILENAME"], '.php') == '#' ? 'active' : '' ?>"> <a class="link" href="#!"><?= Yii::$app->session['words']['arabic_perfumes'] ?></a></li>
+                                                        <li class="nav-list <?= basename($_SERVER["SCRIPT_FILENAME"], '.php') == '#' ? 'active' : '' ?>"> <a class="link" href="#!"><?= Yii::$app->session['words']['new_arrivals'] ?></a></li>
+                                                        <li class="nav-list <?= basename($_SERVER["SCRIPT_FILENAME"], '.php') == '#' ? 'active' : '' ?>"> <a class="link" href="#!"><?= Yii::$app->session['words']['gift_set'] ?></a></li>
+                                                        <li class="nav-list <?= basename($_SERVER["SCRIPT_FILENAME"], '.php') == '#' ? 'active' : '' ?>"> <a class="link" href="#!"><?= Yii::$app->session['words']['one_day_sale'] ?></a></li>
+                                                        <li class="nav-list <?= basename($_SERVER["SCRIPT_FILENAME"], '.php') == '#' ? 'active' : '' ?>"> <a class="link" href="#!"><?= Yii::$app->session['words']['others'] ?></a></li>
                                                     </ul>
                                                 </div>
                                             </nav>
@@ -235,16 +233,15 @@ $language=Yii::$app->session['language'];
                                     <div class="row">
                                         <div class="col-lg-4">
                                             <div class="newsleter-msg">
-                                                <div class="title">Sign up for  Newsletter</div>
+                                                <div class="title"><?= Yii::$app->session['words']['sign_up_newsletter'] ?></div>
                                                 <div class="info">
-                                                    Subscribe to our newsletter and stay updated on the
-                                                    exclusive deals and special offers!
+                                                    <?= Yii::$app->session['words']['sign_up_newsletter_content'] ?>
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="col-lg-8">
                                             <form class="newsleter" action="" method="post" id="subscribe-mail">
-                                                <input type="email" id="subscribe_email" placeholder="Enter your Email Address" required="">
+                                                <input type="email" id="subscribe_email" placeholder="<?= Yii::$app->session['words']['enter_email_address'] ?>" required="">
                                                     <input type="submit" value="" class="subscribe-btn">
                                                         </form>
                                                         </div>
@@ -255,41 +252,41 @@ $language=Yii::$app->session['language'];
                                                             <div class="container">
                                                                 <div class="row">
                                                                     <div class="col-lg-3 col-md-3 col-sm-6 col-6 mob-full">
-                                                                        <h5 class="head">INFORMATION</h5>
+                                                                        <h5 class="head"><?= Yii::$app->session['words']['information'] ?></h5>
                                                                         <ul class="foot-link">
                                                                             <li><a href="#!"><img src="<?= Yii::$app->homeUrl?>images/icons/foot-link.png" width="70" class="img-fluid"/></a></li>
-                                                                            <li><a href="#!">About Us</a></li>
-                                                                            <li><a href="#!">Store Locator</a></li>
-                                                                            <li><a href="#!">Customer Service</a></li>
-                                                                            <li><a href="#!">Delivery Information</a></li>
-                                                                            <li><a href="#!">Contact</a></li>
+                                                                            <li><a href="#!"><?= Yii::$app->session['words']['about_us'] ?></a></li>
+                                                                            <li><a href="#!"><?= Yii::$app->session['words']['store_locator'] ?></a></li>
+                                                                            <li><a href="#!"><?= Yii::$app->session['words']['customer_service'] ?></a></li>
+                                                                            <li><a href="#!"><?= Yii::$app->session['words']['delivery_info'] ?></a></li>
+                                                                            <li><a href="#!"><?= Yii::$app->session['words']['contact'] ?></a></li>
                                                                         </ul>
                                                                     </div>
                                                                     <div class="col-lg-3 col-md-3 col-sm-6 col-6 mob-full">
-                                                                        <h5 class="head">CUSTOMER SERVICE</h5>
+                                                                        <h5 class="head"><?= Yii::$app->session['words']['customer_service'] ?></h5>
                                                                         <ul class="foot-link">
-                                                                            <li><a href="#!">Request Products</a></li>
-                                                                            <li><a href="#!">Feedback</a></li>
-                                                                            <li><a href="#!">Report an issue</a></li>
-                                                                            <li><a href="#!">Branch login</a></li>
-                                                                            <li><a href="#!">Return</a></li>
-                                                                            <li><a href="#!">Site map</a></li>
+                                                                            <li><a href="#!"><?= Yii::$app->session['words']['request_products'] ?></a></li>
+                                                                            <li><a href="#!"><?= Yii::$app->session['words']['feedback'] ?></a></li>
+                                                                            <li><a href="#!"><?= Yii::$app->session['words']['report_an_issue'] ?></a></li>
+                                                                            <li><a href="#!"><?= Yii::$app->session['words']['branch_login'] ?></a></li>
+                                                                            <li><a href="#!"><?= Yii::$app->session['words']['return'] ?></a></li>
+                                                                            <li><a href="#!"><?= Yii::$app->session['words']['site_map'] ?></a></li>
                                                                         </ul>
                                                                     </div>
                                                                     <div class="col-lg-3 col-md-3 col-sm-6 col-6 mob-full">
-                                                                        <h5 class="head">MY ACCOUNT</h5>
+                                                                        <h5 class="head"><?= Yii::$app->session['words']['my_account'] ?></h5>
                                                                         <ul class="foot-link">
-                                                                            <li><a href="#!">My Orders</a></li>
-                                                                            <li><a href="#!">My Addresses</a></li>
-                                                                            <li><a href="#!">Wish Lists</a></li>
+                                                                            <li><a href="#!"><?= Yii::$app->session['words']['my_orders'] ?></a></li>
+                                                                            <li><a href="#!"><?= Yii::$app->session['words']['my_addresses'] ?></a></li>
+                                                                            <li><a href="#!"><?= Yii::$app->session['words']['wish_lists'] ?></a></li>
                                                                         </ul>
                                                                     </div>
                                                                     <div class="col-lg-3 col-md-3 col-sm-6 col-6 mob-full">
-                                                                        <h5 class="head">Policies</h5>
+                                                                        <h5 class="head"><?= Yii::$app->session['words']['policies'] ?></h5>
                                                                         <ul class="foot-link">
-                                                                            <li><a href="#!">Privacy Policy</a></li>
-                                                                            <li><a href="#!">Terms & Conditions</a></li>
-                                                                            <li><a href="#!">Return Policy</a></li>
+                                                                            <li><a href="#!"><?= Yii::$app->session['words']['privacy_policy'] ?></a></li>
+                                                                            <li><a href="#!"><?= Yii::$app->session['words']['terms_conditions'] ?></a></li>
+                                                                            <li><a href="#!"><?= Yii::$app->session['words']['return_policy'] ?></a></li>
                                                                         </ul>
                                                                     </div>
 

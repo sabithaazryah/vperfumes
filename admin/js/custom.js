@@ -38,7 +38,6 @@ $(document).ready(function () {
 
     $(document).on('submit', '#add_category', function (event) {
         event.preventDefault();
-
         var main_category = $('#product-main_category').val();
         var category = $('#category-category').val();
         var category_arabic = $('#category-category_ar').val();
@@ -162,8 +161,7 @@ function Maincategory(main_category, ids) {
         }, error: function () {
 
         }
-    }
-    );
+    });
 }
 
 

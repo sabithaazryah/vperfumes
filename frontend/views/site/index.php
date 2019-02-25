@@ -1,7 +1,6 @@
 <?php
 $this->title = 'Vperfumes';
 //echo Yii::$app->session['language'];exit;
-
 ?>
 
 
@@ -208,11 +207,16 @@ $this->title = 'Vperfumes';
 <section id="our-category">
     <div class="self_container pad0">
         <div class="row">
+            <?php
+            $banner_field = 'banner';
+            if (Yii::$app->session['language'] == 'ar')
+                $banner_field = 'banner_ar';
+            ?>
             <div class="col-md-8 pad0">
-                <a class="link" href="#!"><img src="images/our-category/1.jpg" class="img-fluid" alt="our category img"/></a>
+                <a class="link" href="#!"><img src="<?= Yii::$app->homeUrl ?>uploads/cms/banner/<?= $banner1->id ?>/<?= Yii::$app->session['language'] ?>/image.<?= $banner1->$banner_field ?>" class="img-fluid" alt="our category img"/></a>
             </div>
             <div class="col-md-4 pad0">
-                <a class="link" href="#!"><img src="images/our-category/2.jpg" class="img-fluid" alt="our category img"/></a>
+                <a class="link" href="#!"><img src="<?= Yii::$app->homeUrl ?>uploads/cms/banner/<?= $banner2->id ?>/<?= Yii::$app->session['language'] ?>/image.<?= $banner2->$banner_field ?>" class="img-fluid" alt="our category img"/></a>
             </div>
             <div class="col-md-4 pad0">
                 <div class="off-sale">
@@ -222,7 +226,7 @@ $this->title = 'Vperfumes';
                 </div>
             </div>
             <div class="col-md-8 pad0">
-                <a class="link" href="#!"><img src="images/our-category/3.jpg" class="img-fluid" alt="our category img"/></a>
+                <a class="link" href="#!"><img src="<?= Yii::$app->homeUrl ?>uploads/cms/banner/<?= $banner3->id ?>/<?= Yii::$app->session['language'] ?>/image.<?= $banner3->$banner_field ?>" class="img-fluid" alt="our category img"/></a>
             </div>
         </div>
     </div>
@@ -231,7 +235,7 @@ $this->title = 'Vperfumes';
 <section id="free-delivery-info">
     <div class="container">
         <div class="info">
-            Free Shipping: on all orders above AED 100 |  Free Returns: free 7 days return policy
+            <?= Yii::$app->session['words']['free_shipping'] ?>: <?= Yii::$app->session['words']['on_all_orders'] ?> |  <?= Yii::$app->session['words']['free_return'] ?>: <?= Yii::$app->session['words']['free_return_policy'] ?>
         </div>
     </div>
 </section>
@@ -407,7 +411,7 @@ $this->title = 'Vperfumes';
 
 <section id="discount-ad">
     <div class="self-container">
-        <img src="images/discount-ad1.png" alt="" class="img-fluid"/>
+        <img src="<?= Yii::$app->homeUrl ?>uploads/cms/banner/<?= $banner4->id ?>/<?= Yii::$app->session['language'] ?>/image.<?= $banner4->$banner_field ?>" alt="" class="img-fluid"/>
     </div>
 </section>
 
@@ -742,8 +746,8 @@ $this->title = 'Vperfumes';
                 <div class="speciality">
                     <div class="icon"><i class="fas fa-truck"></i></div>
                     <div class="content">
-                        <div class="title">Free shipping</div>
-                        <div class="info">Free shipping for local customers</div>
+                        <div class="title"><?= Yii::$app->session['words']['free_shipping'] ?></div>
+                        <div class="info"><?= Yii::$app->session['words']['free_shipping_footer'] ?></div>
                     </div>
                 </div>
             </div>
@@ -751,8 +755,8 @@ $this->title = 'Vperfumes';
                 <div class="speciality">
                     <div class="icon"><i class="fas fa-hand-holding-usd"></i></div>
                     <div class="content">
-                        <div class="title">Money Back Guarantee</div>
-                        <div class="info">Refund or change item within 24 hours</div>
+                        <div class="title"><?= Yii::$app->session['words']['money_back_gurantee'] ?></div>
+                        <div class="info"><?= Yii::$app->session['words']['money_back_content'] ?></div>
                     </div>
                 </div>
             </div>
@@ -760,8 +764,8 @@ $this->title = 'Vperfumes';
                 <div class="speciality">
                     <div class="icon"><i class="fas fa-user-clock"></i></div>
                     <div class="content">
-                        <div class="title">24/7 support</div>
-                        <div class="info">Answer all your questions with an hour</div>
+                        <div class="title"><?= Yii::$app->session['words']['24_support'] ?></div>
+                        <div class="info"><?= Yii::$app->session['words']['footer_answer_all_questions'] ?></div>
                     </div>
                 </div>
             </div>

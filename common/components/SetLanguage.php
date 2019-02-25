@@ -19,7 +19,6 @@ class SetLanguage extends Component {
         Yii::$app->session['language'] = $language;
 
         $words = $this->Words($language);
-        $words = json_decode($words);
         Yii::$app->session['words'] = $words;
         parent::init();
     }
@@ -61,13 +60,15 @@ class SetLanguage extends Component {
      */
 
     public static function Words($language) {
+
         if ($language == 'ar') {
-            require(__DIR__ . '/ArabicWords.php');
-        } else {
-            require(__DIR__ . '/EnglishWords.php');
+        $path = Yii::getAlias('@words') . '/components/arabic-words.json';
+        } else{
+            $path = Yii::getAlias('@words') . '/components/english-words.json';
         }
-        $values = json_encode($array);
-        return $values;
+        $str = file_get_contents($path);
+        $json = json_decode($str, true);
+        return $json;
     }
 
 }

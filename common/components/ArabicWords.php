@@ -22,4 +22,5 @@ $array = [
     'register' => 'تسجيل',
     'login' => 'تسجيل الدخول',
     'product_name' => 'اسم المنتج',
+    'search_products'=>'البحث عن المنتجات',
 ];
