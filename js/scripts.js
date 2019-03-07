@@ -248,7 +248,7 @@ $(document).ready(function () {
         autoplay: true,
         arrows: true,
         dots: false,
-        slidesToShow: 4,
+        slidesToShow: 5,
         prevArrow: $(".product-carousel-controls .prev"),
         nextArrow: $(".product-carousel-controls .next"),
         responsive: [{
@@ -256,7 +256,7 @@ $(document).ready(function () {
                 settings: {
                     arrows: false,
 //                    centerMode: true,
-                    slidesToShow: 3
+                    slidesToShow: 4
                 }
             }, {
                 breakpoint: 768,

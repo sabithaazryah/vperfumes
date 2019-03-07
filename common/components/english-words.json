@@ -21,6 +21,7 @@
     "others" : "Others",
     "register" : "Register",
     "login" : "Sign in",
+    "signout" : "Sign out",
     "product_name" : "Product Name",
     "search_products" : "Search Products",
     "special_offer": "Special Offer",

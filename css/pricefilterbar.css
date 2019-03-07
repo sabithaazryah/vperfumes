@@ -2,15 +2,15 @@
     outline: none;
 }
 #product-page .ui-state-default, #product-page .ui-widget-content .ui-state-default{
-    background: #ffffff;
-    border: 1px solid #f2492a;
+    background: #fecb00;
+    border: 1px solid #fecb00;
     margin-bottom: 20px;
 }
 #product-page .ui-widget-header{
-    background: #f2492a;
-    color: #f2492a;
+    background: #fecb00;
+    color: #fecb00;
     cursor: pointer;
-    border: 1px solid #f2492a;
+    border: 1px solid #fecb00;
 }
 #product-page .ui-state-hover, #product-page .ui-widget-content .ui-state-hover{
     background: #fff;

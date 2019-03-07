@@ -1,11 +1,14 @@
 .slider-values .min_value, .slider-values .max_value{
-    border: 1px solid #3f3f3f;
-    padding: 5px;
+    border: none;
+    padding: 0px;
     font-family: 'Montserrat', sans-serif;
-    font-size: 10px;
+    font-size: 11px;
     text-align: left;
-    color: rgb(155, 155, 155);
+    color: rgb(31, 31, 31);
     line-height: normal;
+    text-transform: uppercase;
+}
+
 }
 .slider-values .value-left{
     float:left;
@@ -734,8 +737,8 @@ button.ui-button::-moz-focus-inner {
 .ui-slider .ui-slider-handle {
     position: absolute;
     z-index: 2;
-    width:13px;
-    height:13px;
+    width:10px;
+    height:10px;
     cursor: default;
     -ms-touch-action: none;
     touch-action: none;
@@ -906,12 +909,12 @@ body .ui-tooltip {
     font-size: 1em;
 }
 .ui-widget.ui-widget-content {
-    margin-bottom:15px;
-    height: 7px;
+    margin-bottom:7px;
+    height: 3px;
 }
 .ui-widget-content {
     border: none;
-    background: #ffffff;
+    background: #e8e8e8;
     color: #333333;
     height:8px;
 }
@@ -1317,6 +1320,9 @@ a.ui-button:active,
 .ui-widget-shadow {
     -webkit-box-shadow: 0px 0px 5px #666666;
     box-shadow: 0px 0px 5px #666666;
+}
+.slider-values{
+  margin-bottom: 0px;
 }
 .slider-values .value-right {
     text-align: right;

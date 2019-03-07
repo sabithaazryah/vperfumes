@@ -6,8 +6,7 @@ use yii\helpers\Html;
 use frontend\assets\AppAsset;
 
 AppAsset::register($this);
-$language=Yii::$app->session['language'];
-
+$language = Yii::$app->session['language'];
 ?>
 <?php $this->beginPage() ?>
 <!DOCTYPE html>
@@ -17,7 +16,7 @@ $language=Yii::$app->session['language'];
             <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
                 <meta name="robots" content="noindex,nofollow">
                     <?= Html::csrfMetaTags() ?>
-                    <link rel="shortcut icon" href="images/favicon.png"/>
+                    <link rel="shortcut icon" href="<?= Yii::$app->homeUrl ?>images/favicon.png"/>
                     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
                     <script>
                         var homeUrl = '<?= yii::$app->homeUrl; ?>';
@@ -37,13 +36,13 @@ $language=Yii::$app->session['language'];
                                                     <ul>
                                                         <li><?= Yii::$app->session['words']['free_shipping'] ?>: <span><?= Yii::$app->session['words']['on_all_orders'] ?></span></li>
                                                         <li><?= Yii::$app->session['words']['free_return'] ?>: <span><?= Yii::$app->session['words']['free_return_policy'] ?></span></li>
-                                                        <li><a href="tel:+971 873738637"><img src="<?= Yii::$app->homeUrl?>images/cont.png" alt="contact" class="img-fluid"/></a></li>
+                                                        <li><a href="tel:+971 873738637"><img src="<?= Yii::$app->homeUrl ?>images/cont.png" alt="contact" class="img-fluid"/></a></li>
                                                     </ul>
                                                 </div>
                                                 <div class="top-right">
                                                     <ul class="os">
-                                                        <li><a href="#!"><img src="<?= Yii::$app->homeUrl?>images/icons/playstore.png"/></a></li>
-                                                        <li><a href="#!"><img src="<?= Yii::$app->homeUrl?>images/icons/ios.png"/></a></li>
+                                                        <li><a href="#!"><img src="<?= Yii::$app->homeUrl ?>images/icons/playstore.png"/></a></li>
+                                                        <li><a href="#!"><img src="<?= Yii::$app->homeUrl ?>images/icons/ios.png"/></a></li>
                                                     </ul>
                                                     <ul class="social-icon">
                                                         <li><a class="fab fa-facebook-f" target="_blank" href="#!"></a></li>
@@ -56,9 +55,9 @@ $language=Yii::$app->session['language'];
                                                         <?php
                                                         if (isset($language) && $language == 'ar') {
                                                             ?>
-                                                            <a class="language" href="" lang="en" hreflang="en" val="en"><img src="<?= Yii::$app->homeUrl?>images/icons/english.png" class="img-fluid"/></a>
+                                                            <a class="language" href="" lang="en" hreflang="en" val="en"><img src="<?= Yii::$app->homeUrl ?>images/icons/english.png" class="img-fluid"/></a>
                                                         <?php } else { ?>
-                                                            <a class="language" href="" lang="ar" hreflang="ar" val="ar"><img src="<?= Yii::$app->homeUrl?>images/icons/arabic.png" class="img-fluid"/></a>
+                                                            <a class="language" href="" lang="ar" hreflang="ar" val="ar"><img src="<?= Yii::$app->homeUrl ?>images/icons/arabic.png" class="img-fluid"/></a>
                                                         <?php } ?>
                                                     </div>
                                                 </div>
@@ -77,7 +76,7 @@ $language=Yii::$app->session['language'];
                                                         </button>
                                                     </div>
                                                     <div class="logo-section">
-                                                        <h1 class="logo"><a href="index.php"><img src="<?= Yii::$app->homeUrl?>images/logo-<?=$language?>.png" alt="Vperfumes" title="Vperfumes" class="img-fluid"></a></h1>
+                                                        <h1 class="logo"><a href="<?= Yii::$app->homeUrl ?>"><img src="<?= Yii::$app->homeUrl ?>images/logo-<?= $language ?>.png" alt="Vperfumes" title="Vperfumes" class="img-fluid"></a></h1>
                                                     </div>
                                                     <div class="main-action">
 
@@ -106,7 +105,7 @@ $language=Yii::$app->session['language'];
                                                                         <div class="row">
                                                                             <div class="col-4">
                                                                                 <div class="img-box">
-                                                                                    <a href="#!" title="MARVELS (SILVER)"><img class="product-image img-responsive" src="<?= Yii::$app->homeUrl?>images/product1.jpg" alt="" title="" width="100" height="100"></a>
+                                                                                    <a href="#!" title="MARVELS (SILVER)"><img class="product-image img-responsive" src="<?= Yii::$app->homeUrl ?>images/product1.jpg" alt="" title="" width="100" height="100"></a>
                                                                                 </div>
                                                                             </div>
                                                                             <div class="col-8">
@@ -129,7 +128,7 @@ $language=Yii::$app->session['language'];
                                                                         <div class="row">
                                                                             <div class="col-4">
                                                                                 <div class="img-box">
-                                                                                    <a href="#!" title="MARVELS (SILVER)"><img class="product-image img-responsive" src="<?= Yii::$app->homeUrl?>images/product1.jpg" alt="" title="" width="100" height="100"></a>
+                                                                                    <a href="#!" title="MARVELS (SILVER)"><img class="product-image img-responsive" src="<?= Yii::$app->homeUrl ?>images/product1.jpg" alt="" title="" width="100" height="100"></a>
                                                                                 </div>
                                                                             </div>
                                                                             <div class="col-8">
@@ -156,8 +155,32 @@ $language=Yii::$app->session['language'];
                                                         <div class="login-top ">
                                                             <a class="mob-log" href="#!"><span><?= Yii::$app->session['words']['login'] ?></span></a>
                                                             <ul class="hide-mob">
-                                                                <li><a href="#!"><?= Yii::$app->session['words']['register'] ?></a></li>
-                                                                <li><a href="#!"><?= Yii::$app->session['words']['login'] ?></a></li>
+                                                                <?php
+                                                                if (!empty(Yii::$app->user->identity->first_name)) {
+                                                                    if (strlen(Yii::$app->user->identity->first_name) >= 10) {
+                                                                        $name = substr(Yii::$app->user->identity->first_name, 0, 10) . '...';
+                                                                        $name = ucwords($name);
+                                                                    } else {
+                                                                        $name = Yii::$app->user->identity->first_name;
+                                                                        $name = ucwords($name);
+                                                                    }
+                                                                }
+                                                                ?>
+                                                                <?php if (!empty(Yii::$app->user->identity)) { ?>
+                                                                    <li>
+                                                                        <?= Html::a(ucfirst($name), ['/myaccounts/user/personal-info'], ['title' => 'My Account']) ?>
+                                                                    </li>
+                                                                    <?php
+                                                                    echo '<li>'
+                                                                    . Html::beginForm(['/site/logout'], 'post') . '<a>'
+                                                                    . Html::submitButton(Yii::$app->session['words']['signout'], ['class' => 'logout-btn']) . '</a>'
+                                                                    . Html::endForm()
+                                                                    . '</li>';
+                                                                    ?>
+                                                                <?php } else { ?>
+                                                                    <li><?= Html::a(Yii::$app->session['words']['register'], ['/site/signup']) ?></li>
+                                                                    <li><?= Html::a(Yii::$app->session['words']['login'], ['/site/login']) ?></li>
+                                                                <?php } ?>
                                                             </ul>
                                                         </div>
                                                     </div>
@@ -186,15 +209,15 @@ $language=Yii::$app->session['language'];
                                             <nav class="navbar navbar-toggleable-lg navbar-light bg-faded navbar-expand-lg">
                                                 <div class="collapse navbar-collapse" id="navbarNavDropdown2">
                                                     <ul class="navbar-nav">
-                                                        <li class="nav-list <?= basename($_SERVER["SCRIPT_FILENAME"], '.php') == 'index' ? 'active' : '' ?>"> <a class="link" href="index.php"><?= Yii::$app->session['words']['fragrances'] ?></a></li>
-                                                        <li class="nav-list <?= basename($_SERVER["SCRIPT_FILENAME"], '.php') == '#' ? 'active' : '' ?>"> <a class="link" href="#!"><?= Yii::$app->session['words']['special_offers'] ?></a></li>
-                                                        <li class="nav-list <?= basename($_SERVER["SCRIPT_FILENAME"], '.php') == '#' ? 'active' : '' ?>"> <a class="link" href="#!"><?= Yii::$app->session['words']['brands'] ?></a></li>
-                                                        <li class="nav-list <?= basename($_SERVER["SCRIPT_FILENAME"], '.php') == '#' ? 'active' : '' ?>"> <a class="link" href="#!"><?= Yii::$app->session['words']['exclusive_brands'] ?></a></li>
-                                                        <li class="nav-list <?= basename($_SERVER["SCRIPT_FILENAME"], '.php') == '#' ? 'active' : '' ?>"> <a class="link" href="#!"><?= Yii::$app->session['words']['arabic_perfumes'] ?></a></li>
-                                                        <li class="nav-list <?= basename($_SERVER["SCRIPT_FILENAME"], '.php') == '#' ? 'active' : '' ?>"> <a class="link" href="#!"><?= Yii::$app->session['words']['new_arrivals'] ?></a></li>
-                                                        <li class="nav-list <?= basename($_SERVER["SCRIPT_FILENAME"], '.php') == '#' ? 'active' : '' ?>"> <a class="link" href="#!"><?= Yii::$app->session['words']['gift_set'] ?></a></li>
-                                                        <li class="nav-list <?= basename($_SERVER["SCRIPT_FILENAME"], '.php') == '#' ? 'active' : '' ?>"> <a class="link" href="#!"><?= Yii::$app->session['words']['one_day_sale'] ?></a></li>
-                                                        <li class="nav-list <?= basename($_SERVER["SCRIPT_FILENAME"], '.php') == '#' ? 'active' : '' ?>"> <a class="link" href="#!"><?= Yii::$app->session['words']['others'] ?></a></li>
+                                                        <li class="nav-list active"><?= Html::a(Yii::$app->session['words']['fragrances'], ['/product/index'], ['class' => 'link']) ?></li>
+                                                        <li class="nav-list"> <?= Html::a(Yii::$app->session['words']['special_offers'], ['/product/index'], ['class' => 'link']) ?></li>
+                                                        <li class="nav-list"> <?= Html::a(Yii::$app->session['words']['brands'], ['/product/index'], ['class' => 'link']) ?></li>
+                                                        <li class="nav-list"> <?= Html::a(Yii::$app->session['words']['exclusive_brands'], ['/product/index'], ['class' => 'link']) ?></li>
+                                                        <li class="nav-list"> <?= Html::a(Yii::$app->session['words']['arabic_perfumes'], ['/product/index'], ['class' => 'link']) ?></li>
+                                                        <li class="nav-list"> <?= Html::a(Yii::$app->session['words']['new_arrivals'], ['/product/index'], ['class' => 'link']) ?></li>
+                                                        <li class="nav-list"> <?= Html::a(Yii::$app->session['words']['gift_set'], ['/product/index'], ['class' => 'link']) ?></li>
+                                                        <li class="nav-list"> <?= Html::a(Yii::$app->session['words']['one_day_sale'], ['/product/index'], ['class' => 'link']) ?></li>
+                                                        <li class="nav-list"> <?= Html::a(Yii::$app->session['words']['others'], ['/product/index'], ['class' => 'link']) ?></li>
                                                     </ul>
                                                 </div>
                                             </nav>
@@ -207,21 +230,21 @@ $language=Yii::$app->session['language'];
                         <!--header-->
 
                         <?= $content ?>
-                        
+
                         <footer>
                             <div class="sec1">
                                 <div class="container">
                                     <div class="row">
                                         <div class="col-md-4">
-                                            <div class="foot-logo"><img src="<?= Yii::$app->homeUrl?>images/logo-<?=$language?>.png" alt="Vperfumes logo" class="img-fluid"/></div>
+                                            <div class="foot-logo"><img src="<?= Yii::$app->homeUrl ?>images/logo-<?= $language ?>.png" alt="Vperfumes logo" class="img-fluid"/></div>
                                         </div>
                                         <div class="col-md-8">
                                             <div class="row">
                                                 <div class="col-sm-6">
-                                                    <div class="hide-mob phone"><a href="tel:+971 565092957" class="social"><img src="<?= Yii::$app->homeUrl?>images/foot-cont.png" class="img-fluid"/></a></div>
+                                                    <div class="hide-mob phone"><a href="tel:+971 565092957" class="social"><img src="<?= Yii::$app->homeUrl ?>images/foot-cont.png" class="img-fluid"/></a></div>
                                                 </div>
                                                 <div class="col-sm-6">
-                                                    <div class="hide-mob"><a href="#!" class="social"><img src="<?= Yii::$app->homeUrl?>images/quality.png" width="260" class="img-fluid"/></a></div>
+                                                    <div class="hide-mob"><a href="#!" class="social"><img src="<?= Yii::$app->homeUrl ?>images/quality.png" width="260" class="img-fluid"/></a></div>
                                                 </div>
                                             </div>
                                         </div>
@@ -254,7 +277,7 @@ $language=Yii::$app->session['language'];
                                                                     <div class="col-lg-3 col-md-3 col-sm-6 col-6 mob-full">
                                                                         <h5 class="head"><?= Yii::$app->session['words']['information'] ?></h5>
                                                                         <ul class="foot-link">
-                                                                            <li><a href="#!"><img src="<?= Yii::$app->homeUrl?>images/icons/foot-link.png" width="70" class="img-fluid"/></a></li>
+                                                                            <li><a href="#!"><img src="<?= Yii::$app->homeUrl ?>images/icons/foot-link.png" width="70" class="img-fluid"/></a></li>
                                                                             <li><a href="#!"><?= Yii::$app->session['words']['about_us'] ?></a></li>
                                                                             <li><a href="#!"><?= Yii::$app->session['words']['store_locator'] ?></a></li>
                                                                             <li><a href="#!"><?= Yii::$app->session['words']['customer_service'] ?></a></li>
@@ -293,18 +316,18 @@ $language=Yii::$app->session['language'];
                                                                     <div class="col-12 sec4">
                                                                         <div class="left-sec">
                                                                             <div class="payment-optns">
-                                                                                <p>Ways you can pay:</p>
+                                                                                <p><?= Yii::$app->session['words']['ways_can_pay'] ?>:</p>
                                                                                 <ul>
-                                                                                    <li><img src="<?= Yii::$app->homeUrl?>images/icons/payment-optns.png" width="250" class="img-fluid"></li>
+                                                                                    <li><img src="<?= Yii::$app->homeUrl ?>images/icons/payment-optns.png" width="250" class="img-fluid"></li>
                                                                                 </ul>
                                                                             </div>
                                                                         </div>
                                                                         <div class="right-sec">
                                                                             <div class="download-app">
-                                                                                <p>Download our apps</p>
+                                                                                <p><?= Yii::$app->session['words']['download_apps'] ?></p>
                                                                                 <ul>
-                                                                                    <li><a href="#!"><img src="<?= Yii::$app->homeUrl?>images/icons/android-app-icon.png" class="img-fluid"></a></li>
-                                                                                    <li><a href="#!"><img src="<?= Yii::$app->homeUrl?>images/icons/app-store-logo.png" class="img-fluid"></a></li>
+                                                                                    <li><a href="#!"><img src="<?= Yii::$app->homeUrl ?>images/icons/android-app-icon.png" class="img-fluid"></a></li>
+                                                                                    <li><a href="#!"><img src="<?= Yii::$app->homeUrl ?>images/icons/app-store-logo.png" class="img-fluid"></a></li>
                                                                                 </ul>
                                                                             </div>
                                                                         </div>
@@ -337,12 +360,12 @@ $language=Yii::$app->session['language'];
                                                         <?php $this->endBody() ?>
                                                         <script>
                                                             $(document).ready(function () {
-                                                                
+
                                                                 $('.language').click(function (e) {
                                                                     e.preventDefault();
                                                                     var lang = $(this).attr('val');
                                                                     $.ajax({
-                                                                        url: homeUrl+'site/language',
+                                                                        url: homeUrl + 'site/language',
                                                                         type: 'post',
                                                                         data: {lang: lang},
                                                                         success: function (data) {

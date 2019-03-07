@@ -1,6 +1,7 @@
 <?php
 $this->title = 'Vperfumes';
-//echo Yii::$app->session['language'];exit;
+
+use common\components\ProductLinksWidget;
 ?>
 
 
@@ -73,6 +74,7 @@ $this->title = 'Vperfumes';
                         </div>
                     </div>
                 </div>
+
                 <div class="one-slide mx-auto">
                     <div class="m010 d-flex flex-direction-column justify-content-center flex-wrap align-items-center">
                         <div class="product-box">

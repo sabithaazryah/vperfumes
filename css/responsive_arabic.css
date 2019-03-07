@@ -1,94 +1,151 @@
-@media only screen and (min-width:1400px) {
-}
+@media only screen and (min-width:1400px) {}
 
-@media only screen and (min-width:1200px) {
-}
+@media only screen and (min-width:1200px) {}
 
 @media (max-width:1200px) and (min-width:992px) {
-    :lang(ar) > #myHeader .top-navigation .login-top{
-        margin-right: 95px;
-    }
+  :lang(ar)>#myHeader .top-navigation .login-top {
+    margin-right: 95px;
+  }
+  :lang(ar)>.product-details .action-details .spcl-delivery {
+    padding-left: 20px;
+  }
 }
 
 @media only screen and (min-width: 992px) {
-  :lang(ar) > #nichie-perfumes .left-sec{
-        padding-right: 15px;
-        padding-left: 55px;
+  :lang(ar)>#nichie-perfumes .left-sec {
+    padding-right: 15px;
+    padding-left: 55px;
   }
-  :lang(ar) > #nichie-perfumes .right-sec{
-        padding-left: 15px;
-        padding-right: 30px;
+  :lang(ar)>#nichie-perfumes .right-sec {
+    padding-left: 15px;
+    padding-right: 30px;
   }
-  :lang(ar) > #nichie-perfumes .left-sec .img-box{
+  :lang(ar)>#nichie-perfumes .left-sec .img-box {
     margin-left: 3px;
+  }
+  :lang(ar)>#site-speciality .speciality .icon {
+    float: right;
+  }
+  :lang(ar)>#site-speciality .speciality .content {
+    float: right;
+    padding-left: 0;
+    padding-right: 20px;
+    text-align: right;
   }
 }
 
 @media only screen and (max-width: 992px) {
-    :lang(ar) > #myHeader .menu-icon {
-        float: right;
-        margin-left: 0px;
-    }
-    :lang(ar) > .mobile-header-Search-section{
-        float: left;
-        padding: 5px 30px 0 0px;
-    }
+  :lang(ar)>#myHeader .menu-icon {
+    float: right;
+    margin-left: 0px;
+  }
+  :lang(ar)>.mobile-header-Search-section {
+    float: left;
+    padding: 5px 30px 0 0px;
+  }
+  :lang(ar)>#product-info .product-spec .customer-reviews .spec-title {
+    padding-right: 0px;
+    text-align: center;
+  }
+  :lang(ar)>#product-info .box {
+    border: none;
+  }
+  :lang(ar)>#product-info .box:last-child {
+    text-align: center;
+  }
+  :lang(ar)>.product-view .head {
+    text-align: right;
+  }
+  :lang(ar)>.checkout-step {
+    margin-right: 0px;
+  }
+  :lang(ar)>.checkout-step {
+    padding-left: auto;
+    padding-right: 60px;
+  }
+  :lang(ar)>.checkout-step .step-icon {
+    left: auto;
+    right: 8px;
+  }
+  :lang(ar)>.checkout-step .track-line {
+    left: auto;
+    right: 27px;
+  }
 }
 
 @media only screen and (min-width:768px) {
-  :lang(ar) > footer .sec4 .left-sec{
-      float: right;
+  :lang(ar)>footer .sec4 .left-sec {
+    float: left;
   }
-  :lang(ar) > footer .sec4 .right-sec{
-      float: left;
+  :lang(ar)>#signin-page .form-div .left-box {
+    padding-right: 0px;
+    padding-left: 55px;
+  }
+  :lang(ar)>#signin-page .form-div .right-box {
+    padding-right: 55px;
+    padding-left: 0px;
+    border-left: 0px solid #e5e5e5;
+    border-right: 1px solid #e5e5e5;
   }
 }
 
 @media (max-width:992px) and (min-width:768px) {
-    :lang(ar) > #nichie-perfumes .left-sec .img-box{
+  :lang(ar)>#nichie-perfumes .left-sec .img-box {
     border-right: none;
     border-left: none;
   }
 }
 
 @media only screen and (max-width:768px) {
-  :lang(ar) > #myHeader .top-navigation .login-top{
+  :lang(ar)>#myHeader .top-navigation .login-top {
     margin-right: 0px;
   }
-  :lang(ar) > #myHeader .top-navigation .main-action {
+  :lang(ar)>#myHeader .top-navigation .main-action {
     padding-right: 0px;
     padding-left: 15px;
-}
-:lang(ar) > #myHeader .topbar .top-right .social-icon{
-      padding-left: 22px;
-}
-:lang(ar) > #myHeader .topbar .top-right .os{
-  margin-left: 15px;
-}
+  }
+  :lang(ar)>#myHeader .topbar .top-right .social-icon {
+    padding-left: 22px;
+  }
+  :lang(ar)>#myHeader .topbar .top-right .os {
+    margin-left: 15px;
+  }
+  :lang(ar)>.special-details ul li {
+    padding-right: 40px;
+  }
+  :lang(ar)>.product-details .action-details .spcl-delivery {
+    padding-left: 0px;
+  }
+  :lang(ar)>.product-details .rit-box {
+    padding-right: 0px;
+  }
 }
 
-@media (max-width:768px) and (min-width:576px) {
-}
+@media (max-width:768px) and (min-width:576px) {}
 
 @media only screen and (max-width:576px) {
-  :lang(ar) > .copyright p{
+  :lang(ar)>.copyright p {
     float: none;
   }
-    :lang(ar) > #myHeader .top-navigation .cart-dropdown .dropdown-toggle{
-      margin-left: 0px;
-    }
+  :lang(ar)>#myHeader .top-navigation .cart-dropdown .dropdown-toggle {
+    margin-left: 0px;
+  }
 }
 
 @media only screen and (max-width:468px) {
-  :lang(ar) > #myHeader .topbar .top-right .os{
+  :lang(ar)>#myHeader .topbar .top-right .os {
     margin-left: 0px;
-padding-left: 10px;
-  }
-  :lang(ar) > #myHeader .topbar .top-right .social-icon{
     padding-left: 10px;
-margin-left: 10px;
   }
-  #myHeader .topbar .top-right li{
-        margin-right: 5px;
+  :lang(ar)>#myHeader .topbar .top-right .social-icon {
+    padding-left: 10px;
+    margin-left: 10px;
+  }
+  :lang(ar)>#myHeader .topbar .top-right li {
+    margin-right: 5px;
+  }
+  :lang(ar)>#myHeader .top-navigation .cart-dropdown .dropdown-menu, :lang(ar)>#myHeader .top-navigation .cart-dropdown:hover .dropdown-menu {
+    right: auto;
+    left: 0px;
   }
 }

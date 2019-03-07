@@ -19,55 +19,55 @@ use common\models\Brand;
 class ProductController extends \yii\web\Controller {
 
     public function actionIndex() {
-        $min_value = 0;
-        $max_value = 1000;
-        $searchModel = new ProductSearch();
-        $model_filter = new \common\models\Filter();
-        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
-        $brand_list = Brand::find()->where(['status' => 1])->orderBy(['brand' => SORT_ASC])->all();
-        $size_list = Product::find()->select('size')->where(['status' => 1])->groupBy(['size'])->all();
-        $meta_tags = CmsMetaTags::find()->where(['id' => 3])->one();
-        \Yii::$app->view->registerMetaTag(['name' => 'keywords', 'content' => $meta_tags->meta_keyword]);
-        \Yii::$app->view->registerMetaTag(['name' => 'description', 'content' => $meta_tags->meta_description]);
-        if (isset($_GET['keyword']) && $_GET['keyword'] != '') {
-            $this->Search($_GET['keyword'], $dataProvider);
-            $model_filter->keyword = $_GET['keyword'];
-        }
-        if ($model_filter->load(Yii::$app->request->get())) {
-            if (isset($model_filter->keyword) && $model_filter->keyword != '') {
-                $this->Search($model_filter->keyword, $dataProvider);
-            }
-            if ($model_filter->brand != '') {
-                $filter_brand = $this->getFilterBrand($model_filter);
-                $dataProvider->query->andWhere(['id' => $filter_brand]);
-            }
-            if ($model_filter->gender != '') {
-                $filter_gender = $this->getFilterGender($model_filter);
-                $dataProvider->query->andWhere(['id' => $filter_gender]);
-            }
-            if ($model_filter->size != '') {
-                $filter_size = $this->getFilterSize($model_filter);
-                $dataProvider->query->andWhere(['id' => $filter_size]);
-            }
-            if ($model_filter->discount != '') {
-                $filter_discount = $this->getFilterDiscount($model_filter);
-                $dataProvider->query->andWhere(['id' => $filter_discount]);
-            }
-            if ($model_filter->min_price != '' && $model_filter->max_price != '') {
-                $min_value = $model_filter->min_price;
-                $max_value = $model_filter->max_price;
-                $dataProvider->query->andWhere(['between', 'price', $model_filter->min_price, $model_filter->max_price]);
-            }
-        }
+//        $min_value = 0;
+//        $max_value = 1000;
+//        $searchModel = new ProductSearch();
+//        $model_filter = new \common\models\Filter();
+//        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+//        $brand_list = Brand::find()->where(['status' => 1])->orderBy(['brand' => SORT_ASC])->all();
+//        $size_list = Product::find()->select('size')->where(['status' => 1])->groupBy(['size'])->all();
+//        $meta_tags = CmsMetaTags::find()->where(['id' => 3])->one();
+//        \Yii::$app->view->registerMetaTag(['name' => 'keywords', 'content' => $meta_tags->meta_keyword]);
+//        \Yii::$app->view->registerMetaTag(['name' => 'description', 'content' => $meta_tags->meta_description]);
+//        if (isset($_GET['keyword']) && $_GET['keyword'] != '') {
+//            $this->Search($_GET['keyword'], $dataProvider);
+//            $model_filter->keyword = $_GET['keyword'];
+//        }
+//        if ($model_filter->load(Yii::$app->request->get())) {
+//            if (isset($model_filter->keyword) && $model_filter->keyword != '') {
+//                $this->Search($model_filter->keyword, $dataProvider);
+//            }
+//            if ($model_filter->brand != '') {
+//                $filter_brand = $this->getFilterBrand($model_filter);
+//                $dataProvider->query->andWhere(['id' => $filter_brand]);
+//            }
+//            if ($model_filter->gender != '') {
+//                $filter_gender = $this->getFilterGender($model_filter);
+//                $dataProvider->query->andWhere(['id' => $filter_gender]);
+//            }
+//            if ($model_filter->size != '') {
+//                $filter_size = $this->getFilterSize($model_filter);
+//                $dataProvider->query->andWhere(['id' => $filter_size]);
+//            }
+//            if ($model_filter->discount != '') {
+//                $filter_discount = $this->getFilterDiscount($model_filter);
+//                $dataProvider->query->andWhere(['id' => $filter_discount]);
+//            }
+//            if ($model_filter->min_price != '' && $model_filter->max_price != '') {
+//                $min_value = $model_filter->min_price;
+//                $max_value = $model_filter->max_price;
+//                $dataProvider->query->andWhere(['between', 'price', $model_filter->min_price, $model_filter->max_price]);
+//            }
+//        }
         return $this->render('index', [
-                    'searchModel' => $searchModel,
-                    'dataProvider' => $dataProvider,
-                    'meta_title' => $meta_tags->meta_title,
-                    'brand_list' => $brand_list,
-                    'model_filter' => $model_filter,
-                    'size_list' => $size_list,
-                    'min_value' => $min_value,
-                    'max_value' => $max_value,
+//                    'searchModel' => $searchModel,
+//                    'dataProvider' => $dataProvider,
+//                    'meta_title' => $meta_tags->meta_title,
+//                    'brand_list' => $brand_list,
+//                    'model_filter' => $model_filter,
+//                    'size_list' => $size_list,
+//                    'min_value' => $min_value,
+//                    'max_value' => $max_value,
         ]);
     }
 
@@ -173,7 +173,7 @@ class ProductController extends \yii\web\Controller {
         return $dataProvider;
     }
 
-    public function actionProductDetail($product) {
+    public function actionProductDetail1($product) {
         $recently_viewed = '';
         if (isset(Yii::$app->user->identity->id)) {
             $user_id = Yii::$app->user->identity->id;
@@ -205,6 +205,11 @@ class ProductController extends \yii\web\Controller {
             ]);
         }
     }
+    
+     public function actionProductDetail(){
+      return $this->render('product_detail', [
+            ]);   
+     }
 
     /**
      * Save recently viewed product.
