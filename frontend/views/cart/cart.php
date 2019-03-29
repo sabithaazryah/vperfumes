@@ -1,10 +1,8 @@
 <?php
 
 use yii\helpers\Html;
-use yii\widgets\ActiveForm;
-use yii\helpers\ArrayHelper;
 use common\models\Product;
-use common\models\User;
+use yii\widgets\Pjax;
 
 if (isset($meta_title) && $meta_title != '')
     $this->title = $meta_title;
@@ -13,7 +11,7 @@ else
 ?>
 
 <div id="cart-page" class="inner-page">
-
+    <?php Pjax::begin(['id' => 'shopping_cart_id']) ?>
     <section id="cart-list">
         <div class="container">
             <div class="cart-box">
@@ -23,114 +21,114 @@ else
                             <div class="list-header">
                                 Shopping Cart items
                             </div>
-                            <div class="cart-list">
-                                <a href="" class="remove_cart remove-cart"><img src="<?= Yii::$app->homeUrl?>images/icons/remove.png"
-                                        class="img-fluid" /></a>
-                                <a class="thumbnail pull-left" href="#!">
-                                    <img src="<?= Yii::$app->homeUrl?>images/products/pro1-thumb.png" class="img-fluid"
-                                        alt="Ck Euphoria Men Edt 100Ml" width="150">
-                                </a>
-                                <div class="list-dtl">
-                                    <a href="#!" class="title">Ck Euphoria Men Edt 100Ml</a>
-                                    <ul>
-                                        <li class="price">Price: <span>AED 380</span></li>
-                                        <li class="qty">QTY:
-                                            <span>
-                                                <div class="form-group quantity">
-                                                    <select class="form-control " id="" name="Quantity">
-                                                        <option value="1">1</option>
-                                                        <option value="2">2</option>
-                                                        <option value="3">3</option>
-                                                        <option value="4">4</option>
-                                                        <option value="5">5</option>
-                                                        <option value="6">6</option>
-                                                        <option value="7">7</option>
-                                                        <option value="8">8</option>
-                                                        <option value="9">9</option>
-                                                        <option value="10">10</option>
-                                                    </select>
-                                                </div>
-                                            </span>
-                                        </li>
-                                    </ul>
-                                    <div class="list-footer">
-                                        <div class="total-price">Total: <span>AED 380</span></div>
+                            <input type="hidden" id="cart_count" value="<?= count($cart_items); ?>">
+                            <?php
+                            foreach ($cart_items as $cart_item) {
+                                if ($cart_item->quantity > 0) {
+                                    $cart_item_count++;
+                                }
+                                $prod_details = Product::find()->where(['id' => $cart_item->product_id, 'status' => '1'])->one();
+                                if ($prod_details->offer_price == '0' || $prod_details->offer_price == '') {
+                                    $price = $prod_details->price;
+                                } else {
+                                    $price = $prod_details->offer_price;
+                                }
+                                $product_image = Yii::$app->basePath . '/../uploads/product/' . $prod_details->id . '/profile/' . $prod_details->canonical_name . '_thumb.' . $prod_details->profile;
+                                if (file_exists($product_image)) {
+                                    $image = '<img src="' . Yii::$app->homeUrl . 'uploads/product/' . $prod_details->id . '/profile/' . $prod_details->canonical_name . '_thumb.' . $prod_details->profile . '" alt="' . $prod_details->canonical_name . '" class="img-fluid" width="150"/>';
+                                } else {
+                                    $image = '<img src="' . Yii::$app->homeUrl . 'uploads/product/profile_thumb.png" alt="' . $prod_details->canonical_name . '" class="img-flui" width="150"/>';
+                                }
+                                ?>
+                                <div class="cart-list tr_<?= yii::$app->EncryptDecrypt->Encrypt('encrypt', $cart_item->id); ?> <?= $cart_item->quantity == 0 ? 'stock-out-row' : '' ?>">
+                                    <a href="" class="remove_cart remove-cart" data-product_id="<?= yii::$app->EncryptDecrypt->Encrypt('encrypt', $cart_item->id); ?>" ><img src="<?= Yii::$app->homeUrl ?>images/icons/remove.png" class="img-fluid" /></a>
+                                    <?= Html::a($image, ['product/product-detail', 'product' => $prod_details->canonical_name], ['title' => $prod_details->product_name, 'class' => 'thumbnail pull-left']) ?>
+                                    <div class="list-dtl">
+                                        <?= Html::a($prod_details->product_name, ['product/product-detail', 'product' => $prod_details->canonical_name], ['title' => $prod_details->product_name, 'class' => 'title']) ?>
+                                        <ul>
+                                            <?php if ($cart_item->quantity == 0) { ?>
+                                                <li class="out_of_stock_label">Out of stock</li>
+                                            <?php } else { ?>
+                                                <li class="price">Price: <span>AED <?= sprintf("%0.2f", $price) ?></span></li>
+                                            <?php }
+                                            ?>
+                                            <li class="qty">QTY:
+                                                <span>
+                                                    <div class="form-group quantity">
+                                                        <select class="form-control cart_quantity" id="quantity_<?= yii::$app->EncryptDecrypt->Encrypt('encrypt', $cart_item->id); ?>" name="Quantity">
+                                                            <?php if ($cart_item->quantity == 0) { ?>
+                                                                <option <?= $cart_item->quantity == 0 ? 'selected' : '' ?> value="0">0</option>
+                                                            <?php }
+                                                            ?>
+                                                            <?php
+                                                            for ($i = 1; $i <= $prod_details->stock; $i++) {
+                                                                ?>
+                                                                <option <?= $cart_item->quantity == $i ? 'selected' : '' ?> value="<?= $i ?>"><?= $i ?></option>
+                                                                <?php
+                                                            }
+                                                            ?>
+                                                        </select>   
+                                                    </div>
+                                                </span>
+                                            </li>
+                                        </ul>
+                                        <div class="list-footer">
+                                            <?php $total = $price * $cart_item->quantity; ?>
+                                            <div class="total-price">Total: <span id="total_<?= yii::$app->EncryptDecrypt->Encrypt('encrypt', $cart_item->id) ?>">AED <?= sprintf("%0.2f", $total) ?></span></div>
+                                        </div>
                                     </div>
-                                </div>
-                            </div>
-                            <div class="cart-list">
-                                <a href="" class="remove_cart remove-cart"><img src="<?= Yii::$app->homeUrl?>images/icons/remove.png"
-                                        class="img-fluid" /></a>
-                                <a class="thumbnail pull-left" href="#!">
-                                    <img src="<?= Yii::$app->homeUrl?>images/products/pro1-thumb.png" class="img-fluid"
-                                        alt="Ck Euphoria Men Edt 100Ml" width="150">
-                                </a>
-                                <div class="list-dtl">
-                                    <a href="#!" class="title">Ck Euphoria Men Edt 100Ml</a>
-                                    <ul>
-                                        <li class="price">Price: <span>AED 380</span></li>
-                                        <li class="qty">QTY:
-                                            <span>
-                                                <div class="form-group quantity">
-                                                    <select class="form-control " id="" name="Quantity">
-                                                        <option value="1">1</option>
-                                                        <option value="2">2</option>
-                                                        <option value="3">3</option>
-                                                        <option value="4">4</option>
-                                                        <option value="5">5</option>
-                                                        <option value="6">6</option>
-                                                        <option value="7">7</option>
-                                                        <option value="8">8</option>
-                                                        <option value="9">9</option>
-                                                        <option value="10">10</option>
-                                                    </select>
-                                                </div>
-                                            </span>
-                                        </li>
-                                    </ul>
-                                    <div class="list-footer">
-                                        <div class="total-price">Total: <span>AED 380</span></div>
-                                    </div>
-                                </div>
-                            </div>
+                                </div>  
+                            <?php } ?>
                         </div>
                         <div class="col-lg-5 cart-main-info">
-                            <!-- <div class="cart-promotion">
-                                <div class="coupon">
-                                    <div class="apply-promotion-code">
-                                        <div class="coupon-info">Unlock Offers or Apply promotion</div>
-                                        <div class="code-form"><input type="text" name="coupon_code" class="input-text"
-                                                id="coupon_code" value="" placeholder="Coupon code"> </div>
-                                        <input type="submit" class="apply-coupen" name="apply_coupon" value="Apply">
-                                    </div>
-                                </div>
-                            </div> -->
                             <div class="clearfix"></div>
 
                             <div class="total-price-section">
                                 <div class="fright">
                                     <div class="row">
                                         <div class="col-lg-12">
-                                            <h4 class="price-head">Subtotal:<span class="cart_subtotal">AED
-                                                    371.00</span>
-                                            </h4>
-                                            <h4 class="price-head ">SHIPPING:<span class="amount shipping-cost">AED
-                                                    0.00</span></h4>
-                                            <h4 class="price-head">GIFT WRAP:<span><input type="checkbox"
-                                                        name="gift-wrap" id="gift-wrap" class="gift-wrap"></span></h4>
+                                            <h4 class="price-head">Subtotal:<span class="cart_subtotal">AED <?= sprintf("%0.2f", $subtotal) ?></span></h4>
+                                            <?php $shipping_minimum = common\models\Settings::findOne(1)->value; ?>
+                                            <span class="min_ship_amount" style="display:none"><?= $shipping_minimum ?></span>
+                                            <?php
+                                            $balance = '';
+                                            if ($shipping_minimum > $subtotal) {
+                                                $balance = $shipping_minimum - $subtotal;
+                                                $class = '';
+                                            } else {
+                                                $class = 'hide';
+                                            }
+                                            ?>
+                                            <h4 class="price-head ">SHIPPING:<span class="amount shipping-cost">AED <?= sprintf("%0.2f", '0.00') ?></span></h4>
+                                            <h4 class="price-head">GIFT WRAP:<span><input type="checkbox" name="gift-wrap" id="gift-wrap" class="gift-wrap"></span></h4>
                                         </div>
                                     </div>
                                     <div class="total-price">
-                                        <h4 class="price-head ">TOTAL:<span class="grand_total">AED 371.00</span></h4>
+                                        <h4 class="price-head ">TOTAL:<span class="grand_total">AED <?= sprintf("%0.2f", $grand_total) ?></span></h4>
+                                        <input type="hidden" class="grand_total_value" value="<?= $grand_total ?>">
+                                        <input type="hidden" name="subb_total" id="subb_total" value="<?= $subtotal ?>">
                                     </div>
                                     <div class="payment-optns">
                                         <p>Ways you can pay</p>
                                         <ul>
-                                            <li><img src="<?= Yii::$app->homeUrl?>images/icons/payment-optns1.png" class="img-fluid"></li>
+                                            <li><img src="<?= Yii::$app->homeUrl ?>images/icons/payment-optns1.png" class="img-fluid"></li>
                                         </ul>
                                     </div>
                                     <div class="button-section ">
-                                        <a class="check-out" href="checkout.php">Checkout</a>
+                                        <?php if (empty(Yii::$app->user->identity)) { ?>
+                                            <?= Html::a('Login to Checkout', ['/site/login', 'go' => Yii::$app->request->hostInfo . Yii::$app->request->url], ['class' => 'check-out']) ?>
+                                            <?php
+                                        } else {
+                                            if ($cart_item_count > 0) {
+                                                ?>
+                                                <?= Html::a('Checkout', ['/cart/proceed'], ['class' => 'check-out']) ?>     
+                                            <?php } else { ?>
+                                                <?= Html::a('continue shopping', ['/site/index'], ['class' => 'check-out']) ?>
+                                                <?php
+                                            }
+                                        }
+                                        ?>
+
                                     </div>
                                 </div>
                             </div>
@@ -140,7 +138,9 @@ else
             </div>
         </div>
     </section>
-
+    <?php Pjax::end() ?>
+    <?php $giftwrap = \common\models\Settings::findOne(5)->value; ?>
+    <span class="giftwrap_value" style="display:none"><?= $giftwrap ?></span>
 </div>
 
 

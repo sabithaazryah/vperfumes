@@ -7,8 +7,8 @@ use yii\web\AssetBundle;
 /**
  * Main frontend application asset bundle.
  */
-class AppAsset extends AssetBundle
-{
+class AppAsset extends AssetBundle {
+
     public $basePath = '@webroot';
     public $baseUrl = '@web';
     public $css = [
@@ -30,25 +30,27 @@ class AppAsset extends AssetBundle
         'css/responsive_arabic.css',
     ];
     public $js = [
-        /*--home-clients---*/
+        /* --home-clients--- */
         'https://unpkg.com/popper.js@1.14.6/dist/umd/popper.min.js',
         'https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js',
         'https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.js',
         '//cdnjs.cloudflare.com/ajax/libs/jquery.touchswipe/1.6.4/jquery.touchSwipe.min.js',
         'https://cdn.rawgit.com/asvd/dragscroll/master/dragscroll.js',
-        /*--Product Zoom---*/
+        /* --Product Zoom--- */
         'https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.6/jquery.fancybox.min.js',
         'https://cdnjs.cloudflare.com/ajax/libs/elevatezoom/3.0.8/jquery.elevatezoom.js',
         'https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.2.1/owl.carousel.min.js',
-        /*--Client says---*/
+        /* --Client says--- */
         'js/star-rating.js',
         'js/pricefilter.js',
         'js/pricefilterbar.js',
         'https://www.google.com/recaptcha/api.js',
         'js/scripts.js',
+        'js/main.js',
     ];
     public $depends = [
         'yii\web\YiiAsset',
         'yii\bootstrap\BootstrapAsset',
     ];
+
 }

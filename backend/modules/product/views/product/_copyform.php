@@ -112,12 +112,25 @@ use kartik\select2\Select2;
         <div class='col-md-4 col-sm-6 col-xs-12 left_padd'>
             <?= $form->field($model, 'ean_value')->textInput(['maxlength' => true]) ?>
         </div>
+        
+         <div class='col-md-4 col-sm-6 col-xs-12 left_padd'>
+            <?= $form->field($model, 'barcode')->textInput(['maxlength' => true]) ?>
+        </div>
+        <div class='col-md-4 col-sm-6 col-xs-12 left_padd'>
+            <?= $form->field($model, 'barcode_price')->textInput(['type' => 'number', 'min' => '0', 'autocomplete' => 'off', 'step' => 'any']) ?>
+        </div>
+        </div>
+    <div class="row">
 
         <div class='col-md-4 col-sm-6 col-xs-12 left_padd'>
             <?= $form->field($model, 'price')->textInput(['type' => 'number', 'min' => '0', 'autocomplete' => 'off', 'step' => 'any']) ?>
         </div>
         <div class='col-md-4 col-sm-6 col-xs-12 left_padd'>
             <?= $form->field($model, 'offer_price')->textInput(['type' => 'number', 'min' => '0', 'autocomplete' => 'off', 'step' => 'any']) ?>
+        </div>
+        
+        <div class='col-md-4 col-sm-6 col-xs-12 left_padd'>
+            <?= $form->field($model, 'offer_price_expiry_date')->textInput(['maxlength' => true]) ?>
         </div>
     </div>
     <div class="row">

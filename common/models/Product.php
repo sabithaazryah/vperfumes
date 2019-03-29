@@ -72,7 +72,7 @@ class Product extends \yii\db\ActiveRecord
             [['main_category', 'product_name', 'canonical_name', 'item_ean', 'price', 'currency', 'stock', 'stock_unit', 'product_detail', 'brand', 'size','product_name_ar','canonical_name_ar'], 'required'],
             [['meta_description', 'meta_keywords', 'main_description', 'product_detail'], 'string'],
             [['price', 'offer_price', 'sort'], 'number'],
-            [['DOC', 'DOU','search_tag','other_image','product_name_ar','canonical_name_ar','product_detail_ar'], 'safe'],
+            [['DOC', 'DOU','search_tag','other_image','product_name_ar','canonical_name_ar','product_detail_ar','barcode','type','barcode_price','offer_price_expiry_date','vmiles'], 'safe'],
             [['product_name', 'canonical_name', 'related_product'], 'string', 'max' => 100],
             [['meta_title'], 'string', 'max' => 200],
             [['ean_value', 'profile_alt', 'gallery_alt'], 'string', 'max' => 250],

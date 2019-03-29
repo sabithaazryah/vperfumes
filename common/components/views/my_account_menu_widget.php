@@ -7,8 +7,8 @@ $action = Yii::$app->controller->id . '/' . Yii::$app->controller->action->id;
 <div class="my-account-category">
     <div class="account-top-details">
         <div class="img-box"><img src="<?= Yii::$app->homeUrl ?>images/icons/account-img.png" width="66" height="66"></div>
-        <h2 class="account-name">Rency Daniel</h2>
-        <h3 class="account-mail">ajrency@gmail.com</h3>
+        <h2 class="account-name"><?= Yii::$app->user->identity->first_name ?></h2>
+        <h3 class="account-mail"><?= Yii::$app->user->identity->email ?></h3>
     </div>
     <div class="category-list">
         <ul>

@@ -86,7 +86,6 @@ class SignupForm extends Model {
             $user_guest->country = $this->country;
             $user_guest->dob = date("Y-m-d", strtotime($this->dob));
             $user_guest->mobile_no = $this->contact_no;
-            $user_guest->usertype = 1;
             $user_guest->email_verification = 0;
             $user_guest->setPassword($this->password);
             $user_guest->generateAuthKey();

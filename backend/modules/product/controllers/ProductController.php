@@ -77,7 +77,6 @@ class ProductController extends Controller {
     public function actionCreate() {
         $model = new Product();
         $model->setScenario('create');
-
         if ($model->load(Yii::$app->request->post())) {
             $file11 = UploadedFile::getInstances($model, 'profile');
             $file12 = UploadedFile::getInstances($model, 'other_image');
@@ -87,6 +86,8 @@ class ProductController extends Controller {
                 if (isset($model->search_tag) && $model->search_tag != '') {
                     $model->search_tag = implode(',', $model->search_tag);
                 }
+                if (isset($model->offer_price_expiry_date) && $model->offer_price_expiry_date != '')
+                    $model->offer_price_expiry_date = date('Y-m-d', strtotime($model->offer_price_expiry_date));
                 if ($model->offer_price > 0 && $model->offer_price != '') {
                     $percentage = round(100 - (($model->offer_price / $model->price) * 100));
                     $model->discount = $percentage;
@@ -143,6 +144,8 @@ class ProductController extends Controller {
             if (isset($model->search_tag) && $model->search_tag != '') {
                 $model->search_tag = implode(',', $model->search_tag);
             }
+            if (isset($model->offer_price_expiry_date) && $model->offer_price_expiry_date != '')
+                $model->offer_price_expiry_date = date('Y-m-d', strtotime($model->offer_price_expiry_date));
             $model->other_image = '';
             if ($model->offer_price > 0 && $model->offer_price != '') {
                 $percentage = round(100 - (($model->offer_price / $model->price) * 100));
@@ -165,11 +168,10 @@ class ProductController extends Controller {
                 Yii::$app->getSession()->setFlash('success', "Updated Successfully");
                 return $this->redirect(['index']);
             }
-        } 
-            return $this->render('update', [
-                        'model' => $model,
-            ]);
-        
+        }
+        return $this->render('update', [
+                    'model' => $model,
+        ]);
     }
 
     function profile_clear($model) {
@@ -210,7 +212,7 @@ class ProductController extends Controller {
         $file->saveAs(Yii::$app->basePath . '/../uploads/product/' . $model->id . '/profile/' . $model->canonical_name . '_big.' . $file->extension);
         return TRUE;
     }
-    
+
     /*
      * This function copy product detail
      */
@@ -246,7 +248,8 @@ class ProductController extends Controller {
                 if ($tag) {
                     $model->search_tag = implode(',', $tag);
                 }
-                
+                if (isset($model->offer_price_expiry_date) && $model->offer_price_expiry_date != '')
+                    $model->offer_price_expiry_date = date('Y-m-d', strtotime($model->offer_price_expiry_date));
                 $model->other_image = '';
                 if ($model->save()) {
                     $this->UpdateProductEan($model->item_ean);
@@ -274,6 +277,7 @@ class ProductController extends Controller {
                     if ($file12) {
                         for ($i = 0; $i < sizeof($file12); $i++) {
                             if ($model->uploadMultiple($file12[$i], $model->id, $model->canonical_name, $i)) {
+                                
                             } else {
                                 echo 'Image Upload Failed:';
                             }
@@ -287,12 +291,10 @@ class ProductController extends Controller {
                     }
                     return $this->redirect(['index']);
                 }
-
             } else {
                 return $this->render('copy', [
                             'model' => $model,
                 ]);
-
             }
         } else {
             return $this->render('copy', [
@@ -520,28 +522,26 @@ class ProductController extends Controller {
                     'dataProvider' => $dataProvider,
         ]);
     }
-    
-    public function actionAddCategory(){
-         $model = new \common\models\Category();
+
+    public function actionAddCategory() {
+        $model = new \common\models\Category();
         return $this->renderAjax('add-category', [
                     'model' => $model
         ]);
     }
-    
-    public function actionSaveCategory(){
-         $model = new \common\models\Category();
+
+    public function actionSaveCategory() {
+        $model = new \common\models\Category();
         $tag_new = '';
-        if(Yii::$app->request->ajax){
-           if ($model->load(Yii::$app->request->post()) && Yii::$app->SetValues->Attributes($model)) {
-               
+        if (Yii::$app->request->ajax) {
+            if ($model->load(Yii::$app->request->post()) && Yii::$app->SetValues->Attributes($model)) {
+
                 $model->status = 1;
                 $model->save();
                 $tag_new .= '<option value="' . $model->id . '">' . $model->category . '</option>';
                 return json_encode(array('tag' => $tag_new, 'val' => $model->id));
-            } 
+            }
         }
     }
-    
-    
 
 }

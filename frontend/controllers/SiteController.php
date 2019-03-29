@@ -72,16 +72,18 @@ class SiteController extends Controller {
      */
     public function actionIndex() {
         $sliders = \common\models\Slider::find()->where(['status' => 1])->all();
-        $banner1= \common\models\Banner::findOne(1);
-        $banner2= \common\models\Banner::findOne(2);
-        $banner3= \common\models\Banner::findOne(3);
-        $banner4= \common\models\Banner::findOne(4);
+        $products = \common\models\Product::find()->all();
+        $banner1 = \common\models\Banner::findOne(1);
+        $banner2 = \common\models\Banner::findOne(2);
+        $banner3 = \common\models\Banner::findOne(3);
+        $banner4 = \common\models\Banner::findOne(4);
         return $this->render('index', [
                     'sliders' => $sliders,
                     'banner1' => $banner1,
                     'banner2' => $banner2,
                     'banner3' => $banner3,
                     'banner4' => $banner4,
+                    'products' => $products,
         ]);
     }
 
@@ -97,7 +99,10 @@ class SiteController extends Controller {
 
         $model = new LoginForm();
         if ($model->load(Yii::$app->request->post()) && $model->login()) {
-            return $this->goBack();
+           if (empty($go)) {
+                return $this->redirect(Yii::$app->request->referrer);
+            }
+            return $this->redirect($go);
         } else {
             $model->password = '';
 

@@ -7,6 +7,7 @@ use frontend\assets\AppAsset;
 
 AppAsset::register($this);
 $language = Yii::$app->session['language'];
+$cart_count = common\components\CartFunctionality::Count();
 ?>
 <?php $this->beginPage() ?>
 <!DOCTYPE html>
@@ -96,60 +97,11 @@ $language = Yii::$app->session['language'];
                                                         <div class="dropdown cart-dropdown">
                                                             <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                                                 <ul class="hide-mob">
-                                                                    <li><a href="#!" class="cart-link"><span class="cart-count">02</span></a></li>
+                                                                    <li><a href="#!" class="cart-link"><span class="cart-count cart_count"><?= $cart_count ?></span></a></li>
                                                                 </ul>
                                                             </button>
-                                                            <ul class="dropdown-menu  animated2 fadeInUp" aria-labelledby="dropdownMenuButton">
-                                                                <li>
-                                                                    <div class="cart-box">
-                                                                        <div class="row">
-                                                                            <div class="col-4">
-                                                                                <div class="img-box">
-                                                                                    <a href="#!" title="MARVELS (SILVER)"><img class="product-image img-responsive" src="<?= Yii::$app->homeUrl ?>images/product1.jpg" alt="" title="" width="100" height="100"></a>
-                                                                                </div>
-                                                                            </div>
-                                                                            <div class="col-8">
-                                                                                <div class="cont-box">
-                                                                                    <h4 class="head">
-                                                                                        <a class="" href="#!" title="">DAVID OF COOLWATER</a>                                </h4>
-                                                                                    <h5 class="price">$ 55.00</h5>
-                                                                                    <h6 class="Quantity">Size: 80 ML</h6>
-                                                                                    <h6 class="Quantity">Quantity: 1</h6>
-                                                                                    <a class="remove-from-cart remove_cart_product close" rel="nofollow" href="" data-product_id="VkYwWXpHc0ZhcTEyckpHWS92Sk9Jdz09" data-link-action="remove-from-cart" title="Remove from cart">
-                                                                                        <i class="far fa-times-circle"></i>
-                                                                                    </a>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                </li>
-                                                                <li>
-                                                                    <div class="cart-box">
-                                                                        <div class="row">
-                                                                            <div class="col-4">
-                                                                                <div class="img-box">
-                                                                                    <a href="#!" title="MARVELS (SILVER)"><img class="product-image img-responsive" src="<?= Yii::$app->homeUrl ?>images/product1.jpg" alt="" title="" width="100" height="100"></a>
-                                                                                </div>
-                                                                            </div>
-                                                                            <div class="col-8">
-                                                                                <div class="cont-box">
-                                                                                    <h4 class="head">
-                                                                                        <a class="" href="#!" title="">DAVID OF COOLWATER</a>                                </h4>
-                                                                                    <h5 class="price">$ 55.00</h5>
-                                                                                    <h6 class="Quantity">Size: 80 ML</h6>
-                                                                                    <h6 class="Quantity">Quantity: 1</h6>
-                                                                                    <a class="remove-from-cart remove_cart_product close" rel="nofollow" href="" data-product_id="VkYwWXpHc0ZhcTEyckpHWS92Sk9Jdz09" data-link-action="remove-from-cart" title="Remove from cart">
-                                                                                        <i class="far fa-times-circle"></i>
-                                                                                    </a>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                </li>
-                                                                <li>
-                                                                    <a class="check-out cart-button" href="cart.php">view cart</a>
-                                                                    <a class="check-out" href="checkout.php">check out</a>
-                                                                </li>
+                                                            <ul class="dropdown-menu  animated2 fadeInUp shopping-cart-items" aria-labelledby="dropdownMenuButton">
+                                                                <?= common\components\CartDetailWidget::widget() ?>
                                                             </ul>
                                                         </div>
                                                         <div class="login-top ">
@@ -209,15 +161,15 @@ $language = Yii::$app->session['language'];
                                             <nav class="navbar navbar-toggleable-lg navbar-light bg-faded navbar-expand-lg">
                                                 <div class="collapse navbar-collapse" id="navbarNavDropdown2">
                                                     <ul class="navbar-nav">
-                                                        <li class="nav-list active"><?= Html::a(Yii::$app->session['words']['fragrances'], ['/product/index'], ['class' => 'link']) ?></li>
-                                                        <li class="nav-list"> <?= Html::a(Yii::$app->session['words']['special_offers'], ['/product/index'], ['class' => 'link']) ?></li>
+                                                        <li class="nav-list active"><?= Html::a(Yii::$app->session['words']['fragrances'], ['/product/index', 'category' => 'fragrances'], ['class' => 'link']) ?></li>
+                                                        <li class="nav-list"> <?= Html::a(Yii::$app->session['words']['special_offers'], ['/product/index', 'category' => 'special-offers'], ['class' => 'link']) ?></li>
                                                         <li class="nav-list"> <?= Html::a(Yii::$app->session['words']['brands'], ['/product/index'], ['class' => 'link']) ?></li>
-                                                        <li class="nav-list"> <?= Html::a(Yii::$app->session['words']['exclusive_brands'], ['/product/index'], ['class' => 'link']) ?></li>
-                                                        <li class="nav-list"> <?= Html::a(Yii::$app->session['words']['arabic_perfumes'], ['/product/index'], ['class' => 'link']) ?></li>
-                                                        <li class="nav-list"> <?= Html::a(Yii::$app->session['words']['new_arrivals'], ['/product/index'], ['class' => 'link']) ?></li>
-                                                        <li class="nav-list"> <?= Html::a(Yii::$app->session['words']['gift_set'], ['/product/index'], ['class' => 'link']) ?></li>
-                                                        <li class="nav-list"> <?= Html::a(Yii::$app->session['words']['one_day_sale'], ['/product/index'], ['class' => 'link']) ?></li>
-                                                        <li class="nav-list"> <?= Html::a(Yii::$app->session['words']['others'], ['/product/index'], ['class' => 'link']) ?></li>
+                                                        <li class="nav-list"> <?= Html::a(Yii::$app->session['words']['exclusive_brands'], ['/product/index', 'category' => 'exclusive-brands'], ['class' => 'link']) ?></li>
+                                                        <li class="nav-list"> <?= Html::a(Yii::$app->session['words']['arabic_perfumes'], ['/product/index', 'category' => 'arabic-perfumes'], ['class' => 'link']) ?></li>
+                                                        <li class="nav-list"> <?= Html::a(Yii::$app->session['words']['new_arrivals'], ['/product/index', 'category' => 'new-arrivals'], ['class' => 'link']) ?></li>
+                                                        <li class="nav-list"> <?= Html::a(Yii::$app->session['words']['gift_set'], ['/product/index', 'category' => 'gift-sets'], ['class' => 'link']) ?></li>
+                                                        <li class="nav-list"> <?= Html::a(Yii::$app->session['words']['one_day_sale'], ['/product/index', 'category' => 'one-day-sale'], ['class' => 'link']) ?></li>
+                                                        <li class="nav-list"> <?= Html::a(Yii::$app->session['words']['others'], ['/product/index', 'category' => 'others'], ['class' => 'link']) ?></li>
                                                     </ul>
                                                 </div>
                                             </nav>
@@ -361,6 +313,8 @@ $language = Yii::$app->session['language'];
                                                         <script>
                                                             $(document).ready(function () {
 
+
+
                                                                 $('.language').click(function (e) {
                                                                     e.preventDefault();
                                                                     var lang = $(this).attr('val');
@@ -374,6 +328,27 @@ $language = Yii::$app->session['language'];
                                                                     });
                                                                 });
                                                             });
+
+//                                                            $(window).bind("load", function () {
+//                                                                /*
+//                                                                 * Update url with whether it is english or arabic
+//                                                                 */
+//                                                                var language = '<?= Yii::$app->session['language']; ?>';
+//                                                                var url = window.location.href;
+//                                                                var parts = url.split('/');
+//                                                                var last_element = parts[parts.length - 1]
+//
+//                                                                if (last_element == 'en' || last_element == 'ar') {
+//                                                                    parts.pop(); // removes the first item from the array
+//                                                                    var url = parts.join('/');
+//                                                                }
+//                                                                var new_url = url + '/' + language;
+//                                                                window.history.pushState(url, 'Vperfumes', new_url);
+//                                                                /*
+//                                                                 * 
+//                                                                 */
+//                                                            });
+
                                                         </script>
                                                         </body>
                                                         </html>

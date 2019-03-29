@@ -74,7 +74,6 @@ use common\components\ProductLinksWidget;
                         </div>
                     </div>
                 </div>
-
                 <div class="one-slide mx-auto">
                     <div class="m010 d-flex flex-direction-column justify-content-center flex-wrap align-items-center">
                         <div class="product-box">

@@ -2,6 +2,8 @@
 $this->title = 'Vperfumes';
 
 use common\components\ProductLinksWidget;
+use yii\widgets\ListView;
+
 ?>
 
 
@@ -488,413 +490,39 @@ use common\components\ProductLinksWidget;
                                     <div class="summary">Showing 1-4 of 262 items.</div>
                                 </div>
                             </div>
-                            <div class="desk-xl-2 col-lg-3 col-md-4 col-6 mob-full">
-                                <div class="product-box">
-                                    <div class="off-tag">71% OFF</div>
-                                    <a href="<?= Yii::$app->homeUrl?>product/product-detail" class="img-box">
-                                        <img src="<?= Yii::$app->homeUrl ?>images/products/pro1.jpg" alt="pro1" class="img-fluid pic-1"/>
-                                        <img src="<?= Yii::$app->homeUrl ?>images/products/pro2.jpg" alt="pro1" class="img-fluid pic-2"/>
-                                    </a>
-                                    <ul class="social">
-                                        <li><a href="" data-tip="Quick View"><img src="<?= Yii::$app->homeUrl ?>images/icons/eye-icon.png"/></a></li>
-                                        <li><a href="" data-tip="Add to Wishlist"><img src="<?= Yii::$app->homeUrl ?>images/icons/heart-icon.png"/></a></li>
-                                        <li><a href="" data-tip="Similar Products"><img src="<?= Yii::$app->homeUrl ?>images/icons/similar.png"/></a></li>
-                                    </ul>
-                                    <div class="content">
-                                        <div class="points"><span>40</span> points</div>
-                                        <a href="product-detail.php" class="title">Coral 2pcs+Mark Alfred Free</a>
-                                        <div class="off-price">AED 89.00</div>
-                                        <div class="og-price">AED 305.00</div>
-                                    </div>
-                                    <div class="box-foot">
-                                        <a class="check-out cart-button" href="<?= Yii::$app->homeUrl?>product/product-detail"><i class="bag-icon"></i> Add to cart</a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="desk-xl-2 col-lg-3 col-md-4 col-6 mob-full">
-                                <div class="product-box">
-                                    <div class="off-tag">71% OFF</div>
-                                    <a href="<?= Yii::$app->homeUrl?>product/product-detail" class="img-box">
-                                        <img src="<?= Yii::$app->homeUrl ?>images/products/pro1.jpg" alt="pro1" class="img-fluid pic-1"/>
-                                        <img src="<?= Yii::$app->homeUrl ?>images/products/pro2.jpg" alt="pro1" class="img-fluid pic-2"/>
-                                    </a>
-                                    <ul class="social">
-                                        <li><a href="" data-tip="Quick View"><img src="<?= Yii::$app->homeUrl ?>images/icons/eye-icon.png"/></a></li>
-                                        <li><a href="" data-tip="Add to Wishlist"><img src="<?= Yii::$app->homeUrl ?>images/icons/heart-icon.png"/></a></li>
-                                        <li><a href="" data-tip="Similar Products"><img src="<?= Yii::$app->homeUrl ?>images/icons/similar.png"/></a></li>
-                                    </ul>
-                                    <div class="content">
-                                        <div class="points"><span>40</span> points</div>
-                                        <a href="<?= Yii::$app->homeUrl?>product/product-detail" class="title">Coral 2pcs+Mark Alfred Free</a>
-                                        <div class="off-price">AED 89.00</div>
-                                        <div class="og-price">AED 305.00</div>
-                                    </div>
-                                    <div class="box-foot">
-                                        <a class="check-out cart-button" href="<?= Yii::$app->homeUrl?>product/product-detail"><i class="bag-icon"></i> Add to cart</a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="desk-xl-2 col-lg-3 col-md-4 col-6 mob-full">
-                                <div class="product-box">
-                                    <div class="off-tag">71% OFF</div>
-                                    <a href="<?= Yii::$app->homeUrl?>product/product-detail" class="img-box">
-                                        <img src="<?= Yii::$app->homeUrl ?>images/products/pro1.jpg" alt="pro1" class="img-fluid pic-1"/>
-                                        <img src="<?= Yii::$app->homeUrl ?>images/products/pro2.jpg" alt="pro1" class="img-fluid pic-2"/>
-                                    </a>
-                                    <ul class="social">
-                                        <li><a href="" data-tip="Quick View"><img src="<?= Yii::$app->homeUrl ?>images/icons/eye-icon.png"/></a></li>
-                                        <li><a href="" data-tip="Add to Wishlist"><img src="<?= Yii::$app->homeUrl ?>images/icons/heart-icon.png"/></a></li>
-                                        <li><a href="" data-tip="Similar Products"><img src="<?= Yii::$app->homeUrl ?>images/icons/similar.png"/></a></li>
-                                    </ul>
-                                    <div class="content">
-                                        <div class="points"><span>40</span> points</div>
-                                        <a href="<?= Yii::$app->homeUrl?>product/product-detail" class="title">Coral 2pcs+Mark Alfred Free</a>
-                                        <div class="off-price">AED 89.00</div>
-                                        <div class="og-price">AED 305.00</div>
-                                    </div>
-                                    <div class="box-foot">
-                                        <a class="check-out cart-button" href="<?= Yii::$app->homeUrl?>product/product-detail"><i class="bag-icon"></i> Add to cart</a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="desk-xl-2 col-lg-3 col-md-4 col-6 mob-full">
-                                <div class="product-box">
-                                    <div class="off-tag">71% OFF</div>
-                                    <a href="<?= Yii::$app->homeUrl?>product/product-detail" class="img-box">
-                                        <img src="<?= Yii::$app->homeUrl ?>images/products/pro1.jpg" alt="pro1" class="img-fluid pic-1"/>
-                                        <img src="<?= Yii::$app->homeUrl ?>images/products/pro2.jpg" alt="pro1" class="img-fluid pic-2"/>
-                                    </a>
-                                    <ul class="social">
-                                        <li><a href="" data-tip="Quick View"><img src="<?= Yii::$app->homeUrl ?>images/icons/eye-icon.png"/></a></li>
-                                        <li><a href="" data-tip="Add to Wishlist"><img src="<?= Yii::$app->homeUrl ?>images/icons/heart-icon.png"/></a></li>
-                                        <li><a href="" data-tip="Similar Products"><img src="<?= Yii::$app->homeUrl ?>images/icons/similar.png"/></a></li>
-                                    </ul>
-                                    <div class="content">
-                                        <div class="points"><span>40</span> points</div>
-                                        <a href="<?= Yii::$app->homeUrl?>product/product-detail" class="title">Coral 2pcs+Mark Alfred Free</a>
-                                        <div class="off-price">AED 89.00</div>
-                                        <div class="og-price">AED 305.00</div>
-                                    </div>
-                                    <div class="box-foot">
-                                        <a class="check-out cart-button" href="#!"><i class="bag-icon"></i> Add to cart</a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="desk-xl-2 col-lg-3 col-md-4 col-6 mob-full">
-                                <div class="product-box">
-                                    <div class="off-tag">71% OFF</div>
-                                    <a href="<?= Yii::$app->homeUrl?>product/product-detail" class="img-box">
-                                        <img src="<?= Yii::$app->homeUrl ?>images/products/pro1.jpg" alt="pro1" class="img-fluid pic-1"/>
-                                        <img src="<?= Yii::$app->homeUrl ?>images/products/pro2.jpg" alt="pro1" class="img-fluid pic-2"/>
-                                    </a>
-                                    <ul class="social">
-                                        <li><a href="" data-tip="Quick View"><img src="<?= Yii::$app->homeUrl ?>images/icons/eye-icon.png"/></a></li>
-                                        <li><a href="" data-tip="Add to Wishlist"><img src="<?= Yii::$app->homeUrl ?>images/icons/heart-icon.png"/></a></li>
-                                        <li><a href="" data-tip="Similar Products"><img src="<?= Yii::$app->homeUrl ?>images/icons/similar.png"/></a></li>
-                                    </ul>
-                                    <div class="content">
-                                        <div class="points"><span>40</span> points</div>
-                                        <a href="<?= Yii::$app->homeUrl?>product/product-detail" class="title">Coral 2pcs+Mark Alfred Free</a>
-                                        <div class="off-price">AED 89.00</div>
-                                        <div class="og-price">AED 305.00</div>
-                                    </div>
-                                    <div class="box-foot">
-                                        <a class="check-out cart-button" href="#!"><i class="bag-icon"></i> Add to cart</a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="desk-xl-2 col-lg-3 col-md-4 col-6 mob-full">
-                                <div class="product-box">
-                                    <div class="off-tag">71% OFF</div>
-                                    <a href="<?= Yii::$app->homeUrl?>product/product-detail" class="img-box">
-                                        <img src="<?= Yii::$app->homeUrl ?>images/products/pro1.jpg" alt="pro1" class="img-fluid pic-1"/>
-                                        <img src="<?= Yii::$app->homeUrl ?>images/products/pro2.jpg" alt="pro1" class="img-fluid pic-2"/>
-                                    </a>
-                                    <ul class="social">
-                                        <li><a href="" data-tip="Quick View"><img src="<?= Yii::$app->homeUrl ?>images/icons/eye-icon.png"/></a></li>
-                                        <li><a href="" data-tip="Add to Wishlist"><img src="<?= Yii::$app->homeUrl ?>images/icons/heart-icon.png"/></a></li>
-                                        <li><a href="" data-tip="Similar Products"><img src="<?= Yii::$app->homeUrl ?>images/icons/similar.png"/></a></li>
-                                    </ul>
-                                    <div class="content">
-                                        <div class="points"><span>40</span> points</div>
-                                        <a href="<?= Yii::$app->homeUrl?>product/product-detail" class="title">Coral 2pcs+Mark Alfred Free</a>
-                                        <div class="off-price">AED 89.00</div>
-                                        <div class="og-price">AED 305.00</div>
-                                    </div>
-                                    <div class="box-foot">
-                                        <a class="check-out cart-button" href="#!"><i class="bag-icon"></i> Add to cart</a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="desk-xl-2 col-lg-3 col-md-4 col-6 mob-full">
-                                <div class="product-box">
-                                    <div class="off-tag">71% OFF</div>
-                                    <a href="<?= Yii::$app->homeUrl?>product/product-detail" class="img-box">
-                                        <img src="<?= Yii::$app->homeUrl ?>images/products/pro1.jpg" alt="pro1" class="img-fluid pic-1"/>
-                                        <img src="<?= Yii::$app->homeUrl ?>images/products/pro2.jpg" alt="pro1" class="img-fluid pic-2"/>
-                                    </a>
-                                    <ul class="social">
-                                        <li><a href="" data-tip="Quick View"><img src="<?= Yii::$app->homeUrl ?>images/icons/eye-icon.png"/></a></li>
-                                        <li><a href="" data-tip="Add to Wishlist"><img src="<?= Yii::$app->homeUrl ?>images/icons/heart-icon.png"/></a></li>
-                                        <li><a href="" data-tip="Similar Products"><img src="<?= Yii::$app->homeUrl ?>images/icons/similar.png"/></a></li>
-                                    </ul>
-                                    <div class="content">
-                                        <div class="points"><span>40</span> points</div>
-                                        <a href="<?= Yii::$app->homeUrl?>product/product-detail" class="title">Coral 2pcs+Mark Alfred Free</a>
-                                        <div class="off-price">AED 89.00</div>
-                                        <div class="og-price">AED 305.00</div>
-                                    </div>
-                                    <div class="box-foot">
-                                        <a class="check-out cart-button" href="#!"><i class="bag-icon"></i> Add to cart</a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="desk-xl-2 col-lg-3 col-md-4 col-6 mob-full">
-                                <div class="product-box">
-                                    <div class="off-tag">71% OFF</div>
-                                    <a href="<?= Yii::$app->homeUrl?>product/product-detail" class="img-box">
-                                        <img src="<?= Yii::$app->homeUrl ?>images/products/pro1.jpg" alt="pro1" class="img-fluid pic-1"/>
-                                        <img src="<?= Yii::$app->homeUrl ?>images/products/pro2.jpg" alt="pro1" class="img-fluid pic-2"/>
-                                    </a>
-                                    <ul class="social">
-                                        <li><a href="" data-tip="Quick View"><img src="<?= Yii::$app->homeUrl ?>images/icons/eye-icon.png"/></a></li>
-                                        <li><a href="" data-tip="Add to Wishlist"><img src="<?= Yii::$app->homeUrl ?>images/icons/heart-icon.png"/></a></li>
-                                        <li><a href="" data-tip="Similar Products"><img src="<?= Yii::$app->homeUrl ?>images/icons/similar.png"/></a></li>
-                                    </ul>
-                                    <div class="content">
-                                        <div class="points"><span>40</span> points</div>
-                                        <a href="<?= Yii::$app->homeUrl?>product/product-detail" class="title">Coral 2pcs+Mark Alfred Free</a>
-                                        <div class="off-price">AED 89.00</div>
-                                        <div class="og-price">AED 305.00</div>
-                                    </div>
-                                    <div class="box-foot">
-                                        <a class="check-out cart-button" href="#!"><i class="bag-icon"></i> Add to cart</a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="desk-xl-2 col-lg-3 col-md-4 col-6 mob-full">
-                                <div class="product-box">
-                                    <div class="off-tag">71% OFF</div>
-                                    <a href="<?= Yii::$app->homeUrl?>product/product-detail" class="img-box">
-                                        <img src="<?= Yii::$app->homeUrl ?>images/products/pro1.jpg" alt="pro1" class="img-fluid pic-1"/>
-                                        <img src="<?= Yii::$app->homeUrl ?>images/products/pro2.jpg" alt="pro1" class="img-fluid pic-2"/>
-                                    </a>
-                                    <ul class="social">
-                                        <li><a href="" data-tip="Quick View"><img src="<?= Yii::$app->homeUrl ?>images/icons/eye-icon.png"/></a></li>
-                                        <li><a href="" data-tip="Add to Wishlist"><img src="<?= Yii::$app->homeUrl ?>images/icons/heart-icon.png"/></a></li>
-                                        <li><a href="" data-tip="Similar Products"><img src="<?= Yii::$app->homeUrl ?>images/icons/similar.png"/></a></li>
-                                    </ul>
-                                    <div class="content">
-                                        <div class="points"><span>40</span> points</div>
-                                        <a href="<?= Yii::$app->homeUrl?>product/product-detail" class="title">Coral 2pcs+Mark Alfred Free</a>
-                                        <div class="off-price">AED 89.00</div>
-                                        <div class="og-price">AED 305.00</div>
-                                    </div>
-                                    <div class="box-foot">
-                                        <a class="check-out cart-button" href="#!"><i class="bag-icon"></i> Add to cart</a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="desk-xl-2 col-lg-3 col-md-4 col-6 mob-full">
-                                <div class="product-box">
-                                    <div class="off-tag">71% OFF</div>
-                                    <a href="<?= Yii::$app->homeUrl?>product/product-detail" class="img-box">
-                                        <img src="<?= Yii::$app->homeUrl ?>images/products/pro1.jpg" alt="pro1" class="img-fluid pic-1"/>
-                                        <img src="<?= Yii::$app->homeUrl ?>images/products/pro2.jpg" alt="pro1" class="img-fluid pic-2"/>
-                                    </a>
-                                    <ul class="social">
-                                        <li><a href="" data-tip="Quick View"><img src="<?= Yii::$app->homeUrl ?>images/icons/eye-icon.png"/></a></li>
-                                        <li><a href="" data-tip="Add to Wishlist"><img src="<?= Yii::$app->homeUrl ?>images/icons/heart-icon.png"/></a></li>
-                                        <li><a href="" data-tip="Similar Products"><img src="<?= Yii::$app->homeUrl ?>images/icons/similar.png"/></a></li>
-                                    </ul>
-                                    <div class="content">
-                                        <div class="points"><span>40</span> points</div>
-                                        <a href="<?= Yii::$app->homeUrl?>product/product-detail" class="title">Coral 2pcs+Mark Alfred Free</a>
-                                        <div class="off-price">AED 89.00</div>
-                                        <div class="og-price">AED 305.00</div>
-                                    </div>
-                                    <div class="box-foot">
-                                        <a class="check-out cart-button" href="#!"><i class="bag-icon"></i> Add to cart</a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="desk-xl-2 col-lg-3 col-md-4 col-6 mob-full">
-                                <div class="product-box">
-                                    <div class="off-tag">71% OFF</div>
-                                    <a href="<?= Yii::$app->homeUrl?>product/product-detail" class="img-box">
-                                        <img src="<?= Yii::$app->homeUrl ?>images/products/pro1.jpg" alt="pro1" class="img-fluid pic-1"/>
-                                        <img src="<?= Yii::$app->homeUrl ?>images/products/pro2.jpg" alt="pro1" class="img-fluid pic-2"/>
-                                    </a>
-                                    <ul class="social">
-                                        <li><a href="" data-tip="Quick View"><img src="<?= Yii::$app->homeUrl ?>images/icons/eye-icon.png"/></a></li>
-                                        <li><a href="" data-tip="Add to Wishlist"><img src="<?= Yii::$app->homeUrl ?>images/icons/heart-icon.png"/></a></li>
-                                        <li><a href="" data-tip="Similar Products"><img src="<?= Yii::$app->homeUrl ?>images/icons/similar.png"/></a></li>
-                                    </ul>
-                                    <div class="content">
-                                        <div class="points"><span>40</span> points</div>
-                                        <a href="<?= Yii::$app->homeUrl?>product/product-detail" class="title">Coral 2pcs+Mark Alfred Free</a>
-                                        <div class="off-price">AED 89.00</div>
-                                        <div class="og-price">AED 305.00</div>
-                                    </div>
-                                    <div class="box-foot">
-                                        <a class="check-out cart-button" href="#!"><i class="bag-icon"></i> Add to cart</a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="desk-xl-2 col-lg-3 col-md-4 col-6 mob-full">
-                                <div class="product-box">
-                                    <div class="off-tag">71% OFF</div>
-                                    <a href="<?= Yii::$app->homeUrl?>product/product-detail" class="img-box">
-                                        <img src="<?= Yii::$app->homeUrl ?>images/products/pro1.jpg" alt="pro1" class="img-fluid pic-1"/>
-                                        <img src="<?= Yii::$app->homeUrl ?>images/products/pro2.jpg" alt="pro1" class="img-fluid pic-2"/>
-                                    </a>
-                                    <ul class="social">
-                                        <li><a href="" data-tip="Quick View"><img src="<?= Yii::$app->homeUrl ?>images/icons/eye-icon.png"/></a></li>
-                                        <li><a href="" data-tip="Add to Wishlist"><img src="<?= Yii::$app->homeUrl ?>images/icons/heart-icon.png"/></a></li>
-                                        <li><a href="" data-tip="Similar Products"><img src="<?= Yii::$app->homeUrl ?>images/icons/similar.png"/></a></li>
-                                    </ul>
-                                    <div class="content">
-                                        <div class="points"><span>40</span> points</div>
-                                        <a href="<?= Yii::$app->homeUrl?>product/product-detail" class="title">Coral 2pcs+Mark Alfred Free</a>
-                                        <div class="off-price">AED 89.00</div>
-                                        <div class="og-price">AED 305.00</div>
-                                    </div>
-                                    <div class="box-foot">
-                                        <a class="check-out cart-button" href="#!"><i class="bag-icon"></i> Add to cart</a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="desk-xl-2 col-lg-3 col-md-4 col-6 mob-full">
-                                <div class="product-box">
-                                    <div class="off-tag">71% OFF</div>
-                                    <a href="<?= Yii::$app->homeUrl?>product/product-detail" class="img-box">
-                                        <img src="<?= Yii::$app->homeUrl ?>images/products/pro1.jpg" alt="pro1" class="img-fluid pic-1"/>
-                                        <img src="<?= Yii::$app->homeUrl ?>images/products/pro2.jpg" alt="pro1" class="img-fluid pic-2"/>
-                                    </a>
-                                    <ul class="social">
-                                        <li><a href="" data-tip="Quick View"><img src="<?= Yii::$app->homeUrl ?>images/icons/eye-icon.png"/></a></li>
-                                        <li><a href="" data-tip="Add to Wishlist"><img src="<?= Yii::$app->homeUrl ?>images/icons/heart-icon.png"/></a></li>
-                                        <li><a href="" data-tip="Similar Products"><img src="<?= Yii::$app->homeUrl ?>images/icons/similar.png"/></a></li>
-                                    </ul>
-                                    <div class="content">
-                                        <div class="points"><span>40</span> points</div>
-                                        <a href="<?= Yii::$app->homeUrl?>product/product-detail" class="title">Coral 2pcs+Mark Alfred Free</a>
-                                        <div class="off-price">AED 89.00</div>
-                                        <div class="og-price">AED 305.00</div>
-                                    </div>
-                                    <div class="box-foot">
-                                        <a class="check-out cart-button" href="#!"><i class="bag-icon"></i> Add to cart</a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="desk-xl-2 col-lg-3 col-md-4 col-6 mob-full">
-                                <div class="product-box">
-                                    <div class="off-tag">71% OFF</div>
-                                    <a href="<?= Yii::$app->homeUrl?>product/product-detail" class="img-box">
-                                        <img src="<?= Yii::$app->homeUrl ?>images/products/pro1.jpg" alt="pro1" class="img-fluid pic-1"/>
-                                        <img src="<?= Yii::$app->homeUrl ?>images/products/pro2.jpg" alt="pro1" class="img-fluid pic-2"/>
-                                    </a>
-                                    <ul class="social">
-                                        <li><a href="" data-tip="Quick View"><img src="<?= Yii::$app->homeUrl ?>images/icons/eye-icon.png"/></a></li>
-                                        <li><a href="" data-tip="Add to Wishlist"><img src="<?= Yii::$app->homeUrl ?>images/icons/heart-icon.png"/></a></li>
-                                        <li><a href="" data-tip="Similar Products"><img src="<?= Yii::$app->homeUrl ?>images/icons/similar.png"/></a></li>
-                                    </ul>
-                                    <div class="content">
-                                        <div class="points"><span>40</span> points</div>
-                                        <a href="<?= Yii::$app->homeUrl?>product/product-detail" class="title">Coral 2pcs+Mark Alfred Free</a>
-                                        <div class="off-price">AED 89.00</div>
-                                        <div class="og-price">AED 305.00</div>
-                                    </div>
-                                    <div class="box-foot">
-                                        <a class="check-out cart-button" href="#!"><i class="bag-icon"></i> Add to cart</a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="desk-xl-2 col-lg-3 col-md-4 col-6 mob-full">
-                                <div class="product-box">
-                                    <div class="off-tag">71% OFF</div>
-                                    <a href="<?= Yii::$app->homeUrl?>product/product-detail" class="img-box">
-                                        <img src="<?= Yii::$app->homeUrl ?>images/products/pro1.jpg" alt="pro1" class="img-fluid pic-1"/>
-                                        <img src="<?= Yii::$app->homeUrl ?>images/products/pro2.jpg" alt="pro1" class="img-fluid pic-2"/>
-                                    </a>
-                                    <ul class="social">
-                                        <li><a href="" data-tip="Quick View"><img src="<?= Yii::$app->homeUrl ?>images/icons/eye-icon.png"/></a></li>
-                                        <li><a href="" data-tip="Add to Wishlist"><img src="<?= Yii::$app->homeUrl ?>images/icons/heart-icon.png"/></a></li>
-                                        <li><a href="" data-tip="Similar Products"><img src="<?= Yii::$app->homeUrl ?>images/icons/similar.png"/></a></li>
-                                    </ul>
-                                    <div class="content">
-                                        <div class="points"><span>40</span> points</div>
-                                        <a href="<?= Yii::$app->homeUrl?>product/product-detail" class="title">Coral 2pcs+Mark Alfred Free</a>
-                                        <div class="off-price">AED 89.00</div>
-                                        <div class="og-price">AED 305.00</div>
-                                    </div>
-                                    <div class="box-foot">
-                                        <a class="check-out cart-button" href="#!"><i class="bag-icon"></i> Add to cart</a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="desk-xl-2 col-lg-3 col-md-4 col-6 mob-full">
-                                <div class="product-box">
-                                    <div class="off-tag">71% OFF</div>
-                                    <a href="<?= Yii::$app->homeUrl?>product/product-detail" class="img-box">
-                                        <img src="<?= Yii::$app->homeUrl ?>images/products/pro1.jpg" alt="pro1" class="img-fluid pic-1"/>
-                                        <img src="<?= Yii::$app->homeUrl ?>images/products/pro2.jpg" alt="pro1" class="img-fluid pic-2"/>
-                                    </a>
-                                    <ul class="social">
-                                        <li><a href="" data-tip="Quick View"><img src="<?= Yii::$app->homeUrl ?>images/icons/eye-icon.png"/></a></li>
-                                        <li><a href="" data-tip="Add to Wishlist"><img src="<?= Yii::$app->homeUrl ?>images/icons/heart-icon.png"/></a></li>
-                                        <li><a href="" data-tip="Similar Products"><img src="<?= Yii::$app->homeUrl ?>images/icons/similar.png"/></a></li>
-                                    </ul>
-                                    <div class="content">
-                                        <div class="points"><span>40</span> points</div>
-                                        <a href="<?= Yii::$app->homeUrl?>product/product-detail" class="title">Coral 2pcs+Mark Alfred Free</a>
-                                        <div class="off-price">AED 89.00</div>
-                                        <div class="og-price">AED 305.00</div>
-                                    </div>
-                                    <div class="box-foot">
-                                        <a class="check-out cart-button" href="#!"><i class="bag-icon"></i> Add to cart</a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="desk-xl-2 col-lg-3 col-md-4 col-6 mob-full">
-                                <div class="product-box">
-                                    <div class="off-tag">71% OFF</div>
-                                    <a href="<?= Yii::$app->homeUrl?>product/product-detail" class="img-box">
-                                        <img src="<?= Yii::$app->homeUrl ?>images/products/pro1.jpg" alt="pro1" class="img-fluid pic-1"/>
-                                        <img src="<?= Yii::$app->homeUrl ?>images/products/pro2.jpg" alt="pro1" class="img-fluid pic-2"/>
-                                    </a>
-                                    <ul class="social">
-                                        <li><a href="" data-tip="Quick View"><img src="<?= Yii::$app->homeUrl ?>images/icons/eye-icon.png"/></a></li>
-                                        <li><a href="" data-tip="Add to Wishlist"><img src="<?= Yii::$app->homeUrl ?>images/icons/heart-icon.png"/></a></li>
-                                        <li><a href="" data-tip="Similar Products"><img src="<?= Yii::$app->homeUrl ?>images/icons/similar.png"/></a></li>
-                                    </ul>
-                                    <div class="content">
-                                        <div class="points"><span>40</span> points</div>
-                                        <a href="<?= Yii::$app->homeUrl?>product/product-detail" class="title">Coral 2pcs+Mark Alfred Free</a>
-                                        <div class="off-price">AED 89.00</div>
-                                        <div class="og-price">AED 305.00</div>
-                                    </div>
-                                    <div class="box-foot">
-                                        <a class="check-out cart-button" href="#!"><i class="bag-icon"></i> Add to cart</a>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="clearfix"></div>
-                            <ul class="pagination pg-blue">
-                                <li class="disabled"><span>&lt;</span></li>
-                                <li class="disabled"><span>Previous</span></li>
-                                <li class="active"><a href="#!" data-page="0">1</a></li>
-                                <li><a href="#!" data-page="1">2</a></li>
-                                <li><a href="#!" data-page="2">3</a></li>
-                                <li><a href="#!" data-page="3">4</a></li>
-                                <li><a href="#!" data-page="4">5</a></li>
-                                <li class=""><a href="#!" data-page="1">Next Page</a></li>
-                                <li class=""><a href="#!" data-page="9">&gt;</a></li>
-                            </ul>
-
-
                         </div>
+
+
+                        <?=
+                        $dataProvider->totalcount > 0 ? ListView::widget([
+                                    'dataProvider' => $dataProvider,
+                                    'itemView' => '_view2',
+                                    'options' => [
+                                        'tag' => 'div',
+                                        'class' => 'row'
+                                    ],
+                                    'itemOptions' => [
+                                        'tag' => 'div',
+                                        'class' => 'desk-xl-2 col-lg-3 col-md-4 col-6 mob-full'
+                                    ],
+                                    'pager' => [
+                                        'options' => ['class' => 'pagination'],
+                                        'prevPageLabel' => '<', // Set the label for the "previous" page button
+                                        'nextPageLabel' => '>', // Set the label for the "next" page button
+                                        'firstPageLabel' => 'First', // Set the label for the "first" page button
+                                        'lastPageLabel' => 'Last', // Set the label for the "last" page button
+                                        'nextPageCssClass' => '>', // Set CSS class for the "next" page button
+                                        'prevPageCssClass' => '<', // Set CSS class for the "previous" page button
+                                        'firstPageCssClass' => '<<', // Set CSS class for the "first" page button
+                                        'lastPageCssClass' => '>>', // Set CSS class for the "last" page button
+                                        'maxButtonCount' => 5, // Set maximum number of page buttons that can be displayed
+                                    ],
+                                ]) : $this->render('no_product');
+                        ?>
+
+
+
+
                     </div>
                 </div>
             </div>
@@ -934,3 +562,10 @@ use common\components\ProductLinksWidget;
         </div>
     </div>
 </section>
+
+<style>
+    .summary{
+        display: none;
+    }
+</style>
+
