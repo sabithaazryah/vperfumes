@@ -52,32 +52,32 @@ use Imagine\Image\Box;
  * @property int $featured_product
  * @property double $sort
  */
-class Product extends \yii\db\ActiveRecord
-{
+class Product extends \yii\db\ActiveRecord {
+
+    public $search_by_brand;
+
     /**
      * {@inheritdoc}
      */
-    public static function tableName()
-    {
+    public static function tableName() {
         return 'product';
     }
 
     /**
      * {@inheritdoc}
      */
-    public function rules()
-    {
+    public function rules() {
         return [
             [['main_category', 'category', 'subcategory', 'brand', 'ean_type', 'gender_type', 'discount', 'currency', 'stock', 'stock_unit', 'stock_availability', 'tax', 'free_shipping', 'product_type', 'size', 'size_unit', 'condition', 'CB', 'UB', 'status', 'featured_product'], 'integer'],
-            [['main_category', 'product_name', 'canonical_name', 'item_ean', 'price', 'currency', 'stock', 'stock_unit', 'product_detail', 'brand', 'size','product_name_ar','canonical_name_ar'], 'required'],
+            [['main_category', 'product_name', 'canonical_name', 'item_ean', 'price', 'stock', 'product_detail', 'brand', 'size'], 'required'],
             [['meta_description', 'meta_keywords', 'main_description', 'product_detail'], 'string'],
             [['price', 'offer_price', 'sort'], 'number'],
-            [['DOC', 'DOU','search_tag','other_image','product_name_ar','canonical_name_ar','product_detail_ar','barcode','type','barcode_price','offer_price_expiry_date','vmiles'], 'safe'],
-            [['product_name', 'canonical_name', 'related_product'], 'string', 'max' => 100],
+            [['DOC', 'DOU', 'search_tag', 'other_image', 'product_name_ar', 'canonical_name_ar', 'product_detail_ar', 'barcode', 'type', 'barcode_price', 'offer_price_expiry_date', 'vmiles', 'related_product'], 'safe'],
+            [['product_name', 'canonical_name'], 'string', 'max' => 100],
             [['meta_title'], 'string', 'max' => 200],
             [['ean_value', 'profile_alt', 'gallery_alt'], 'string', 'max' => 250],
             [['item_ean', 'profile'], 'string', 'max' => 255],
-            [['canonical_name','canonical_name_ar'], 'unique'],
+            [['canonical_name', 'canonical_name_ar'], 'unique'],
             [['item_ean'], 'unique'],
             [['other_image'], 'file', 'extensions' => 'png, jpg, jpeg', 'maxFiles' => 3],
             [['profile'], 'file', 'extensions' => 'png, jpg, jpeg', 'on' => 'create'],
@@ -87,8 +87,7 @@ class Product extends \yii\db\ActiveRecord
     /**
      * {@inheritdoc}
      */
-    public function attributeLabels()
-    {
+    public function attributeLabels() {
         return [
             'id' => 'ID',
             'main_category' => 'Main Category',
@@ -107,7 +106,7 @@ class Product extends \yii\db\ActiveRecord
             'ean_type' => 'Ean Type',
             'ean_value' => 'Product Code',
             'gender_type' => 'Gender',
-            'price' => 'Price',
+            'price' => 'MSP',
             'offer_price' => 'Offer Price',
             'discount' => 'Discount',
             'currency' => 'Currency',
@@ -137,7 +136,7 @@ class Product extends \yii\db\ActiveRecord
             'sort' => 'Sort',
         ];
     }
-    
+
     public function upload($file, $model) {
         if (\yii::$app->basePath . '/../uploads') {
             $path = yii::$app->basePath . '/../uploads/product/' . $model->id . '/profile/' . $model->canonical_name . '_big.' . $file->extension;
@@ -178,10 +177,16 @@ class Product extends \yii\db\ActiveRecord
                     mkdir(\yii::$app->basePath . '/../uploads/product/' . $product_id . '/gallery_thumb/');
                     chmod(\yii::$app->basePath . '/../uploads/product/' . $product_id . '/gallery_thumb/', 0777);
                 }
+                if (!is_dir(\yii::$app->basePath . '/../uploads/product/' . $product_id . '/gallery_profile/')) {
+                    mkdir(\yii::$app->basePath . '/../uploads/product/' . $product_id . '/gallery_profile/');
+                    chmod(\yii::$app->basePath . '/../uploads/product/' . $product_id . '/gallery_profile/', 0777);
+                }
                 Image::thumbnail($path . '/' . $name, 250, 250)
                         ->save($main_path . '/gallery_thumb/' . $name, ['quality' => 80]);
                 Image::thumbnail($path . '/' . $name, 1080, 1080)
                         ->save($main_path . '/gallery/' . $name, ['quality' => 80]);
+                Image::thumbnail($path . '/' . $name, 600, 600)
+                        ->save($main_path . '/gallery_profile/' . $name, ['quality' => 80]);
             }
             return true;
         }
@@ -195,4 +200,5 @@ class Product extends \yii\db\ActiveRecord
             return $image_name . '.' . $extension;
         }
     }
+
 }

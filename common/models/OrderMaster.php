@@ -66,11 +66,11 @@ class OrderMaster extends \yii\db\ActiveRecord {
     public function rules() {
         return [
             [['order_id', 'user_id', 'total_amount', 'order_date'], 'required'],
-            [['user_id', 'ship_address_id', 'bill_address_id', 'currency_id', 'payment_mode', 'admin_comment', 'payment_status', 'admin_status', 'shipping_status', 'status', 'promotion_id', 'return_status', 'return_approve', 'gift_wrap'], 'integer'],
+            [['user_id', 'ship_address_id', 'bill_address_id', 'currency_id', 'payment_mode', 'admin_comment', 'payment_status', 'admin_status', 'shipping_status', 'status', 'promotion_id', 'return_status', 'return_approve'], 'integer'],
             [['total_amount', 'tax', 'discount_amount', 'tax_amount', 'shipping_charge', 'net_amount', 'promotion_discount'], 'number'],
-            [['order_date', 'expected_delivery_date', 'delivered_date', 'doc', 'dou'], 'safe'],
+            [['order_date', 'expected_delivery_date', 'delivered_date', 'doc', 'dou','gift_wrap', 'gift_wrap_value'], 'safe'],
             [['user_comment', 'payment_sucess_data', 'cancel_reason', 'return_reason'], 'string'],
-            [['order_id', 'gift_wrap_value'], 'string', 'max' => 200],
+            [['order_id'], 'string', 'max' => 200],
             [['invoice_no'], 'string', 'max' => 250],
             [['payment_ref_number'], 'string', 'max' => 100],
         ];

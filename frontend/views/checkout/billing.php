@@ -9,191 +9,147 @@ use common\models\UserAddress;
 
 $this->title = 'Checkout';
 ?>
-<div class="top-margin"></div>
-<div class="breadcrumb">
-    <div class="container">
-        <ul>
-            <li><?= Html::a('Home', ['/site/index']) ?></li>
-            <li><a class="current" href="javascript:void(0)">Checkout</a></li>
-        </ul>
-    </div>
-</div>
-
-<section id="checkout-page">
+<div id="cart-page" class="inner-page checkout-page">
     <div class="container">
         <div class="row">
-            <div class="col-lg-7 order-two">
-                <?php
-                $form = ActiveForm::begin(
-                                [
-                                    'method' => 'post',
-                                    'options' => [
-                                        'class' => 'login-form'
-                                    ]
-                                ]
-                );
-                ?>
-                <div class="form-group">
-                    <h2 class="head">Delivery Address</h2>
-                    <label>Address</label>
-                    <div class="form-group login-email required">
-                        <select class="form-control" size="1" autocomplete="shipping country" data-backup="address" name="UserAddress[billing]" id="billing">
-                            <option value=''>Select</option>
-                            <?php
-                            foreach ($addresses as $address) {
-                                $selected = '';
-                                if(isset($default_address)){
-                                  if ($address->id == $default_address->id) {
-                                    $selected = 'selected';
-                                   }
-                                }
-                            
-                                ?>
-                                <option value="<?= $address->id ?>" <?= $selected ?>><?= $address->name . ', ' . $address->address . ', ' . $address->landmark . ', ' . $address->location ?></option>
-                            <?php } ?>
-                        </select>
-                    </div>                               
-                </div>
-                <div class="form-group">
-                    <div class="new-adders"><a id="new-adders">OR ADD A NEW ADDRESS</a></div>
-                </div>
-                <br>
-                <h2 class="head">Address</h2>
-                <?php
-                $address = UserAddress::find()->where(['user_id' => Yii::$app->user->identity->id, 'status' => 1])->one();
-                if (isset($default_address) && $default_address != '') {
-                    $model->name = $default_address->name;
-                    $model->address = $default_address->address;
-                    $model->landmark = $default_address->landmark;
-                    $model->location = $default_address->location;
-                    $model->emirate = $default_address->emirate;
-                    $model->mobile_number = $default_address->mobile_number;
-                    $model->country_code = $default_address->country_code;
-                }
-                ?>
-                <div class="form-group">
-                    <label>Name</label>
-                    <?= $form->field($model, 'name')->textInput()->label(FALSE) ?>
-                </div>
-                <div class="form-group">
-                    <label>Building Name/Number</label>
-                    <?= $form->field($model, 'address')->textInput()->label(FALSE) ?>
-                </div>
-                <div class="form-group">
-                    <label>Landmark</label>
-                    <?= $form->field($model, 'landmark')->textInput()->label(FALSE) ?>
-                </div>
-                <div class="form-group">
-                    <label>Location</label>
-                    <?= $form->field($model, 'location')->textInput()->label(FALSE) ?>
-                </div>
-                <div class="form-group">
-                    <label>Emirate</label>
-                    <?= $form->field($model, 'emirate')->dropDownList(ArrayHelper::map(Emirates::find()->all(), 'id', 'name'), ['prompt' => 'select'])->label(FALSE) ?>
-                </div>
-                <div class="form-group">
-                    <label>Mobile Number</label>
-                    <div class="row">
-                        <?php $countrie_codes = ArrayHelper::map(common\models\CountryCode::findAll(['status' => 1]), 'id', 'country_code'); ?>
-                        <div class="col-xl-2 col-lg-3 col-md-3 col-sm-3 col-3">
-                            <select id="useraddress-country_code" name="UserAddress[country_code]" class="country-code">
-                                <?php foreach ($country_codes as $country_code) { ?>
-                                    <option value="<?= $country_code ?>" ><?= $country_code ?></option>
-                                <?php }
-                                ?>
-                            </select>
-                        </div>
-                        <div class="col-xl-10 col-lg-9 col-md-9 col-sm-9 col-9 pl0">
-                            <?= $form->field($model, 'mobile_number')->textInput()->label(FALSE) ?>
+            <div class="col-lg-7 order1">
+                <div class="checkout-step">
+                    <div class="step-header">
+                        <div class="title">Select delivery address</div>
+                        <div class="info">You have a saved address in this location</div>
+                    </div>
+
+                    <?php $form = ActiveForm::begin(['id' => 'address-form']); ?>
+                    <div class="box-rack">
+                        <input type="hidden" name="UserAddress[billing]" id='selected-address'>
+                        <?php foreach ($addresses as $address) { ?>    
+                            <div class="box">
+                                <div class="box-inner">
+                                    <div class="icon-div">
+                                        <span class="icon-location"></span>
+                                    </div>
+                                    <div class="address">
+                                        <div class="title">Address</div>
+                                        <p>
+                                            <?= $address->address . ',' ?><br>
+                                            <?= $address->landmark . ',' ?><br>
+                                            <?= $address->location . ',' ?><br>
+                                            <?php $emirate = Emirates::findOne($address->emirate) ?>
+                                            <?= $emirate->name . ',' ?><br>
+                                        </p>
+                                        <a href="" class="btn-slct delivery-address" id="<?= $address->id ?>">Deliver Here</a>
+                                    </div>
+                                </div>
+                            </div>
+                        <?php } ?>
+
+
+                        <div class="box add-new">
+                            <div class="box-inner">
+                                <div class="icon-div">
+                                    <span class="icon-location"></span>
+                                </div>
+                                <div class="address">
+                                    <div class="title">Add New Address</div>
+                                    <p>
+                                        Office#4, 1st Floor, Al Rouhani Building,We appreciate your
+                                        business
+                                        Diera, Dubai - UAE
+                                    </p>
+
+                                    <a href="#!" class="btn-slct" data-toggle="modal" data-target="#exampleModal">Add
+                                        New</a>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="form-group">
-                    <label>User Comment</label>
-                    <div class="form-group required">
-                        <textarea cols="6" rows="5" class="form-control" name="user_comment"></textarea>
-                    </div>    
-                </div>
-                <div class="payment-option">
-                    <div class="payment-method">
-                        <div class="form-group required gender">
-                            <div class="">
-                                <input type="radio" id="cash-on-delivery" class="form-control option-input" name="payment_method" aria-required="true" value="1" required>
-                                <label for="cash-on-delivery">Cash On Delivery</label>
-                            </div>                               
-                            <div class="">
-                                <input type="radio" id="payment-gateway" class="form-control option-input" name="payment_method" aria-required="true" value="2" required>
-                                <label for="payment-gateway">Payment Gateway</label>
-                            </div>                               
+
+                    <?php ActiveForm::end(); ?>
+
+                    <div class="modal left fade" id="exampleModal" tabindex="-1" role="dialog"
+                         aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-body">
+                                    <div class="form-header">
+                                        <a class="close" data-dismiss="modal"><img width="12"
+                                                                                   src="<?= Yii::$app->homeUrl ?>images/icons/cancel.png" /></a>
+                                        <h6 class="title">Save delivery address</h6>
+                                    </div>
+                                    <form action="" method="post" class="login-form">
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="form-group">
+                                                    <label>Address</label>
+                                                    <input type="text" placeholder="" class="form-control"
+                                                           name="address" required="">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-12">
+                                                <div class="form-group">
+                                                    <label>Door / Flat no.</label>
+                                                    <input type="text" placeholder="" class="form-control"
+                                                           name="address" required="">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-12">
+                                                <div class="form-group">
+                                                    <label>Landmark</label>
+                                                    <input type="text" placeholder="" class="form-control"
+                                                           name="address" required="">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-12">
+                                                <div class="form-group">
+                                                    <label>Phone no.</label>
+                                                    <input type="phone" placeholder="" class="form-control"
+                                                           name="address" required="">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-12">
+                                                <button type="submit" class="orng-btn">Save address & proceed</button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
                         </div>
                     </div>
+
+                    <div class="track-line line-ash"></div>
+                    <div class="step-icon">
+                        <span class="step-count">01</span>
+                    </div>
                 </div>
-                <div class="form-group">
-                    <?= Html::submitButton('Confirm Order', ['class' => 'submit bg-blue']) ?>
+                <div class="checkout-step _fade">
+                    <div class="step-header">
+                        <div class="title">Payment</div>
+                        <div class="info">Select a Payment Method</div>
+                    </div>
+                    <!-- <div class="track-line line-ash"></div> -->
+                    <div class="step-icon">
+                        <span class="step-count">02</span>
+                    </div>
                 </div>
-                <?php ActiveForm::end(); ?>
             </div>
-            <div class="col-lg-5 order-one">
-                <?= CartSummaryWidget::widget(); ?>
+            <div class="col-lg-5 order0">
+                
+                 <?= CartSummaryWidget::widget(); ?>
+                
             </div>
         </div>
     </div>
-</section>
+</div>
+
+
+
 <script>
-    jQuery('#new-adders').click(function () {
-        $('#useraddress-name').val('');
-        $('#useraddress-address').val('');
-        $('#useraddress-landmark').val('');
-        $('#useraddress-location').val('');
-        $('#useraddress-emirate').val('');
-        $('#useraddress-mobile_number').val('');
-        $('#billing').val('');
-    });
-    jQuery('body').on('change', '#billing', function (e) {
-        var id = $(this).val();
-        if (id === '') {
-            $('.billing').prop('disabled', false);
-            $('#useraddress-emirate').prop('disabled', false);
-            $('#useraddress-country_code').prop('disabled', false);
-        } else {
-            $('.billing').prop('disabled', true);
-            $('#useraddress-emirate').prop('disabled', true);
-            $('#useraddress-country_code').prop('disabled', true);
-        }
-        changeaddress('useraddress', id);
-    });
-
-
-
-
-    function changeaddress(formclass, id) {
-        jQuery.ajax({
-            type: "POST",
-            cache: 'false',
-            async: false,
-            url: homeUrl + 'checkout/getadress',
-            data: {id: id}
-        }).done(function (data) {
-            var $data = JSON.parse(data);
-            if ($data.rslt === "success") {
-                $('#' + formclass + '-name').val($data.name);
-                $('#' + formclass + '-address').val($data.address);
-                $('#' + formclass + '-landmark').val($data.landmark);
-                $('#' + formclass + '-location').val($data.location);
-                $('#' + formclass + '-emirate').val($data.emirate);
-                $('#' + formclass + '-post_code').val($data.post_code);
-                $('#' + formclass + '-mobile_number').val($data.mobile_number);
-                $('#' + formclass + '-country_code').val($data.country_code);
-
-            } else {
-                $('#' + formclass + '-name').val('');
-                $('#' + formclass + '-address').val('');
-                $('#' + formclass + '-landmark').val('');
-                $('#' + formclass + '-location').val('');
-                $('#' + formclass + '-emirate').val('');
-                $('#' + formclass + '-post_code').val('');
-                $('#' + formclass + '-mobile_number').val('');
-            }
+    $(document).ready(function () {
+        $('.delivery-address').click(function (e) {
+            e.preventDefault();
+            var address = $(this).attr('id');
+            $('#selected-address').val(address);
+            $('#address-form').submit();
         });
-    }
+    })
 </script>

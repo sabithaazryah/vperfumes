@@ -10,15 +10,14 @@ use common\models\Brand;
 /**
  * BrandSearch represents the model behind the search form about `common\models\Brand`.
  */
-class BrandSearch extends Brand
-{
+class BrandSearch extends Brand {
+
     /**
      * @inheritdoc
      */
-    public function rules()
-    {
+    public function rules() {
         return [
-            [['id', 'CB', 'UB', 'status', 'show_menu', 'favourite_brand'], 'integer'],
+            [['id', 'CB', 'UB', 'status', 'show_menu', 'favourite_brand', 'category'], 'integer'],
             [['brand', 'brand_ar', 'image', 'DOC', 'DOU'], 'safe'],
         ];
     }
@@ -26,8 +25,7 @@ class BrandSearch extends Brand
     /**
      * @inheritdoc
      */
-    public function scenarios()
-    {
+    public function scenarios() {
         // bypass scenarios() implementation in the parent class
         return Model::scenarios();
     }
@@ -39,8 +37,7 @@ class BrandSearch extends Brand
      *
      * @return ActiveDataProvider
      */
-    public function search($params)
-    {
+    public function search($params) {
         $query = Brand::find();
 
         // add conditions that should always apply here
@@ -67,12 +64,14 @@ class BrandSearch extends Brand
             'status' => $this->status,
             'show_menu' => $this->show_menu,
             'favourite_brand' => $this->favourite_brand,
+            'category' => $this->category,
         ]);
 
         $query->andFilterWhere(['like', 'brand', $this->brand])
-            ->andFilterWhere(['like', 'brand_ar', $this->brand_ar])
-            ->andFilterWhere(['like', 'image', $this->image]);
+                ->andFilterWhere(['like', 'brand_ar', $this->brand_ar])
+                ->andFilterWhere(['like', 'image', $this->image]);
 
         return $dataProvider;
     }
+
 }

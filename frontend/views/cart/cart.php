@@ -94,12 +94,14 @@ else
                                             $balance = '';
                                             if ($shipping_minimum > $subtotal) {
                                                 $balance = $shipping_minimum - $subtotal;
+                                                $shipping = common\models\Settings::findOne(2)->value;
                                                 $class = '';
                                             } else {
                                                 $class = 'hide';
+                                                $shipping='0.00';
                                             }
                                             ?>
-                                            <h4 class="price-head ">SHIPPING:<span class="amount shipping-cost">AED <?= sprintf("%0.2f", '0.00') ?></span></h4>
+                                            <h4 class="price-head ">SHIPPING:<span class="amount shipping-cost">AED <?= sprintf("%0.2f", $shipping) ?></span></h4>
                                             <h4 class="price-head">GIFT WRAP:<span><input type="checkbox" name="gift-wrap" id="gift-wrap" class="gift-wrap"></span></h4>
                                         </div>
                                     </div>

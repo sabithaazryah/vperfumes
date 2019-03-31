@@ -169,7 +169,7 @@ class CartController extends \yii\web\Controller {
         if (isset(Yii::$app->user->identity->id)) {
             $cart = Cart::find()->where(['user_id' => Yii::$app->user->identity->id])->all();
             if (!empty($cart)) {
-                $order_id = Cart::checkout();
+                $order_id = Yii::$app->CartFunctionality->checkout();
                 Yii::$app->session['orderid'] = $order_id;
                 return $this->redirect(array('checkout/promotion'));
             } else {

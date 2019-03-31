@@ -8,6 +8,7 @@ use Yii;
  * This is the model class for table "brand".
  *
  * @property int $id
+ * @property int $category
  * @property string $brand
  * @property string $brand_ar
  * @property string $image
@@ -19,24 +20,22 @@ use Yii;
  * @property int $show_menu
  * @property int $favourite_brand
  */
-class Brand extends \yii\db\ActiveRecord
-{
+class Brand extends \yii\db\ActiveRecord {
+
     /**
      * {@inheritdoc}
      */
-    public static function tableName()
-    {
+    public static function tableName() {
         return 'brand';
     }
 
     /**
      * {@inheritdoc}
      */
-    public function rules()
-    {
+    public function rules() {
         return [
-            [['brand', 'brand_ar',], 'required'],
-            [['CB', 'UB', 'status', 'show_menu', 'favourite_brand'], 'integer'],
+            [['brand','category'], 'required'],
+            [['CB', 'UB', 'status', 'show_menu', 'favourite_brand', 'category'], 'integer'],
             [['DOC', 'DOU'], 'safe'],
             [['brand', 'brand_ar'], 'string', 'max' => 200],
             [['image'], 'string', 'max' => 50],
@@ -46,10 +45,10 @@ class Brand extends \yii\db\ActiveRecord
     /**
      * {@inheritdoc}
      */
-    public function attributeLabels()
-    {
+    public function attributeLabels() {
         return [
             'id' => 'ID',
+            'category' => 'Category',
             'brand' => 'Brand',
             'brand_ar' => 'Brand (Arabic)',
             'image' => 'Image',
@@ -62,4 +61,5 @@ class Brand extends \yii\db\ActiveRecord
             'favourite_brand' => 'Favourite Brand',
         ];
     }
+
 }

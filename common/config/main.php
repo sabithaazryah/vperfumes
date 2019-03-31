@@ -13,11 +13,17 @@ return [
         'SetValues' => [
             'class' => 'common\components\SetValues'
         ],
+        'CartFunctionality' => [
+            'class' => 'common\components\CartFunctionality'
+        ],
         'UploadFile' => [
             'class' => 'common\components\UploadFile'
         ],
         'SetLanguage' => [
             'class' => 'common\components\SetLanguage'
+        ],
+        'EncryptDecrypt' => [
+            'class' => 'common\components\EncryptDecrypt'
         ],
     ],
 ];

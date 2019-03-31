@@ -8,17 +8,20 @@ else
     $this->title = 'Shopping Cart';
 ?>
 <style>
-    .emptycart h2{
-        font-size: 16px;
-        text-align: center;
-        display: block;
-        color: rgba(84, 82, 81, 0.57);
-        margin-bottom: 10px;
+    .empty-link{
+        font-size: 18px;
+    color: rgb(255, 255, 255);
+    text-transform: uppercase;
+    line-height: 38px;
+    background-color: #f0ae44;
+    width: 345px;
+    height: 53px;
+    display: block;
+    text-align: center;
+    padding: 8px 0;
+    margin-top: 30px;
     }
-    .empty-img img{
-        margin: 0 auto;
-        display: block;
-    }
+    
 </style>
 
 <div class="top-margin"></div>
@@ -33,11 +36,9 @@ else
 <section id="cart-page">
     <div class="container">
         <div class="empty-outer">
-            <div class="empty-img">
-                <img class="img-fluid" src="<?= Yii::$app->homeUrl; ?>images/cart-empty.png"/>
-            </div>
+         
             <h3 class="head">Your Shopping Cart is Empty !</h3>
-            <a href="<?= Yii::$app->homeUrl ?>" class="link">Continue shopping</a>
+            <a href="<?= Yii::$app->homeUrl ?>" class="empty-link">Continue shopping</a>
         </div>
     </div>
 </section>

@@ -25,6 +25,7 @@ use yii\db\ActiveRecord;
  * @property AdminPosts $post
  */
 class AdminUsers extends ActiveRecord implements IdentityInterface {
+    
 
     private $_user;
     public $rememberMe = true;
@@ -63,7 +64,6 @@ class AdminUsers extends ActiveRecord implements IdentityInterface {
     public function validatePassword($attribute, $params) {
 
         if (!$this->hasErrors()) {
-
             $user = $this->getUser();
             if (!$user || !Yii::$app->security->validatePassword($this->password, $user->password)) {
                 $this->addError($attribute, 'Incorrect username or password.');

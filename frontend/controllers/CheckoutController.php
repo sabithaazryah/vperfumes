@@ -28,18 +28,6 @@ class CheckoutController extends \yii\web\Controller {
 
     public function actionPromotion() {
         $this->redirect(array('checkout/checkout'));
-//        if (isset(Yii::$app->user->identity->id)) {
-//            $promotion = new \common\models\Promotions;
-//            $order_master = OrderMaster::find()->where(['order_id' => Yii::$app->session['orderid']])->one();
-//            $added_promotions = OrderPromotions::find()->where(['order_master_id' => $order_master->id])->all();
-//            if ($promotion->load(Yii::$app->request->post())) {
-//                return $this->redirect(array('checkout/checkout'));
-//            }
-//
-//            return $this->render('promotions', ['promotion' => $promotion, 'added_promotions' => $added_promotions]);
-//        } else {
-//            $this->redirect(array('site/login'));
-//        }
     }
 
     public function actionCheckout() {
@@ -50,34 +38,16 @@ class CheckoutController extends \yii\web\Controller {
                 $default_address = UserAddress::find()->where(['user_id' => Yii::$app->user->identity->id, 'status' => 1])->one();
                 $country_codes = ArrayHelper::map(\common\models\CountryCode::find()->where(['status' => 1])->orderBy(['id' => SORT_ASC])->all(), 'id', 'country_code');
                 $flag = 0;
-//			if (empty($model)) {
                 $model = new UserAddress();
                 if ($model->load(Yii::$app->request->post())) {
-                    $payment_method = Yii::$app->request->post()['payment_method'];
-                    $user_comment = Yii::$app->request->post()['user_comment'];
                     if (isset(Yii::$app->request->post()['UserAddress']['billing']) && Yii::$app->request->post()['UserAddress']['billing'] != '') {
                         $bill_address = Yii::$app->request->post()['UserAddress']['billing'];
                         $user_addr = UserAddress::findOne($bill_address);
-                        $user_addr->mobile_number = Yii::$app->request->post()['UserAddress']['mobile_number'];
                         $user_addr->save();
-                        Cart::orderbilling($bill_address);
-                        Cart::orderaddress($bill_address);
-                        $this->redirect(array('confirm_order', 'payment_method' => $payment_method, 'user_comment' => $user_comment));
-                    } else {
-                        Yii::$app->SetValues->Attributes($model);
-                        $model->user_id = Yii::$app->user->identity->id;
-                        if ($model->save()) {
-                            Cart::orderbilling($model->id);
-                            Cart::orderaddress($model->id);
-                            $this->redirect(array('confirm_order', 'payment_method' => $payment_method, 'user_comment' => $user_comment));
-                        } else {
-                            $flag = 1;
-                            Yii::$app->session->setFlash('error', "Sorry we are unable to complete your checkout. Please choose / add billing address !");
-                        }
-                    }
-//                    else {
-//                        var_dump($model->getErrors());
-//                    }
+                        Yii::$app->CartFunctionality->orderbilling($bill_address);
+                        Yii::$app->CartFunctionality->orderaddress($bill_address);
+                        $this->redirect(array('payment'));
+                    } 
                 }
                 return $this->render('billing', ['model' => $model, 'addresses' => $address, 'country_codes' => $country_codes, 'default_address' => $default_address, 'flag' => $flag]);
             } else {
@@ -88,95 +58,49 @@ class CheckoutController extends \yii\web\Controller {
         }
     }
 
-    public function actionShipping() {
-        if (isset(Yii::$app->user->identity->id)) {
-            if (Yii::$app->session['orderid']) {
-                $address = UserAddress::find()->where(['user_id' => Yii::$app->user->identity->id])->all();
-                $model = new UserAddress();
-                $country_codes = ArrayHelper::map(\common\models\CountryCode::find()->where(['status' => 1])->orderBy(['id' => SORT_ASC])->all(), 'id', 'country_code');
-                if ($model->load(Yii::$app->request->post())) {
-                    if (isset(Yii::$app->request->post()['UserAddress']['billing']) && Yii::$app->request->post()['UserAddress']['billing'] != '') {
-                        $bill_address = Yii::$app->request->post()['UserAddress']['billing'];
-                        Cart::ordershipping($bill_address);
-                    } else {
-                        Yii::$app->SetValues->Attributes($model);
-                        $model->user_id = Yii::$app->user->identity->id;
-//                        $model->status = 1;
-                        if ($model->save()) {
-                            Cart::ordershipping($model->id);
-                        }
-                    }
-                }
-                return $this->render('delivery', ['model' => $model, 'addresses' => $address, 'country_codes' => $country_codes]);
-            } else {
-                $this->redirect(array('cart/mycart'));
-            }
-        } else {
-            $this->redirect(array('site'));
+    public function actionPayment() {
+        $selected_billing_address='';
+        $model = OrderMaster::find()->where(['order_id' => Yii::$app->session['orderid']])->one();
+        if (isset($model->bill_address_id) && $model->bill_address_id != '') {
+            $selected_billing_address = UserAddress::findOne($model->bill_address_id);
         }
-    }
-
-    public function actionConfirm() {
-        if (isset(Yii::$app->user->identity->id)) {
-            if (Yii::$app->session['orderid']) {
-                if (Yii::$app->request->post()) {
-
-                    $payment_method = Yii::$app->request->post()['payment_method'];
-                    $user_comment = Yii::$app->request->post()['user_comment'];
-                    $this->redirect(array('confirm_order', 'payment_method' => $payment_method, 'user_comment' => $user_comment));
-                } else {
-                    $order_master = OrderMaster::find()->where(['order_id' => Yii::$app->session['orderid']])->one();
-                    $order_details = OrderDetails::find()->where(['order_id' => Yii::$app->session['orderid']])->all();
-                    $promotions = OrderPromotions::find()->where(['order_master_id' => $order_master->id])->sum('promotion_discount');
-                    $user_details = \common\models\User::findOne(['id' => Yii::$app->user->identity->id]);
-                    return $this->render('confirm', ['order_details' => $order_details, 'order_master' => $order_master, 'promotions' => $promotions, 'user_details' => $user_details]);
-                }
-            } else {
-                $this->redirect(array('cart/mycart'));
-            }
-        } else {
-            $this->redirect(array('site/login'));
-        }
-    }
-
-    public function actionConfirm_order($payment_method, $user_comment) {
-        if (isset(Yii::$app->user->identity->id)) {
+        if(\Yii::$app->request->post()){
+           if (isset(Yii::$app->user->identity->id)) {
             if (Yii::$app->session['orderid']) {
                 $model = OrderMaster::find()->where(['order_id' => Yii::$app->session['orderid']])->one();
-
-                //				$model->status = 4;
-                $model->payment_mode = $payment_method;
-                $model->user_comment = $user_comment;
+                $model->payment_mode = Yii::$app->request->post()['payment_type'];;
                 if ($model->save()) {
-                    Cart::CodeUsedSingle($model->id);
-                    if ($payment_method == 1) {
+                    Yii::$app->CartFunctionality->CodeUsedSingle($model->id);
+                    if ($model->payment_mode == 1) {
                         $this->redirect(array('cash-on-delivery', 'id' => $model->order_id)); /* for cash on delivery */
-                    } elseif ($payment_method == 2) {
+                    } elseif ($model->payment_mode == 2) {
                         $this->redirect(array('paypal', 'id' => $model->order_id)); /* for paytab payment gateway */
                     }
-                }
+                } 
             } else {
                 $this->redirect(array('cart/mycart'));
             }
         } else {
             $this->redirect(array('site/login'));
+        } 
         }
+        return $this->render('payment', ['model' => $model,'selected_billing_address'=>$selected_billing_address]);
     }
+
 
     public function actionCashOnDelivery($id) {
         $order_master = OrderMaster::find()->where(['order_id' => $id])->one();
         $order_master->status = 4; /* order confirmed for 4 */
         $order_master->payment_status = 3; /* payment success for 1 and 0 for fail  3 for cas on delivery */
 
-//		$order_master->payment_sucess_data = $result;
         if ($order_master->save()) {
             $payment_status = 'Cash on Delivery';
             $cart = Cart::find()->where(['user_id' => Yii::$app->user->identity->id])->all();
             $message = $this->renderPartial('mail', ['orderid' => Yii::$app->session['orderid'], 'payment_status' => $payment_status]);
 
-            Cart::purchasemail(Yii::$app->session['orderid'], $message);
+//            Yii::$app->CartFunctionality->purchasemail(Yii::$app->session['orderid'], $message);
             $this->stock_clear($order_master);
-            Cart::clearcart($cart);
+            Yii::$app->CartFunctionality->clearcart($cart);
             Yii::$app->session['orderid'] = '';
         }
         return $this->redirect('cash-delivery-success');
@@ -186,21 +110,16 @@ class CheckoutController extends \yii\web\Controller {
         $order_details = OrderDetails::find()->where(['order_id' => $orders['order_id']])->all();
         foreach ($order_details as $order) {
             $product = Product::findOne($order->product_id);
-//            $old_qty = $product->stock;
             $stock = $product->stock - $order->quantity;
             $product->stock = $stock > 0 ? $stock : 0;
             if ($product->stock == 0) {
-
                 $this->stockOutMail($product);
             }
             $product->save();
-//            StockHistory::stockhistory($product->qty, '3', $product->id, '3', $old_qty);
         }
     }
 
     public function stockOutMail($model) {
-
-
         $message = Yii::$app->mailer->compose('stockout-mail', ['model' => $model]) // a view rendering result becomes the message body here
                 ->setFrom('no-replay@perfumedunia.com')
                 ->setTo(Yii::$app->params['adminEmail'])
@@ -212,11 +131,8 @@ class CheckoutController extends \yii\web\Controller {
 
     public function actionPaypal($id) {/* action for creating pay page */
 
-
         $discount = 0;
         $model = OrderMaster::find()->where(['order_id' => $id])->one();
-
-
         $bill_address = UserAddress::findOne($model->bill_address_id);
         $promotion = OrderPromotions::find()->where(['order_master_id' => $model->id])->all();
 
@@ -271,7 +187,6 @@ class CheckoutController extends \yii\web\Controller {
 
         if ($model->update() && Yii::$app->session['ref_id'] = $p_id) {
             /* save the ref id in order master table for comparing payment respose result */
-            // Yii::$app->session['ref_id'] =  $model->payment_ref_number;
             Yii::$app->session['payment-order-id'] = $order_id;
 
             return $this->redirect($url);
@@ -285,8 +200,6 @@ class CheckoutController extends \yii\web\Controller {
 
         if (Yii::$app->session['ref_id'] == $ref_id) {/* comparing the refernce id with the saved one */
             $response = $ref_id;
-
-
             return $this->render('payment-result', ['p_ref' => $response]);
         } else {
             $order = OrderMaster::findOne(Yii::$app->session['payment-order-id']);
@@ -295,9 +208,6 @@ class CheckoutController extends \yii\web\Controller {
                 $order->save();
             } return $this->render('payment-failed');
         }
-
-
-//$payment_success = \yii\helpers\Json::encode($charge);
     }
 
     public function actionPaymentResult($result) {/* save the payment response */
@@ -322,7 +232,6 @@ class CheckoutController extends \yii\web\Controller {
                     Yii::$app->getSession()->setFlash('success_', 'Successfully Ordered');
                 }
 
-//				Yii::$app->session['datas'] = $charge;
                 return $this->redirect('cash-payment-success');
             }
         } else {
@@ -372,12 +281,8 @@ class CheckoutController extends \yii\web\Controller {
         $shippinng_limit = Settings::findOne(1)->value;
         $ship_charge = Settings::findOne(2)->value;
         $shipping = $shippinng_limit > $subtotal ? $ship_charge : '0';
-//			$shipping = $shippinng_limit > $subtotal ? Cart::shipping_charge($cart_items) : '0';
         $grand_total = $shipping + $subtotal;
-//            $grand_total = $this->net_amount($subtotal, $cart_items);
         return $this->render('continue', ['cart_items' => $cart_items, 'subtotal' => $subtotal, 'shipping' => $shipping, 'grand_total' => $grand_total, 'ship_charge' => $ship_charge]);
-//        return $this->render('continue', ['order_id' => Yii::$app->session['orderid'], 'items' => $items, 'subtotal' => $subtotal]);
-//        $this->redirect(array('checkout/checkout'));
     }
 
     public function actionRemoveOrder() {
@@ -405,8 +310,6 @@ class CheckoutController extends \yii\web\Controller {
                 } else {
                     echo json_encode(array('msg' => 'failed', 'content' => 'orderhistory', 'order_id' => $order_id));
                     exit;
-//                $this->redirect(array('cart/mycart'));
-//                return $this->redirect('mycart');
                 }
             } else {
                 echo json_encode(array('msg' => 'failed', 'content' => 'orderhistory', 'order_id' => $order_id));
@@ -422,7 +325,6 @@ class CheckoutController extends \yii\web\Controller {
         }
         $subtotal = Cart::total($orderdetails);
         Cart::updatemaster(Yii::$app->session['orderid'], $subtotal);
-//        $this->continuepromotion();
         $this->redirect(array('checkout/promotion'));
     }
 
@@ -574,21 +476,8 @@ class CheckoutController extends \yii\web\Controller {
                 ->setFrom('no-replay@coralperfumes.com')
                 ->setTo($mail)
                 ->setSubject('Order Confirm');
-//       echo $message;exit;
         $message->send();
         return TRUE;
-    }
-
-    public function actionPayment($id) {
-
-        //return $this->redirect(['payment-success', 'id' => $id]);
-        $model = OrderMaster::find()->where(['order_id' => $id])->one();
-        $user_details = \common\models\User::findOne(['id' => $model->user_id]);
-
-        return $this->render('payment', [
-                    'model' => $model,
-                    'user_details' => $user_details
-        ]);
     }
 
     public function actionPaymentReturn() {
@@ -644,21 +533,9 @@ class CheckoutController extends \yii\web\Controller {
 
 
                     return $this->redirect(['site/error']);
-//					$error_code = $e->getErrorCode();
-//					$error_message = $e->getMessage();
-//
-//					/* depending on $error_code we can show different messages */
-//					if ($error_code === "card_declined") {
-//						echo "<h1>Charge was declined</h1>";
-//					} else {
-//						echo "<h1>Charge was not processed</h1>";
-//					}
-//					echo "<p>" . $error_message . "</p>";
                 }
             }
         }
-
-//		return $this->render('payment-failed');
     }
 
     /*
@@ -693,31 +570,6 @@ class CheckoutController extends \yii\web\Controller {
         }
         return $subtotal;
     }
-
-//    public function total_continue($cart) {
-//        $subtotal = '0';
-//        foreach ($cart as $cart_item) {
-//            if ($cart_item->item_type == 1) {
-//                $subtotal += ($cart_item->amount * $cart_item->quantity);
-//            } else {
-//                $product = Product::findOne($cart_item->product_id);
-//                if ($product->stock > 0 && $product->stock_availability == '1') {
-//                    if ($product->offer_price == '0' || $product->offer_price == '') {
-//                        $price = $product->price;
-//                    } else {
-//                        $price = $product->offer_price;
-//                    }
-//                    if ($product->stock >= $cart_item->quantity) {
-//                        $quantity = $cart_item->quantity;
-//                    } else {
-//                        $quantity = $product->stock;
-//                    }
-//                }
-//                $subtotal += ($price * $quantity);
-//            }
-//        }
-//        return $subtotal;
-//    }
 
     public function actionPromotionCheck() {
         if (Yii::$app->request->isAjax) {
@@ -835,33 +687,6 @@ class CheckoutController extends \yii\web\Controller {
         }
 
         return $tot_price;
-    }
-
-    function continuepromotion() {
-        $order = OrderMaster::find()->where(['order_id' => Yii::$app->session['orderid']])->one();
-        $order_promotion = OrderPromotions::find()->where(['order_master_id' => $order->id])->all();
-        foreach ($order_promotion as $ordrpromo) {
-            $promotion = \common\models\Promotions::findOne($ordrpromo->promotion_id);
-            $promotion_users = explode(',', $promotion->code_used);
-
-            if (($key = array_search(Yii::$app->user->identity->id, $promotion_users)) !== false) {
-                unset($promotion_users[$key]);
-            }
-            $promotion_users = implode(',', $promotion_users);
-            $promotion->code_used = $promotion_users;
-            $promotion->save();
-            $ordrpromo->delete();
-        }
-    }
-
-    public function actionMail() {
-        $subject = "New Purchase Order";
-        $to = 'sabitha@azryah.com';
-        $message = 'hii';
-        $headers = 'MIME-Version: 1.0' . "\r\n";
-        $headers .= "Content-type: text/html; charset=iso-8859-1" . "\r\n" .
-                "From: Perfumedunia.com";
-        mail($to, $subject, $message, $headers);
     }
 
 }
