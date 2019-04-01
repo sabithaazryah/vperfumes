@@ -34,7 +34,7 @@ class Brand extends \yii\db\ActiveRecord {
      */
     public function rules() {
         return [
-            [['brand','category'], 'required'],
+            [['brand', 'category'], 'required'],
             [['CB', 'UB', 'status', 'show_menu', 'favourite_brand', 'category'], 'integer'],
             [['DOC', 'DOU'], 'safe'],
             [['brand', 'brand_ar'], 'string', 'max' => 200],
@@ -60,6 +60,16 @@ class Brand extends \yii\db\ActiveRecord {
             'show_menu' => 'Show Menu',
             'favourite_brand' => 'Favourite Brand',
         ];
+    }
+
+    public static function Brand_id($brands_name) {
+        $brand_id = array();
+        foreach ($brands_name as $brand) {
+            $dat = str_replace('_', " ", $brand);
+            $brands = Brand::find()->where(['brand' => $dat])->one();
+            $brand_id[] = $brands->id;
+        }
+        return $brand_id;
     }
 
 }
