@@ -5284,17 +5284,19 @@ footer .sec4 .right-sec {
 
 
 .cartlist-popup{
+    left: 0px;
     display: block;
     background: #8BC34A;
     position: absolute;
     z-index: 100;
     color: #fff;
     width: 100%;
-    min-height: 33px;
+    min-height: 40px;
     text-align: center;
     padding-top: 10px;
     font-size: 12px;
-    bottom: 0px;
+    bottom: -20px;
+    line-height: 22px;
 }
 .cartlist-popup.hide{
     display:none;

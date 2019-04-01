@@ -24,6 +24,7 @@ use common\models\Product;
 class ProductLinksWidget extends Widget {
 
     public $id;
+    public $count = '';
 
     public function init() {
         parent::init();
@@ -34,7 +35,7 @@ class ProductLinksWidget extends Widget {
 
     public function run() {
         $model = Product::findOne($this->id);
-        return $this->render('product-links', ['product_details' => $model]);
+        return $this->render('product-links', ['product_details' => $model, 'count' => $this->count]);
     }
 
 }

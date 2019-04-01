@@ -45,7 +45,7 @@ if (file_exists($gallery_image)) {
 }
 ?>
 
-<div class="product-box">
+<div class="product-box <?= $count != '' ? 'box' . $count : '' ?>">
     <input type="hidden" id="quantity" value="1">
     <?php if ($percentage != '' && $percentage > 0) { ?>
         <div class="off-tag"><?= $percentage ?>% OFF</div>

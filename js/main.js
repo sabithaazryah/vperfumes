@@ -495,7 +495,7 @@ function updatecart(id, quantity, count) {
         success: function (data) {
             var $data = JSON.parse(data);
             if ($data.msg === "success") {
-                
+
                 $("#cart_count").val($data.cart_count);
                 $('.cart_subtotal').html('AED ' + $data.subtotal);
                 $('.shipping-cost').html('AED ' + $data.shipping);
