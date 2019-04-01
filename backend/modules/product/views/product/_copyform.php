@@ -57,6 +57,23 @@ use kartik\select2\Select2;
             ?>
             <label onclick="jQuery('#modal-1').modal('show', {backdrop: 'fade'});" class="product-fields-add add_category"><i class="fa fa-plus-circle" aria-hidden="true"></i> Add Category</label>
         </div>
+        <div class='col-md-4 col-sm-6 col-xs-12 left_padd'>
+            <?php
+            if (isset($model->type) && $model->type != '') {
+                $model->type = explode(',', $model->type);
+            }
+            $pro_types = ArrayHelper::map(\common\models\ProductType::find()->where(['status' => '1'])->all(), 'id', 'product_type');
+            echo $form->field($model, 'type')->widget(Select2::classname(), [
+                'data' => $pro_types,
+                'language' => 'en',
+                'options' => ['placeholder' => '--Select--'],
+                'pluginOptions' => [
+                    'allowClear' => true,
+                    'multiple' => true
+                ],
+            ]);
+            ?>
+        </div>
 
         <div class='col-md-4 col-sm-6 col-xs-12 left_padd'>
             <?= $form->field($model, 'product_name')->textInput(['maxlength' => true]) ?>
@@ -66,11 +83,11 @@ use kartik\select2\Select2;
         <div class='col-md-4 col-sm-6 col-xs-12 left_padd'>
             <?= $form->field($model, 'product_name_ar')->textInput(['maxlength' => true]) ?>
         </div>
-        
+
         <div class='col-md-4 col-sm-6 col-xs-12 left_padd'>
             <?= $form->field($model, 'canonical_name')->textInput(['maxlength' => true, 'readonly' => true]) ?>
         </div>
-        
+
         <div class='col-md-4 col-sm-6 col-xs-12 left_padd'>
             <?= $form->field($model, 'canonical_name_ar')->textInput(['maxlength' => true, 'readonly' => true]) ?>
         </div>
@@ -107,19 +124,19 @@ use kartik\select2\Select2;
         </div>
     </div>
     <div class="row">
-        
+
 
         <div class='col-md-4 col-sm-6 col-xs-12 left_padd'>
             <?= $form->field($model, 'ean_value')->textInput(['maxlength' => true]) ?>
         </div>
-        
-         <div class='col-md-4 col-sm-6 col-xs-12 left_padd'>
+
+        <div class='col-md-4 col-sm-6 col-xs-12 left_padd'>
             <?= $form->field($model, 'barcode')->textInput(['maxlength' => true]) ?>
         </div>
         <div class='col-md-4 col-sm-6 col-xs-12 left_padd'>
             <?= $form->field($model, 'barcode_price')->textInput(['type' => 'number', 'min' => '0', 'autocomplete' => 'off', 'step' => 'any']) ?>
         </div>
-        </div>
+    </div>
     <div class="row">
 
         <div class='col-md-4 col-sm-6 col-xs-12 left_padd'>
@@ -128,14 +145,14 @@ use kartik\select2\Select2;
         <div class='col-md-4 col-sm-6 col-xs-12 left_padd'>
             <?= $form->field($model, 'offer_price')->textInput(['type' => 'number', 'min' => '0', 'autocomplete' => 'off', 'step' => 'any']) ?>
         </div>
-        
+
         <div class='col-md-4 col-sm-6 col-xs-12 left_padd'>
             <?= $form->field($model, 'offer_price_expiry_date')->textInput(['maxlength' => true]) ?>
         </div>
     </div>
     <div class="row">
 
-        
+
 
         <div class='col-md-4 col-sm-6 col-xs-12 left_padd'>
             <?php
@@ -155,7 +172,7 @@ use kartik\select2\Select2;
         <div class='col-md-4 col-sm-6 col-xs-12 left_padd'>
             <?= $form->field($model, 'stock')->textInput() ?>
         </div>
-        
+
         <div class='col-md-4 col-sm-6 col-xs-12 left_padd'>
             <?php
             $units = ArrayHelper::map(Unit::find()->all(), 'id', 'unit_name');
@@ -169,11 +186,11 @@ use kartik\select2\Select2;
             ]);
             ?>
         </div>
-        
+
     </div>
     <div class="row">
 
-        
+
 
         <div class='col-md-4 col-sm-6 col-xs-12 left_padd'>
             <?= $form->field($model, 'stock_availability')->dropDownList(['1' => 'Available', '0' => 'Not Available']) ?>
@@ -192,13 +209,13 @@ use kartik\select2\Select2;
             ]);
             ?>
         </div>
-        
+
         <div class='col-md-4 col-sm-6 col-xs-12 left_padd'>
             <?= $form->field($model, 'free_shipping')->dropDownList(['1' => 'Yes', '0' => 'No'], ['prompt' => 'Select']) ?>
         </div>
     </div>
     <div class="row">
-        
+
 
         <div class='col-md-4 col-sm-6 col-xs-12 left_padd'>
             <?php
@@ -217,7 +234,7 @@ use kartik\select2\Select2;
         <div class='col-md-4 col-sm-6 col-xs-12 left_padd'>
             <?= $form->field($model, 'size')->textInput() ?>
         </div>
-        
+
         <div class='col-md-4 col-sm-6 col-xs-12 left_padd'>
             <?php
             $size_unit = ArrayHelper::map(Unit::find()->all(), 'id', 'unit_name');
@@ -234,7 +251,7 @@ use kartik\select2\Select2;
     </div>
     <div class="row">
 
-        
+
         <div class='col-md-4 col-sm-6 col-xs-12 left_padd'>
             <?php
             if (!$model->isNewRecord) {
@@ -271,7 +288,7 @@ use kartik\select2\Select2;
             ?>
         </div>
     </div>
-    
+
     <div class="row">
         <div class='col-md-12 col-sm-12 col-xs-12 left_padd'>
             <?=

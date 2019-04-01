@@ -3,6 +3,7 @@
 use yii\helpers\Html;
 use yii\grid\GridView;
 use yii\helpers\Url;
+use yii\helpers\ArrayHelper;
 
 /* @var $this yii\web\View */
 /* @var $searchModel common\models\BrandSearch */
@@ -13,8 +14,8 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="brand-index">
 
-     <div class="row">
-        
+    <div class="row">
+
         <div class="col-md-4">
             <div class="panel panel-default">
                 <div class="panel-heading">
@@ -51,6 +52,17 @@ $this->params['breadcrumbs'][] = $this->title;
                         'filterModel' => $searchModel,
                         'columns' => [
                             ['class' => 'yii\grid\SerialColumn'],
+                            [
+                                'attribute' => 'category',
+                                'filter' => ArrayHelper::map(\common\models\BrandCategory::find()->all(), 'id', 'category'),
+                                'value' => function($data) {
+                                    if ($data->category != '') {
+                                        return \common\models\BrandCategory::findOne($data->category)->category;
+                                    } else {
+                                        return '';
+                                    }
+                                }
+                            ],
                             'brand',
                             'brand_ar',
                             [

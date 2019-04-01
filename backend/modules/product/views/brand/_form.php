@@ -2,6 +2,8 @@
 
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
+use yii\helpers\ArrayHelper;
+use app\models\BrandCategory;
 
 /* @var $this yii\web\View */
 /* @var $model common\models\Brand */
@@ -11,8 +13,11 @@ use yii\widgets\ActiveForm;
 <div class="brand-form form-inline">
 
     <?php $form = ActiveForm::begin(); ?>
-    <?= \common\widgets\Alert::widget()?>
+    <?= \common\widgets\Alert::widget() ?>
     <div class="row">
+        <div class='col-md-12 col-sm-12 col-xs-12 left_padd'>
+            <?= $form->field($model, 'category')->dropDownList(ArrayHelper::map(BrandCategory::find()->asArray()->all(), 'id', 'category')) ?>
+        </div>
         <div class='col-md-12 col-sm-12 col-xs-12 left_padd'>
             <?= $form->field($model, 'brand')->textInput(['maxlength' => true]) ?>
         </div>
@@ -20,12 +25,12 @@ use yii\widgets\ActiveForm;
             <?= $form->field($model, 'brand_ar')->textInput(['maxlength' => true]) ?>
         </div>
         <div class='col-md-12 col-sm-12 col-xs-12 left_padd'>
-             <?php if (isset($model->image) && $model->image != '') { ?>
-            <img src="<?= Yii::$app->homeUrl ?>../uploads/cms/brands/<?= $model->id ?>/small.<?= $model->image ?>" width="100">
+            <?php if (isset($model->image) && $model->image != '') { ?>
+                <img src="<?= Yii::$app->homeUrl ?>../uploads/cms/brands/<?= $model->id ?>/small.<?= $model->image ?>" width="100">
             <?php } ?>
-            
+
             <?= $form->field($model, 'image')->fileInput() ?>
-           
+
         </div>
         <div class='col-md-12 col-sm-12 col-xs-12 left_padd'>
             <?= $form->field($model, 'status')->dropDownList(['1' => 'Enable', '0' => 'Disable']) ?>

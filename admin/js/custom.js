@@ -18,14 +18,17 @@ $(document).ready(function () {
      */
     $('#product-product_name').keyup(function () {
         $('#product-canonical_name').val(slug($(this).val()));
+        $('#product-meta_title').val($(this).val());
+        $('#product-profile_alt').val($(this).val());
+        $('#product-gallery_alt').val($(this).val());
     });
 
     /*
      * Generate canonical name for products arabic
      */
-    $('#product-product_name_ar').keyup(function () {
-        $('#product-canonical_name_ar').val(slug($(this).val()));
-    });
+//    $('#product-product_name_ar').keyup(function () {
+//        $('#product-canonical_name_ar').val(slug($(this).val()));
+//    });
 
     $('#product-product_name').blur(function () {
         var description_text = "Buy " + this.value + " from VPerfumes";
@@ -72,11 +75,12 @@ $(document).ready(function () {
         event.preventDefault();
         var brand = $('#brand-brand').val();
         var brand_ar = $('#brand-brand_ar').val();
+        var category = $('#brand-category').val();
         var form = $('.modal-title5').attr('field_id');
         $.ajax({
             url: homeUrl + 'product/brand/ajaxaddbrand',
             type: "post",
-            data: {brand: brand, brand_ar: brand_ar},
+            data: {brand: brand, brand_ar: brand_ar, category: category},
             success: function (data) {
                 var $data = JSON.parse(data);
                 if ($data.con === "1") {
@@ -127,13 +131,32 @@ $(document).ready(function () {
     });
 
 
-$('#product-main_category').change(function () {
-    var $ids = $(this).attr('id');
-    var ids = $ids.split('-');
-    var main_category = $(this).val();
-    Maincategory(main_category, ids);
+    $('#product-main_category').change(function () {
+        var $ids = $(this).attr('id');
+        var ids = $ids.split('-');
+        var main_category = $(this).val();
+        Maincategory(main_category, ids);
 
-});
+    });
+
+    $(document).on('change', '#product-search_by_brand', function (event) {
+        var brand = $(this).val();
+        var related_product = $('#product-related_product').val();
+
+        $.ajax({
+            url: homeUrl + 'product/product/get-related-products',
+            type: "POST",
+            data: {brand: brand, related_product: related_product},
+            success: function (data) {
+                $('#product-related_product').html(data);
+                if (related_product != '') {
+                    $('#product-related_product').val(related_product);
+                    $('#product-related_product').trigger('change');
+                }
+            }
+        });
+
+    });
 
 });
 var slug = function (str) {

@@ -40,10 +40,16 @@ $this->params['breadcrumbs'][] = $this->title;
                                 'header' => 'Image',
                                 'format' => 'raw',
                                 'value' => function ($data) {
-                                    if (!empty($data->profile))
-                                        $img = '<img src="' . Yii::$app->homeUrl . '../uploads/product/' . $data->id . '/profile/' . $data->canonical_name . '_thumb.' . $data->profile . '" width="100"/>';
-                                    else
+                                    if (!empty($data->profile)) {
+                                        $file = Yii::$app->basePath . '/../uploads/product/' . $data->id . '/profile/' . $data->canonical_name . '_thumb.' . $data->profile;
+                                        if (file_exists($file)) {
+                                            $img = '<img src="' . Yii::$app->homeUrl . '../uploads/product/' . $data->id . '/profile/' . $data->canonical_name . '_thumb.' . $data->profile . '" width="100"/>';
+                                        } else {
+                                            $img = '<img src="' . Yii::$app->homeUrl . '../uploads/product/profile_thumb.png"/>';
+                                        }
+                                    } else {
                                         $img = '<img src="' . Yii::$app->homeUrl . '../uploads/product/profile_thumb.png"/>';
+                                    }
                                     return $img;
                                 },
                             ],
@@ -59,78 +65,67 @@ $this->params['breadcrumbs'][] = $this->title;
                                     }
                                 }
                             ],
-                           [
-                                    'attribute' => 'category',
-                                    'filter' => ArrayHelper::map(Category::find()->orderBy(['category' => SORT_ASC])->all(), 'id', 'category'),
-                                    'value' => function($data) {
-                                        if ($data->category != '') {
-                                            return Category::findOne($data->category)->category;
-                                        } else {
-                                            return '';
-                                        }
+//                            [
+//                                'attribute' => 'category',
+//                                'filter' => ArrayHelper::map(Category::find()->orderBy(['category' => SORT_ASC])->all(), 'id', 'category'),
+//                                'value' => function($data) {
+//                                    if ($data->category != '') {
+//                                        return Category::findOne($data->category)->category;
+//                                    } else {
+//                                        return '';
+//                                    }
+//                                }
+//                            ],
+                            'barcode_price',
+                            [
+                                'attribute' => 'price',
+                                'format' => 'raw',
+                                'value' => function ($data) {
+                                    return \yii\helpers\Html::textInput('price', $data->price, ['class' => 'form-control product_form', 'id' => 'product_price_' . $data->id]);
+                                },
+                            ],
+                            [
+                                'attribute' => 'offer_price',
+                                'format' => 'raw',
+                                'value' => function ($data) {
+                                    return \yii\helpers\Html::textInput('offer_price', $data->offer_price, ['class' => 'form-control product_form', 'id' => 'product_offerprice_' . $data->id])
+                                            . '<label id="offer_price_' . $data->id . '" style="color:#cc3f44"class="hide">Offer price must be less than price</label>';
+                                },
+                            ],
+                            [
+                                'attribute' => 'stock',
+                                'format' => 'raw',
+                                'value' => function ($data) {
+                                    return \yii\helpers\Html::textInput('stock', $data->stock, ['class' => 'form-control product_form', 'id' => 'product_stock_' . $data->id]);
+                                },
+                            ],
+                            [
+                                'class' => 'yii\grid\ActionColumn',
+                                'header' => 'Action',
+                                'template' => '{update}{delete}{preview}',
+                                'buttons' => [
+                                    'preview' => function ($url, $model) {
+                                        return Html::a('<span class="fa fa-share"></span>', $url, [
+                                                    'title' => Yii::t('app', 'Preview'),
+                                                    'target' => '_blank',
+                                        ]);
+                                    },
+                                ],
+                                'urlCreator' => function ($action, $model, $key, $index) {
+                                    if ($action === 'preview') {
+                                        $url = Yii::$app->homeUrl . '../product/product-detail?product=' . $model->canonical_name;
+                                        return $url;
                                     }
-                                ],
-                                        [
-                                    'attribute' => 'price',
-                                    'format' => 'raw',
-                                    'value' => function ($data) {
-                                        return \yii\helpers\Html::textInput('price', $data->price, ['class' => 'form-control product_form', 'id' => 'product_price_' . $data->id]);
-                                    },
-                                ],
-                                [
-                                    'attribute' => 'offer_price',
-                                    'format' => 'raw',
-                                    'value' => function ($data) {
-                                        return \yii\helpers\Html::textInput('offer_price', $data->offer_price, ['class' => 'form-control product_form', 'id' => 'product_offerprice_' . $data->id])
-                                                . '<label id="offer_price_' . $data->id . '" style="color:#cc3f44"class="hide">Offer price must be less than price</label>';
-                                    },
-                                ],
-                                [
-                                    'attribute' => 'stock',
-                                    'format' => 'raw',
-                                    'value' => function ($data) {
-                                        return \yii\helpers\Html::textInput('stock', $data->stock, ['class' => 'form-control product_form', 'id' => 'product_stock_' . $data->id]);
-                                    },
-                                ],
-                            // 'canonical_name',
-                            // 'meta_title',
-                            // 'meta_description:ntext',
-                            // 'meta_keywords:ntext',
-                            // 'search_tag',
-                            // 'item_ean',
-                            // 'brand',
-                            // 'ean_type',
-                            // 'ean_value',
-                            // 'gender_type',
-                            // 'price',
-                            // 'offer_price',
-                            // 'discount',
-                            // 'currency',
-                            // 'stock',
-                            // 'stock_unit',
-                            // 'stock_availability',
-                            // 'tax',
-                            // 'free_shipping',
-                            // 'product_type',
-                            // 'size',
-                            // 'size_unit',
-                            // 'main_description:ntext',
-                            // 'product_detail:ntext',
-                            // 'condition',
-                            // 'CB',
-                            // 'UB',
-                            // 'DOC',
-                            // 'DOU',
-                            // 'status',
-                            // 'profile',
-                            // 'profile_alt',
-                            // 'gallery_alt',
-                            // 'other_image',
-                            // 'related_product',
-                            // 'featured_product',
-                            // 'sort',
-                            ['class' => 'yii\grid\ActionColumn',
-                                'template'=>'{update}{delete}'],
+                                    if ($action === 'update') {
+                                        $url = 'update?id=' . $model->id;
+                                        return $url;
+                                    }
+                                    if ($action === 'delete') {
+                                        $url = 'delete?id=' . $model->id;
+                                        return $url;
+                                    }
+                                }
+                            ],
                         ],
                     ]);
                     ?>
@@ -143,7 +138,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
 <script>
     $(document).ready(function () {
-        $(".filters").slideToggle();
+//        $(".filters").slideToggle();
         $("#search-option").click(function () {
             $(".filters").slideToggle();
         });

@@ -118,3 +118,6 @@ a.desc:after {
 .nav > li > form > button.logout:focus {
     outline: none;
 }
+.select2-selection--multiple{
+    height: auto !important;
+}

@@ -13,9 +13,9 @@ use yii\web\UploadedFile;
 /**
  * BrandController implements the CRUD actions for Brand model.
  */
-class BrandController extends Controller
-{
-      public function beforeAction($action) {
+class BrandController extends Controller {
+
+    public function beforeAction($action) {
         if (!parent::beforeAction($action)) {
             return false;
         }
@@ -25,12 +25,11 @@ class BrandController extends Controller
         }
         return true;
     }
-    
+
     /**
      * @inheritdoc
      */
-    public function behaviors()
-    {
+    public function behaviors() {
         return [
             'verbs' => [
                 'class' => VerbFilter::className(),
@@ -45,24 +44,23 @@ class BrandController extends Controller
      * Lists all Brand models.
      * @return mixed
      */
-    public function actionIndex1()
-    {
+    public function actionIndex1() {
         $searchModel = new BrandSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
-            'searchModel' => $searchModel,
-            'dataProvider' => $dataProvider,
+                    'searchModel' => $searchModel,
+                    'dataProvider' => $dataProvider,
         ]);
     }
-    
+
     public function actionIndex($id = NULL) {
         if (!empty($id)) {
             $model = $this->findModel($id);
         } else {
             $model = new Brand();
         }
-        if ($model->load(Yii::$app->request->post()) && Yii::$app->SetValues->Attributes($model) && $model->validate() &&$this->SetExtension($model, $model->id)  && $model->save() && $this->SaveUpload($model)) {
+        if ($model->load(Yii::$app->request->post()) && Yii::$app->SetValues->Attributes($model) && $model->validate() && $this->SetExtension($model, $model->id) && $model->save() && $this->SaveUpload($model)) {
             if (!empty($id)) {
                 Yii::$app->getSession()->setFlash('success', 'Updated Successfully');
             } else {
@@ -80,45 +78,44 @@ class BrandController extends Controller
                     'model' => $model,
         ]);
     }
-    
+
     public function SetExtension($model, $id) {
-                $image = UploadedFile::getInstance($model, 'image');
-                if (!empty($id)) {
-                        $update = Brand::findOne($id);
-                        if (!empty($image)) {
-                                $model->image = $image->extension;
-                        } else {
-                                $model->image = $update->image;
-                        }
-                } else {
-                        $model->image = $image->extension;
-                }
-
-                return TRUE;
+        $image = UploadedFile::getInstance($model, 'image');
+        if (!empty($id)) {
+            $update = Brand::findOne($id);
+            if (!empty($image)) {
+                $model->image = $image->extension;
+            } else {
+                $model->image = $update->image;
+            }
+        } else {
+            $model->image = $image->extension;
         }
 
-        public function SaveUpload($model) {
-                $image = UploadedFile::getInstance($model, 'image');
-                $path = Yii::$app->basePath . '/../uploads/cms/brands';
-                $size = [
-                        ['width' => 300, 'height' => 75, 'name' => 'small'],
-                ];
+        return TRUE;
+    }
 
-                if (!empty($image)) {
-                        Yii::$app->UploadFile->UploadFile($model, $image, $path . '/' . $model->id, $size);
-                }
-                return TRUE;
+    public function SaveUpload($model) {
+        $image = UploadedFile::getInstance($model, 'image');
+        $path = Yii::$app->basePath . '/../uploads/cms/brands';
+        $size = [
+            ['width' => 300, 'height' => 75, 'name' => 'small'],
+        ];
+
+        if (!empty($image)) {
+            Yii::$app->UploadFile->UploadFile($model, $image, $path . '/' . $model->id, $size);
         }
+        return TRUE;
+    }
 
     /**
      * Displays a single Brand model.
      * @param integer $id
      * @return mixed
      */
-    public function actionView($id)
-    {
+    public function actionView($id) {
         return $this->render('view', [
-            'model' => $this->findModel($id),
+                    'model' => $this->findModel($id),
         ]);
     }
 
@@ -127,15 +124,14 @@ class BrandController extends Controller
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
-    public function actionCreate()
-    {
+    public function actionCreate() {
         $model = new Brand();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
             return $this->render('create', [
-                'model' => $model,
+                        'model' => $model,
             ]);
         }
     }
@@ -146,15 +142,14 @@ class BrandController extends Controller
      * @param integer $id
      * @return mixed
      */
-    public function actionUpdate($id)
-    {
+    public function actionUpdate($id) {
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
             return $this->render('update', [
-                'model' => $model,
+                        'model' => $model,
             ]);
         }
     }
@@ -165,8 +160,7 @@ class BrandController extends Controller
      * @param integer $id
      * @return mixed
      */
-    public function actionDelete($id)
-    {
+    public function actionDelete($id) {
         $this->findModel($id)->delete();
 
         return $this->redirect(['index']);
@@ -179,21 +173,22 @@ class BrandController extends Controller
      * @return Brand the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
-    protected function findModel($id)
-    {
+    protected function findModel($id) {
         if (($model = Brand::findOne($id)) !== null) {
             return $model;
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');
         }
     }
-    
+
     public function actionAjaxaddbrand() {
         if (yii::$app->request->isAjax) {
             $brand = Yii::$app->request->post()['brand'];
+            $category = Yii::$app->request->post()['category'];
             $model = new Brand();
             $model->brand = $brand;
-            $model->brand_ar = Yii::$app->request->post()['brand_ar'];;
+            $model->category = $category;
+            $model->brand_ar = Yii::$app->request->post()['brand_ar'];
             $model->status = '1';
             if (Yii::$app->SetValues->Attributes($model)) {
                 if ($model->save()) {
@@ -203,11 +198,13 @@ class BrandController extends Controller
                     echo json_encode(array("con" => "1", 'id' => $model->id, 'brand' => $brand)); //Success
                     exit;
                 } else {
-                    var_dump($model->getErrors());exit;
+                    var_dump($model->getErrors());
+                    exit;
                     echo json_encode(array("con" => "0", 'error' => 'Cannot added')); //Error
                     exit;
                 }
             }
         }
     }
+
 }

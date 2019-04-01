@@ -80,6 +80,12 @@ class ProductController extends Controller {
         if ($model->load(Yii::$app->request->post())) {
             $file11 = UploadedFile::getInstances($model, 'profile');
             $file12 = UploadedFile::getInstances($model, 'other_image');
+            if (isset($model->type) && $model->type != '') {
+                $model->type = implode(',', $model->type);
+            }
+            if (isset($model->related_product) && $model->related_product != '') {
+                $model->related_product = implode(',', $model->related_product);
+            }
             if (!empty($file11))
                 $model->profile = $file11[0]->extension;
             if ($model->validate()) {
@@ -129,6 +135,12 @@ class ProductController extends Controller {
         $canonical_name = $model->canonical_name;
         if ($model->load(Yii::$app->request->post())) {
             $ai = '';
+            if (isset($model->type) && $model->type != '') {
+                $model->type = implode(',', $model->type);
+            }
+            if (isset($model->related_product) && $model->related_product != '') {
+                $model->related_product = implode(',', $model->related_product);
+            }
             $file11 = UploadedFile::getInstances($model, 'profile');
             $file12 = UploadedFile::getInstances($model, 'other_image');
             if ($file11) {
@@ -166,7 +178,7 @@ class ProductController extends Controller {
                     }
                 }
                 Yii::$app->getSession()->setFlash('success', "Updated Successfully");
-                return $this->redirect(['index']);
+                return $this->redirect(['update', 'id' => $model->id]);
             }
         }
         return $this->render('update', [
@@ -194,6 +206,11 @@ class ProductController extends Controller {
                 unlink($file); // delete file
         }
         $files = glob(yii::$app->basepath . '/../uploads/product/' . $model->id . '/gallery_thumb/*'); // get all file names
+        foreach ($files as $file) { // iterate files
+            if (is_file($file))
+                unlink($file); // delete file
+        }
+        $files = glob(yii::$app->basepath . '/../uploads/product/' . $model->id . '/gallery_profile/*'); // get all file names
         foreach ($files as $file) { // iterate files
             if (is_file($file))
                 unlink($file); // delete file
@@ -286,8 +303,10 @@ class ProductController extends Controller {
                         $this->makegallerydir($model->id);
                         $this->copygallery($id, $model->id, 'gallery');
                         $this->copygallery($id, $model->id, 'gallery_thumb');
+                        $this->copygallery($id, $model->id, 'gallery_profile');
                         $this->rename($model->id, $model->canonical_name, 'gallery');
                         $this->rename($model->id, $model->canonical_name, 'gallery_thumb');
+                        $this->rename($model->id, $model->canonical_name, 'gallery_profile');
                     }
                     return $this->redirect(['index']);
                 }
@@ -311,7 +330,6 @@ class ProductController extends Controller {
                 $k++;
                 $arry = explode('/', $file);
                 $img_nmee = end($arry);
-//test start
                 if (strpos($img_nmee, '_') !== false) {
                     $test = explode('_', $img_nmee);
                     rename($path . '/' . $img_nmee, $path . '/' . $canonical_name . '_' . $test['1']);
@@ -319,10 +337,6 @@ class ProductController extends Controller {
                     $test = explode('.', $img_nmee);
                     rename($path . '/' . $img_nmee, $path . '/' . $canonical_name . '.' . $test['1']);
                 }
-//                rename($test['0'],$canonical_name);
-//                                $test = explode('_', $img_nmee);
-//                                echo $test['0'];
-//!org
             }
         }
     }
@@ -427,8 +441,7 @@ class ProductController extends Controller {
             $main_cat = Yii::$app->request->post()['main_cat'];
             if (isset($main_cat)) {
                 $subcat = Category::find()->where(['main_category' => $main_cat])->orderBy(['category' => SORT_ASC])->all();
-
-                $val = "<option value=''>Select</option>";
+                $val = "";
                 if ($subcat) {
                     for ($i = 0; $i < sizeof($subcat); $i++) {
                         $val .= "<option value='" . $subcat[$i]->id . "'>" . $subcat[$i]->category . "</option>";
@@ -470,6 +483,41 @@ class ProductController extends Controller {
         }
     }
 
+    public function actionGetRelatedProducts() {
+        if (yii::$app->request->isAjax) {
+            $brand = Yii::$app->request->post()['brand'];
+            if (isset(Yii::$app->request->post()['related_product'])) {
+                $related_product = Yii::$app->request->post()['related_product'];
+            } else {
+                $related_product = '';
+            }
+            $products = '';
+            if (isset($brand) && $brand != '') {
+                if ($related_product != '') {
+                    if (!empty($related_product)) {
+                        echo '1c';
+                        $products = Product::find()->where(['brand' => $brand])->orWhere(['id' => $related_product])->all();
+                    }
+                } else {
+                    $products = Product::find()->where(['brand' => $brand])->all();
+                }
+            } else {
+                if ($related_product != '') {
+                    if (!empty($related_product)) {
+                        $products = Product::find()->where(['id' => $related_product])->all();
+                    }
+                }
+            }
+            $val = "<option value=''>Select</option>";
+            if (!empty($products)) {
+                foreach ($products as $product) {
+                    $val .= "<option value='" . $product->id . "'>" . $product->product_name . "</option>";
+                }
+            }
+            return $val;
+        }
+    }
+
     /**
      * Finds the Product model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
@@ -489,16 +537,14 @@ class ProductController extends Controller {
      * generate product EAN from settings
      * return Product Ean
      */
-    public function generateProductEan($id) {
-        $serial_no = $id;
-        $prefix = \common\models\Settings::findOne(3)->prefix;
-        $file_exist = Product::find()->where(['item_ean' => $prefix . $serial_no])->one();
-        if (!empty($file_exist)) {
-
-            return $this->generateProductEan($serial_no + 1);
-        } else {
-            return $prefix . $serial_no;
+    public function generateProductEan() {
+        $last_product = Product::find()->orderBy(['id' => SORT_DESC])->one();
+        if (empty($last_product))
+            $ean = 'PD' . sprintf('%05d', 1);
+        else {
+            $ean = 'PD' . sprintf('%04d', ++$last_product->id);
         }
+        return $ean;
     }
 
     /**

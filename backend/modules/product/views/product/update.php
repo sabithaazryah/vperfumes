@@ -22,6 +22,7 @@ $this->params['breadcrumbs'][] = 'Update';
             <div class="panel-body">
                 <?= Html::a('<i class="fa fa-list"></i><span> Manage Product</span>', ['index'], ['class' => 'btn  btn-info btn-sm product-update-btn']) ?>
                 <?= Html::a('<i class="fa fa-clipboard"></i><span> Copy</span>', ['product/copy?id=' . $model->id], ['class' => 'btn  btn-info btn-sm product-update-btn']) ?>
+                <a target="_blank" href="<?= Yii::$app->homeUrl . '../product/product-detail?product=' . $model->canonical_name ?>" class="btn  btn-info btn-sm product-update-btn"><i class="fa fa-share"></i><span> Preview</span></a>
                 <div class="clearfix"></div>
                 <div class="product-create">
                     <?=

@@ -7,6 +7,7 @@ use yii\helpers\Html;
 
 AppAsset::register($this);
 $controler = Yii::$app->controller->id;
+$action = Yii::$app->controller->id . '/' . Yii::$app->controller->action->id;
 ?>
 <?php $this->beginPage() ?>
 <!DOCTYPE html>
@@ -76,7 +77,7 @@ $controler = Yii::$app->controller->id;
                     <!-- sidebar menu: : style can be found in sidebar.less -->
                     <ul class="sidebar-menu" data-widget="tree">
 
-                        <li class="treeview">
+                        <li class="treeview <?= $controler == 'admin-posts' || $controler == 'admin-users' || $controler == 'site' ? 'active' : '' ?>">
                             <a href="">
                                 <i class="fa fa-dashboard"></i>
                                 <span>Administration</span>
@@ -93,7 +94,7 @@ $controler = Yii::$app->controller->id;
                             </ul>
                         </li>
 
-                        <li class="treeview">
+                        <li class="treeview <?= $controler == 'category' || $controler == 'master-search-tag' || $controler == 'brand' || $controler == 'fregrance' || $controler == 'unit' || $controler == 'product' ? 'active' : '' ?>">
                             <a href="#">
                                 <i class="fa fa-desktop"></i> <span>Products</span>
                                 <span class="pull-right-container">
@@ -133,7 +134,7 @@ $controler = Yii::$app->controller->id;
                             </ul>
                         </li>
 
-                        <li class="treeview">
+                        <li class="treeview <?= $controler == 'currency' || $controler == 'emirates' ? 'active' : '' ?>">
                             <a href="">
                                 <i class="fa fa-database"></i>
                                 <span>Masters</span>
@@ -150,7 +151,7 @@ $controler = Yii::$app->controller->id;
                             </ul>
                         </li>
 
-                        <li class="treeview">
+                        <li class="treeview <?= $controler == 'user' ? 'active' : '' ?>">
                             <a href="">
                                 <i class="fa fa-user"></i>
                                 <span>Users</span>
@@ -163,15 +164,15 @@ $controler = Yii::$app->controller->id;
                             </ul>
                         </li>
 
-                        <li>
+                        <li class="<?= $action == 'order-master/index' ? 'active' : '' ?>">
                             <?= Html::a('<i class="fa fa-shopping-cart"></i> <span>Order Management</span>', ['/order/order-master/index'], ['class' => 'title']) ?>
                         </li>
 
-                        <li>
+                        <li class="<?= $controler == 'settings' ? 'active' : '' ?>">
                             <?= Html::a('<i class="fa fa-gears"></i> <span>Settings</span>', ['/settings/index'], ['class' => 'title']) ?>
                         </li>
 
-                        <li class="treeview">
+                        <li class="treeview <?= $action == 'order-master/product-wise-report' || $action == 'order-master/order-report' ? 'active' : '' ?>">
                             <a href="">
                                 <i class="fa fa-bars"></i>
                                 <span>Reports</span>
@@ -186,8 +187,8 @@ $controler = Yii::$app->controller->id;
                                 </li>
                             </ul>
                         </li>
-                        
-                        <li class="treeview">
+
+                        <li class="treeview <?= $action == 'slider/index' || $action == 'banner/index' ? 'active' : '' ?>">
                             <a href="">
                                 <i class="fa fa-pie-chart"></i>
                                 <span>CMS</span>
