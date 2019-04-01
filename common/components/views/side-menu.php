@@ -26,172 +26,173 @@ $useragent = $_SERVER['HTTP_USER_AGENT'];
 ?>
 <aside  class="desk-xl-2 col-lg-3">
     <?php
-//    if (preg_match('/android|avantgo|blackberry|blazer|compal|elaine|fennec|hiptop|iemobile|ip(hone|od)|iris|kindle|lge |maemo|midp|mmp|opera m(ob|in)i|palm( os)?|phone|p(ixi|re)\/|plucker|pocket|psp|symbian|treo|up\.(browser|link)|vodafone|wap|windows (ce|phone)|xda|xiino/i', $useragent) || preg_match('/1207|6310|6590|3gso|4thp|50[1-6]i|770s|802s|a wa|abac|ac(er|oo|s\-)|ai(ko|rn)|al(av|ca|co)|amoi|an(ex|ny|yw)|aptu|ar(ch|go)|as(te|us)|attw|au(di|\-m|r |s )|avan|be(ck|ll|nq)|bi(lb|rd)|bl(ac|az)|br(e|v)w|bumb|bw\-(n|u)|c55\/|capi|ccwa|cdm\-|cell|chtm|cldc|cmd\-|co(mp|nd)|craw|da(it|ll|ng)|dbte|dc\-s|devi|dica|dmob|do(c|p)o|ds(12|\-d)|el(49|ai)|em(l2|ul)|er(ic|k0)|esl8|ez([4-7]0|os|wa|ze)|fetc|fly(\-|_)|g1 u|g560|gene|gf\-5|g\-mo|go(\.w|od)|gr(ad|un)|haie|hcit|hd\-(m|p|t)|hei\-|hi(pt|ta)|hp( i|ip)|hs\-c|ht(c(\-| |_|a|g|p|s|t)|tp)|hu(aw|tc)|i\-(20|go|ma)|i230|iac( |\-|\/)|ibro|idea|ig01|ikom|im1k|inno|ipaq|iris|ja(t|v)a|jbro|jemu|jigs|kddi|keji|kgt( |\/)|klon|kpt |kwc\-|kyo(c|k)|le(no|xi)|lg( g|\/(k|l|u)|50|54|e\-|e\/|\-[a-w])|libw|lynx|m1\-w|m3ga|m50\/|ma(te|ui|xo)|mc(01|21|ca)|m\-cr|me(di|rc|ri)|mi(o8|oa|ts)|mmef|mo(01|02|bi|de|do|t(\-| |o|v)|zz)|mt(50|p1|v )|mwbp|mywa|n10[0-2]|n20[2-3]|n30(0|2)|n50(0|2|5)|n7(0(0|1)|10)|ne((c|m)\-|on|tf|wf|wg|wt)|nok(6|i)|nzph|o2im|op(ti|wv)|oran|owg1|p800|pan(a|d|t)|pdxg|pg(13|\-([1-8]|c))|phil|pire|pl(ay|uc)|pn\-2|po(ck|rt|se)|prox|psio|pt\-g|qa\-a|qc(07|12|21|32|60|\-[2-7]|i\-)|qtek|r380|r600|raks|rim9|ro(ve|zo)|s55\/|sa(ge|ma|mm|ms|ny|va)|sc(01|h\-|oo|p\-)|sdk\/|se(c(\-|0|1)|47|mc|nd|ri)|sgh\-|shar|sie(\-|m)|sk\-0|sl(45|id)|sm(al|ar|b3|it|t5)|so(ft|ny)|sp(01|h\-|v\-|v )|sy(01|mb)|t2(18|50)|t6(00|10|18)|ta(gt|lk)|tcl\-|tdg\-|tel(i|m)|tim\-|t\-mo|to(pl|sh)|ts(70|m\-|m3|m5)|tx\-9|up(\.b|g1|si)|utst|v400|v750|veri|vi(rg|te)|vk(40|5[0-3]|\-v)|vm40|voda|vulc|vx(52|53|60|61|70|80|81|83|85|98)|w3c(\-| )|webc|whit|wi(g |nc|nw)|wmlb|wonu|x700|xda(\-|2|g)|yas\-|your|zeto|zte\-/i', substr($useragent, 0, 4))) {
-    ?>
-    <div class="product-left-categories-mobile-view">
-        <div class="filter-head">
-            <h2 class="head-filter">Product Filter</h2>
-            <ul class="filter-list">
-                <li class="list-li">
-                    <div class="head-text-button" data-toggle="modal" data-target="#exampleModalLong"><i class="icon"></i>Filter</div>
-                </li>
-            </ul>
-        </div>
-        <!-- Modal -->
-        <div class="modal" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="button-header">
-                        <button type="button" class="close-button" data-dismiss="modal" aria-label="Close"></button>
-                        <button type="submit" class="filter-apply-button">Apply</button>
-                        <?= Html::a('Clear', ['/product/index'], ['class' => 'filter-apply-button clear-filter']) ?>
+    if (preg_match('/android|avantgo|blackberry|blazer|compal|elaine|fennec|hiptop|iemobile|ip(hone|od)|iris|kindle|lge |maemo|midp|mmp|opera m(ob|in)i|palm( os)?|phone|p(ixi|re)\/|plucker|pocket|psp|symbian|treo|up\.(browser|link)|vodafone|wap|windows (ce|phone)|xda|xiino/i', $useragent) || preg_match('/1207|6310|6590|3gso|4thp|50[1-6]i|770s|802s|a wa|abac|ac(er|oo|s\-)|ai(ko|rn)|al(av|ca|co)|amoi|an(ex|ny|yw)|aptu|ar(ch|go)|as(te|us)|attw|au(di|\-m|r |s )|avan|be(ck|ll|nq)|bi(lb|rd)|bl(ac|az)|br(e|v)w|bumb|bw\-(n|u)|c55\/|capi|ccwa|cdm\-|cell|chtm|cldc|cmd\-|co(mp|nd)|craw|da(it|ll|ng)|dbte|dc\-s|devi|dica|dmob|do(c|p)o|ds(12|\-d)|el(49|ai)|em(l2|ul)|er(ic|k0)|esl8|ez([4-7]0|os|wa|ze)|fetc|fly(\-|_)|g1 u|g560|gene|gf\-5|g\-mo|go(\.w|od)|gr(ad|un)|haie|hcit|hd\-(m|p|t)|hei\-|hi(pt|ta)|hp( i|ip)|hs\-c|ht(c(\-| |_|a|g|p|s|t)|tp)|hu(aw|tc)|i\-(20|go|ma)|i230|iac( |\-|\/)|ibro|idea|ig01|ikom|im1k|inno|ipaq|iris|ja(t|v)a|jbro|jemu|jigs|kddi|keji|kgt( |\/)|klon|kpt |kwc\-|kyo(c|k)|le(no|xi)|lg( g|\/(k|l|u)|50|54|e\-|e\/|\-[a-w])|libw|lynx|m1\-w|m3ga|m50\/|ma(te|ui|xo)|mc(01|21|ca)|m\-cr|me(di|rc|ri)|mi(o8|oa|ts)|mmef|mo(01|02|bi|de|do|t(\-| |o|v)|zz)|mt(50|p1|v )|mwbp|mywa|n10[0-2]|n20[2-3]|n30(0|2)|n50(0|2|5)|n7(0(0|1)|10)|ne((c|m)\-|on|tf|wf|wg|wt)|nok(6|i)|nzph|o2im|op(ti|wv)|oran|owg1|p800|pan(a|d|t)|pdxg|pg(13|\-([1-8]|c))|phil|pire|pl(ay|uc)|pn\-2|po(ck|rt|se)|prox|psio|pt\-g|qa\-a|qc(07|12|21|32|60|\-[2-7]|i\-)|qtek|r380|r600|raks|rim9|ro(ve|zo)|s55\/|sa(ge|ma|mm|ms|ny|va)|sc(01|h\-|oo|p\-)|sdk\/|se(c(\-|0|1)|47|mc|nd|ri)|sgh\-|shar|sie(\-|m)|sk\-0|sl(45|id)|sm(al|ar|b3|it|t5)|so(ft|ny)|sp(01|h\-|v\-|v )|sy(01|mb)|t2(18|50)|t6(00|10|18)|ta(gt|lk)|tcl\-|tdg\-|tel(i|m)|tim\-|t\-mo|to(pl|sh)|ts(70|m\-|m3|m5)|tx\-9|up(\.b|g1|si)|utst|v400|v750|veri|vi(rg|te)|vk(40|5[0-3]|\-v)|vm40|voda|vulc|vx(52|53|60|61|70|80|81|83|85|98)|w3c(\-| )|webc|whit|wi(g |nc|nw)|wmlb|wonu|x700|xda(\-|2|g)|yas\-|your|zeto|zte\-/i', substr($useragent, 0, 4))) {
+        ?>
+        <div class="product-left-categories-mobile-view">
+            <div class="filter-head">
+                <h2 class="head-filter">Product Filter</h2>
+                <ul class="filter-list">
+                    <li class="list-li">
+                        <div class="head-text-button" data-toggle="modal" data-target="#exampleModalLong"><i class="icon"></i>Filter</div>
+                    </li>
+                </ul>
+            </div>
+            <!-- Modal -->
+            <div class="modal" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="button-header">
+                            <button type="button" class="close-button" data-dismiss="modal" aria-label="Close"></button>
+                            <button type="submit" class="filter-apply-button">Apply</button>
+                            <?= Html::a('Clear', ['/product/index'], ['class' => 'filter-apply-button clear-filter']) ?>
 
-                    </div>
-                    <div class="modal-body">
-                        <div class="filter-mobile-box"><!--filter-mobile-box-->
-                            <div id="accordion">
-                                <div class="card">
-                                    <div class="card-header">
-                                        <a class="left-b card-link collapsed" data-toggle="collapse" href="#collapse1">Brand</a>
+                        </div>
+                        <div class="modal-body">
+                            <div class="filter-mobile-box"><!--filter-mobile-box-->
+                                <div id="accordion">
+                                    <div class="card">
+                                        <div class="card-header">
+                                            <a class="left-b card-link collapsed" data-toggle="collapse" href="#collapse1">Brand</a>
+                                        </div>
+                                        <div id="collapse1" class="collapse " data-parent="#accordion">
+                                            <div class="sizing">
+                                                <div class="in-product-left-categories" ><!--in-left-Categories-->
+
+                                                    <div class="other-range-box">
+                                                        <div class="search-box">
+                                                            <form >
+                                                                <div class="input-group">
+                                                                    <input type="text" class="form-control search-brand-key"  placeholder="Search by Brand"  value="">
+                                                                    <?php
+                                                                    foreach ($brand_list as $value) {
+                                                                        echo '<input type="hidden" name="brand_list" value="' . $value->id . '">';
+                                                                    }
+                                                                    ?>
+                                                                    <div class="input-group-addon">
+                                                                        <input  type="submit" class="send" id="brand_search_submit">
+                                                                    </div>
+                                                                </div>
+                                                            </form>
+                                                        </div>
+                                                        <div class="content pad0">
+                                                            <div class="demo">
+                                                                <div class="scroll">
+                                                                    <div class="list-type">
+                                                                        <ul class="search_brand">
+                                                                            <?php
+                                                                            foreach ($brand_list as $brand) {
+                                                                                ?>
+                                                                                <li class="brand_checkboxes_mob">
+                                                                                    <label class="input-style-box">
+                                                                                        <?php $brand_id = str_replace(' ', '_', $brand->brand); ?>
+
+                                                                                        <input class="check_brand_mob" type="checkbox"  id="<?= strtolower($brand_id) ?>-mob" name="brand[]" atr-url="<?= strtolower($brand_id) ?>"value="<?= $brand->brand ?>"/>
+                                                                                        <span class="checkmark"></span> <?= $brand->brand ?> </label>
+                                                                                </li>
+                                                                            <?php } ?>
+
+
+                                                                        </ul>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
-                                    <div id="collapse1" class="collapse " data-parent="#accordion">
-                                        <div class="sizing">
-                                            <div class="in-product-left-categories" ><!--in-left-Categories-->
 
-                                                <div class="other-range-box">
-                                                    <div class="search-box">
-                                                        <form >
-                                                            <div class="input-group">
-                                                                <input type="text" class="form-control search-brand-key"  placeholder="Search by Brand"  value="">
-                                                                <?php
-                                                                foreach ($brand_list as $value) {
-                                                                    echo '<input type="hidden" name="brand_list" value="' . $value->id . '">';
+                                    <div class="card">
+                                        <div class="card-header">
+                                            <a class="left-b card-link collapsed" data-toggle="collapse" href="#collapse2">Targeted Group</a>
+                                        </div>
+                                        <div id="collapse2" class="collapse" data-parent="#accordion">
+                                            <div class="sizing">
+                                                <div class="in-product-left-categories" ><!--in-left-Categories-->
+
+                                                    <div class="other-range-box">
+                                                        <div class="list-type">
+                                                            <ul>
+                                                                <li class="type_checkboxes_mob">
+                                                                    <label class="input-style-box">
+                                                                        <input class="check_type_mob" <?= ($type == 0) && ($target == 'men') ? 'checked' : '' ?> id="men-mob" type="checkbox" name="type[]" value="0" />
+                                                                        <span class="checkmark"></span> Men </label>
+                                                                </li>
+
+                                                                <li class="type_checkboxes_mob">
+                                                                    <label class="input-style-box">
+                                                                        <input class="check_type_mob" <?= ($type == 1) && ($target == 'women') ? 'checked' : '' ?> id="women-mob" type="checkbox" name="type[]" value="1" />
+                                                                        <span class="checkmark"></span> Women </label>
+                                                                </li>
+                                                                <li class="type_checkboxes_mob">
+                                                                    <label class="input-style-box">
+                                                                        <input class="check_type_mob" <?= $type == 2 ? 'checked' : '' ?> id="unisex-mob" type="checkbox" name="type[]" value="2" />
+                                                                        <span class="checkmark"></span> Unisex </label>
+                                                                </li>
+                                                                <li class="type_checkboxes_mob">
+                                                                    <label class="input-style-box">
+                                                                        <input class="check_type_mob" <?= ($type == 3) && ($target == 'oriental') ? 'checked' : '' ?> id="oriental-mob" type="checkbox" name="type[]" value="3" />
+                                                                        <span class="checkmark"></span> Oriental </label>
+                                                                </li>
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="card">
+                                        <div class="card-header">
+                                            <a class="left-b card-link collapsed" data-toggle="collapse" href="#collapse3">Size</a>
+                                        </div>
+                                        <div id="collapse3" class="collapse" data-parent="#accordion">
+                                            <div class="sizing">
+                                                <div class="in-product-left-categories" ><!--in-left-Categories-->
+
+                                                    <div class="other-range-box">
+                                                        <div class="list-size-data">
+                                                            <?php
+                                                            foreach ($size_list as $size) {
+                                                                if ($size->size) {
+                                                                    ?>
+                                                                    <div class="size-data-filter size_checkboxes_mob" id="size_checkboxes_mob">
+                                                                        <label class="input-size-data">
+                                                                            <input class="check_size_mob" type="checkbox" name="size[]" id="<?= $size->size ?>-mob" atr-size= "<?= $size->size ?>"value="<?= $size->size ?>"/>
+                                                                            <span class="checkmark-size-data"><?= $size->size ?></span></label>
+                                                                    </div>
+                                                                    <?php
                                                                 }
-                                                                ?>
-                                                                <div class="input-group-addon">
-                                                                    <input  type="submit" class="send" id="brand_search_submit">
-                                                                </div>
-                                                            </div>
-                                                        </form>
-                                                    </div>
-                                                    <div class="content pad0">
-                                                        <div class="demo">
-                                                            <div class="scroll">
-                                                                <div class="list-type">
-                                                                    <ul class="search_brand">
-                                                                        <?php
-                                                                        foreach ($brand_list as $brand) {
-                                                                            ?>
-                                                                            <li class="brand_checkboxes_mob">
-                                                                                <label class="input-style-box">
-                                                                                    <?php $brand_id = str_replace(' ', '_', $brand->brand); ?>
-
-                                                                                    <input class="check_brand_mob" type="checkbox"  id="<?= strtolower($brand_id) ?>-mob" name="brand[]" atr-url="<?= strtolower($brand_id) ?>"value="<?= $brand->brand ?>"/>
-                                                                                    <span class="checkmark"></span> <?= $brand->brand ?> </label>
-                                                                            </li>
-                                                                        <?php } ?>
-
-
-                                                                    </ul>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="card">
-                                    <div class="card-header">
-                                        <a class="left-b card-link collapsed" data-toggle="collapse" href="#collapse2">Targeted Group</a>
-                                    </div>
-                                    <div id="collapse2" class="collapse" data-parent="#accordion">
-                                        <div class="sizing">
-                                            <div class="in-product-left-categories" ><!--in-left-Categories-->
-
-                                                <div class="other-range-box">
-                                                    <div class="list-type">
-                                                        <ul>
-                                                            <li class="type_checkboxes_mob">
-                                                                <label class="input-style-box">
-                                                                    <input class="check_type_mob" <?= ($type == 0) && ($target == 'men') ? 'checked' : '' ?> id="men-mob" type="checkbox" name="type[]" value="0" />
-                                                                    <span class="checkmark"></span> Men </label>
-                                                            </li>
-
-                                                            <li class="type_checkboxes_mob">
-                                                                <label class="input-style-box">
-                                                                    <input class="check_type_mob" <?= ($type == 1) && ($target == 'women') ? 'checked' : '' ?> id="women-mob" type="checkbox" name="type[]" value="1" />
-                                                                    <span class="checkmark"></span> Women </label>
-                                                            </li>
-                                                            <li class="type_checkboxes_mob">
-                                                                <label class="input-style-box">
-                                                                    <input class="check_type_mob" <?= $type == 2 ? 'checked' : '' ?> id="unisex-mob" type="checkbox" name="type[]" value="2" />
-                                                                    <span class="checkmark"></span> Unisex </label>
-                                                            </li>
-                                                            <li class="type_checkboxes_mob">
-                                                                <label class="input-style-box">
-                                                                    <input class="check_type_mob" <?= ($type == 3) && ($target == 'oriental') ? 'checked' : '' ?> id="oriental-mob" type="checkbox" name="type[]" value="3" />
-                                                                    <span class="checkmark"></span> Oriental </label>
-                                                            </li>
-                                                        </ul>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="card">
-                                    <div class="card-header">
-                                        <a class="left-b card-link collapsed" data-toggle="collapse" href="#collapse3">Size</a>
-                                    </div>
-                                    <div id="collapse3" class="collapse" data-parent="#accordion">
-                                        <div class="sizing">
-                                            <div class="in-product-left-categories" ><!--in-left-Categories-->
-
-                                                <div class="other-range-box">
-                                                    <div class="list-size-data">
-                                                        <?php
-                                                        foreach ($size_list as $size) {
-                                                            if ($size->size) {
-                                                                ?>
-                                                                <div class="size-data-filter size_checkboxes_mob" id="size_checkboxes_mob">
-                                                                    <label class="input-size-data">
-                                                                        <input class="check_size_mob" type="checkbox" name="size[]" id="<?= $size->size ?>-mob" atr-size= "<?= $size->size ?>"value="<?= $size->size ?>"/>
-                                                                        <span class="checkmark-size-data"><?= $size->size ?></span></label>
-                                                                </div>
-                                                                <?php
                                                             }
-                                                        }
-                                                        ?>
-                                                        <div class="clear"></div>
+                                                            ?>
+                                                            <div class="clear"></div>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
 
-                                <div class="card">
-                                    <div class="card-header">
-                                        <a class="left-b card-link collapsed" data-toggle="collapse" href="#collapse4">Price</a>
-                                    </div>
-                                    <div id="collapse4" class="collapse" data-parent="#accordion">
-                                        <div class="sizing">
-                                            <div class="in-product-left-categories" ><!--in-left-Categories-->
+                                    <div class="card">
+                                        <div class="card-header">
+                                            <a class="left-b card-link collapsed" data-toggle="collapse" href="#collapse4">Price</a>
+                                        </div>
+                                        <div id="collapse4" class="collapse" data-parent="#accordion">
+                                            <div class="sizing">
+                                                <div class="in-product-left-categories" ><!--in-left-Categories-->
 
-                                                <div class="other-range-box">
-                                                    <div class="list-type">
-                                                        <div id="slider-container_mob"></div>
-                                                        <div class="slider-values">
-                                                            <!--<input type="text" id="amount" />-->
-                                                            <input type="hidden" name="min_price" id="min_price_mob" value="<?= $minrange ?>">
-                                                            <input type="hidden" name="max_price" id="max_price_mob" value="<?= $maxrange ?>">
-                                                            <span class="min_value value-left" id="min_mob"></span>
-                                                            <span class="max_value value-right" id="max_mob"></span>
-                                                            <div class="clearfix"></div>
+                                                    <div class="other-range-box">
+                                                        <div class="list-type">
+                                                            <div id="slider-container_mob"></div>
+                                                            <div class="slider-values">
+                                                                <!--<input type="text" id="amount" />-->
+                                                                <input type="hidden" name="min_price" id="min_price_mob" value="<?= $minrange ?>">
+                                                                <input type="hidden" name="max_price" id="max_price_mob" value="<?= $maxrange ?>">
+                                                                <span class="min_value value-left" id="min_mob"></span>
+                                                                <span class="max_value value-right" id="max_mob"></span>
+                                                                <div class="clearfix"></div>
+                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -199,135 +200,134 @@ $useragent = $_SERVER['HTTP_USER_AGENT'];
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                        </div><!--filter-mobile-box-->
+                            </div><!--filter-mobile-box-->
 
 
+
+                        </div>
 
                     </div>
-
                 </div>
             </div>
         </div>
-    </div>
-    <?php
-//    } else {
-    ?>
-    <div class="product-left-categories-destop-view">
-        <div class="in-product-left-categories" ><!--in-left-Categories-->
-            <h2 class="head-text">Price</h2>
-            <div class="other-range-box">
-                <div class="list-type">
-                    <div id="slider-container"></div>
-                    <div class="slider-values">
-                      <!--<input type="text" id="amount" />-->
-                        <input type="hidden" name="min_price" id="min_price" value="<?= $minrange ?>">
-                        <input type="hidden" name="max_price" id="max_price" value="<?= $maxrange ?>">
-                        <span class="min_value value-left" id="min"></span>
-                        <span class="max_value value-right" id="max"></span>
-                        <div class="clearfix"></div>
-                    </div>
-                </div>
-            </div>
-            <?php if ($brand_list) { ?>
-                <h2 class="head-text">Brand</h2>
+        <?php
+    } else {
+        ?>
+        <div class="product-left-categories-destop-view">
+            <div class="in-product-left-categories" ><!--in-left-Categories-->
+                <h2 class="head-text">Price</h2>
                 <div class="other-range-box">
-                    <div class="search-box">
-                        <form >
-                            <div class="input-group">
-                                <input type="text" class="form-control search-brand-key"  placeholder="Search by Brand"  value="">
-                                <?php
-                                foreach ($brand_list as $value) {
-                                    echo '<input type="hidden" name="brand_list" value="' . $value->id . '">';
-                                }
-                                ?>
-                                <div class="input-group-addon">
-                                    <input  type="submit" class="send" id="brand_search_submit">
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                    <div class="container">
-                        <div class="content">
-                            <div class="demo">
-                                <div class="scrollbar-inner">
-                                    <div class="list-type">
-                                        <ul class="search_brand">
-                                            <?php
-                                            foreach ($brand_list as $brand) {
-                                                ?>
-                                                <li id="brand_checkboxes">
-                                                    <label class="input-style-box">
-                                                        <?php $brand_id = str_replace(' ', '_', $brand->brand); ?>
-                                                        <input class="check_brand" type="checkbox"  id="<?= strtolower($brand_id) ?>" name="brand[]" value="<?= $brand->brand ?>" />
-                                                        <span class="checkmark"></span> <?= $brand->brand ?> </label>
-                                                </li>
-                                            <?php } ?>
-
-                                        </ul>
-                                    </div>
-                                </div>
-
-                            </div>
+                    <div class="list-type">
+                        <div id="slider-container"></div>
+                        <div class="slider-values">
+                          <!--<input type="text" id="amount" />-->
+                            <input type="hidden" name="min_price" id="min_price" value="<?= $minrange ?>">
+                            <input type="hidden" name="max_price" id="max_price" value="<?= $maxrange ?>">
+                            <span class="min_value value-left" id="min"></span>
+                            <span class="max_value value-right" id="max"></span>
+                            <div class="clearfix"></div>
                         </div>
                     </div>
                 </div>
-            <?php } ?>
-            <h2 class="head-text">Target Groups</h2>
-            <div class="other-range-box">
-                <div class="list-type">
-                    <ul  id="type_checkboxes">
-                        <li>
-                            <label class="input-style-box">
-                                <input class="check_type" <?= ($type == 0) && ($target == 'men') ? 'checked' : '' ?> id="men" type="checkbox" name="type[]" value="0" />
-                                <span class="checkmark"></span> Men </label>
-                        </li>
-                        <li>
-                            <label class="input-style-box">
-                                <input class="check_type" <?= ($type == 1) && ($target == 'women') ? 'checked' : '' ?> id="women" type="checkbox" name="type[]" value="1" />
-                                <span class="checkmark"></span> Women </label>
-                        </li>
-                        <li>
-                            <label class="input-style-box">
-                                <input class="check_type" <?= $type == 2 ? 'checked' : '' ?> id="unisex" type="checkbox" name="type[]" value="2" />
-                                <span class="checkmark"></span> Unisex </label>
-                        </li>
-                        <li>
-                            <label class="input-style-box">
-                                <input class="check_type" <?= ($type == 3) && ($target == 'oriental') ? 'checked' : '' ?> id="oriental" type="checkbox" name="type[]" value="3" />
-                                <span class="checkmark"></span> Oriental </label>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-            <?php if ($size_list) { ?>
-                <h2 class="head-text">Size</h2>
-                <div class="other-range-box">
-                    <div class="list-size-data">
-                        <?php
-                        foreach ($size_list as $size) {
-                            if ($size->size) {
-                                ?>
-                                <div class="size-data-filter" id="size_checkboxes">
-                                    <label class="input-size-data">
-                                        <input class="check_size" type="checkbox" name="size[]" id="<?= $size->size ?>" value="<?= $size->size ?>"/>
-                                        <span class="checkmark-size-data"><?= $size->size ?></span></label>
+                <?php if ($brand_list) { ?>
+                    <h2 class="head-text">Brand</h2>
+                    <div class="other-range-box">
+                        <div class="search-box">
+                            <form >
+                                <div class="input-group">
+                                    <input type="text" class="form-control search-brand-key"  placeholder="Search by Brand"  value="">
+                                    <?php
+                                    foreach ($brand_list as $value) {
+                                        echo '<input type="hidden" name="brand_list" value="' . $value->id . '">';
+                                    }
+                                    ?>
+                                    <div class="input-group-addon">
+                                        <input  type="submit" class="send" id="brand_search_submit">
+                                    </div>
                                 </div>
-                                <?php
-                            }
-                        }
-                        ?>
+                            </form>
+                        </div>
+                        <div class="container">
+                            <div class="content">
+                                <div class="demo">
+                                    <div class="scrollbar-inner">
+                                        <div class="list-type">
+                                            <ul class="search_brand">
+                                                <?php
+                                                foreach ($brand_list as $brand) {
+                                                    ?>
+                                                    <li id="brand_checkboxes">
+                                                        <label class="input-style-box">
+                                                            <?php $brand_id = str_replace(' ', '_', $brand->brand); ?>
+                                                            <input class="check_brand" type="checkbox"  id="<?= strtolower($brand_id) ?>" name="brand[]" value="<?= $brand->brand ?>" />
+                                                            <span class="checkmark"></span> <?= $brand->brand ?> </label>
+                                                    </li>
+                                                <?php } ?>
 
-                        <div class="clear"></div>
+                                            </ul>
+                                        </div>
+                                    </div>
 
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                <?php } ?>
+                <h2 class="head-text">Target Groups</h2>
+                <div class="other-range-box">
+                    <div class="list-type">
+                        <ul  id="type_checkboxes">
+                            <li>
+                                <label class="input-style-box">
+                                    <input class="check_type" <?= ($type == 0) && ($target == 'men') ? 'checked' : '' ?> id="men" type="checkbox" name="type[]" value="0" />
+                                    <span class="checkmark"></span> Men </label>
+                            </li>
+                            <li>
+                                <label class="input-style-box">
+                                    <input class="check_type" <?= ($type == 1) && ($target == 'women') ? 'checked' : '' ?> id="women" type="checkbox" name="type[]" value="1" />
+                                    <span class="checkmark"></span> Women </label>
+                            </li>
+                            <li>
+                                <label class="input-style-box">
+                                    <input class="check_type" <?= $type == 2 ? 'checked' : '' ?> id="unisex" type="checkbox" name="type[]" value="2" />
+                                    <span class="checkmark"></span> Unisex </label>
+                            </li>
+                            <li>
+                                <label class="input-style-box">
+                                    <input class="check_type" <?= ($type == 3) && ($target == 'oriental') ? 'checked' : '' ?> id="oriental" type="checkbox" name="type[]" value="3" />
+                                    <span class="checkmark"></span> Oriental </label>
+                            </li>
+                        </ul>
                     </div>
                 </div>
-            <?php } ?>
+                <?php if ($size_list) { ?>
+                    <h2 class="head-text">Size</h2>
+                    <div class="other-range-box">
+                        <div class="list-size-data">
+                            <?php
+                            foreach ($size_list as $size) {
+                                if ($size->size) {
+                                    ?>
+                                    <div class="size-data-filter" id="size_checkboxes">
+                                        <label class="input-size-data">
+                                            <input class="check_size" type="checkbox" name="size[]" id="<?= $size->size ?>" value="<?= $size->size ?>"/>
+                                            <span class="checkmark-size-data"><?= $size->size ?></span></label>
+                                    </div>
+                                    <?php
+                                }
+                            }
+                            ?>
+
+                            <div class="clear"></div>
+
+                        </div>
+                    </div>
+                <?php } ?>
+            </div>
+            <?= Html::a('Clear filter', ['/product/index'], ['id' => 'clear_filter']) ?>
         </div>
-        <?= Html::a('Clear filter', ['/product/index'], ['id' => 'clear_filter']) ?>
-    </div>
-    <?php
-//    }
+        <?php
+    }
     ?>
 </aside>
 <script>
