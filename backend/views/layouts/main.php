@@ -188,7 +188,7 @@ $action = Yii::$app->controller->id . '/' . Yii::$app->controller->action->id;
                             </ul>
                         </li>
 
-                        <li class="treeview <?= $action == 'slider/index' || $action == 'banner/index' ? 'active' : '' ?>">
+                        <li class="treeview <?= $action == 'slider/index' || $action == 'banner/index' || $action == 'product-listing/index' ? 'active' : '' ?>">
                             <a href="">
                                 <i class="fa fa-pie-chart"></i>
                                 <span>CMS</span>
@@ -200,6 +200,9 @@ $action = Yii::$app->controller->id . '/' . Yii::$app->controller->action->id;
                                 </li>
                                 <li>
                                     <?= Html::a('<i class="fa fa-angle-double-right"></i> Banner  ', ['/cms/banner/index'], ['class' => 'title']) ?>
+                                </li>
+                                <li>
+                                    <?= Html::a('<i class="fa fa-angle-double-right"></i> Product Listing  ', ['/cms/product-listing/index'], ['class' => 'title']) ?>
                                 </li>
                             </ul>
                         </li>

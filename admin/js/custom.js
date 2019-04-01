@@ -158,6 +158,25 @@ $(document).ready(function () {
 
     });
 
+    $(document).on('change', '#productlisting-search_by_brand', function (event) {
+        var brand = $(this).val();
+        var related_product = $('#productlisting-product_id').val();
+
+        $.ajax({
+            url: homeUrl + 'product/product/get-related-products',
+            type: "POST",
+            data: {brand: brand, related_product: related_product},
+            success: function (data) {
+                $('#productlisting-product_id').html(data);
+                if (related_product != '') {
+                    $('#productlisting-product_id').val(related_product);
+                    $('#productlisting-product_id').trigger('change');
+                }
+            }
+        });
+
+    });
+
 });
 var slug = function (str) {
     var $slug = '';

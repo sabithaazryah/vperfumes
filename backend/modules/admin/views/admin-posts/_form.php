@@ -9,9 +9,8 @@ use yii\widgets\ActiveForm;
 ?>
 
 <div class="admin-posts-form form-inline">
-
-    <?php $form = ActiveForm::begin(); ?>
     <?= \common\components\AlertMessageWidget::widget() ?>
+    <?php $form = ActiveForm::begin(); ?>
     <div class="row">
         <div class='col-md-3 col-sm-6 col-xs-12 left_padd'>    <?= $form->field($model, 'post_name')->textInput(['maxlength' => true]) ?>
 
@@ -21,7 +20,7 @@ use yii\widgets\ActiveForm;
         <div class='col-md-3 col-sm-6 col-xs-12 left_padd'>    <?= $form->field($model, 'masters')->dropDownList(['' => '--Select--', '1' => 'Yes', '0' => 'No']) ?>
 
         </div>
-         <div class='col-md-3 col-sm-6 col-xs-12 left_padd'>    <?= $form->field($model, 'product')->dropDownList(['' => '--Select--', '1' => 'Yes', '0' => 'No']) ?>
+        <div class='col-md-3 col-sm-6 col-xs-12 left_padd'>    <?= $form->field($model, 'product')->dropDownList(['' => '--Select--', '1' => 'Yes', '0' => 'No']) ?>
 
         </div>
         <div class='col-md-3 col-sm-6 col-xs-12 left_padd'>    <?= $form->field($model, 'users')->dropDownList(['' => '--Select--', '1' => 'Yes', '0' => 'No']) ?>
@@ -30,7 +29,7 @@ use yii\widgets\ActiveForm;
         <div class='col-md-3 col-sm-6 col-xs-12 left_padd'>    <?= $form->field($model, 'orders')->dropDownList(['' => '--Select--', '1' => 'Yes', '0' => 'No']) ?>
 
         </div>
-         <div class='col-md-3 col-sm-6 col-xs-12 left_padd'>    <?= $form->field($model, 'reports')->dropDownList(['' => '--Select--', '1' => 'Yes', '0' => 'No']) ?>
+        <div class='col-md-3 col-sm-6 col-xs-12 left_padd'>    <?= $form->field($model, 'reports')->dropDownList(['' => '--Select--', '1' => 'Yes', '0' => 'No']) ?>
 
         </div>
         <div class='col-md-3 col-sm-6 col-xs-12 left_padd'>    <?= $form->field($model, 'status')->dropDownList(['' => '--Select--', '1' => 'Enabled', '0' => 'Disabled']) ?>

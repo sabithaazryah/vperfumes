@@ -516,3 +516,6 @@ a{
 .field-product-related_product .select2-selection--multiple{
     height: auto !important;
 }
+.field-productlisting-product_id .select2-selection--multiple {
+    height: auto !important;
+}
