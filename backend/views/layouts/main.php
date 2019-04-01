@@ -167,6 +167,10 @@ $action = Yii::$app->controller->id . '/' . Yii::$app->controller->action->id;
                         <li class="<?= $action == 'order-master/index' ? 'active' : '' ?>">
                             <?= Html::a('<i class="fa fa-shopping-cart"></i> <span>Order Management</span>', ['/order/order-master/index'], ['class' => 'title']) ?>
                         </li>
+                        
+                        <li>
+                                <?= Html::a('<i class="fa fa-cube"></i><span class="title">Promotions</span>', ['/promotions/promotions/index'], ['class' => 'title']) ?>
+                            </li>
 
                         <li class="<?= $controler == 'settings' ? 'active' : '' ?>">
                             <?= Html::a('<i class="fa fa-gears"></i> <span>Settings</span>', ['/settings/index'], ['class' => 'title']) ?>

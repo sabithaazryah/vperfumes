@@ -61,11 +61,16 @@ use common\models\Tax;
         <div class="coupon">
             <div class="apply-promotion-code">
                 <div class="coupon-info">Unlock Offers or Apply promotion</div>
-                <div class="code-form"><input type="text" name="coupon_code" class="input-text"
-                                              id="coupon_code" value="" placeholder="Coupon code"> </div>
-                <input type="submit" class="apply-coupen" name="apply_coupon" value="Apply">
+                <div class="code-form">
+                    <input type="text" name="coupon_code" class="input-text " id="coupon_code" value="" placeholder="Coupon code"> 
+                </div>
+                <input type="submit" class="apply-coupen " name="apply_coupon" value="Apply">
+                <p id="coupon-code-error" style="text-align:left;margin-top:5px;"></p>
+                <input type="hidden" id="promotion-codes" name="promotion_codes" value="">
+                <input type="hidden" id="promotion-code-amount" name="promotion-code-amount" value="">
             </div>
         </div>
+      
     </div>
     <div class="clearfix"></div>
 

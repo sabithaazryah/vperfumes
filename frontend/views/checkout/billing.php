@@ -51,11 +51,11 @@ $this->title = 'Checkout';
                                 </div>
                                 <div class="address">
                                     <div class="title">Add New Address</div>
-                                    <p>
+<!--                                    <p>
                                         Office#4, 1st Floor, Al Rouhani Building,We appreciate your
                                         business
                                         Diera, Dubai - UAE
-                                    </p>
+                                    </p>-->
 
                                     <a href="#!" class="btn-slct" data-toggle="modal" data-target="#exampleModal">Add
                                         New</a>
@@ -72,45 +72,69 @@ $this->title = 'Checkout';
                             <div class="modal-content">
                                 <div class="modal-body">
                                     <div class="form-header">
-                                        <a class="close" data-dismiss="modal"><img width="12"
-                                                                                   src="<?= Yii::$app->homeUrl ?>images/icons/cancel.png" /></a>
+                                        <a class="close" data-dismiss="modal">
+                                            <img width="12" src="<?= Yii::$app->homeUrl ?>images/icons/cancel.png" />
+                                        </a>
                                         <h6 class="title">Save delivery address</h6>
                                     </div>
-                                    <form action="" method="post" class="login-form">
-                                        <div class="row">
-                                            <div class="col-md-12">
-                                                <div class="form-group">
-                                                    <label>Address</label>
-                                                    <input type="text" placeholder="" class="form-control"
-                                                           name="address" required="">
-                                                </div>
-                                            </div>
-                                            <div class="col-md-12">
-                                                <div class="form-group">
-                                                    <label>Door / Flat no.</label>
-                                                    <input type="text" placeholder="" class="form-control"
-                                                           name="address" required="">
-                                                </div>
-                                            </div>
-                                            <div class="col-md-12">
-                                                <div class="form-group">
-                                                    <label>Landmark</label>
-                                                    <input type="text" placeholder="" class="form-control"
-                                                           name="address" required="">
-                                                </div>
-                                            </div>
-                                            <div class="col-md-12">
-                                                <div class="form-group">
-                                                    <label>Phone no.</label>
-                                                    <input type="phone" placeholder="" class="form-control"
-                                                           name="address" required="">
-                                                </div>
-                                            </div>
-                                            <div class="col-md-12">
-                                                <button type="submit" class="orng-btn">Save address & proceed</button>
+                                    <?php $form1 = ActiveForm::begin(['id' => 'add-address']); ?>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <label>Address</label>
+                                                <input type="text" placeholder="" class="form-control"
+                                                       name="UserAddress[address]" required="">
                                             </div>
                                         </div>
-                                    </form>
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <label>Landmark</label>
+                                                <input type="text" placeholder="" class="form-control"
+                                                       name="UserAddress[landmark]" required="">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <label>Location</label>
+                                                <input type="text" placeholder="" class="form-control"
+                                                       name="UserAddress[location]" required="">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <label>Emirate</label>
+                                                <?=
+                                                Html::activeDropDownList($model, 'emirate', ArrayHelper::map(Emirates::find()->all(), 'id', 'name'), [
+                                                    'class' => 'form-control', 'prompt' => 'select','required'=>''
+                                                ])
+                                                ?>
+                                            </div>
+                                        </div>  
+                                        <div class="col-md-12 ">
+                                            <div class="form-group">
+                                                <label>Mobile Number</label>
+                                                <div class="row">
+                                                    <div class="col-md-3">
+                                                        <select id="useraddress-country_code" name="UserAddress[country_code]" class="form-control country-code" required="">
+                                                            <?php foreach ($country_codes as $country_code) { ?>
+                                                                <option value="<?= $country_code ?>" ><?= $country_code ?></option>
+                                                            <?php }
+                                                            ?>
+                                                        </select>
+
+                                                    </div>
+                                                    <div class="col-md-9">
+                                                        <input type="text" class="form-control" name="UserAddress[mobile_number]" required="">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-12">
+                                            <button type="submit" class="orng-btn">Save address & proceed</button>
+                                        </div>
+                                    </div>
+                                    <?php ActiveForm::end(); ?>
                                 </div>
                             </div>
                         </div>
@@ -133,9 +157,9 @@ $this->title = 'Checkout';
                 </div>
             </div>
             <div class="col-lg-5 order0">
-                
-                 <?= CartSummaryWidget::widget(); ?>
-                
+
+                <?= CartSummaryWidget::widget(); ?>
+
             </div>
         </div>
     </div>
@@ -150,6 +174,21 @@ $this->title = 'Checkout';
             var address = $(this).attr('id');
             $('#selected-address').val(address);
             $('#address-form').submit();
+        });
+
+        $(document).on('submit', '#add-address', function (e) {
+            e.preventDefault();
+            var data = $(this).serialize();
+            $.ajax({
+                type: "POST",
+                url: homeUrl + 'checkout/add-address',
+                data: data,
+                success: function (data) {
+                 var obj=JSON.parse(data);
+                 $('#selected-address').val(obj.address);
+                 $('#address-form').submit();
+                }
+            });
         });
     })
 </script>

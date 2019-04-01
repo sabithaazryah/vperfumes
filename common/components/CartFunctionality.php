@@ -440,5 +440,11 @@ class CartFunctionality extends Component {
         mail($to, $subject, $message, $headers);
         mail($to1, $subject, $message, $headers);
     }
+    
+    /*
+     * Coupon codes
+     */
+    
+    
 
 }

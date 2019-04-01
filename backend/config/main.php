@@ -40,6 +40,9 @@ return [
          'cms' => [
             'class' => 'backend\modules\cms\Module',
         ],
+        'promotions' => [
+            'class' => 'backend\modules\promotions\Module',
+        ],
     ],
     'components' => [
         'request' => [

@@ -47,7 +47,7 @@ class CheckoutController extends \yii\web\Controller {
                         Yii::$app->CartFunctionality->orderbilling($bill_address);
                         Yii::$app->CartFunctionality->orderaddress($bill_address);
                         $this->redirect(array('payment'));
-                    } 
+                    }
                 }
                 return $this->render('billing', ['model' => $model, 'addresses' => $address, 'country_codes' => $country_codes, 'default_address' => $default_address, 'flag' => $flag]);
             } else {
@@ -59,34 +59,34 @@ class CheckoutController extends \yii\web\Controller {
     }
 
     public function actionPayment() {
-        $selected_billing_address='';
+        $selected_billing_address = '';
         $model = OrderMaster::find()->where(['order_id' => Yii::$app->session['orderid']])->one();
         if (isset($model->bill_address_id) && $model->bill_address_id != '') {
             $selected_billing_address = UserAddress::findOne($model->bill_address_id);
         }
-        if(\Yii::$app->request->post()){
-           if (isset(Yii::$app->user->identity->id)) {
-            if (Yii::$app->session['orderid']) {
-                $model = OrderMaster::find()->where(['order_id' => Yii::$app->session['orderid']])->one();
-                $model->payment_mode = Yii::$app->request->post()['payment_type'];;
-                if ($model->save()) {
-                    Yii::$app->CartFunctionality->CodeUsedSingle($model->id);
-                    if ($model->payment_mode == 1) {
-                        $this->redirect(array('cash-on-delivery', 'id' => $model->order_id)); /* for cash on delivery */
-                    } elseif ($model->payment_mode == 2) {
-                        $this->redirect(array('paypal', 'id' => $model->order_id)); /* for paytab payment gateway */
+        if (\Yii::$app->request->post()) {
+            if (isset(Yii::$app->user->identity->id)) {
+                if (Yii::$app->session['orderid']) {
+                    $model = OrderMaster::find()->where(['order_id' => Yii::$app->session['orderid']])->one();
+                    $model->payment_mode = Yii::$app->request->post()['payment_type'];
+                    ;
+                    if ($model->save()) {
+                        Yii::$app->CartFunctionality->CodeUsedSingle($model->id);
+                        if ($model->payment_mode == 1) {
+                            $this->redirect(array('cash-on-delivery', 'id' => $model->order_id)); /* for cash on delivery */
+                        } elseif ($model->payment_mode == 2) {
+                            $this->redirect(array('paypal', 'id' => $model->order_id)); /* for paytab payment gateway */
+                        }
                     }
-                } 
+                } else {
+                    $this->redirect(array('cart/mycart'));
+                }
             } else {
-                $this->redirect(array('cart/mycart'));
+                $this->redirect(array('site/login'));
             }
-        } else {
-            $this->redirect(array('site/login'));
-        } 
         }
-        return $this->render('payment', ['model' => $model,'selected_billing_address'=>$selected_billing_address]);
+        return $this->render('payment', ['model' => $model, 'selected_billing_address' => $selected_billing_address]);
     }
-
 
     public function actionCashOnDelivery($id) {
         $order_master = OrderMaster::find()->where(['order_id' => $id])->one();
@@ -687,6 +687,17 @@ class CheckoutController extends \yii\web\Controller {
         }
 
         return $tot_price;
+    }
+
+    public function actionAddAddress() {
+        if (\Yii::$app->request->isAjax) {
+            $model=new \common\models\UserAddress();
+            if ($model->load(Yii::$app->request->post())) {
+                $model->user_id= \Yii::$app->user->identity->id;
+                $model->save(FALSE);
+                echo json_encode(array('address' => $model->id));
+            }
+        }
     }
 
 }
