@@ -64,11 +64,11 @@ if (!empty($special_offers)) {
                                     <div class="m010 d-flex flex-direction-column justify-content-center flex-wrap align-items-center">
                                         <?php
                                         $spe_product = common\models\Product::findOne($special_product);
-                                        if ($spe_product->stock > 0) {
+                                        
                                             ?>
                                             <?= \common\components\ProductLinksWidget::widget(['id' => $spe_product->id]) ?>
                                             <?php
-                                        }
+                                        
                                         ?>
                                     </div>
                                 </div> 
@@ -144,12 +144,10 @@ if (!empty($new_arrivals)) {
                                     <div class="m010 d-flex flex-direction-column justify-content-center flex-wrap align-items-center">
                                         <?php
                                         $new_arrive_product = common\models\Product::findOne($new_arrival_product);
-                                        if ($new_arrive_product->stock > 0) {
+                                     
                                             ?>
                                             <?= \common\components\ProductLinksWidget::widget(['id' => $new_arrive_product->id]) ?>
-                                            <?php
-                                        }
-                                        ?>
+                                           
                                     </div>
                                 </div> 
                                 <?php
@@ -199,7 +197,7 @@ if (!empty($new_arrivals)) {
                                     <div class="col-sm-6 pad0">
                                         <?php
                                         $niche_product_list = common\models\Product::findOne($niche_product);
-                                        if ($niche_product_list->stock > 0) {
+                                       
                                             $j++;
                                             ?>
                                             <?= \common\components\ProductLinksWidget::widget(['id' => $niche_product_list->id, 'count' => $j]) ?>
@@ -207,7 +205,7 @@ if (!empty($new_arrivals)) {
                                             if ($j == 4) {
                                                 break;
                                             }
-                                        }
+                                        
                                         ?>
                                     </div> 
                                     <?php
@@ -246,12 +244,10 @@ if (!empty($gift_sets)) {
                                     <div class="m010 d-flex flex-direction-column justify-content-center flex-wrap align-items-center">
                                         <?php
                                         $gift_product = common\models\Product::findOne($gift_sets_product);
-                                        if ($gift_product->stock > 0) {
+                                       
                                             ?>
                                             <?= \common\components\ProductLinksWidget::widget(['id' => $gift_product->id]) ?>
-                                            <?php
-                                        }
-                                        ?>
+                                          
                                     </div>
                                 </div> 
                                 <?php

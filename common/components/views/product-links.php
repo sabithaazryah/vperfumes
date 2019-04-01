@@ -74,7 +74,7 @@ if (file_exists($gallery_image)) {
         ?>
         <?= Html::a(ucwords($pname), ['product/product-detail', 'product' => $product_details->canonical_name], ['title' => $product_details->product_name, 'class' => 'title']) ?>
         <div class="off-price">AED <?= $main_price; ?></div>
-        <?php if ($model->offer_price != "0" && isset($model->offer_price)) { ?><div class="og-price">AED <?= $product_details->price; ?></div><?php } ?>
+        <?php if ($product_details->offer_price != "0" && isset($product_details->offer_price)) { ?><div class="og-price">AED <?= $product_details->price; ?></div><?php } ?>
     </div>
     <div class="box-foot">
         <a class="check-out cart-button add-cart" pro_id="<?= $product_details->canonical_name ?>"><i class="bag-icon"></i> Add to cart</a> 
