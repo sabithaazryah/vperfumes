@@ -324,7 +324,7 @@ $useragent = $_SERVER['HTTP_USER_AGENT'];
                     </div>
                 <?php } ?>
             </div>
-            <?= Html::a('Clear filter', ['/product/index'], ['id' => 'clear_filter']) ?>
+            <?= Html::a('Clear filter', ['/product/index','category'=>'fragrances'], ['id' => 'clear_filter']) ?>
         </div>
         <?php
     }
@@ -436,7 +436,7 @@ $useragent = $_SERVER['HTTP_USER_AGENT'];
                 var max_range = $('#max').text();
                 var min_value = paramss('minrange');
                 var max_value = paramss('maxrange');
-                alert(window.location.href.indexOf("minrange"));
+               
                 if (window.location.href.indexOf("minrange") !== -1) {
                     var re = new RegExp('minrange=' + min_value + '&&maxrange=' + max_value);
                     var location = location.replace(re, '');

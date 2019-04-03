@@ -14,7 +14,7 @@ use kartik\date\DatePicker;
         <div class="container">
             <div class="row">
                 <div class="col-lg-3">
-                   <?= \common\components\MyAccountMenuWidget::widget() ?>
+                    <?= \common\components\MyAccountMenuWidget::widget() ?>
                 </div>
                 <div class="col-lg-9">
                     <div class="in-track-your-orders">
@@ -26,32 +26,14 @@ use kartik\date\DatePicker;
                             <div class="settings-box">
                                 <h2 class="head">Account Information</h2>
                                 <ul class="list">
-                                    <li>Email: <span class="light">ajrency@gmail.com</span></li>
+                                    <li>Email: <span class="light"><?= Yii::$app->user->identity->email ?></span></li>
                                     <li>Password: ********</li>
                                 </ul>
-                                <div class="edit-button"><a href="#exampleModal" class="link" data-toggle="modal">EDIT</a></div>
+                                <div class="edit-button"><a href="" class="link" id="acccount-info-edit" data-toggle="modal">EDIT</a></div>
                                 <div class="settings-edit-popup">
                                     <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
-                                        <div class="modal-dialog modal-md" role="document">
-                                            <div class="modal-content ">
-                                                <div class="modal-header">
-                                                    <h4 class="modal-title">Account Information</h4>
-                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
-                                                </div>
-                                                <form class="login-form">
-                                                    <div class="form-box">
-                                                        <div class="form-group">
-                                                            <label>Name</label>
-                                                            <input name="" type="text" class="form-control" placeholder="Title">
-                                                        </div>
-                                                        <div class="form-group">
-                                                            <label>Name</label>
-                                                            <input name="" type="text" class="form-control" placeholder="Title">
-                                                        </div>
-                                                        <input name="" type="submit" value="SEND" class="submit">
-                                                    </div>
-                                                </form>
-                                            </div>
+                                        <div class="modal-dialog modal-md" role="document" id="data-content">
+                                            
                                         </div>
                                     </div>
                                 </div>
@@ -59,13 +41,25 @@ use kartik\date\DatePicker;
                             <div class="settings-box">
                                 <h2 class="head">Personal Information</h2>
                                 <ul class="list">
-                                    <li>Name:Rency Daniel</li>
-                                    <li>Gender:Male</li>
-                                    <li>Nationality:Indian</li>
-                                    <li>Birthdate:1986-02-13</li>
-                                    <li>Country of Residence:United Arab Emirates</li>
+                                    <li>Name: <?= $model->first_name ?> <?= $model->last_name ?></li>
+                                    <?php
+                                    $gender = '';
+                                    if (isset($model->gender) && $model->gender != '') {
+                                        if ($model->gender == 1)
+                                            $gender = 'Male';
+                                        else
+                                            $gender = 'Female';
+                                    }
+                                    ?>
+                                    <li>Gender:<?= $gender ?></li>
+                                    <?php
+                                    if (isset($model->dob) && $model->dob != '') {
+                                        ?>
+                                        <li>Birthdate: <?= $model->dob ?></li>
+                                    <?php } ?>
+                                    <li>Mobile:<?= $model->mobile_no ?></li>
                                 </ul>
-                                <div class="edit-button"><a href="#" class="link">EDIT</a></div>
+                                <div class="edit-button"><a href="" id="personal-info-edit" class="link">EDIT</a></div>
                             </div>
 
                         </div>
@@ -183,7 +177,7 @@ use kartik\date\DatePicker;
             var valid = 0;
             if ($("#change-old-password").parent().next(".validation").length == 0) // only add if not added
             {
-                $("#change-old-password").parent().after("<div class='validation' style='color:#e2e20c;margin-bottom: 8px;font-size:11px;'>Old password cannot be blank.</div>");
+                $("#change-old-password").parent().after("<div class='validation' style='color:red;margin-bottom: 8px;font-size:11px;'>Old password cannot be blank.</div>");
             }
         } else {
             if (old_pwd) {
@@ -199,7 +193,7 @@ use kartik\date\DatePicker;
                             $("#change-old-password").parent().next(".validation").remove(); // remove it
                             if ($("#change-old-password").parent().next(".validation").length == 0) // only add if not added
                             {
-                                $("#change-old-password").parent().after("<div class='validation' style='color:#e2e20c;margin-bottom: 8px;font-size:11px;'>Invalid email. Please enter a valid email.</div>");
+                                $("#change-old-password").parent().after("<div class='validation' style='color:red;margin-bottom: 8px;font-size:11px;'>Invalid password.</div>");
                             }
                         }
                     }
@@ -214,7 +208,7 @@ use kartik\date\DatePicker;
             var valid = 0;
             if ($("#change-new-password").parent().next(".validation").length == 0) // only add if not added
             {
-                $("#change-new-password").parent().after("<div class='validation' style='color:#e2e20c;margin-bottom: 8px;font-size:11px;'>New password cannot be blank.</div>");
+                $("#change-new-password").parent().after("<div class='validation' style='color:red;margin-bottom: 8px;font-size:11px;'>New password cannot be blank.</div>");
             }
         } else {
             $("#change-new-password").parent().next(".validation").remove(); // remove it
@@ -227,7 +221,7 @@ use kartik\date\DatePicker;
             var valid = 0;
             if ($("#change-confirm-password").parent().next(".validation").length == 0) // only add if not added
             {
-                $("#change-confirm-password").parent().after("<div class='validation' style='color:#e2e20c;margin-bottom: 8px;font-size:11px;'>New password cannot be blank.</div>");
+                $("#change-confirm-password").parent().after("<div class='validation' style='color:red;margin-bottom: 8px;font-size:11px;'>New password cannot be blank.</div>");
             }
         } else {
             $("#change-confirm-password").parent().next(".validation").remove(); // remove it
@@ -248,7 +242,7 @@ use kartik\date\DatePicker;
                 $("#change-confirm-password").parent().next(".validation").remove(); // remove it
                 if ($("#change-confirm-password").parent().next(".validation").length == 0) // only add if not added
                 {
-                    $("#change-confirm-password").parent().after("<div class='validation' style='color:#e2e20c;margin-bottom: 8px;font-size:11px;'>Password mismatch.</div>");
+                    $("#change-confirm-password").parent().after("<div class='validation' style='color:red;margin-bottom: 8px;font-size:11px;'>Password mismatch.</div>");
                 }
             }
         } else {

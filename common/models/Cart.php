@@ -91,10 +91,7 @@ class Cart extends \yii\db\ActiveRecord {
 
     
 
-    public static function ProductStock($product_id) {
-        $product = Product::find()->where(['id' => $product_id, 'status' => '1'])->one();
-        return $product->stock;
-    }
+   
 
     
 

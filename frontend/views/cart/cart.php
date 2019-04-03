@@ -37,7 +37,7 @@ else
                                 if (file_exists($product_image)) {
                                     $image = '<img src="' . Yii::$app->homeUrl . 'uploads/product/' . $prod_details->id . '/profile/' . $prod_details->canonical_name . '_thumb.' . $prod_details->profile . '" alt="' . $prod_details->canonical_name . '" class="img-fluid" width="150"/>';
                                 } else {
-                                    $image = '<img src="' . Yii::$app->homeUrl . 'uploads/product/profile_thumb.png" alt="' . $prod_details->canonical_name . '" class="img-flui" width="150"/>';
+                                    $image = '<img src="' . Yii::$app->homeUrl . 'uploads/product/dummy_perfume.png" alt="' . $prod_details->canonical_name . '" class="img-fluid" width="150"/>';
                                 }
                                 ?>
                                 <div class="cart-list tr_<?= yii::$app->EncryptDecrypt->Encrypt('encrypt', $cart_item->id); ?> <?= $cart_item->quantity == 0 ? 'stock-out-row' : '' ?>">

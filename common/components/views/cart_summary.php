@@ -62,15 +62,31 @@ use common\models\Tax;
             <div class="apply-promotion-code">
                 <div class="coupon-info">Unlock Offers or Apply promotion</div>
                 <div class="code-form">
+                    <input type="hidden" name="master_order_id" id="master_order_id" value="<?= $master->id ?>">
                     <input type="text" name="coupon_code" class="input-text " id="coupon_code" value="" placeholder="Coupon code"> 
                 </div>
                 <input type="submit" class="apply-coupen " name="apply_coupon" value="Apply">
                 <p id="coupon-code-error" style="text-align:left;margin-top:5px;"></p>
                 <input type="hidden" id="promotion-codes" name="promotion_codes" value="">
                 <input type="hidden" id="promotion-code-amount" name="promotion-code-amount" value="">
+
+                <div id="promotions-listing">
+                    <?php
+                    if (count($temp_promotions) > 0 && $temp_promotions != '') {
+                        foreach ($temp_promotions as $promotemp) {
+                            $promotion_detail = \common\models\Promotions::findOne($promotemp->value);
+                            ?>
+                            <p id="disc_<?= $promotion_detail->id ?>" >
+                                Coupon Code <?= $promotion_detail->promotion_code ?> is added with AED <?= $promotemp->amount ?>
+                                <a class="promotion-remove" title="Remove" id="<?= $promotion_detail->id ?>" type="<?= $promotemp->id ?>"><i class="far fa-times-circle"></i></a>
+                            </p>
+                        <?php
+                        }
+                    }
+                    ?>
+                </div>
             </div>
         </div>
-      
     </div>
     <div class="clearfix"></div>
 
@@ -89,10 +105,29 @@ use common\models\Tax;
                         <h4 class="price-head">GIFT WRAP:<span>AED <?= sprintf("%0.2f", $gift_wrap) ?></span></h4>
                     <?php } ?>
                     <h4 class="price-head">Tax:<span>AED <?= sprintf("%0.2f", $tax_amount) ?></span></h4>
+                    <?php
+                    $total_temp_promo = 0;
+                    if (count($temp_promotions) > 0 && $temp_promotions != '') {
+                        foreach ($temp_promotions as $temp_promo) {
+                            $total_temp_promo += $temp_promo->amount;
+                        }
+                        ?>
+                        <h4 class="price-head">Coupon Code:<span class="promotion_discount">AED <?= sprintf("%0.2f", $total_temp_promo) ?></span></h4>
+                        <?php
+                    }
+                    if ($total_temp_promo > 0) {
+                        $net_amount = $master->net_amount - $total_temp_promo;
+                    } else {
+                        $net_amount = $master->net_amount;
+                    }
+                    ?>
+                    <div class="cart-promotions" style="display: none">
+                        <h4 class="price-head">Coupon Code:<span class="promotion_discount"></span></h4>
+                    </div>
                 </div>
             </div>
             <div class="total-price">
-                <h4 class="price-head ">TOTAL:<span class="grand_total">AED <?= sprintf("%0.2f", $master->net_amount) ?></span></h4>
+                <h4 class="price-head ">TOTAL:<span class="grand_total checkout-total">AED <?= sprintf("%0.2f", $net_amount) ?></span></h4>
             </div>
             <div class="payment-optns">
                 <p>Ways you can pay</p>

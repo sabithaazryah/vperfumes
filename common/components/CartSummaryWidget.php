@@ -29,7 +29,6 @@ use common\models\OrderPromotions;
 
 class CartSummaryWidget extends Widget {
 
-
     public function init() {
         parent::init();
         if (!isset(Yii::$app->user->identity->id)) {
@@ -43,7 +42,8 @@ class CartSummaryWidget extends Widget {
         $subtotal = Yii::$app->CartFunctionality->total($cart_items);
         $shipping = $master->shipping_charge;
         $promotions = OrderPromotions::find()->where(['order_master_id' => $master->id])->sum('promotion_discount');
-        return $this->render('cart_summary', ['cart_items' => $cart_items, 'shipping' => $shipping, 'subtotal' => $subtotal, 'promotions' => $promotions, 'grand_total' => $grand_total, 'master' => $master]);
+        $temp_promotions = \common\models\TempSession::find()->where(['user_id' => Yii::$app->user->identity->id])->all();
+        return $this->render('cart_summary', ['cart_items' => $cart_items, 'shipping' => $shipping, 'subtotal' => $subtotal, 'promotions' => $promotions, 'grand_total' => $grand_total, 'master' => $master, 'temp_promotions' => $temp_promotions]);
     }
 
 }

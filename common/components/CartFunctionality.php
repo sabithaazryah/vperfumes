@@ -112,11 +112,11 @@ class CartFunctionality extends Component {
             unset(Yii::$app->session['temp_user']);
         }
     }
-    
+
     /*
      * This function count the cart elements
      */
-    
+
     public static function Count() {
         $date = CartFunctionality::date();
         Cart::deleteAll('date <= :date', ['date' => $date]);
@@ -134,15 +134,16 @@ class CartFunctionality extends Component {
             return '0';
         }
     }
-    
-     public static function date() {
+
+    public static function date() {
         $date = date('Y-m-d H:i:s', strtotime(date('Y-m-d H:i:s') . ' - 8 days'));
         return $date;
     }
-    
+
     /*
      * This function checks the product exists or not
      */
+
     public static function check_product() {
         $condition = Yii::$app->CartFunctionality->UserCheck();
         $cart_items = Cart::find()->where($condition)->all();
@@ -153,8 +154,7 @@ class CartFunctionality extends Component {
             }
         }
     }
-    
-    
+
     public static function check_cart($condition) {
         $cart_items = Cart::find()->where($condition)->all();
         foreach ($cart_items as $cart) {
@@ -165,12 +165,12 @@ class CartFunctionality extends Component {
             }
         }
     }
-    
+
     /*
      * This function returns the total amount of cart items
      */
-    
-      public static function total($cart) {
+
+    public static function total($cart) {
         $subtotal = '0';
         foreach ($cart as $cart_item) {
             if ($cart_item->quantity > 0) {
@@ -185,9 +185,8 @@ class CartFunctionality extends Component {
         }
         return $subtotal;
     }
-    
-    
-     public static function cart_count() {
+
+    public static function cart_count() {
         $condition = Yii::$app->CartFunctionality->UserCheck();
         $cart_items = Cart::find()->where($condition)->all();
         if (!empty($cart_items)) {
@@ -196,16 +195,15 @@ class CartFunctionality extends Component {
             return '0';
         }
     }
-    
-    
-     public static function Checkout() {
+
+    public static function Checkout() {
         Yii::$app->CartFunctionality->check_product();
         $cart = Cart::find()->where(['user_id' => Yii::$app->user->identity->id])->all();
         if ($cart) {
             $orders = Yii::$app->CartFunctionality->addOrder($cart);
             if (Yii::$app->CartFunctionality->orderProducts($orders, $cart)) {
                 Yii::$app->CartFunctionality->Addpromotions($orders['master_id']);
-                
+
                 return $orders['order_id'];
             } else {
                 Yii::$app->response->redirect(['cart/mycart'])->send();
@@ -216,9 +214,8 @@ class CartFunctionality extends Component {
             return false;
         }
     }
-    
-    
-     public static function addOrder($cart) {
+
+    public static function addOrder($cart) {
         $model = new OrderMaster;
         $serial_no = Settings::findOne(4)->value;
         $prefix = Settings::findOne(4)->prefix;
@@ -243,11 +240,10 @@ class CartFunctionality extends Component {
 
         if ($model->save()) {
             return ['master_id' => $model->id, 'order_id' => $model->order_id];
-        } 
+        }
     }
-    
-    
-     public static function generateProductEan($prefix, $serial_no) {
+
+    public static function generateProductEan($prefix, $serial_no) {
         $orderid_exist = OrderMaster::find()->where(['order_id' => $prefix . $serial_no])->one();
         if (!empty($orderid_exist)) {
             return Yii::$app->CartFunctionality->generateProductEan($prefix, $serial_no + 1);
@@ -263,7 +259,7 @@ class CartFunctionality extends Component {
         $orderid->save();
         return;
     }
-    
+
     public static function shippingcharge($total_amt) {
         $limit = Settings::findOne(1)->value;
         $ship_amnt = 0;
@@ -273,7 +269,7 @@ class CartFunctionality extends Component {
         }
         return $ship_amnt;
     }
-    
+
     public static function tax($carts) {
         $subtotal = '0';
         foreach ($carts as $cart) {
@@ -298,7 +294,7 @@ class CartFunctionality extends Component {
         }
         return $subtotal;
     }
-    
+
     public static function net_amount($total_amt, $gift_wrap, $tax) {
         $limit = Settings::findOne(1)->value;
         $net_amnt = $total_amt;
@@ -315,7 +311,7 @@ class CartFunctionality extends Component {
         }
         return $net_amnt;
     }
-    
+
     public static function orderProducts($orders, $carts) {
         foreach ($carts as $cart) {
             if ($cart->quantity > 0) {
@@ -340,8 +336,7 @@ class CartFunctionality extends Component {
         }
         return TRUE;
     }
-    
-    
+
     public static function Addpromotions($orderid) {
         $coupons = \common\models\TempSession::find()->where(['user_id' => Yii::$app->user->identity->id, 'type_id' => 3])->all();
         $cart_products = OrderDetails::find()->where(['master_id' => $orderid])->all();
@@ -370,22 +365,20 @@ class CartFunctionality extends Component {
                 $total_promotion_discount += $promotion_discount;
                 $add_promption->promotion_discount = $promotion_discount;
                 $add_promption->save();
-
             }
             $order_master_detail = OrderMaster::findOne($orderid);
             $order_master_detail->net_amount = $order_master_detail->net_amount - $total_promotion_discount;
             $order_master_detail->update();
         }
     }
-    
-    
+
     public static function orderbilling($bill_address) {
         $model1 = OrderMaster::find()->where(['order_id' => Yii::$app->session['orderid']])->one();
         $model1->bill_address_id = $bill_address;
         $model1->status = 2;
         $model1->save();
     }
-    
+
     public static function orderaddress($bill_address) {
         $model = new OrderAddress();
         $user_address = UserAddress::findOne($bill_address);
@@ -400,8 +393,7 @@ class CartFunctionality extends Component {
         $model->mobile_number = $user_address->mobile_number;
         $model->save();
     }
-    
-    
+
     public static function CodeUsedSingle($orderid) {
         $promotions = OrderPromotions::find()->where(['order_master_id' => $orderid])->all();
         foreach ($promotions as $promotion) {
@@ -411,20 +403,20 @@ class CartFunctionality extends Component {
             }
         }
     }
-    
-      public static function AddUsed($code_exists) {
+
+    public static function AddUsed($code_exists) {
         $code_exists->code_used = $code_exists->code_used . ',' . Yii::$app->user->identity->id;
         $code_exists->save();
     }
-    
-     public static function clearcart($models) {
+
+    public static function clearcart($models) {
         foreach ($models as $model) {
             if ($model->quantity > 0) {
                 $model->delete();
             }
         }
     }
-    
+
     public static function purchasemail($orderid, $messages) {
         $ordermaster = OrderMaster::find()->where(['order_id' => $orderid])->one();
         $user = \common\models\User::findOne($ordermaster->user_id);
@@ -440,11 +432,147 @@ class CartFunctionality extends Component {
         mail($to, $subject, $message, $headers);
         mail($to1, $subject, $message, $headers);
     }
-    
+
     /*
      * Coupon codes
      */
+
+    public static function UsedCode($code) {
+        $existss = 0;
+        $code_details = \common\models\Promotions::find()->where(['promotion_code' => $code])->one();
+        $temp_session = \common\models\TempSession::find()->where(['value' => $code_details->id])->exists();
+        if ($temp_session) {
+            $existss = 1;
+        }
+        return $existss;
+    }
+
+    /*
+     * this function checks the promotion code date
+     */
+
+    public static function CheckDate($code_exists) {
+        $date_from_user = date('Y-m-d');
+        $start_ts = strtotime($code_exists->starting_date);
+        $end_ts = strtotime($code_exists->expiry_date);
+        $user_ts = strtotime($date_from_user);
+        return (($user_ts >= $start_ts) && ($user_ts <= $end_ts));
+    }
+
+    /*
+     * 
+     */
+
+    public static function CodeUsed($code_exists) {
+        $code_used_list = explode(',', $code_exists->code_used);
+        if (($code_exists->code_usage == 1)) {
+            if (!in_array(Yii::$app->user->identity->id, $code_used_list)) {
+                $permision = 0;
+            } else {
+                $permision = 1;
+            }
+        } else {
+            $permision = 0;
+        }
+
+        return $permision;
+    }
+
+    /*
+     * check this code is applicable for this user/product
+     */
+
+    public static function PromotionProduct($code_exists, $code) {
+        $products = explode(',', $code_exists->product_id);
+        $users = explode(',', $code_exists->user_id);
+        $oreder_setails = Cart::find()->where(['user_id' => Yii::$app->user->identity->id])->all();
+        $exist = 0;
+        if ($code_exists->promotion_type == 1 || $code_exists->promotion_type == 3) {
+            foreach ($oreder_setails as $value) {
+                if (in_array($value->product_id, $products)) {
+                    $exist = 1;
+                }
+            }
+        }
+        if ($code_exists->promotion_type == 2 || $code_exists->promotion_type == 3) {
+            if (in_array(Yii::$app->user->identity->id, $users))
+                $exist = 1;
+        }
+        return $exist;
+    }
+
+    /*
+     * checks the order amount range
+     */
+
+    public static function AmountRange($code_exists, $cart_amount) {
+        $amount_range = 0;
+        if (isset($code_exists->amount_range) && $code_exists->amount_range != '') {
+            if ($cart_amount > $code_exists->amount_range)
+                $amount_range = 0;
+            else
+                $amount_range = 1;
+        }
+        return $amount_range;
+    }
+
+    /*
+     * promotion code for unique products
+     */
+
+    public static function Promotionuniqueproduct($code_exists, $code, $cart_items) {
+        $products = explode(',', $code_exists->product_id);
+        foreach ($cart_items as $value) {
+            if (in_array($value->product_id, $products)) {
+                $product = \common\models\Product::findOne($value->product_id);
+                if ($product->offer_price != "0" && isset($product->offer_price)) {
+                    $price = $product->offer_price;
+                } else {
+                    $price = $product->price;
+                }
+                $tot_price = $price * $value->quantity;
+            }
+        }
+
+
+        return $tot_price;
+    }
+
+    /*
+     * save added promotion code to temporary table
+     */
+
+    public static function SaveTemp($type_id, $value,$promotion_discount) {
+        $temp_promotion = new \common\models\TempSession;
+        $temp_promotion->user_id = Yii::$app->user->identity->id;
+        $temp_promotion->type_id = $type_id;
+        $temp_promotion->value = $value;
+        $temp_promotion->amount = $promotion_discount;
+        $temp_promotion->save();
+        return $temp_promotion;
+    }
     
+    /*
+     * return the product stock
+     */
+     public static function ProductStock($product_id) {
+        $product = Product::find()->where(['id' => $product_id, 'status' => '1'])->one();
+        return $product->stock;
+    }
     
+    /*
+     * this function add products to cart from wishlist list
+     */
+    public static function add_to_cart($user_id, $temp_session, $product_id, $qty) {
+        $model = new cart;
+        $model->user_id = $user_id;
+        $model->session_id = $temp_session;
+        $model->product_id = $product_id;
+        $model->quantity = $qty;
+        $model->date = date('Y-m-d H:i:s');
+        if ($model->save()) {
+            return TRUE;
+        }
+    }
 
 }

@@ -265,13 +265,8 @@ $(document).ready(function () {
                 $('#disc_' + id).remove();
                 $('#promotion-codes').val(obj.code);
                 $('#promotion-code-amount').val(obj.total_promotion_amount);
-                if (obj.total_promotion_amount > 0) {
-                    $('.cart-promotion').show();
-                    $('.promotion_discount').text(obj.total_promotion_amount);
-                } else {
-                    $('.cart-promotions').hide();
-                }
-                $('.checkout-total').html('<span class=""> AED </span>' + obj.overall_grand_total);
+                $('.cart-promotions').hide();
+                $('.checkout-total').html('AED ' + obj.overall_grand_total);
             }
         });
     });
@@ -362,8 +357,7 @@ $(document).ready(function () {
         e.preventDefault();
         var reason = $('.return_reason').val();
         var order_id = $('.return-order_id').val();
-        alert(reason);
-        alert(order_id);
+        
         if (reason !== '') {
             $.ajax({
                 type: "POST",

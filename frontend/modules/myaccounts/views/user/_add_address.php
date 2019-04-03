@@ -32,17 +32,17 @@ use common\models\Emirates;
 
         <div class="form-group">
             <label>Landmark</label>
-            <input type="text" class="form-control"  name="UserAddress[landmark]" placeholder="Landmark" />
+            <input type="text" class="form-control"  name="UserAddress[landmark]" placeholder="Landmark" required=""/>
         </div>
 
         <div class="form-group">
             <label>Location</label>
-            <input type="text" class="form-control"  name="UserAddress[location]" placeholder="location" />
+            <input type="text" class="form-control"  name="UserAddress[location]" placeholder="location" required=""/>
         </div>
 
         <div class="form-group">
             <div class="row">
-                <div class="col-md-6">
+                <div class="col-md-12">
                     <label>Emirate</label>
                     <?php
                     $emirates = Emirates::find()->all();
@@ -55,10 +55,7 @@ use common\models\Emirates;
                         ?>
                     </select>
                 </div>
-                <div class="col-md-6">
-                    <label>Post Code</label>
-                    <input type="text" class="form-control"  name="UserAddress[post_code]" placeholder="Post Code" />
-                </div>
+               
             </div>
         </div>
         <div class="form-group">

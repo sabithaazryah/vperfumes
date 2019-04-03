@@ -93,60 +93,7 @@ $this->title = 'Checkout';
                 <?php ActiveForm::end(); ?>
             </div>
             <div class="col-lg-5 order0">
-                <div class="cart-main-info">
-                    <div class="item-box">
-                        <div class="cart-list">
-                            <a class="thumbnail pull-left" href="#!">
-                                <img src="<?= Yii::$app->homeUrl ?>images/products/pro1-thumb.png" class="img-fluid"
-                                     alt="Ck Euphoria Men Edt 100Ml" width="150">
-                            </a>
-                            <div class="list-dtl">
-                                <a href="#!" class="title">Ck Euphoria Men Edt 100Ml</a>
-                                <ul>
-                                    <li class="price">Price: <span>AED 380</span></li>
-                                    <li class="qty">Quantity: <span>1</span>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="cart-promotion">
-                        <div class="coupon">
-                            <div class="apply-promotion-code">
-                                <div class="coupon-info">Unlock Offers or Apply promotion</div>
-                                <div class="code-form"><input type="text" name="coupon_code" class="input-text"
-                                                              id="coupon_code" value="" placeholder="Coupon code"> </div>
-                                <input type="submit" class="apply-coupen" name="apply_coupon" value="Apply">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="clearfix"></div>
-
-                    <div class="total-price-section">
-                        <div class="fright">
-                            <div class="row">
-                                <div class="col-lg-12">
-                                    <h4 class="price-head">Subtotal:<span class="cart_subtotal">AED
-                                            371.00</span>
-                                    </h4>
-                                    <h4 class="price-head ">SHIPPING:<span class="amount shipping-cost">AED
-                                            0.00</span></h4>
-                                    <h4 class="price-head">GIFT WRAP:<span>AED1.00</span></h4>
-                                    <h4 class="price-head">Tax:<span>AED15.00</span></h4>
-                                </div>
-                            </div>
-                            <div class="total-price">
-                                <h4 class="price-head ">TOTAL:<span class="grand_total">AED 371.00</span></h4>
-                            </div>
-                            <div class="payment-optns">
-                                <p>Ways you can pay</p>
-                                <ul>
-                                    <li><img src="<?= Yii::$app->homeUrl ?>images/icons/payment-optns1.png" class="img-fluid"></li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                <?= CartSummaryWidget::widget(); ?>
             </div>
         </div>
     </div>

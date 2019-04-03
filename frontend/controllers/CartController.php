@@ -212,6 +212,50 @@ class CartController extends \yii\web\Controller {
             }
         }
     }
+    /*
+     * Add product from wishlist to cart
+     */
+    
+    public function actionBuynow() {
+        if (yii::$app->request->isAjax) {
+            $id = $_POST['product'];
+            $quantity = $_POST['qty'];
+            $type = $_POST['type'];
+            $product = Product::find()->where(['canonical_name' => $id, 'status' => 1])->one();
+            $condition = Yii::$app->CartFunctionality->usercheck();
+            if ($product->stock > 0) {
+                $user_id = isset(Yii::$app->user->identity->id) ? Yii::$app->user->identity->id : '';
+                $cart = Cart::find()->where(['product_id' => $product->id])->andWhere($condition)->one();
+                if (!empty($cart)) {
+                    $quantity = $cart->quantity + $quantity;
+                    $stock = Yii::$app->CartFunctionality->productStock($product->id);
+                    $cart->quantity = $quantity;
+                    if ($stock >= $quantity) {
+                        $cart->save();
+                    }
+                } else {
+                    Yii::$app->CartFunctionality->add_to_cart($user_id, Yii::$app->session['temp_user'], $product->id, $quantity);
+                }
+            } else {
+                $cart_data = 0;
+                exit;
+            }
+            if ($type == 2) {
+                return $this->redirect(['cart/mycart']);
+            }
+            $cart_contents = Cart::find()->where($condition)->all();
+            $carrt_count = count($cart_contents);
+            if (!empty($cart_contents)) {
+                $cart_data = $this->renderPartial('cart_contents', ['cart_contents' => $cart_contents]);
+            } else {
+                $cart_data = '';
+            }
+            $arr_variable = array('content' => $cart_data, 'count' => $carrt_count);
+            $data['result'] = $arr_variable;
+            return json_encode($data);
+        }
+    }
+    
 
     /*
      * Add promotion code
@@ -229,26 +273,26 @@ class CartController extends \yii\web\Controller {
                 $code_exists = \common\models\Promotions::find()->where(['promotion_code' => $code, 'status' => 1])->one();
                 //  $cart_products = Cart::find()->where(['user_id' => Yii::$app->user->identity->id])->all();
                 $order_master = OrderMaster::findOne($order_id);
+                
                 $cart_products = OrderDetails::find()->where(['master_id' => $order_id])->all();
                 $cart_promotions = \common\models\TempSession::find()->where(['user_id' => Yii::$app->user->identity->id, 'type_id' => 3])->all();
                 $cart_amount = $order_master->total_amount;
                 if (count($cart_promotions) < 1) {
                     if (!empty($code_exists)) {
-                        $used_code = Cart::UsedCode($_POST['code']); /* check if code used in this order */
+                        $used_code = Yii::$app->CartFunctionality->UsedCode($_POST['code']); /* check if code used in this order */
                         if ($used_code == 0) {
-                            $date_check = Cart::CheckDate($code_exists); /* check code expiry date */
+                            $date_check = Yii::$app->CartFunctionality->CheckDate($code_exists); /* check code expiry date */
                             if ($date_check == 1) {
-                                $used = Cart::CodeUsed($code_exists); /* check code is used or not (in case of single use) */
+                                $used = Yii::$app->CartFunctionality->CodeUsed($code_exists); /* check code is used or not (in case of single use) */
                                 if ($used == 0) {
-                                    $exist = Cart::PromotionProduct($code_exists, $order_id); /* check if that product or user is in this order */
+                                    $exist = Yii::$app->CartFunctionality->PromotionProduct($code_exists, $order_id); /* check if that product or user is in this order */
                                     if ($exist == 1) {
-                                        $amount_range = Cart::AmountRange($code_exists, $cart_amount); /* check the amount range with order total amount */
+                                        $amount_range = Yii::$app->CartFunctionality->AmountRange($code_exists, $cart_amount); /* check the amount range with order total amount */
                                         if ($amount_range == 0) {
-
                                             if ($code_exists->promotion_type == 1) {
-                                                $condition = Cart::usercheck();
+                                                $condition = Yii::$app->CartFunctionality->usercheck();
                                                 $cart_items = Cart::find()->where($condition)->all();
-                                                $price = Cart::Promotionuniqueproduct($code_exists, $code, $cart_products);
+                                                $price = Yii::$app->CartFunctionality->Promotionuniqueproduct($code_exists, $code, $cart_products);
                                             } else {
                                                 $price = $cart_amount;
                                             }
@@ -257,10 +301,11 @@ class CartController extends \yii\web\Controller {
                                             } else {
                                                 $promotion_discount = $code_exists->price;
                                             }
+                                           
                                             $promotion_total_amount = $promotion_total_amount + $promotion_discount;
                                             $grand_total = $order_master->net_amount;
                                             $overall_grand_total = $grand_total - $promotion_total_amount;
-                                            $temp_promotion = Cart::SaveTemp(3, $code_exists->id);
+                                            $temp_promotion = Yii::$app->CartFunctionality->SaveTemp(3, $code_exists->id,$promotion_discount);
                                             $arr_variable = array('msg' => '7', 'discount_id' => $code_exists->id, 'code' => $code, 'amount' => sprintf("%0.2f", $promotion_discount), 'total_promotion_amount' => sprintf("%0.2f", $promotion_total_amount), 'overall_grand_total' => sprintf("%0.2f", $overall_grand_total), 'temp_session' => $temp_promotion->id);
                                         } else {
                                             $arr_variable = array('msg' => '5', 'amount' => $code_exists->amount_range);

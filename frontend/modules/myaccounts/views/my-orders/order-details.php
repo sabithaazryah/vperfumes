@@ -11,27 +11,15 @@ use common\models\Settings;
 $bill_address = common\models\UserAddress::findOne($model->bill_address_id);
 $promotions = \common\models\OrderPromotions::find()->where(['order_master_id' => $model->id])->sum('promotion_discount');
 ?>
+<div id="My-account-page" class="inner-page">
+    <div class="top-margin"></div>
 <section class="in-account-pages-section"><!--in-account-pages-section-->
     <div class="container">
         <div class="row">
-            <div class="col-md-3">
-                <div class="my-account-category">
-                    <div class="account-top-details">
-                        <div class="img-box"><img src="<?= Yii::$app->homeUrl ?>images/icons/account-img.png" width="66" height="66"></div>
-                        <h2 class="account-name"><?= Yii::$app->user->identity->first_name ?></h2>
-                        <h3 class="account-mail"><?= Yii::$app->user->identity->email ?></h3>
-                    </div>
-                    <div class="category-list-left">
-                        <ul>
-                            <li><a href="<?= yii::$app->homeUrl . 'my-account' ?>">My Orders</a></li>
-                            <li><a href="<?= yii::$app->homeUrl . 'adresses' ?>">Shipping Addresses</a></li>
-                            <li><a href="<?= yii::$app->homeUrl . 'myaccounts/user/wish-list' ?>">Wish Lists</a></li>
-                            <li><a href="<?= yii::$app->homeUrl . 'myaccounts/user/personal-info' ?>">Account Settings</a></li>
-                        </ul>
-                    </div>
-                </div>
+            <div class="col-lg-3">
+                <?= \common\components\MyAccountMenuWidget::widget() ?>
             </div>
-            <div class="col-md-9">
+            <div class="col-lg-9">
                 <div class="in-track-your-orders">
                     <div class="head-main-box">
                         <h3 class="head">Order details</h3>
@@ -39,19 +27,17 @@ $promotions = \common\models\OrderPromotions::find()->where(['order_master_id' =
                     <div class="in-order-details">
                         <div class="orders-top-section">
                             <ul>
-                                <li class="list">Order ID: <?= $model->order_id ?></li>
+                                <li class="list">Order ID: #<?= $model->order_id ?></li>
                                 <li class="list">Order placed on:<b> <?= date('d M Y', strtotime($model->order_date)) ?></b></li>
                                 <?php if ($model->admin_status == 4 || $model->admin_status == 6) { ?>
                                     <li class="list">Order Delivered on:<b> <?= date('d M Y', strtotime($model->delivered_date)) ?></b></li>
                                 <?php } ?>
-
-
                             </ul>
                             <div class="clearfix"></div>
                         </div>
                         <div class="sub-order-details">
                             <div class="row">
-                                <?php if (!empty($bill_address)) { ?>
+                                 <?php if (!empty($bill_address)) { ?>
                                     <div class="col-md-4">
                                         <h2 class="haed">Receipient</h2>
                                         <ul class="list">
@@ -73,7 +59,7 @@ $promotions = \common\models\OrderPromotions::find()->where(['order_master_id' =
                                             ?>
                                             <li>Promotion Code: <?= sprintf('%0.2f', $promotions) ?> AED</li>
                                         <?php } ?>
-                                        <li><b>Grand Total: <?= sprintf('%0.2f', $model->net_amount) ?> AED</b></li>
+                                         <li><b>Grand Total: <?= sprintf('%0.2f', $model->net_amount) ?> AED</b></li>
                                         <li>Order total includes any applicable VAT</li>
                                     </ul>
                                 </div>
@@ -112,11 +98,9 @@ $promotions = \common\models\OrderPromotions::find()->where(['order_master_id' =
                                 $order_status = 'Returned';
                             }
                             ?>
-
                             <span class="haed-sub"><?= $order_status ?></span>
                             <div class="clearfix"></div>
                         </div>
-
                         <?php
                         foreach ($order_details as $order_product) {
 
@@ -129,17 +113,17 @@ $promotions = \common\models\OrderPromotions::find()->where(['order_master_id' =
                             }
                             $fregrance = \common\models\Fregrance::findOne($product_detail->product_type);
                             ?>
-                            <div class="order-shipment-product">
-                                <div class="row">
-                                    <div class="col-xs-3">
-                                        <div class="product-img"><img src="<?= $image ?>" width="130" ></div>
-                                    </div>
-                                    <div class="col-xs-9">
-                                        <div class="cont">
-                                            <h3 class="head"><?= $product_detail->product_name ?></h3>
-                                            <ul>
-                                                <li class="quantity">Quantity: <?= $order_product->quantity ?></li>
-                                                <?php
+                        <div class="order-shipment-product">
+                            <div class="row">
+                                <div class="col-sm-3">
+                                    <div class="product-img"><img src="<?= $image ?>" width="130" ></div>
+                                </div>
+                                <div class="col-sm-9">
+                                    <div class="cont">
+                                        <h3 class="head"><?= $product_detail->product_name ?></h3>
+                                        <ul>
+                                            <li class="quantity">Quantity: <?= $order_product->quantity ?></li>
+                                            <?php
                                                 if ($product_detail->offer_price > "0") {
                                                     ?>
                                                     <li><span>AED <?= $product_detail->price; ?></span></li>
@@ -147,16 +131,16 @@ $promotions = \common\models\OrderPromotions::find()->where(['order_master_id' =
                                                 <?php } else { ?>
                                                     <li class="price">AED <?= $product_detail->price; ?></li>
                                                 <?php } ?>
-                                            </ul>
-                                        </div>
+                                        </ul>
                                     </div>
                                 </div>
                             </div>
-
-                            <?php
+                        </div>
+                        <?php
                         }
                         ?>
-
+                        
+                        
                         <div class="total-price-section">
                             <ul class="list">
                                 <li>Item(s) Subtotal:	<?= sprintf('%0.2f', $model->total_amount) ?> AED</li>
@@ -175,3 +159,4 @@ $promotions = \common\models\OrderPromotions::find()->where(['order_master_id' =
         </div>
     </div>
 </section>
+</div>

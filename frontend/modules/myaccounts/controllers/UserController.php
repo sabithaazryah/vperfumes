@@ -100,16 +100,13 @@ class UserController extends Controller {
     }
 
     public function actionPersonalInfo() {
-        
         $id = Yii::$app->user->identity->id;
-//        $model = $this->findModel($id);
-//
-//        if ($model->load(Yii::$app->request->post())) {
-//            $model->dob = date("Y-m-d", strtotime($model->dob));
-//            $model->save();
-//        } 
-        
-        return $this->render('personal-info', [
+        $model = $this->findModel($id);
+
+        if ($model->load(Yii::$app->request->post())) {
+            $model->dob = date("Y-m-d", strtotime($model->dob));
+            $model->save();
+        } return $this->render('personal-info', [
                     'model' => $model,
         ]);
     }
