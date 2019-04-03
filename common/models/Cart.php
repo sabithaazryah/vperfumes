@@ -103,7 +103,6 @@ class Cart extends \yii\db\ActiveRecord {
         $order_details = OrderDetails::find()->where(['order_id' => $orders['order_id']])->all();
         foreach ($order_details as $order) {
             $product = Product::findOne($order->product_id);
-//            $old_qty = $product->stock;
             $stock = $product->stock - $order->quantity;
             $product->stock = $stock > 0 ? $stock : 0;
             if ($product->stock == 0) {
@@ -111,7 +110,6 @@ class Cart extends \yii\db\ActiveRecord {
                 $this->stockOutMail($product);
             }
             $product->save();
-//            StockHistory::stockhistory($product->qty, '3', $product->id, '3', $old_qty);
         }
     }
 
@@ -130,7 +128,6 @@ class Cart extends \yii\db\ActiveRecord {
             echo '40950';
             exit;
         }
-        //return TRUE;
     }
 
     public static function orderdetails() {
