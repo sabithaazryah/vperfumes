@@ -15,24 +15,22 @@ use Yii;
  * @property string $review_date
  * @property int $status '0'=>'Not Appoved' , '1' => 'Appoved,
  */
-class CustomerReviews extends \yii\db\ActiveRecord
-{
+class CustomerReviews extends \yii\db\ActiveRecord {
+
     /**
      * {@inheritdoc}
      */
-    public static function tableName()
-    {
+    public static function tableName() {
         return 'customer_reviews';
     }
 
     /**
      * {@inheritdoc}
      */
-    public function rules()
-    {
+    public function rules() {
         return [
-            [['user_id', 'product_id', 'status'], 'integer'],
-            [['description'], 'string'],
+            [['user_id', 'product_id', 'status', 'rating_point'], 'integer'],
+            [['description'], 'required'],
             [['review_date'], 'safe'],
             [['tittle'], 'string', 'max' => 100],
         ];
@@ -41,8 +39,7 @@ class CustomerReviews extends \yii\db\ActiveRecord
     /**
      * {@inheritdoc}
      */
-    public function attributeLabels()
-    {
+    public function attributeLabels() {
         return [
             'id' => 'ID',
             'user_id' => 'User ID',
@@ -53,4 +50,5 @@ class CustomerReviews extends \yii\db\ActiveRecord
             'status' => 'Status',
         ];
     }
+
 }

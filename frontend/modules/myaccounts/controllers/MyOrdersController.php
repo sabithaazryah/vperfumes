@@ -91,4 +91,35 @@ class MyOrdersController extends Controller {
         }
     }
 
+    public function actionProductReviews($product) {
+        $model = new \common\models\CustomerReviews();
+        $product_details = \common\models\Product::find()->where(['canonical_name' => $product])->one();
+        $user_id = Yii::$app->user->identity->id;
+        $review = \common\models\CustomerReviews::find()->where(['user_id' => $user_id, 'product_id' => $product_details->id])->one();
+        if ($model->load(Yii::$app->request->post()) && $model->validate()) {
+            if ($user_id != '') {
+                $review_exist = \common\models\CustomerReviews::find()->where(['user_id' => $user_id, 'product_id' => $model->product_id])->one();
+                if (empty($review_exist)) {
+                    $review_exist = new \common\models\CustomerReviews();
+                    $review_exist->user_id = $user_id;
+                    $review_exist->product_id = $model->product_id;
+                }
+                $review_exist->tittle = $model->tittle;
+                $review_exist->rating_point = $model->rating_point;
+                $review_exist->description = $model->description;
+                $review_exist->review_date = date('Y-m-d');
+                $review_exist->status = 0;
+                if ($review_exist->save()) {
+                    $review = \common\models\CustomerReviews::find()->where(['user_id' => $user_id, 'product_id' => $product_details->id])->one();
+                    Yii::$app->session->setFlash('success', "Review added successfully");
+                }
+            }
+        }
+        return $this->render('product-review', [
+                    'product_details' => $product_details,
+                    'model' => $model,
+                    'review' => $review,
+        ]);
+    }
+
 }

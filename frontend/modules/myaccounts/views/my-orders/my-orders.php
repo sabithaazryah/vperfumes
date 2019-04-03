@@ -92,9 +92,9 @@ $bill_address = common\models\UserAddress::findOne($model->bill_address_id);
                         <div class="cont">
                             <h3 class="head"><?= $product_detail->product_name ?></h3>
                             <ul>
-                               <?php if (isset($fregrance) && $fregrance->name != '') { ?>
-                                        <li>Fragrance: <?= $fregrance->name; ?></li>
-                                    <?php } ?>
+                                <?php if (isset($fregrance) && $fregrance->name != '') { ?>
+                                    <li>Fragrance: <?= $fregrance->name; ?></li>
+                                <?php } ?>
                             </ul>
                         </div>
                     </div>
@@ -171,8 +171,8 @@ $bill_address = common\models\UserAddress::findOne($model->bill_address_id);
                             <h3 class="head"><?= $product_detail->product_name ?></h3>
                             <ul>
                                 <?php if (isset($fregrance) && $fregrance->name != '') { ?>
-                                        <li>Fragrance: <?= $fregrance->name; ?></li>
-                                    <?php } ?>
+                                    <li>Fragrance: <?= $fregrance->name; ?></li>
+                                <?php } ?>
                             </ul>
                         </div>
                     </div>
@@ -230,42 +230,46 @@ $bill_address = common\models\UserAddress::findOne($model->bill_address_id);
                 </div>
             </div>
         </div>
-       
-            <?php
-            foreach ($order_products as $order_product) {
 
-                $product_detail = Product::find()->where(['id' => $order_product->product_id])->one();
-                $product_image = Yii::$app->basePath . '/../uploads/product/' . $product_detail->id . '/profile/' . $product_detail->canonical_name . '.' . $product_detail->profile;
-                if (file_exists($product_image)) {
-                    $image = Yii::$app->homeUrl . 'uploads/product/' . $product_detail->id . '/profile/' . $product_detail->canonical_name . '.' . $product_detail->profile;
-                } else {
-                    $image = Yii::$app->homeUrl . 'uploads/product/profile_thumb.png';
-                }
-                $fregrance = \common\models\Fregrance::findOne($product_detail->product_type);
-                ?>
-                <div class="order-shipment-product">
-                    <div class="row">
-                        <div class="col-sm-3">
-                            <div class="product-img"><img src="<?= $image ?>"></div>
-                        </div>
-                        <div class="col-sm-9">
-                            <div class="cont">
-                                <h3 class="head"><?= $product_detail->product_name ?></h3>
-                                <ul>
-                                    <?php if (isset($fregrance) && $fregrance->name != '') { ?>
-                                        <li>Fragrance: <?= $fregrance->name; ?></li>
-                                    <?php } ?>
-                                </ul>
-                            </div>
-                        </div>
+        <?php
+        foreach ($order_products as $order_product) {
+
+            $product_detail = Product::find()->where(['id' => $order_product->product_id])->one();
+            $product_image = Yii::$app->basePath . '/../uploads/product/' . $product_detail->id . '/profile/' . $product_detail->canonical_name . '.' . $product_detail->profile;
+            if (file_exists($product_image)) {
+                $image = Yii::$app->homeUrl . 'uploads/product/' . $product_detail->id . '/profile/' . $product_detail->canonical_name . '.' . $product_detail->profile;
+            } else {
+                $image = Yii::$app->homeUrl . 'uploads/product/profile_thumb.png';
+            }
+            $fregrance = \common\models\Fregrance::findOne($product_detail->product_type);
+            ?>
+            <div class="order-shipment-product">
+                <div class="row">
+                    <div class="col-sm-3">
+                        <div class="product-img"><img src="<?= $image ?>"></div>
                     </div>
-
+                    <div class="col-sm-9">
+                        <div class="cont">
+                            <h3 class="head"><?= $product_detail->product_name ?></h3>
+                            <ul>
+                                <?php if (isset($fregrance) && $fregrance->name != '') { ?>
+                                    <li>Fragrance: <?= $fregrance->name; ?></li>
+                                <?php } ?>
+                            </ul>
+                        </div>
+                        <?php if ($model->admin_status == 4) { ?>
+                            <?= Html::a('<i class="fa fa-star"></i> Rate & Review Product', ['/myaccounts/my-orders/product-reviews', 'product' => $product_detail->canonical_name], ['class' => 'product-rating']) ?>
+                        <?php }
+                        ?>
+                    </div>
                 </div>
 
-                <?php
-            }
-            ?>
-            
+            </div>
+
+            <?php
+        }
+        ?>
+
         <div class="more-box-order-button">
             <ul>
                 <?php if ($model->admin_status == 4 && $model->return_status == 0) { ?>
