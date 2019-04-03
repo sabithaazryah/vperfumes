@@ -48,6 +48,7 @@ class SignupForm extends Model {
             'rules' => "By clicking the 'Sign Up' button, you confirm that you accept our Terms of use and Privacy Policy ",
             'country' => 'Nationality',
             'contact_no' => 'Contact Number',
+            'first_name' => 'Full Name',
         ];
     }
 

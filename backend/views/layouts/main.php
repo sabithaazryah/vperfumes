@@ -168,6 +168,10 @@ $action = Yii::$app->controller->id . '/' . Yii::$app->controller->action->id;
                             <?= Html::a('<i class="fa fa-shopping-cart"></i> <span>Order Management</span>', ['/order/order-master/index'], ['class' => 'title']) ?>
                         </li>
                         
+                        <li class="<?= $action == 'order-master/return' ? 'active' : '' ?>">
+                            <?= Html::a('<i class="fa fa-backward"></i> <span>Return Order</span>', ['/order/order-master/return'], ['class' => 'title']) ?>
+                        </li>
+                        
                         <li>
                                 <?= Html::a('<i class="fa fa-cube"></i><span class="title">Promotions</span>', ['/promotions/promotions/index'], ['class' => 'title']) ?>
                             </li>

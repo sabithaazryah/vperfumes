@@ -149,4 +149,47 @@ class OrderMasterSearch extends OrderMaster
                 ->andFilterWhere(['like', 'user_comment', $this->user_comment]);
         return $dataProvider;
     }
+    
+    
+    public function search_return($params) {
+        
+        $query = OrderMaster::find()->where(['<>','return_status', 0])->orderBy(['id' => SORT_DESC]);
+
+        // add conditions that should always apply here
+
+        $dataProvider = new ActiveDataProvider([
+            'query' => $query,
+            'sort' => ['defaultOrder' => ['id' => SORT_DESC]]
+        ]);
+
+        $this->load($params);
+
+        if (!$this->validate()) {
+            return $dataProvider;
+        }
+        $query->andFilterWhere([
+            'id' => $this->id,
+            'user_id' => $this->user_id,
+            'total_amount' => $this->total_amount,
+            'net_amount' => $this->net_amount,
+ //           'order_date' => $this->order_date,
+            'ship_address_id' => $this->ship_address_id,
+            'bill_address_id' => $this->bill_address_id,
+            'currency_id' => $this->currency_id,
+            'payment_mode' => $this->payment_mode,
+            'admin_comment' => $this->admin_comment,
+            'payment_status' => $this->payment_status,
+            'admin_status' => $this->admin_status,
+            'doc' => $this->doc,
+            'shipping_status' => $this->shipping_status,
+            'status' => $this->status,
+            'return_approve' => $this->return_approve,
+        ]);
+
+        $query->andFilterWhere(['like', 'order_id', $this->order_id])
+                ->andFilterWhere(['like', 'user_comment', $this->user_comment])
+        ;
+
+        return $dataProvider;
+    }
 }

@@ -47,22 +47,27 @@ class MyOrdersController extends Controller {
      * This function will cancel order
      */
 
-    public function actionCancelOrder($id) {
-        $order_master = OrderMaster::find()->where(['order_id' => $id])->one();
-
-        $order_master->status = 5;
-        if ($order_master->save()) {
-            $subject = 'Order Cancelled';
-            $to = 'admin@perfumedunia.com';
-            $message = $this->renderPartial('cancel_mail', ['orderid' => $id]);
-            $headers = 'MIME-Version: 1.0' . "\r\n";
-            $headers .= "Content-type: text/html; charset=iso-8859-1" . "\r\n" .
-                    "From: no-replay@perfumedunia.com";
+    public function actionCancelOrder() {
+        if (yii::$app->request->isAjax) {
+            $reason = Yii::$app->request->post()['reason'];
+            $order_id = Yii::$app->request->post()['order_id'];
+            $order = OrderMaster::find()->where(['order_id' => yii::$app->EncryptDecrypt->Encrypt('decrypt', $order_id), 'user_id' => Yii::$app->user->identity->id])->one();
+            if ($order) {
+                $order->status = 5;
+                $order->cancel_reason = $reason;
+                if ($order->save()) {
+                    $subject = 'Order Cancelled';
+                    $to = Yii::$app->params['adminEmail'];
+                    $message = $this->renderPartial('cancel_mail', ['orderid' => $id]);
+                    $headers = 'MIME-Version: 1.0' . "\r\n";
+                    $headers .= "Content-type: text/html; charset=iso-8859-1" . "\r\n" .
+                            "From: no-replay@perfumedunia.com";
 //                    echo $message;
-            mail($to, $subject, $message, $headers);
+//                    mail($to, $subject, $message, $headers);
+                    echo json_encode(array('msg' => 'success'));
+                }
+            }
         }
-
-        return $this->redirect(Yii::$app->request->referrer);
     }
 
     public function actionOrderDetails($orderid) {

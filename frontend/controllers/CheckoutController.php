@@ -48,6 +48,8 @@ class CheckoutController extends \yii\web\Controller {
                         Yii::$app->CartFunctionality->orderaddress($bill_address);
                         $this->redirect(array('payment'));
                     }
+                } else{
+//                    \common\models\TempSession::deleteAll(['user_id' => Yii::$app->user->identity->id]);
                 }
                 return $this->render('billing', ['model' => $model, 'addresses' => $address, 'country_codes' => $country_codes, 'default_address' => $default_address, 'flag' => $flag]);
             } else {
@@ -71,6 +73,7 @@ class CheckoutController extends \yii\web\Controller {
                     $model->payment_mode = Yii::$app->request->post()['payment_type'];
                     ;
                     if ($model->save()) {
+                        Yii::$app->CartFunctionality->Addpromotions($model->id);
                         Yii::$app->CartFunctionality->CodeUsedSingle($model->id);
                         if ($model->payment_mode == 1) {
                             $this->redirect(array('cash-on-delivery', 'id' => $model->order_id)); /* for cash on delivery */

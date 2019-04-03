@@ -32,7 +32,7 @@ class MasterSearchTag extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['tag_name','tag_name_ar'], 'required'],
+            [['tag_name'], 'required'],
             [['CB', 'UB', 'status'], 'integer'],
             [['DOC', 'DOU'], 'safe'],
             [['tag_name', 'tag_name_ar'], 'string', 'max' => 255],

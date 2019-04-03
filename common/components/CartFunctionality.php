@@ -216,12 +216,17 @@ class CartFunctionality extends Component {
     }
 
     public static function addOrder($cart) {
-        $model = new OrderMaster;
-        $serial_no = Settings::findOne(4)->value;
-        $prefix = Settings::findOne(4)->prefix;
+        $order_exist = OrderMaster::find()->where(['user_id' => Yii::$app->user->identity->id, 'payment_status' => 0])->orderBy(['id' => SORT_DESC])->one();
+        if (empty($order_exist)) {
+            $model = new OrderMaster;
+            $serial_no = Settings::findOne(4)->value;
+            $prefix = Settings::findOne(4)->prefix;
+            $model->order_id = Yii::$app->CartFunctionality->generateProductEan($prefix, $serial_no);
+            $model->user_id = Yii::$app->user->identity->id;
+        } else {
+            $model = OrderMaster::find()->where(['user_id' => Yii::$app->user->identity->id, 'payment_status' => 0])->orderBy(['id' => SORT_DESC])->one();
+        }
         $gift_wrap_value = Settings::findOne(5)->value;
-        $model->order_id = Yii::$app->CartFunctionality->generateProductEan($prefix, $serial_no);
-        $model->user_id = Yii::$app->user->identity->id;
         $total_amt = Yii::$app->CartFunctionality->total($cart);
 
         if (Yii::$app->session['gift_wrap'] == 1) {
@@ -316,7 +321,12 @@ class CartFunctionality extends Component {
         foreach ($carts as $cart) {
             if ($cart->quantity > 0) {
                 $prod_details = Product::findOne($cart->product_id);
-                $model_prod = new OrderDetails;
+                $order_exist = OrderDetails::find()->where(['master_id' => $orders['master_id'], 'product_id' => $cart->product_id])->one();
+                if ($order_exist) {
+                    $model_prod = OrderDetails::find()->where(['master_id' => $orders['master_id'], 'product_id' => $cart->product_id])->one();
+                } else {
+                    $model_prod = new OrderDetails;
+                }
                 $model_prod->master_id = $orders['master_id'];
                 $model_prod->order_id = $orders['order_id'];
                 $model_prod->product_id = $cart->product_id;
@@ -392,6 +402,7 @@ class CartFunctionality extends Component {
         $model->country_code = $user_address->country_code;
         $model->mobile_number = $user_address->mobile_number;
         $model->save();
+         
     }
 
     public static function CodeUsedSingle($orderid) {
@@ -542,7 +553,7 @@ class CartFunctionality extends Component {
      * save added promotion code to temporary table
      */
 
-    public static function SaveTemp($type_id, $value,$promotion_discount) {
+    public static function SaveTemp($type_id, $value, $promotion_discount) {
         $temp_promotion = new \common\models\TempSession;
         $temp_promotion->user_id = Yii::$app->user->identity->id;
         $temp_promotion->type_id = $type_id;
@@ -551,18 +562,20 @@ class CartFunctionality extends Component {
         $temp_promotion->save();
         return $temp_promotion;
     }
-    
+
     /*
      * return the product stock
      */
-     public static function ProductStock($product_id) {
+
+    public static function ProductStock($product_id) {
         $product = Product::find()->where(['id' => $product_id, 'status' => '1'])->one();
         return $product->stock;
     }
-    
+
     /*
      * this function add products to cart from wishlist list
      */
+
     public static function add_to_cart($user_id, $temp_session, $product_id, $qty) {
         $model = new cart;
         $model->user_id = $user_id;

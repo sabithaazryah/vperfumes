@@ -8,6 +8,7 @@ if (isset($meta_title) && $meta_title != '')
     $this->title = $meta_title;
 else
     $this->title = 'Shopping Cart';
+unset(Yii::$app->session['gift_wrap']);
 ?>
 
 <div id="cart-page" class="inner-page">

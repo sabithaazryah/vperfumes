@@ -31,6 +31,7 @@ $this->title = 'Checkout';
                                     <div class="address">
                                         <div class="title">Address</div>
                                         <p>
+                                            <?= $address->name . ',' ?><br>
                                             <?= $address->address . ',' ?><br>
                                             <?= $address->landmark . ',' ?><br>
                                             <?= $address->location . ',' ?><br>
@@ -79,6 +80,15 @@ $this->title = 'Checkout';
                                     </div>
                                     <?php $form1 = ActiveForm::begin(['id' => 'add-address']); ?>
                                     <div class="row">
+                                        
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <label>Name</label>
+                                                <input type="text" placeholder="" class="form-control"
+                                                       name="UserAddress[name]" required="">
+                                            </div>
+                                        </div>
+                                        
                                         <div class="col-md-12">
                                             <div class="form-group">
                                                 <label>Address</label>
