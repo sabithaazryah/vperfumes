@@ -87,34 +87,6 @@ class Cart extends \yii\db\ActiveRecord {
 
    
 
-    
-
-    
-
-   
-
-    
-
-   
-
-   
-
-    
-
-    
-
-  
-
-   
-
-    
-
-    
-
-    
-
-    
-
     public static function ordershipping($bill_address) {
         $model1 = OrderMaster::find()->where(['order_id' => Yii::$app->session['orderid']])->one();
         $model1->ship_address_id = $bill_address;

@@ -118,14 +118,14 @@ class CartFunctionality extends Component {
      */
 
     public static function Count() {
-        $date = CartFunctionality::date();
+        $date = Yii::$app->CartFunctionality->date();
         Cart::deleteAll('date <= :date', ['date' => $date]);
         if (isset(Yii::$app->user->identity->id)) {
             if (isset(Yii::$app->session['temp_user'])) {
-                CartFunctionality::changecart(Yii::$app->session['temp_user']);
+                Yii::$app->CartFunctionality->changecart(Yii::$app->session['temp_user']);
             }
         }
-        $condition = CartFunctionality::usercheck();
+        $condition = Yii::$app->CartFunctionality->usercheck();
         $cart_items = Cart::find()->where($condition)->all();
         if (!empty($cart_items)) {
             $cart_items = Cart::find()->where($condition)->all();

@@ -61,7 +61,7 @@ if (file_exists($gallery_image)) {
         <li>
             <a href="javascript:void(0)" data-tip="Add to Wishlist" class="add_to_wish_list" pro_id="<?= $product_details->canonical_name ?>"><img src="<?= Yii::$app->homeUrl ?>images/icons/heart-icon.png"/></a>
         </li>
-        <li><a href="" data-tip="Similar Products"><img src="<?= Yii::$app->homeUrl ?>images/icons/similar.png"/></a></li>
+        <!--<li><a href="" data-tip="Similar Products"><img src="<?= Yii::$app->homeUrl ?>images/icons/similar.png"/></a></li>-->
     </ul>
     <div class="content">
         <div class="points"><span><?= $product_details->vmiles ?></div>

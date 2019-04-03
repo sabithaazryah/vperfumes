@@ -42,7 +42,7 @@ if (!empty($cart_contents)) {
                                 <h5 class="price">Out of stock</h5>
                             <?php } else {
                                 ?>
-                                <h5 class="price">$ <?= sprintf("%0.2f", $price) ?></h5>
+                                <h5 class="price">AED <?= sprintf("%0.2f", $price) ?></h5>
                                 <h6 class="Quantity">Quantity: <?= $cart_content->quantity ?></h6>
                             <?php }
                             ?>
