@@ -4,6 +4,7 @@
 
 use yii\helpers\Html;
 use frontend\assets\AppAsset;
+use yii\widgets\ActiveForm;
 
 AppAsset::register($this);
 $language = Yii::$app->session['language'];
@@ -85,14 +86,19 @@ $cart_count = common\components\CartFunctionality::Count();
                                                             <a href="#" class="Search-box" data-toggle="collapse" data-target="#demo1"></a>
                                                         </div>
 
-                                                        <form class="search" method="post">
+                                                        <?= Html::beginForm(['/product/index'], 'get', ['id' => 'serach-formms', 'class' => 'search search-box product-search-box']) ?>
                                                             <div class="input-group">
-                                                                <input type="search" id="search" name="email" class="form-control" placeholder="<?= Yii::$app->session['words']['search_products'] ?>..." aria-label="Search Products..." aria-describedby="basic-addon2" required="">
+                                                                <input type="search" id="search" name="keyword" class="form-control search-keyword" placeholder="Search product..." aria-label="Search Products..." aria-describedby="basic-addon2" autocomplete="off" required="" value="<?php
+                                                                    if (isset($_GET['keyword']) && $_GET['keyword'] != '') {
+                                                                        echo $_GET['keyword'];
+                                                                    }
+                                                                    ?>" drop="search-key">
+                                                                    <div class="search-keyword-dropdown search-key"></div>
                                                                     <div class="input-group-append">
                                                                         <button class="btn btn-outline-secondary" type="submit"></button>
                                                                     </div>
                                                             </div>
-                                                        </form>
+                                                        <?= Html::endForm() ?>
 
                                                         <div class="dropdown cart-dropdown">
                                                             <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -139,15 +145,27 @@ $cart_count = common\components\CartFunctionality::Count();
                                                     <div class="clearfix"></div>
                                                     <div class="mobile-header-Search-box collapse " id="demo1" aria-expanded="true">
                                                         <div class="top-Search">
-                                                            <form>
+                                                           <?php
+                                                                $form = ActiveForm::begin([
+                                                                            'method' => 'get',
+                                                                            'id' => 'serach-formms-mobile',
+                                                                            'class' => 'search-box product-search-box',
+                                                                            'action' => ['/product/index']
+                                                                ]);
+                                                                ?>
                                                                 <div class="input-group">
                                                                     <div class="input-group">
 
-                                                                        <input type="text" class="form-control search-keyword" placeholder="Search Products" autocomplete="off" name="keyword" required="" value="">
-                                                                            <div class="search-keyword-dropdown"></div>
+                                                                        <input type="text" class="form-control search-keyword" placeholder="Search Products" autocomplete="off" name="keyword" required="" value="<?php
+                                                                        if (isset($_GET['keyword']) && $_GET['keyword'] != '') {
+                                                                            echo $_GET['keyword'];
+                                                                        }
+                                                                        ?>" drop="search-key">
+                                                                            <div class="search-keyword-dropdown search-key"></div>
                                                                     </div>
 
-                                                                </div></form>
+                                                                </div>
+                                                         <?php ActiveForm::end(); ?>
 
                                                         </div>
                                                     </div>

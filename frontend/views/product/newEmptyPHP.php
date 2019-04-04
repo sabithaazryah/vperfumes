@@ -123,21 +123,16 @@ use common\components\ProductLinksWidget;
                     <div class="head hidden-md hidden-sm hidden-xs">
                         <h2 class="heading"><?= $product_details->product_name ?></h2>
                         <ul>
-                              <?php
-                            $rating = Yii::$app->SetValues->Rating($product_details->id);
-                            
-                            ?>
                             <li>
                                 <div class="rating">
-                                    <span class="fas fa-star <?= ($rating > 0) && $rating >= 1 ? 'checked' : '' ?>"></span>
-                                    <span class="fas fa-star <?= ($rating > 0) && $rating >= 2 ? 'checked' : '' ?>"></span>
-                                    <span class="fas fa-star <?= ($rating > 0) && $rating >= 3 ? 'checked' : '' ?>"></span>
-                                    <span class="fas fa-star  <?= ($rating > 0) && $rating >= 4 ? 'checked' : '' ?>"></span>
-                                    <span class="fas fa-star <?= ($rating > 0) && $rating >= 5 ? 'checked' : '' ?>"></span>
+                                    <span class="fas fa-star checked"></span>
+                                    <span class="fas fa-star checked"></span>
+                                    <span class="fas fa-star checked"></span>
+                                    <span class="fas fa-star"></span>
+                                    <span class="fas fa-star"></span>
                                 </div>
                             </li>
-                            <li><?= Yii::$app->SetValues->RatingCount($product_details->id) ?>  reviews</li>
-                            
+                            <li>(3.0)  reviews</li>
                             <li>
                                 <?php if (isset(Yii::$app->user->identity->id)) { ?>
                                     <a class="add-review" id="add-review" href="" val="<?= $product_details->id ?>">Write a review                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   </a>

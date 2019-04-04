@@ -66,7 +66,7 @@ class SetValues extends Component {
         if ($voters > 0) {
             return '( ' . $voters . ' )';
         } else {
-            return '';
+            return '(0)';
         }
     }
 

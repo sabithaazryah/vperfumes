@@ -28,6 +28,7 @@ class ProductController extends \yii\web\Controller {
      * @return mixed
      */
     public function actionIndex($type = null, $category = null, $keyword = null, $brand = null, $size = null, $minrange = null, $maxrange = null) {
+        
         $searchModel = new ProductSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
         $dataProvider->pagination->pageSize = 44;
