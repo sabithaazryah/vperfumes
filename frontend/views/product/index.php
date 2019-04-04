@@ -3,6 +3,8 @@ $this->title = 'Vperfumes';
 
 use common\components\ProductLinksWidget;
 use yii\widgets\ListView;
+
+$params = \yii::$app->getRequest()->getQueryParams();
 ?>
 
 
@@ -11,7 +13,26 @@ use yii\widgets\ListView;
         <div class="self_container container">
             <ul>
                 <li><a href="index.php">Home</a></li>
-                <li class="current"><a href="#!">Men</a></li>
+                <?php
+                if ($params['category'] == 'fragrances') {
+                    $bread_crumbs = 'Fragrances';
+                } else if ($params['category'] == 'special-offers') {
+                    $bread_crumbs = 'Special Offers';
+                } else if ($params['category'] == 'exclusive-brands') {
+                    $bread_crumbs = 'Exclusive Brands';
+                } else if ($params['category'] == 'arabic-perfumes') {
+                    $bread_crumbs = 'Arabic Perfumes';
+                } else if ($params['category'] == 'new-arrivals') {
+                    $bread_crumbs = 'New Arrivals';
+                } else if ($params['category'] == 'gift-sets') {
+                    $bread_crumbs = 'Gift Set';
+                } else if ($params['category'] == 'one-day-sale') {
+                    $bread_crumbs = 'One Day Sale';
+                } else if ($params['category'] == 'otherss') {
+                    $bread_crumbs = 'Others';
+                }
+                ?>
+                <li class="current"><?= yii\helpers\Html::a($bread_crumbs, ['product/index', 'category' => $params['category']]) ?></li>
             </ul>
         </div>
     </section>
