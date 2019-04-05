@@ -24,6 +24,7 @@ unset(Yii::$app->session['gift_wrap']);
                             </div>
                             <input type="hidden" id="cart_count" value="<?= count($cart_items); ?>">
                             <?php
+                            $cart_item_count=0;
                             foreach ($cart_items as $cart_item) {
                                 if ($cart_item->quantity > 0) {
                                     $cart_item_count++;

@@ -27,6 +27,11 @@ $(document).ready(function () {
                     setTimeout(function () {
                         $('.cartlist-popup-dtl').addClass('hide');
                     }, 2000);
+                } else{
+                    $('.cartlist-popup-dtl').html('No stock');
+                    setTimeout(function () {
+                        $('.cartlist-popup-dtl').addClass('hide');
+                    }, 2000);
                 }
             }
         });

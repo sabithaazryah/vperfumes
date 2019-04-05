@@ -27,7 +27,7 @@ class AjaxController extends \yii\web\Controller {
                 $cart = Cart::find()->where(['product_id' => $product->id])->andWhere($condition)->one();
                 if (!empty($cart)) {
                     $quantity = $cart->quantity + $qty;
-                    $stock = Cart::productStock($product->id);
+                    $stock =Yii::$app->CartFunctionality->productStock($product->id);
                     $cart->quantity = $quantity;
                     if ($stock >= $quantity) {
                         $cart->save();

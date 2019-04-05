@@ -43,7 +43,7 @@ class CartSummaryWidget extends Widget {
         $shipping = $master->shipping_charge;
         $promotions = OrderPromotions::find()->where(['order_master_id' => $master->id])->sum('promotion_discount');
         $temp_promotions = \common\models\TempSession::find()->where(['user_id' => Yii::$app->user->identity->id])->all();
-        return $this->render('cart_summary', ['cart_items' => $cart_items, 'shipping' => $shipping, 'subtotal' => $subtotal, 'promotions' => $promotions, 'grand_total' => $grand_total, 'master' => $master, 'temp_promotions' => $temp_promotions]);
+        return $this->render('cart_summary', ['cart_items' => $cart_items, 'shipping' => $shipping, 'subtotal' => $subtotal, 'promotions' => $promotions, 'master' => $master, 'temp_promotions' => $temp_promotions]);
     }
 
 }

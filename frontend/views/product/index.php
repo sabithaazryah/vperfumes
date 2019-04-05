@@ -5,6 +5,11 @@ use common\components\ProductLinksWidget;
 use yii\widgets\ListView;
 
 $params = \yii::$app->getRequest()->getQueryParams();
+if (!empty($params['category'])) {
+    $target = $params['category'];
+} else {
+    $target = '';
+}
 ?>
 
 
@@ -12,8 +17,10 @@ $params = \yii::$app->getRequest()->getQueryParams();
     <section class="breadcrumb">
         <div class="self_container container">
             <ul>
-                <li><a href="index.php">Home</a></li>
+                <li><a href="<?=Yii::$app->homeUrl?>">Home</a></li>
                 <?php
+                $bread_crumbs='';
+                if(isset($params['category'])){
                 if ($params['category'] == 'fragrances') {
                     $bread_crumbs = 'Fragrances';
                 } else if ($params['category'] == 'special-offers') {
@@ -31,8 +38,11 @@ $params = \yii::$app->getRequest()->getQueryParams();
                 } else if ($params['category'] == 'otherss') {
                     $bread_crumbs = 'Others';
                 }
+                }
                 ?>
+                <?php if(isset($params['category'])){ ?>
                 <li class="current"><?= yii\helpers\Html::a($bread_crumbs, ['product/index', 'category' => $params['category']]) ?></li>
+                <?php } ?>
             </ul>
         </div>
     </section>

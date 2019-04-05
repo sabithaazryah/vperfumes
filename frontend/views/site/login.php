@@ -21,7 +21,7 @@ $this->params['breadcrumbs'][] = $this->title;
                             <li><?= Html::a('create an account',['site/signup'])?></li>
                         </ul>
                     </div>
-                        <?php $form = ActiveForm::begin(['action' => ['site/login', 'go' => $go], 'options' => ['method' => 'post', 'class' => 'login-form']]) ?>
+                        <?php $form = ActiveForm::begin(['action' => ['site/login'], 'options' => ['method' => 'post', 'class' => 'login-form']]) ?>
                         <div class="row">
                             <div class="col-md-12">
                                 <?= $form->field($model, 'email')->textInput(['class' => 'form-control','placeholder'=>'Username or Email','type'=>'email'], ['autofocus' => true])->label(FALSE) ?>
