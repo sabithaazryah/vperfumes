@@ -65,7 +65,7 @@ class ProductController extends \yii\web\Controller {
             $this->CategorizedData($dataProvider, $category);
             $breadcrumb = $category;
         }
-        $dataProvider->query->andWhere(['>', 'stock', 0]);
+//        $dataProvider->query->andWhere(['>', 'stock', 0]);
         $dataProvider->query->orderBy(new Expression('rand()'));
         return $this->render('index', [
                     'searchModel' => $searchModel,

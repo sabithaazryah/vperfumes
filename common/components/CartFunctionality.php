@@ -402,7 +402,6 @@ class CartFunctionality extends Component {
         $model->country_code = $user_address->country_code;
         $model->mobile_number = $user_address->mobile_number;
         $model->save();
-         
     }
 
     public static function CodeUsedSingle($orderid) {
@@ -428,20 +427,18 @@ class CartFunctionality extends Component {
         }
     }
 
-    public static function purchasemail($orderid, $messages) {
+    public static function purchasemail($orderid, $payment_status) {
         $ordermaster = OrderMaster::find()->where(['order_id' => $orderid])->one();
         $user = \common\models\User::findOne($ordermaster->user_id);
         $mail = \common\models\User::findOne(Yii::$app->user->identity->id)->email;
-        $to1 = $mail;
-        $subject = "New Purchase Order";
-        $to = Yii::$app->params['adminEmail'];
 
-        $message = $messages;
-        $headers = 'MIME-Version: 1.0' . "\r\n";
-        $headers .= "Content-type: text/html; charset=iso-8859-1" . "\r\n" .
-                "From: info@coralepitome.com";
-        mail($to, $subject, $message, $headers);
-        mail($to1, $subject, $message, $headers);
+        $message = Yii::$app->mailer->compose('order_mail', ['orderid' => $orderid, 'payment_status' => $payment_status])
+                ->setFrom('info@vperfumes.shop')
+                ->setTo($mail)
+                ->setSubject('Order Confirmed');
+        $message->send();
+
+        
     }
 
     /*

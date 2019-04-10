@@ -34,11 +34,11 @@ class SetValues extends Component {
     }
 
     public function Rating($product) {
-        $rating1 = \common\models\CustomerReviews::find()->where(['product_id' => $product, 'rating_point' => 1])->count();
-        $rating2 = \common\models\CustomerReviews::find()->where(['product_id' => $product, 'rating_point' => 2])->count();
-        $rating3 = \common\models\CustomerReviews::find()->where(['product_id' => $product, 'rating_point' => 3])->count();
-        $rating4 = \common\models\CustomerReviews::find()->where(['product_id' => $product, 'rating_point' => 4])->count();
-        $rating5 = \common\models\CustomerReviews::find()->where(['product_id' => $product, 'rating_point' => 5])->count();
+        $rating1 = \common\models\CustomerReviews::find()->where(['product_id' => $product, 'rating_point' => 1, 'status' => 1])->count();
+        $rating2 = \common\models\CustomerReviews::find()->where(['product_id' => $product, 'rating_point' => 2, 'status' => 1])->count();
+        $rating3 = \common\models\CustomerReviews::find()->where(['product_id' => $product, 'rating_point' => 3, 'status' => 1])->count();
+        $rating4 = \common\models\CustomerReviews::find()->where(['product_id' => $product, 'rating_point' => 4, 'status' => 1])->count();
+        $rating5 = \common\models\CustomerReviews::find()->where(['product_id' => $product, 'rating_point' => 5, 'status' => 1])->count();
         $ratings = [
             1 => $rating1,
             2 => $rating2,
@@ -62,12 +62,28 @@ class SetValues extends Component {
     }
 
     public function RatingCount($product) {
-        $voters = \common\models\CustomerReviews::find()->where(['product_id' => $product])->andWhere(['>', 'rating_point', 0])->count();
+        $voters = \common\models\CustomerReviews::find()->where(['product_id' => $product, 'status' => 1])->andWhere(['>', 'rating_point', 0])->count();
         if ($voters > 0) {
             return '( ' . $voters . ' )';
         } else {
             return '(0)';
         }
+    }
+
+    public function RatingPercentage($product_id, $rate) {
+        $total_perecentage=0;
+        $total_count = \common\models\CustomerReviews::find()->where(['product_id' => $product_id, 'status' => 1])->andWhere(['>', 'rating_point', 0])->count();
+        $rate_count = \common\models\CustomerReviews::find()->where(['product_id' => $product_id, 'rating_point' => $rate, 'status' => 1])->andWhere(['>', 'rating_point', 0])->count();
+        if ($total_count > 0) {
+            $total_perecentage = ($rate_count / $total_count) * 100;
+        }
+        return $total_perecentage;
+    }
+
+    public function RatePerCount($product_id, $rate) {
+        $total_count = \common\models\CustomerReviews::find()->where(['product_id' => $product_id, 'status' => 1])->andWhere(['>', 'rating_point', 0])->count();
+        $rate_count = \common\models\CustomerReviews::find()->where(['product_id' => $product_id, 'rating_point' => $rate, 'status' => 1])->andWhere(['>', 'rating_point', 0])->count();
+        return $rate_count;
     }
 
 }

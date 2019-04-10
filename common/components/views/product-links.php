@@ -84,4 +84,8 @@ if (file_exists($gallery_image)) {
     </div>
     <div class="wishlist-popup-dtl alert-success wishalert_<?= $product_details->canonical_name ?> hide">
     </div>
+     <div class="cartlist-popup-dtl-error alert-success alert_error_<?= $product_details->canonical_name ?> hide">
+         Out of Stock
+    </div>   
+        
 </div>

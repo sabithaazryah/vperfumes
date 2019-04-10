@@ -16,6 +16,7 @@ $(document).ready(function () {
             data: {product: canname, qty: qty, type: type},
             success: function (data)
             {
+               
                 if (data != 0) {
                     var res = $.parseJSON(data);
                     $('.alert_' + canname).removeClass('hide');
@@ -28,9 +29,9 @@ $(document).ready(function () {
                         $('.cartlist-popup-dtl').addClass('hide');
                     }, 2000);
                 } else{
-                    $('.cartlist-popup-dtl').html('No stock');
+                    $('.alert_error_' + canname).removeClass('hide');
                     setTimeout(function () {
-                        $('.cartlist-popup-dtl').addClass('hide');
+                        $('.cartlist-popup-dtl-error').addClass('hide');
                     }, 2000);
                 }
             }

@@ -78,7 +78,7 @@ class CheckoutController extends \yii\web\Controller {
                         if ($model->payment_mode == 1) {
                             $this->redirect(array('cash-on-delivery', 'id' => $model->order_id)); /* for cash on delivery */
                         } elseif ($model->payment_mode == 2) {
-                            $this->redirect(array('paypal', 'id' => $model->order_id)); /* for paytab payment gateway */
+                            $this->redirect(array('cash-on-delivery', 'id' => $model->order_id)); /* for paytab payment gateway */
                         }
                     }
                 } else {
@@ -100,8 +100,8 @@ class CheckoutController extends \yii\web\Controller {
             $payment_status = 'Cash on Delivery';
             $cart = Cart::find()->where(['user_id' => Yii::$app->user->identity->id])->all();
             $message = $this->renderPartial('mail', ['orderid' => Yii::$app->session['orderid'], 'payment_status' => $payment_status]);
-
-//            Yii::$app->CartFunctionality->purchasemail(Yii::$app->session['orderid'], $message);
+            
+            Yii::$app->CartFunctionality->purchasemail(Yii::$app->session['orderid'], $payment_status);
             $this->stock_clear($order_master);
             Yii::$app->CartFunctionality->clearcart($cart);
             Yii::$app->session['orderid'] = '';

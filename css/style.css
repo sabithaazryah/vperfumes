@@ -5299,7 +5299,7 @@ footer .sec4 .right-sec {
     bottom: -20px;
     line-height: 22px;
 }
-.cartlist-popup.hide{
+.cartlist-popup.hide,.cartlist-popup-dtl-error.hide{
     display:none;
 }
 .cartlist-popup-dtl{
@@ -5497,4 +5497,17 @@ footer .sec4 .right-sec {
     font-size: 14px;
     font-weight: 600;
     color: #807777;
+}
+
+.cartlist-popup-dtl-error{
+    display: block;
+    background: red;
+    z-index: 100;
+    color: #fff;
+    width: 100%;
+    min-height: 33px;
+    text-align: center;
+    padding-top: 10px;
+    font-size: 12px;
+    bottom: 0px;
 }

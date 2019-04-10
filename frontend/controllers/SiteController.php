@@ -14,6 +14,7 @@ use frontend\models\ResetPasswordForm;
 use frontend\models\SignupForm;
 use frontend\models\ContactForm;
 use common\components\SetLanguage;
+use common\models\User;
 
 /**
  * Site controller
@@ -99,7 +100,7 @@ class SiteController extends Controller {
 
         $model = new LoginForm();
         if ($model->load(Yii::$app->request->post()) && $model->login()) {
-           if (empty($go)) {
+            if (empty($go)) {
                 return $this->redirect(Yii::$app->request->referrer);
             }
             return $this->redirect($go);
@@ -225,6 +226,77 @@ class SiteController extends Controller {
         SetLanguage::SetLanguage($_POST['lang']);
         $words = SetLanguage::Words($_POST['lang']);
         \Yii::$app->session['words'] = $words;
+    }
+
+    /*
+     * forgot password
+     */
+
+    public function actionForgot() {
+        $model = new User();
+        if ($model->load(Yii::$app->request->post())) {
+            $check_exists = User::find()->where(['email' => $model->email])->one();
+
+            if (!empty($check_exists)) {
+                $token_value = $this->tokenGenerator();
+                $token = $check_exists->id . '_' . $token_value;
+                $val = yii::$app->EncryptDecrypt->Encrypt('encrypt', $token);
+                $token_model = new \common\models\ForgotPasswordTokens();
+                $token_model->user_id = $check_exists->id;
+                $token_model->token = $token_value;
+                $token_model->save();
+                $this->sendMail($val, $check_exists);
+                Yii::$app->getSession()->setFlash('success', 'A verification email has been sent to ' . $check_exists->email . ', please check the spam box if you can not find the mail in your inbox. ');
+            } else {
+                Yii::$app->getSession()->setFlash('error', 'Invalid Email');
+            }
+            return $this->render('forgot-password', [
+                        'model' => $model,
+            ]);
+        } else {
+            return $this->render('forgot-password', [
+                        'model' => $model,
+            ]);
+        }
+    }
+
+    public function tokenGenerator() {
+        $length = rand(1, 1000);
+        $chars = array_merge(range(0, 9));
+        shuffle($chars);
+        $token = implode(array_slice($chars, 0, $length));
+        return $token;
+    }
+
+    public function sendMail($val, $model) {
+        $message = Yii::$app->mailer->compose('forgot_mail', ['model' => $model,'val' => $val])
+                ->setFrom('info@vperfumes.shop')
+                ->setTo($model->email)
+                ->setSubject('Forgot Password');
+        $message->send();
+    }
+    
+     public function actionNewPassword($token) {
+        $data = yii::$app->EncryptDecrypt->Encrypt('decrypt', $token);
+        $values = explode('_', $data);
+        $token_exist = \common\models\ForgotPasswordTokens::find()->where("user_id = " . $values[0] . " AND token = " . $values[1])->one();
+        if (!empty($token_exist)) {
+            $model = User::find()->where("id = " . $token_exist->user_id)->one();
+            $model_form = new \frontend\models\ForgotPassword();
+            if ($model_form->load(Yii::$app->request->post()) && $model_form->validate()) {
+                $model->password_hash = Yii::$app->security->generatePasswordHash($model_form->confirm_password);
+                $model->update();
+                $token_exist->delete();
+                Yii::$app->getSession()->setFlash('success', 'Password changed successfully. Please login!');
+                return $this->redirect(['login']);
+            }
+            return $this->render('new-password', [
+                        'model' => $model,
+                        'model_form' => $model_form
+            ]);
+        } else {
+            $this->redirect('error');
+        }
     }
 
 }

@@ -36,6 +36,7 @@ class AjaxController extends \yii\web\Controller {
                     Yii::$app->CartFunctionality->AddToCart($user_id, Yii::$app->session['temp_user'], $product->id, $qty);
                 }
             } else {
+                
                 $cart_data = 0;
                 exit;
             }

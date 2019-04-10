@@ -161,6 +161,10 @@ $action = Yii::$app->controller->id . '/' . Yii::$app->controller->action->id;
                                 <li>
                                     <?= Html::a('<i class="fa fa-angle-double-right"></i> Users  ', ['/user/user/index'], ['class' => 'title']) ?>
                                 </li>
+                                
+                                <li>
+                                    <?= Html::a('<i class="fa fa-angle-double-right"></i> Reviews  ', ['/user/customer-reviews/index'], ['class' => 'title']) ?>
+                                </li>
                             </ul>
                         </li>
 

@@ -1,19 +1,17 @@
 <?php
 
 use yii\helpers\Html;
-
-/* @var $this \yii\web\View view component instance */
-/* @var $message \yii\mail\MessageInterface the message being composed */
-/* @var $content string main view render result */
 ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
 <html xmlns="http://www.w3.org/1999/xhtml">
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=<?= Yii::$app->charset ?>" />
         <title><?= Html::encode($this->title) ?></title>
+        <?php $this->head() ?>
 
     </head>
     <body style="font-family: sans-serif !important;">
+        <?php $this->beginBody() ?>
         <table cellpadding="0" cellspacing="0" border="0">
             <tbody>
                 <tr>
@@ -36,7 +34,24 @@ use yii\helpers\Html;
                                                             </table>
                                                         </td>
                                                     </tr>
-                                                    <?= $content ?>
+
+                                                    <tr>
+                                                        <td valign="top" class="x_902363135m_-4486764198706722540top-content" style="font-family: Arial, Helvetica, sans-serif; font-weight: normal; border-collapse: collapse; font-size: 12px; vertical-align: top; padding: 0; margin: 0; background: rgb(255, 255, 255)"><table cellpadding="0" cellspacing="0" border="0" style="width: 100%; border-collapse: collapse; font-size: 12px; padding: 0; margin: 0">
+                                                                <tbody>
+                                                                    <tr>
+                                                                        <td class="x_902363135m_-4486764198706722540action-content" style="font-family: Arial, Helvetica, sans-serif; font-weight: normal; border-collapse: collapse; font-size: 12px; vertical-align: top; padding: 40px 20px 40px 20px; margin: 0; line-height: 18px">
+                                                                            <h2 style="text-align: center;margin-bottom: 0px">FORGOT</h2>
+                                                                            <h3 style="text-align: center;margin-top: 0px;">YOUR PASSWORD ?</h3>
+                                                                            <p style="text-align: center;padding-bottom: 20px;">Not to worry, we got you! Let's get you a new password.</p>
+                                                                            <p style="text-align: center;"><a href="http://<?= Yii::$app->request->serverName ?><?= Yii::$app->homeUrl; ?>site/new-password?token=<?= $val ?>" style="display: inline-block;cursor: pointer;padding: 6px 12px;font-size: 13px;line-height: 1.42857143;text-decoration: none;color: #fff;border-color: #80b636;background-color: #e8c376;border: 1px solid transparent;">Reset Password</a></p>
+
+                                                                        </td>
+                                                                    </tr>
+                                                                </tbody>
+                                                            </table>
+                                                        </td>
+                                                    </tr>
+
                                                     <tr>
                                                         <td style="font-family: Arial, Helvetica, sans-serif; font-weight: normal; border-collapse: collapse; font-size: 12px; vertical-align: top; padding: 0; margin: 0">
                                                             <table cellspacing="0" cellpadding="0" border="0" class="x_902363135m_-4486764198706722540bottom-content" style="border-collapse: collapse; font-size: 12px; padding: 0; margin: 0; width: 100% !important">
@@ -60,7 +75,7 @@ use yii\helpers\Html;
                                                                                 </tbody>
                                                                             </table></td>
                                                                     </tr>
-
+                                                                   
                                                                 </tbody>
                                                             </table>
                                                         </td>
@@ -76,5 +91,6 @@ use yii\helpers\Html;
                 </tr>
             </tbody>
         </table>
+        <?php $this->endBody() ?>
     </body>
 </html>

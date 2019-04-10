@@ -6,6 +6,26 @@ use yii\helpers\Html;
 $this->title = 'Vperfumes';
 
 use common\components\ProductLinksWidget;
+
+$field_ext = '';
+if (isset(Yii::$app->session['language']) && Yii::$app->session['language'] != '') {
+    if (Yii::$app->session['language'] == 'ar')
+        $field_ext = '_' . Yii::$app->session['language'];
+}
+
+$pr_name = 'product_name' . $field_ext;
+if (isset($product_details->$pr_name) && $product_details->$pr_name != '') {
+    $product_name = $product_details->$pr_name;
+} else {
+    $product_name = $product_details->product_name;
+}
+
+$pr_desc = 'product_detail' . $field_ext;
+if (isset($product_details->$pr_desc) && $product_details->$pr_desc != '') {
+    $product_description = $product_details->$pr_desc;
+} else {
+    $product_description = $product_details->product_detail;
+}
 ?>
 
 <div id="product-page" class="product-detail-page inner-page">
@@ -14,7 +34,7 @@ use common\components\ProductLinksWidget;
             <ul>
                 <li><?= Html::a('Home', ['/site/index']) ?></li>
                 <li><a href="">Products</a></li>
-                <li class="current"><a href=""><?= $product_details->product_name ?></a></li>
+                <li class="current"><a href=""><?= $product_name ?></a></li>
             </ul>
         </div>
     </section>
@@ -25,26 +45,25 @@ use common\components\ProductLinksWidget;
             <div class="row">
                 <div class="col-md-12 hidden-xl hidden-lg">
                     <div class="head">
-                        <h2 class="heading"><?= $product_details->product_name ?></h2>
+                        <h2 class="heading"><?= $product_name ?></h2>
                         <ul>
                             <?php
                             $rating = Yii::$app->SetValues->Rating($product_details->id);
-                            
                             ?>
                             <li>
                                 <div class="rating">
                                     <span class="fas fa-star <?= ($rating > 0) && $rating >= 1 ? 'checked' : '' ?>"></span>
                                     <span class="fas fa-star <?= ($rating > 0) && $rating >= 2 ? 'checked' : '' ?>"></span>
                                     <span class="fas fa-star <?= ($rating > 0) && $rating >= 3 ? 'checked' : '' ?>"></span>
-                                    <span class="fas fa-star  <?= ($rating > 0) && $rating >= 4 ? 'checked' : '' ?>"></span>
+                                    <span class="fas fa-star <?= ($rating > 0) && $rating >= 4 ? 'checked' : '' ?>"></span>
                                     <span class="fas fa-star <?= ($rating > 0) && $rating >= 5 ? 'checked' : '' ?>"></span>
                                 </div>
                             </li>
-                            <li>(<?= Yii::$app->SetValues->RatingCount($product_details->id) ?>)  reviews</li>
-                            
+                            <li>(<?= Yii::$app->SetValues->RatingCount($product_details->id) ?>)  <?= Yii::$app->session['words']['reviews'] ?></li>
+
                             <li>
                                 <?php if (isset(Yii::$app->user->identity->id)) { ?>
-                                    <a class="add-review" id="add-review" href="" val="<?= $product_details->id ?>">Write a review                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   </a>
+                                    <a class="add-review" id="add-review" href="" val="<?= $product_details->id ?>"><?= Yii::$app->session['words']['Write_a_review'] ?>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   </a>
                                 <?php } else { ?>
                                     <?= Html::a('Write a review', ['/site/login-signup']) ?>
                                 <?php } ?>
@@ -121,26 +140,25 @@ use common\components\ProductLinksWidget;
                 </div>
                 <div class="col-lg-7 prodtl">
                     <div class="head hidden-md hidden-sm hidden-xs">
-                        <h2 class="heading"><?= $product_details->product_name ?></h2>
+                        <h2 class="heading"><?= $product_name ?></h2>
                         <ul>
-                              <?php
+                            <?php
                             $rating = Yii::$app->SetValues->Rating($product_details->id);
-                            
                             ?>
                             <li>
                                 <div class="rating">
                                     <span class="fas fa-star <?= ($rating > 0) && $rating >= 1 ? 'checked' : '' ?>"></span>
                                     <span class="fas fa-star <?= ($rating > 0) && $rating >= 2 ? 'checked' : '' ?>"></span>
                                     <span class="fas fa-star <?= ($rating > 0) && $rating >= 3 ? 'checked' : '' ?>"></span>
-                                    <span class="fas fa-star  <?= ($rating > 0) && $rating >= 4 ? 'checked' : '' ?>"></span>
+                                    <span class="fas fa-star <?= ($rating > 0) && $rating >= 4 ? 'checked' : '' ?>"></span>
                                     <span class="fas fa-star <?= ($rating > 0) && $rating >= 5 ? 'checked' : '' ?>"></span>
                                 </div>
                             </li>
                             <li><?= Yii::$app->SetValues->RatingCount($product_details->id) ?>  reviews</li>
-                            
+
                             <li>
                                 <?php if (isset(Yii::$app->user->identity->id)) { ?>
-                                    <a class="add-review" id="add-review" href="" val="<?= $product_details->id ?>">Write a review                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   </a>
+                                    <a class="add-review" id="add-review" href="" val="<?= $product_details->id ?>"><?= Yii::$app->session['words']['Write_a_review'] ?>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   </a>
                                 <?php } else { ?>
                                     <?= Html::a('Write a review', ['/site/login']) ?>
                                 <?php } ?>
@@ -167,7 +185,7 @@ use common\components\ProductLinksWidget;
                                     <?php if ($product_details->offer_price != "0" && isset($product_details->offer_price)) { ?>
                                         <p class="actual-price">was <span><?= $price ?></span> <span class="off-price"><?= $percentage ?>% OFF</span></p>
                                     <?php } ?>
-                                    <p class="cash-delivery-tag">Inclusive of VAT</p>
+                                    <p class="cash-delivery-tag"><?= Yii::$app->session['words']['inclusive_of_VAT'] ?></p>
                                 </div>
                                 <div class="item-detail">
                                     <?php
@@ -176,9 +194,9 @@ use common\components\ProductLinksWidget;
                                         ?>
                                     <?php }
                                     ?>
-                                    <p>Brand:<a class="brand-link"><?= $brand->brand ?>.</a></p>
+                                    <p><?= Yii::$app->session['words']['brand'] ?>:<a class="brand-link"><?= $brand->brand ?>.</a></p>
                                     <?php $fregrance = \common\models\Fregrance::findOne($product_details->product_type); ?>
-                                    <p>Fragrance type: <span><?= isset($fregrance->name) && $fregrance->name != '' ? $fregrance->name : '' ?></span></p>
+                                    <p><?= Yii::$app->session['words']['fragrance'] ?>: <span><?= isset($fregrance->name) && $fregrance->name != '' ? $fregrance->name : '' ?></span></p>
                                     <?php
                                     $unit = \common\models\Unit::findOne($product_details->size_unit);
                                     $unit_name = '';
@@ -186,8 +204,8 @@ use common\components\ProductLinksWidget;
                                         $unit_name = $unit->unit_name;
                                     }
                                     ?>
-                                    <p>Sizes: <span><?= $product_details->size . $unit_name ?></span></p>
-                                    <p>Product Code: <span><?= $product_details->ean_value ?></span></p>
+                                    <p><?= Yii::$app->session['words']['sizes'] ?>: <span><?= $product_details->size . $unit_name ?></span></p>
+                                    <p><?= Yii::$app->session['words']['product_code'] ?>: <span><?= $product_details->ean_value ?></span></p>
                                 </div>
                             </div>
                             <div class="col-md-6 rit-box">
@@ -197,13 +215,16 @@ use common\components\ProductLinksWidget;
                                     </div>
                                     <div class="wishlist-popup-dtl alert-success wishalert_<?= $product_details->canonical_name ?> hide">
                                     </div>
+                                    <div class="cartlist-popup-dtl-error alert-success alert_error_<?= $product_details->canonical_name ?> hide">
+                                        Out of stock.
+                                    </div>
                                     <?php if ($product_details->stock > 0) { ?>
-                                        <p class="stock-detail">In stock</p>
+                                        <p class="stock-detail"><?= Yii::$app->session['words']['in_stock'] ?></p>
                                     <?php } else { ?>
-                                        <p class="stock-detail">Out of stock</p>
+                                        <p class="stock-detail"><?= Yii::$app->session['words']['out_of_stock'] ?></p>
                                     <?php } ?>
                                     <div class="form-group quantity">
-                                        <label>Quantity</label>
+                                        <label><?= Yii::$app->session['words']['quantity'] ?></label>
                                         <select class="form-control  quantity" id="quantity" name="Quantity">
                                             <?php
                                             for ($i = 1; $i <= $product_details->stock; $i++) {
@@ -212,13 +233,13 @@ use common\components\ProductLinksWidget;
                                             <?php } ?>
                                         </select>
                                     </div>
-                                    <a href="javascript:void(0)" class="wish-list-btn add_to_wish_list" pro_id="<?= $product_details->canonical_name ?>"><i class="fas fa-heart"></i>wishlist</a>
+                                    <a href="javascript:void(0)" class="wish-list-btn add_to_wish_list" pro_id="<?= $product_details->canonical_name ?>"><i class="fas fa-heart"></i><?= Yii::$app->session['words']['wishlist'] ?></a>
                                     <div class="clear"></div>
                                     <!--                                    <div class="spcl-delivery">
                                                                             Enjoy Next Business Day Delivery Order Before <span class="time">2: 00 PM</span>
                                                                         </div>-->
                                     <div class="payment-optns">
-                                        <p>Ways you can pay</p>
+                                        <p><?= Yii::$app->session['words']['ways_can_pay'] ?></p>
                                         <ul>
                                             <li><img src="<?= Yii::$app->homeUrl ?>images/icons/visa-pay.png" class="img-fluid"></li>
                                             <li><img src="<?= Yii::$app->homeUrl ?>images/icons/master-pay.png" class="img-fluid"></li>
@@ -229,16 +250,16 @@ use common\components\ProductLinksWidget;
                             </div>
                         </div>
                         <ul class="button-box">
-                            <li><a href="javascript:void(0)" class="add-2-bag add-cart added-msg" pro_id="<?= $product_details->canonical_name ?>"><icon><img class="img-fluid" src="<?= yii::$app->homeUrl; ?>images/icons/cart.png"/></icon>Add to bag</a></li>
-                            <li><a href="javascript:void(0)" class="buy-now" pro_id="<?= $product_details->canonical_name ?>">Buy now</a></li>
+                            <li><a href="javascript:void(0)" class="add-2-bag add-cart added-msg" pro_id="<?= $product_details->canonical_name ?>"><icon><img class="img-fluid" src="<?= yii::$app->homeUrl; ?>images/icons/cart.png"/></icon><?= Yii::$app->session['words']['add_to_bag'] ?></a></li>
+                            <li><a href="javascript:void(0)" class="buy-now" pro_id="<?= $product_details->canonical_name ?>"><?= Yii::$app->session['words']['buy_now'] ?></a></li>
                         </ul>
                     </div>
                     <div class="special-details">
                         <ul>
-                            <li><icon><img src="<?= Yii::$app->homeUrl ?>images/icons/cod.png" class="img-fluid" width="46" height="46"></icon>Cash On Delivery <span>Receive products in amazing time</span></li>
-                            <li><icon><img src="<?= Yii::$app->homeUrl ?>images/icons/freeshipping.png" class="img-fluid" width="46" height="46"></icon>Free SHIPPING <span>Receive products in amazing time</span></li>
-                            <li><icon><img src="<?= Yii::$app->homeUrl ?>images/icons/authentic.png" class="img-fluid" width="46" height="46"></icon>100%  AUTHENTIC <span>We only sell 100% authentic products</span></li>
-                            <li><icon><img src="<?= Yii::$app->homeUrl ?>images/icons/secure.png" class="img-fluid" width="46" height="46"></icon>SECURE SHOPPING <span>Your data is always protected</span></li>
+                            <li><icon><img src="<?= Yii::$app->homeUrl ?>images/icons/cod.png" class="img-fluid" width="46" height="46"></icon><?= Yii::$app->session['words']['cash_on_delivery'] ?> <span><?= Yii::$app->session['words']['cash_on_delivery_msg'] ?></span></li>
+                            <li><icon><img src="<?= Yii::$app->homeUrl ?>images/icons/freeshipping.png" class="img-fluid" width="46" height="46"></icon><?= Yii::$app->session['words']['free_shippping'] ?> <span><?= Yii::$app->session['words']['free_shipping_msg'] ?></span></li>
+                            <li><icon><img src="<?= Yii::$app->homeUrl ?>images/icons/authentic.png" class="img-fluid" width="46" height="46"></icon><?= Yii::$app->session['words']['authentic'] ?> <span><?= Yii::$app->session['words']['authentic_msg'] ?></span></li>
+                            <li><icon><img src="<?= Yii::$app->homeUrl ?>images/icons/secure.png" class="img-fluid" width="46" height="46"></icon><?= Yii::$app->session['words']['secure_shopping'] ?> <span><?= Yii::$app->session['words']['secure_shopping_msg'] ?></span></li>
                         </ul>
                     </div>
                     <div class="clear"></div>
@@ -251,15 +272,14 @@ use common\components\ProductLinksWidget;
 
     <section id="product-info">
         <div class="container">
-            <div class="head">Product Information</div>
+            <div class="head"><?= Yii::$app->session['words']['product_information'] ?></div>
             <div class="row">
                 <div class="col-12">
                     <div class="product-spec">
                         <div class="spec-box">
-                            <div class="spec-title">Specifications</div>
+                            <div class="spec-title"><?= Yii::$app->session['words']['specifications'] ?></div>
                             <?php
                             if (isset($product_details->gender_type)) {
-
                                 if ($product_details->gender_type == 1) {
                                     $targeted = 'Men';
                                 } else if ($product_details->gender_type == 2) {
@@ -274,24 +294,24 @@ use common\components\ProductLinksWidget;
                             }
                             ?>
                             <ul>
-                                <li>Brand: <span><?= $brand->brand ?>.</span></li>
-                                <li>Fragrance Type: <span><?= isset($fregrance->name) && $fregrance->name != '' ? $fregrance->name : '' ?>.</span></li>
-                                <li>Size: <span><?= $product_details->size . $unit_name ?></span></li>
-                                <li>Product Code: <span><?= $product_details->ean_value ?></span></li>
-                                <li>Targeted Group: <span><?= $targeted ?></span></li>
+                                <li><?= Yii::$app->session['words']['brand'] ?>: <span><?= $brand->brand ?>.</span></li>
+                                <li><?= Yii::$app->session['words']['fragrance'] ?>: <span><?= isset($fregrance->name) && $fregrance->name != '' ? $fregrance->name : '' ?>.</span></li>
+                                <li><?= Yii::$app->session['words']['sizes'] ?>: <span><?= $product_details->size . $unit_name ?></span></li>
+                                <li><?= Yii::$app->session['words']['product_code'] ?>: <span><?= $product_details->ean_value ?></span></li>
+                                <li><?= Yii::$app->session['words']['targeted_group'] ?>: <span><?= $targeted ?></span></li>
                             </ul>
                         </div>
                         <div class="spec-box lastbox">
-                            <div class="spec-title">DESCRIPTION</div>
-                            <?= $product_details->product_detail ?>
+                            <div class="spec-title"><?= Yii::$app->session['words']['description'] ?></div>
+                            <?= $product_description ?>
                         </div>
                         <div class="customer-reviews">
-                            <div class="spec-title">CUSTOMER REVIEWS</div>
+                            <div class="spec-title"><?= Yii::$app->session['words']['customer_reviews'] ?></div>
                             <div class="row">
                                 <div class="col-lg-4 box">
                                     <div class="total-rating">
-                                        <div class="count"><span>4.5</span></div>
-                                        <input id="input-3" name="input-3" class="rating rating-loading" data-min="0" data-max="5" data-step="0.5" value="4.5">
+                                        <div class="count"><span><?= Yii::$app->SetValues->Rating($product_details->id) ?></span></div>
+                                        <input id="input-3" name="input-3" class="rating rating-loading" data-min="0" data-max="5" data-step="0.5" value="<?= Yii::$app->SetValues->Rating($product_details->id) ?>">
                                     </div>
                                 </div>
                                 <div class="col-lg-5 box box-2">
@@ -302,11 +322,11 @@ use common\components\ProductLinksWidget;
                                             </div>
                                             <div class="middle">
                                                 <div class="bar-container">
-                                                    <div style="width: 50%;" class="bar"></div>
+                                                    <div style="width: <?= Yii::$app->SetValues->RatingPercentage($product_details->id, 5) ?>%;" class="bar"></div>
                                                 </div>
                                             </div>
                                             <div class="side right">
-                                                <div>( 5 )</div>
+                                                <div>( <?= Yii::$app->SetValues->RatePerCount($product_details->id, 5) ?> )</div>
                                             </div>
                                         </li>
                                         <li>
@@ -315,11 +335,11 @@ use common\components\ProductLinksWidget;
                                             </div>
                                             <div class="middle">
                                                 <div class="bar-container">
-                                                    <div class="bar"></div>
+                                                    <div style="width: <?= Yii::$app->SetValues->RatingPercentage($product_details->id, 4) ?>%;" class="bar"></div>
                                                 </div>
                                             </div>
                                             <div class="side right">
-                                                <div>( 0 )</div>
+                                                <div>( <?= Yii::$app->SetValues->RatePerCount($product_details->id, 4) ?> )</div>
                                             </div>
                                         </li>
                                         <li>
@@ -328,11 +348,11 @@ use common\components\ProductLinksWidget;
                                             </div>
                                             <div class="middle">
                                                 <div class="bar-container">
-                                                    <div class="bar"></div>
+                                                    <div style="width: <?= Yii::$app->SetValues->RatingPercentage($product_details->id, 3) ?>%;" class="bar"></div>
                                                 </div>
                                             </div>
                                             <div class="side right">
-                                                <div>( 0 )</div>
+                                                <div>( <?= Yii::$app->SetValues->RatePerCount($product_details->id, 3) ?> )</div>
                                             </div>
                                         </li>
                                         <li>
@@ -341,11 +361,11 @@ use common\components\ProductLinksWidget;
                                             </div>
                                             <div class="middle">
                                                 <div class="bar-container">
-                                                    <div style="width: 50%;" class="bar"></div>
+                                                    <div style="width: <?= Yii::$app->SetValues->RatingPercentage($product_details->id, 2) ?>%;" class="bar"></div>
                                                 </div>
                                             </div>
                                             <div class="side right">
-                                                <div>( 08 )</div>
+                                                <div>( <?= Yii::$app->SetValues->RatePerCount($product_details->id, 2) ?> )</div>
                                             </div>
                                         </li>
                                         <li>
@@ -354,11 +374,11 @@ use common\components\ProductLinksWidget;
                                             </div>
                                             <div class="middle">
                                                 <div class="bar-container">
-                                                    <div class="bar"></div>
+                                                    <div style="width: <?= Yii::$app->SetValues->RatingPercentage($product_details->id, 1) ?>%;" class="bar"></div>
                                                 </div>
                                             </div>
                                             <div class="side right">
-                                                <div>( 0 )</div>
+                                                <div>( <?= Yii::$app->SetValues->RatePerCount($product_details->id, 1) ?> )</div>
                                             </div>
                                         </li>
                                     </ul>
@@ -423,8 +443,8 @@ use common\components\ProductLinksWidget;
                 <div class="speciality">
                     <div class="icon"><i class="fas fa-truck"></i></div>
                     <div class="content">
-                        <div class="title">Free shipping</div>
-                        <div class="info">Free shipping for local customers</div>
+                        <div class="title"><?= Yii::$app->session['words']['free_shipping'] ?></div>
+                        <div class="info"><?= Yii::$app->session['words']['free_shipping_msg'] ?></div>
                     </div>
                 </div>
             </div>
@@ -432,8 +452,8 @@ use common\components\ProductLinksWidget;
                 <div class="speciality">
                     <div class="icon"><i class="fas fa-hand-holding-usd"></i></div>
                     <div class="content">
-                        <div class="title">Money Back Guarantee</div>
-                        <div class="info">Refund or change item within 24 hours</div>
+                        <div class="title"><?= Yii::$app->session['words']['money_back_guarantee'] ?></div>
+                        <div class="info"><?= Yii::$app->session['words']['money_back_guarantee_msg'] ?></div>
                     </div>
                 </div>
             </div>
@@ -441,8 +461,8 @@ use common\components\ProductLinksWidget;
                 <div class="speciality">
                     <div class="icon"><i class="fas fa-user-clock"></i></div>
                     <div class="content">
-                        <div class="title">24/7 support</div>
-                        <div class="info">Answer all your questions with an hour</div>
+                        <div class="title"><?= Yii::$app->session['words']['24_support'] ?></div>
+                        <div class="info"><?= Yii::$app->session['words']['24_support_msg'] ?></div>
                     </div>
                 </div>
             </div>

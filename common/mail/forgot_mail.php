@@ -3,27 +3,19 @@
 use yii\helpers\Html;
 ?>
 
-<html>
-    <head>
-        <title>Forgot Password</title>
-        <link href="<?= Yii::$app->homeUrl; ?>css/email.css" rel="stylesheet">
-    </head>
-    <body>
-        <div class="mail-body">
-            <div class="content" style="margin: 0px 15%;border: 1px solid #d4d1d1;">
-                <div class="login-logo" style="text-align: center;font-weight: 600;">
-                 <?= Html::img('http://'.Yii::$app->getRequest()->serverName . '/admin/img/logo.png', $options = ['style' => 'width:200px;margin:0 auto;display: inherit;']) ?>
-                </div>
-                <div class="content-detail" style="padding: 0px 10%;">
-                    <h2>Reset Your Password</h2>
-                    <p>Hi <?= $model->name ?>,</p>
-                    <p>You are requested to reset your password for your  Admin Panel Login. Click the below button to reset it</p>
-                    <p style="margin: 30px 0px;"><a href="<?= Yii::$app->getRequest()->serverName ?><?= Yii::$app->homeUrl ?>site/new-password?token=<?= $val ?>" style="background: #2881c0;padding: 10px 20px;text-decoration: none;color: white;">Reset Password</a></p>
-                </div>
-            </div>
-        </div>
-
-
-
-    </body>
-</html>
+<tr>
+    <td valign="top" class="x_902363135m_-4486764198706722540top-content" style="font-family: Arial, Helvetica, sans-serif; font-weight: normal; border-collapse: collapse; font-size: 12px; vertical-align: top; padding: 0; margin: 0; background: rgb(255, 255, 255)">
+        <table cellpadding="0" cellspacing="0" border="0" style="width: 100%; border-collapse: collapse; font-size: 12px; padding: 0; margin: 0">
+            <tbody>
+                <tr>
+                    <td class="x_902363135m_-4486764198706722540action-content" style="font-family: Arial, Helvetica, sans-serif; font-weight: normal; border-collapse: collapse; font-size: 12px; vertical-align: top; padding: 40px 20px 40px 20px; margin: 0; line-height: 18px">
+                        <h2 style="text-align: center;margin-bottom: 0px">FORGOT</h2>
+                        <h3 style="text-align: center;margin-top: 0px;">YOUR PASSWORD ?</h3>
+                        <p style="text-align: center;padding-bottom: 20px;">Not to worry, we got you! Let's get you a new password.</p>
+                        <p style="text-align: center;"><a href="http://<?= Yii::$app->request->serverName ?><?= Yii::$app->homeUrl; ?>site/new-password?token=<?= $val ?>" style="display: inline-block;cursor: pointer;padding: 6px 12px;font-size: 13px;line-height: 1.42857143;text-decoration: none;color: #fff;border-color: #80b636;background-color: #e8c376;border: 1px solid transparent;">Reset Password</a></p>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </td>
+</tr>
